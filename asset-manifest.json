@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/ttngoc653.github.io/zymuk-page/static/css/main.f855e6bc.css",
-    "main.js": "/ttngoc653.github.io/zymuk-page/static/js/main.0286ad89.js",
-    "static/js/453.ceb00d1e.chunk.js": "/ttngoc653.github.io/zymuk-page/static/js/453.ceb00d1e.chunk.js",
-    "static/media/logo.svg": "/ttngoc653.github.io/zymuk-page/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/ttngoc653.github.io/zymuk-page/index.html",
-    "main.f855e6bc.css.map": "/ttngoc653.github.io/zymuk-page/static/css/main.f855e6bc.css.map",
-    "main.0286ad89.js.map": "/ttngoc653.github.io/zymuk-page/static/js/main.0286ad89.js.map",
-    "453.ceb00d1e.chunk.js.map": "/ttngoc653.github.io/zymuk-page/static/js/453.ceb00d1e.chunk.js.map"
+    "main.css": "/zymuk-page/static/css/main.f855e6bc.css",
+    "main.js": "/zymuk-page/static/js/main.cb7b6d90.js",
+    "static/js/453.ceb00d1e.chunk.js": "/zymuk-page/static/js/453.ceb00d1e.chunk.js",
+    "static/media/logo.svg": "/zymuk-page/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/zymuk-page/index.html",
+    "main.f855e6bc.css.map": "/zymuk-page/static/css/main.f855e6bc.css.map",
+    "main.cb7b6d90.js.map": "/zymuk-page/static/js/main.cb7b6d90.js.map",
+    "453.ceb00d1e.chunk.js.map": "/zymuk-page/static/js/453.ceb00d1e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.0286ad89.js"
+    "static/js/main.cb7b6d90.js"
   ]
 }
