@@ -1,7 +1,8 @@
-{
-  "homepage": "http://ttngoc653.github.io/zymuk-page",
+﻿{
+  "homepage": "http://ttngoc653.github.io",
   "name": "zymuk_page",
   "version": "0.1.0",
+  "datetimedeploy": "",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
