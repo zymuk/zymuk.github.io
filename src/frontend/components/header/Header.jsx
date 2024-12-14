@@ -1,13 +1,13 @@
 import "./header.css";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
     <header className="header">
-      <a href="#" className="logo">
-        <i class="bi bi-menu-button-wide-fill"></i>
-        <div>Zimuk</div>
+      <Link to="/" className="logo">
+        <i className="bi bi-list">Zimuk</i>
         <span>Tran</span>
-      </a>
+      </Link>
       <nav className="navbar">
         <a href="#Home" className="active">
           Home
