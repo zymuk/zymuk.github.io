@@ -1,8 +1,8 @@
-﻿{
-  "homepage": "http://zymuk.github.io",
-  "name": "zymuk_page",
+{
+  "homepage": "https://zymuk.github.io",
+  "name": "zymuk.github.io",
   "version": "0.1.0",
-  "datetimedeploy": "2024/12/14 23:29:57 +0700",
+  "datetimedeploy": "2024/12/14 23:34:34 +0700",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
