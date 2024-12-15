@@ -1,7 +1,7 @@
 import "./header.css";
 import { Link } from "react-router-dom";
 
-function Header() {
+function HomeHeader() {
   return (
     <header className="header">
       <Link to="/" className="logo">
@@ -9,15 +9,18 @@ function Header() {
         <span>Tran</span>
       </Link>
       <nav className="navbar">
-        <Link to="/" className="active">
+        <a href="#Home" className="active">
           Home
-        </Link>
-        <Link to="/tools" className="active">
-          Tools
-        </Link>
+        </a>
+        <a href="#Information" className="active">
+          Information
+        </a>
+        <a href="#Contact" className="active">
+          Contact
+        </a>
       </nav>
     </header>
   );
 }
 
-export default Header;
+export default HomeHeader;
