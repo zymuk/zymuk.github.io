@@ -5,19 +5,16 @@ function HomeHeader() {
   return (
     <header className="header">
       <Link to="/" className="logo">
-        <i className="bi bi-list">Zimuk</i>
+        Zimuk
         <span>Tran</span>
       </Link>
+      <i className="bi bi-list" id="menu-icon" />
       <nav className="navbar">
         <a href="#Home" className="active">
           Home
         </a>
-        <a href="#Information" className="active">
-          Information
-        </a>
-        <a href="#Contact" className="active">
-          Contact
-        </a>
+        <a href="#Information">Information</a>
+        <a href="#Contact">Contact</a>
       </nav>
     </header>
   );

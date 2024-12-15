@@ -1,3 +1,29 @@
-.container {
-    text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  scroll-behavior: smooth;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+:root {
+  --text-color: #c0c0c0;
+  --backgroud-color: blue;
+  --main-color: black;
+}
+
+body {
+  font-size: 60%;
+  overflow-x: hidden;
+  background-image: url(https://chuyenxua.net/wp-content/uploads/2022/05/sadec43.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: var(--text-color);
+}
+
+.frontend-content {
+  min-height: 57.2rem;
 }

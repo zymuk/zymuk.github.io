@@ -3,12 +3,20 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <div>
-      <p>Front-end home</p>
-      <p>
-        <Link to="/tools">Tools</Link>
-      </p>
-    </div>
+    <section className="home" id="home">
+      <div className="home-content">
+        <h1>
+          Hi, It's <span>Zymuk</span>
+        </h1>
+        <h3 className="text-animation">
+          I'm a <span>Vietnamese</span>
+        </h3>
+
+        <div className="list-function">
+          <Link to="/tools">Tools</Link>
+        </div>
+      </div>
+    </section>
   );
 }
 

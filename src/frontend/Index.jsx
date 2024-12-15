@@ -24,10 +24,12 @@ function FrontEndIndex() {
   return (
     <div className="container">
       {(isHomePage && <HomeHeader />) || <Header />}
-      <Routes>
-        <Route exact path="/*" element={<Home />} />
-        <Route exact path="tools" element={<Tools />} />
-      </Routes>
+      <div className="frontend-content">
+        <Routes>
+          <Route exact path="/*" element={<Home />} />
+          <Route exact path="tools" element={<Tools />} />
+        </Routes>
+      </div>
       <Footer />
     </div>
   );
