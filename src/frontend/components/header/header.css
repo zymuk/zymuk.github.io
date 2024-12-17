@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 4rem 12% 4rem;
+  padding: 0rem 12% 0rem;
   background-color: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
   display: flex;
@@ -12,7 +12,7 @@
   z-index: 5;
 }
 
-.logo {
+.header .logo {
   font-size: 3rem;
   color: var(--text-color);
   font-weight: 800;
@@ -20,15 +20,21 @@
   transition: 0.3s ease;
 }
 
-.logo:hover {
+.header .logo:hover {
   transform: scale(1.1);
+  cursor: default;
 }
 
-.logo span {
+.header .logo span {
   text-shadow: 0 0 25px var(--main-color);
 }
 
-.navbar a {
+.header .navbar {
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header .navbar a {
   font-size: 1.8rem;
   color: var(--text-color);
   margin-left: 4rem;
@@ -37,13 +43,83 @@
   border-bottom: 3px solid transparent;
 }
 
-.navbar a:hover .navbar a.active {
-  color: var(--text-color);
-  border-bottom: 3px solid var(--main-color);
+.header .navbar a:hover,
+.header .navbar a.active {
+  color: var(--main-color);
+  border-bottom: 3px solid;
 }
 
-#menu-icon {
+.header #menu-icon {
   font-size: 3.6rem;
-  color: var(--text-color);
+  color: var(--main-color);
   display: none;
+}
+
+@media (max-width: 1285px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+@media (max-width: 951px) {
+  .header {
+    padding: 2rem 3%;
+  }
+
+  .Contact form {
+    flex-direction: column;
+  }
+
+  .footer {
+    padding: 2rem 3%;
+  }
+}
+
+@media (max-width: 895px) {
+  .header #menu-icon {
+    display: block;
+  }
+
+  .header .navbar {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 50%;
+    padding: 1rem 3%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom-left-radius: 2rem;
+    border-left: 2px solid var(--main-color);
+    border-bottom: 2px solid var(--main-color);
+    display: none;
+  }
+
+  .header .navbar .active {
+    display: block;
+  }
+
+  .header .navbar a {
+    display: block;
+    font-size: 2rem;
+    margin: 3rem 0;
+    color: gray;
+  }
+
+  section.Home {
+    flex-direction: column-reverse;
+  }
+
+  section.Home .home-content h3 {
+    font-size: 2.6rem;
+  }
+
+  section.Home .home-content h1 {
+    font-size: 8rem;
+    margin-top: 3rem;
+  }
+
+  section.Home .home-content p {
+    min-width: 600px;
+    margin: 0 auto;
+  }
 }
