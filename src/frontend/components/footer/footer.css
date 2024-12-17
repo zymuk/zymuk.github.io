@@ -2,8 +2,26 @@
   position: relative;
   bottom: 0;
   width: 100%;
-  padding: 40px 0;
-  background-color: rgba(255, 255, 255, 0.25);
+  padding: 20px 0;
+  background-color: rgba(0, 0, 255, 0.25);
+}
+
+.footer .social a {
+  font-size: 25px;
+  /* border: 2px solid; */
+  width: 42px;
+  height: 39px;
+  line-height: 42px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 50%;
+  margin: 0 10px;
+  transition: 0.3s ease-in-out;
+}
+
+.footer .social a:hover {
+  transform: scale(1.2) translateY(0px);
+  box-shadow: 0 0 25px;
 }
 
 .footer .copyright {
@@ -11,4 +29,5 @@
   text-align: center;
   font-size: 16px;
   font-weight: 800;
+  color: var(--main-color) !important;
 }
