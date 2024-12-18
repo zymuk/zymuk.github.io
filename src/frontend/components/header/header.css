@@ -37,7 +37,8 @@
 .header .navbar a {
   font-size: 1.8rem;
   color: var(--text-color);
-  margin-left: 4rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   font-weight: 500;
   transition: 0.3s ease;
   border-bottom: 3px solid transparent;
@@ -46,7 +47,9 @@
 .header .navbar a:hover,
 .header .navbar a.active {
   color: var(--main-color);
-  border-bottom: 3px solid;
+  text-decoration: underline;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 15px;
 }
 
 .header #menu-icon {
@@ -85,12 +88,9 @@
     top: 100%;
     right: 0;
     width: 50%;
-    padding: 1rem 3%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(20px);
-    border-bottom-left-radius: 2rem;
-    border-left: 2px solid var(--main-color);
-    border-bottom: 2px solid var(--main-color);
+    border-bottom-left-radius: 15px;
     display: none;
   }
 
@@ -101,7 +101,6 @@
   .header .navbar a {
     display: block;
     font-size: 2rem;
-    margin: 3rem 0;
     color: gray;
   }
 

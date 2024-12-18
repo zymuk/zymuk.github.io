@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./header.css";
 import { Link, useLocation } from "react-router-dom";
 
 function Header() {
   const [isHomePage, setIsHomePage] = useState(false);
-  const [isHideMenuMobile, setIsHideMenuMobile] = useState(true);
+  const [isHideMenuMobile, setIsHideMenuMobile] = useState(false);
   const [menuSelected, setMenuSelected] = useState("");
+  const iconMenuRef = useRef();
 
   const linkToSection = ["Home", "Information", "Contact", "Apps"];
 
@@ -20,9 +21,17 @@ function Header() {
   }, [location]);
 
   useEffect(() => {
-    let menuIconElement = document.querySelector(".header #menu-icon");
-    if (window.getComputedStyle(menuIconElement).visibility === "hidden")
-      setIsHideMenuMobile(false);
+    const handleCheckIconMenuVisibility = () => {
+      setIsHideMenuMobile(iconMenuRef.current.scrollHeight > 0);
+    };
+
+    window.addEventListener("load", handleCheckIconMenuVisibility);
+    window.addEventListener("resize", handleCheckIconMenuVisibility);
+
+    return () => {
+      window.removeEventListener("load", handleCheckIconMenuVisibility);
+      window.removeEventListener("resize", handleCheckIconMenuVisibility);
+    };
   }, []);
 
   const handleClickMenuIcon = () => {
@@ -44,6 +53,7 @@ function Header() {
         className={isHideMenuMobile ? "bi bi-list" : "bi bi-x"}
         id="menu-icon"
         onClick={handleClickMenuIcon}
+        ref={iconMenuRef}
       />
       <nav
         className="navbar"
