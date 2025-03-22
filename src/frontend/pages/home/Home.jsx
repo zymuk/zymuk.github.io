@@ -1,4 +1,5 @@
 import "./home.css";
+import Contact from "../contact/contact";
 import { Link } from "react-router-dom";
 
 function Home() {
@@ -26,43 +27,7 @@ function Home() {
         <h2 className="heading">
           Contact <span>Me</span>
         </h2>
-        <form action="" method="post">
-          <div className="input-group">
-            <div className="input-box">
-              <input
-                type="text"
-                name="fullName"
-                id="fullName"
-                placeholder="Full name"
-              />
-              <input type="email" name="email" id="email" placeholder="Email" />
-            </div>
-            <div className="input-box">
-              <input
-                type="number"
-                name="phone"
-                id="phome"
-                placeholder="Phone"
-              />
-              <input
-                type="text"
-                name="subject"
-                id="subject"
-                placeholder="Subject"
-              />
-            </div>
-            <div className="input-box2">
-              <textarea
-                name="message"
-                id="message"
-                cols="30"
-                rows="10"
-                placeholder="Message"
-              ></textarea>
-              <input type="submit" value="Send Message" className="btn" />
-            </div>
-          </div>
-        </form>
+        <Contact/>
       </section>
       <section className="Apps" id="Apps">
         <h2 className="heading">List applications</h2>

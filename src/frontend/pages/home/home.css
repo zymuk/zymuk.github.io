@@ -81,34 +81,3 @@ section {
   color: white;
 }
 
-.Contact form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
-  margin: 5rem auto;
-  text-align: center;
-}
-
-.Contact form .input-box {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.Contact form .input-box input,
-.Contact form textarea {
-  width: 100%;
-  padding: 2.5rem;
-  font-size: 1.8rem;
-  color: var(--text-color);
-  /* background: var(--backgroud-color); */
-  border-radius: 2rem;
-  border: 2px solid var(--main-color);
-  margin: 1.5rem 0;
-  resize: none;
-}
-
-.Contact form .btn {
-  margin-top: 2rem;
-}
