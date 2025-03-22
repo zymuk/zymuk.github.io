@@ -10,8 +10,8 @@ section {
   gap: 15rem;
   background-image: -webkit-linear-gradient(
       top,
-      rgba(255, 0, 0, 0.25),
-      rgba(255, 0, 0, 0.25)
+      rgba(0, 0, 255, 0.25),
+      rgba(0, 0, 255, 0.25)
     ),
     url(https://chuyenxua.net/wp-content/uploads/2022/05/sadec43.jpg);
   background-repeat: no-repeat;
@@ -30,7 +30,7 @@ section {
 }
 
 .home-content span {
-  color: yellow;
+  color: rgb(0, 255, 242);
 }
 
 .home-content .logo span {
