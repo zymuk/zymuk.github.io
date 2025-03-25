@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./About.css";
 
 const About = () => {
-  const text =
-    "I'm a developer specializing in React and modern web technologies. I love building responsive and interactive web applications.";
+  const text = "I am a programer/coder/developer.";
   const [displayText, setDisplayText] = useState("");
   const [index, setIndex] = useState(0);
 
@@ -18,7 +17,7 @@ const About = () => {
 
   return (
     <section id="about" className="section about-section">
-      <h2 className="section-title">About Me</h2>
+      <h2 className="section-title">TRẦN THẾ NGỌC</h2>
       <p className="typing-text">{displayText}</p>
     </section>
   );

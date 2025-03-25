@@ -2,18 +2,32 @@ import React from "react";
 import "./Projects.css";
 
 const Projects = () => {
+  const listProject = [
+    {
+      name: "PHP application",
+      demo: "http://ttngoc653.byethost4.com/",
+      github:
+        "https://github.com/zymuk/WebsiteSellLaptopPHP/tree/master/Source",
+    },
+    {
+      name: "Portfolio Personal page",
+      demo: "",
+      github: "https://github.com/zymuk/zymuk.github.io",
+    },
+  ];
+
   return (
     <section id="projects" className="section projects-section">
       <h2 className="section-title">Projects</h2>
       <ul className="project-list">
-        <li>
-          <strong>Project 1</strong> - <a href="project1">Demo</a> |{" "}
-          <a href="project1">GitHub</a>
-        </li>
-        <li>
-          <strong>Project 2</strong> - <a href="project2">Demo</a> |{" "}
-          <a href="project2">GitHub</a>
-        </li>
+        {listProject.map((item) => {
+          return (
+            <li>
+              <strong>{item.name}</strong> - <a href={item.demo}>Demo</a> |{" "}
+              <a href={item.github}>GitHub</a>
+            </li>
+          );
+        })}
       </ul>
     </section>
   );
