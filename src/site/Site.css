@@ -1,0 +1,15 @@
+.container {
+  font-family: Arial, sans-serif;
+  background-color: #001f3f; /* Xanh đậm, hợp mệnh Thủy */
+  color: white;
+}
+
+/* Sections */
+.section {
+  padding: 120px 20px;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

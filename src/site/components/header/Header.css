@@ -1,0 +1,131 @@
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 51, 102, 1); /* Màu xanh đậm ban đầu */
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  box-sizing: border-box;
+  transition: padding 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+/* Khi cuộn xuống, header sẽ trong suốt 50% */
+.header.scrolled {
+  background: rgba(0, 51, 102, 0.5);
+  padding: 0px 30px;
+}
+
+.header-content {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-title {
+  font-size: 1.5rem;
+  color: white;
+  margin-right: auto;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.site-title:hover {
+  color: #00a8e8;
+}
+
+/* Button menu */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Navigation */
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+  flex-wrap: nowrap;
+}
+
+.nav ul li {
+  display: inline;
+}
+
+.nav ul li button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  white-space: nowrap;
+  position: relative;
+  border-radius: 5px;
+}
+
+.nav ul li button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.nav ul li button.active {
+  background: #00a8e8;
+  color: white;
+}
+
+/* Responsive menu */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+    background: rgba(0, 51, 102, 0.9);
+    flex-direction: column;
+    text-align: right;
+    padding: 10px;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .nav ul li {
+    display: block;
+    padding: 10px 0;
+  }
+
+  .nav ul li button {
+    width: 100%;
+    text-align: right;
+    padding: 10px;
+  }
+}
