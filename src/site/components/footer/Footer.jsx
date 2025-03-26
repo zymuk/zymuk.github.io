@@ -1,4 +1,5 @@
 import React from "react";
+import packageJson from "../../../../package.json";
 import "./Footer.css";
 
 const Footer = () => {
@@ -23,7 +24,13 @@ const Footer = () => {
           <i className="fas fa-envelope"></i>
         </a>
       </div>
-      <p>&copy; 2025 Zymuk Trần - All rights reserved.</p>
+      <p>
+        <span>&copy; 2025 Zymuk Trần - All rights reserved</span>
+        {packageJson.datetimedeploy !== undefined &&
+          packageJson.datetimedeploy.length > 0 && (
+            <span> - Deploy at {packageJson.datetimedeploy}</span>
+          )}
+      </p>
     </footer>
   );
 };
