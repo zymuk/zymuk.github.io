@@ -50,9 +50,6 @@ const Site = () => {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
-
-      // 🛑 Ngăn Router thay đổi URL
-      window.history.replaceState(null, "", `/#${id}`);
     }
   };
 
