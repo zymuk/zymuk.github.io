@@ -3,11 +3,11 @@ import "./Tools.css";
 
 const Tools = () => {
   const listTool = [
-    { href: ".", name: "Please wait..." },
-    { href: ".", name: "Please wait..." },
-    { href: ".", name: "Please wait..." },
-    { href: ".", name: "Please wait..." },
-    { href: ".", name: "Please wait..." },
+    { href: ".", name: "Please wait 1..." },
+    { href: ".", name: "Please wait 2..." },
+    { href: ".", name: "Please wait 3..." },
+    { href: ".", name: "Please wait 4..." },
+    { href: ".", name: "Please wait 5..." },
   ];
 
   return (
@@ -17,6 +17,7 @@ const Tools = () => {
         {listTool.map((element) => {
           return (
             <a
+              key={element.name}
               href={element.href}
               target="_blank"
               rel="noopener noreferrer"

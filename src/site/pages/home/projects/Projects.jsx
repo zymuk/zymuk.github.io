@@ -22,7 +22,7 @@ const Projects = () => {
       <ul className="project-list">
         {listProject.map((item) => {
           return (
-            <li>
+            <li key={item.name}>
               <strong>{item.name}</strong> - <a href={item.demo}>Demo</a> |{" "}
               <a href={item.github}>GitHub</a>
             </li>
