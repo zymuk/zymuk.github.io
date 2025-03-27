@@ -1,0 +1,62 @@
+/* === HEADER === */
+.admin-header {
+  width: 100%;
+  height: 60px;
+  background-color: #0d3b66;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1100;
+}
+
+/* === CONTAINER CHÍNH === */
+.admin-container {
+  display: flex;
+}
+
+/* === SIDEBAR === */
+.admin-sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #0d3b66;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  z-index: 1000;
+  transition: width 0.3s ease-in-out;
+  padding-top: 60px; /* Đẩy xuống dưới header */
+}
+
+/* Khi sidebar đóng */
+.admin-sidebar.closed {
+  width: 60px;
+}
+
+.toggle-btn i {
+  color: #fff;
+  font-size: 16px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.admin-sidebar.closed .toggle-btn i {
+  transform: rotate(180deg);
+}
+.main-content {
+  flex-grow: 1;
+  background: #fff; /* Đảm bảo nội dung hiện rõ */
+  padding: 20px;
+  min-height: 100vh; /* Đảm bảo nội dung không bị ẩn */
+}
+
+/* Khi sidebar đóng, nội dung đẩy sang trái */
+.admin-sidebar.closed + .main-content {
+  margin-left: 60px;
+}

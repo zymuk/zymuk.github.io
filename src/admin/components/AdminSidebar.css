@@ -1,0 +1,123 @@
+/* === HEADER === */
+.admin-header {
+  width: 100%;
+  height: 60px;
+  background-color: #0d3b66;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1100;
+}
+
+/* === SIDEBAR === */
+.admin-sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #0d3b66;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  z-index: 1000;
+  transition: width 0.3s ease-in-out;
+  padding-top: 60px; /* Đẩy xuống dưới header */
+}
+
+.admin-sidebar.closed {
+  width: 60px;
+}
+
+/* === TOGGLE BUTTON === */
+.toggle-btn {
+  position: absolute;
+  top: 50%;
+  right: 3px;
+  width: 24px;
+  height: 50px;
+  background-color: #0d3b66;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid #fff;
+  z-index: 10;
+  transform: translateY(-50%);
+}
+
+.toggle-btn:hover {
+  background-color: #145da0;
+}
+
+.toggle-btn i {
+  color: #fff;
+  font-size: 16px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.admin-sidebar.closed .toggle-btn i {
+  transform: rotate(180deg);
+}
+
+/* === MENU === */
+.admin-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.admin-sidebar ul li {
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  transition: background 0.3s;
+}
+
+.admin-sidebar ul li a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.admin-sidebar ul li a i {
+  width: 20px;
+  text-align: center;
+}
+
+.admin-sidebar.closed .menu-text {
+  display: none;
+}
+
+.admin-sidebar ul li:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.admin-sidebar ul li.active {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-left: 3px solid #ffcc00;
+}
+
+/* === MAIN CONTENT === */
+.main-content {
+  margin-left: 250px;
+  margin-top: 60px; /* Đẩy xuống để tránh header */
+  padding: 20px;
+  transition: margin-left 0.3s ease-in-out;
+  position: relative;
+  z-index: 900; /* Đảm bảo không bị sidebar đè lên */
+}
+
+.admin-sidebar.closed + .main-content {
+  margin-left: 60px;
+}

@@ -18,7 +18,7 @@ const Login = () => {
     e.preventDefault();
     if (username === "admin" && password === "123456") {
       localStorage.setItem("token", "your_token_here");
-      navigate("..", { replace: true });
+      setTimeout(() => navigate("..", { replace: true }), 100); // Đợi 100ms rồi mới chuyển hướng
     } else {
       alert("Sai tài khoản hoặc mật khẩu!");
     }

@@ -11,15 +11,9 @@ const Dashboard = () => {
     }
   }, [navigate]);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("login", { replace: true });
-  };
-
   return (
     <div className="dashboard-container">
       <h2>Admin Dashboard</h2>
-      <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };
