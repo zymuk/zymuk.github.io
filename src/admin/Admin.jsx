@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import AdminLayout from "./pages/AdminLayout";
 import Dashboard from "./pages/Dashboard";
+import HomepageSettings from "./pages/HomepageSettings";
 import Users from "./pages/Users";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
@@ -19,6 +20,7 @@ const Admin = () => {
         element={isAuthenticated ? <AdminLayout /> : <Navigate to="login" />}
       >
         <Route index element={<Dashboard />} />
+        <Route path="homepage" element={<HomepageSettings />} />
         <Route path="users" element={<Users />} />
         <Route path="settings" element={<Settings />} />
       </Route>
