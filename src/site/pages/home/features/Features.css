@@ -1,15 +1,15 @@
-.tools-section {
+.features-section {
   background-color: #00a8e8;
 } /* Xanh da trời sáng */
 
 /* Tools Buttons */
-.tools-buttons {
+.features-buttons {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
 
-.tool-button {
+.features-button {
   background: #004d80;
   color: white;
   padding: 10px 15px;
@@ -18,6 +18,6 @@
   transition: 0.3s;
 }
 
-.tool-button:hover {
+.features-button:hover {
   background: #0077b6;
 }

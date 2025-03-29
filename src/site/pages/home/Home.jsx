@@ -1,7 +1,7 @@
 import React from "react";
 import About from "./about/About";
 import Projects from "./projects/Projects";
-import Tools from "./tools/Tools";
+import Features from "./features/Features";
 import Contact from "./contact/Contact";
 import "./Home.css";
 
@@ -10,7 +10,7 @@ const Home = () => {
     <div>
       <About />
       <Projects />
-      <Tools />
+      <Features />
       <Contact />
     </div>
   );
