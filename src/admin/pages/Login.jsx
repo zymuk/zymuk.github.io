@@ -8,33 +8,41 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("admin_token");
     if (token) {
-      navigate("..", { replace: true });
+      setTimeout(() => {
+        navigate("/admin");
+      }, 100);
     }
   }, [navigate]);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if (username === "admin" && password === "123456") {
-      localStorage.setItem("token", "your_token_here");
-      setTimeout(() => navigate("..", { replace: true }), 100); // Đợi 100ms rồi mới chuyển hướng
+  const handleLogin = async (e) => {
+    const response = await fetch("http://localhost/zymuk_page_api/api/login.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+    
+    const data = await response.json();
+    if (data.token) {
+      localStorage.setItem("admin_token", data.token);
+      alert("Login successful!");
+      setTimeout(() => {
+        navigate("/admin");
+      }, 100);
     } else {
-      alert("Sai tài khoản hoặc mật khẩu!");
+      alert(data.message);
     }
   };
 
   return (
     <div className="admin-login-container">
-      {/* Header */}
       <div className="header">
         <span className="title">Admin Panel</span>
         <span className="home-icon" onClick={() => navigate("/")}>
           <i className="fas fa-home"></i>
         </span>
       </div>
-
-      {/* Login Form */}
       <div className="login-container">
         <h2>Admin Login</h2>
         <form onSubmit={handleLogin}>
@@ -59,10 +67,8 @@ const Login = () => {
           </button>
         </form>
       </div>
-
-      {/* Footer */}
       <div className="footer">
-        &copy; 2025 Admin Panel. All rights reserved.
+        &copy; 2025 Zymuk Trần. All rights reserved.
       </div>
     </div>
   );
