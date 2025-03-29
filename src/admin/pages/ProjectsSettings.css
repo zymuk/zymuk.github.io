@@ -1,0 +1,139 @@
+.admin-projects h2,
+.admin-projects h3 {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.admin-projects form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.admin-projects .form-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-projects .form-group label {
+  min-width: 120px;
+  font-weight: bold;
+}
+
+.admin-projects .form-group input,
+.admin-projects .form-group textarea {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.admin-projects .form-group textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.admin-projects .checkbox-group {
+  display: flex;
+  align-items: center;
+}
+
+.admin-projects .buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.admin-projects .add-project-btn,
+.admin-projects .cancel-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.admin-projects .add-project-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.admin-projects .add-project-btn:hover {
+  background-color: #0056b3;
+}
+
+.admin-projects .cancel-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.admin-projects .cancel-btn:hover {
+  background: #c82333;
+}
+
+.admin-projects .project-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.admin-projects .project-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #fff;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.admin-projects .actions {
+  display: flex;
+  gap: 5px;
+}
+
+.admin-projects .actions button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.admin-projects .actions button i {
+  font-size: 14px;
+}
+
+.admin-projects .actions button:first-child {
+  background: #28a745;
+}
+
+.admin-projects .actions button:first-child:hover {
+  background: #218838;
+}
+
+.admin-projects .actions button:last-child {
+  background: #dc3545;
+}
+
+.admin-projects .actions button:last-child:hover {
+  background: #c82333;
+}

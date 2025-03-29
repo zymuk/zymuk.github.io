@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import AdminLayout from "./pages/AdminLayout";
 import Dashboard from "./pages/Dashboard";
 import HomepageSettings from "./pages/HomepageSettings";
+import ProjectsSettings from "./pages/ProjectsSettings";
 import Users from "./pages/Users";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
@@ -21,6 +22,7 @@ const Admin = () => {
       >
         <Route index element={<Dashboard />} />
         <Route path="homepage" element={<HomepageSettings />} />
+        <Route path="projects" element={<ProjectsSettings />} />
         <Route path="users" element={<Users />} />
         <Route path="settings" element={<Settings />} />
       </Route>

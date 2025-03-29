@@ -23,7 +23,13 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
         <li>
           <NavLink to="homepage" className="active">
             <i className="fas fa-paint-brush"></i>
-            <span className="menu-text">Homepage Settings</span>
+            <span className="menu-text">Homepage</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="projects" className="active">
+            <i className="fas fa-folder"></i>
+            <span className="menu-text">Projects</span>
           </NavLink>
         </li>
         <li>
