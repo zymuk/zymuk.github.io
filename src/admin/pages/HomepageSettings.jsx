@@ -3,18 +3,13 @@ import "./HomepageSettings.css";
 
 const HomepageSettings = () => {
   const [settings, setSettings] = useState({
-    title: "",
-    content: "",
-    sections: {
-      hero: "#ffffff",
-      about: "#f4f4f4",
-      projects: "#eaeaea",
-      contact: "#dddddd",
-    },
-    projects: [],
-    tools: [],
+    hero: { title: "", content: "", color: "#ffffff", image: "" },
+    about: { text: "", description: "", color: "#ffffff", image: "" },
+    projects: { color: "#ffffff", image: "" },
+    tools: { color: "#ffffff", image: "" },
   });
 
+  // Load dữ liệu từ localStorage khi component mount
   useEffect(() => {
     const savedSettings = JSON.parse(localStorage.getItem("homepageSettings"));
     if (savedSettings) {
@@ -22,66 +17,149 @@ const HomepageSettings = () => {
     }
   }, []);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setSettings((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSectionColorChange = (section, color) => {
+  // Hàm cập nhật state khi nhập dữ liệu
+  const handleChange = (section, field, value) => {
     setSettings((prev) => ({
       ...prev,
-      sections: { ...prev.sections, [section]: color },
+      [section]: { ...prev[section], [field]: value },
     }));
   };
 
+  // Hàm lưu vào localStorage
   const handleSave = () => {
     localStorage.setItem("homepageSettings", JSON.stringify(settings));
-    alert("Đã lưu cài đặt!");
+    alert("Cài đặt đã được lưu! ✅");
   };
 
   return (
     <div className="homepage-settings">
-      <h2>Cài đặt Trang Chủ</h2>
+      <h2>Homepage Settings</h2>
 
-      {/* Tiêu đề và nội dung */}
-      <div className="settings-group">
-        <label>Tiêu đề:</label>
-        <input
-          type="text"
-          name="title"
-          value={settings.title}
-          onChange={handleInputChange}
-        />
+      {/* Hero Section */}
+      <div className="section">
+        <h3>Hero Section</h3>
+
+        <div className="setting-group">
+          <label>Title:</label>
+          <input
+            type="text"
+            value={settings.hero.title}
+            onChange={(e) => handleChange("hero", "title", e.target.value)}
+          />
+        </div>
+
+        <div className="setting-group">
+          <label>Content:</label>
+          <textarea
+            value={settings.hero.content}
+            onChange={(e) => handleChange("hero", "content", e.target.value)}
+          />
+        </div>
+
+        <div className="setting-group">
+          <label>Background Color:</label>
+          <input
+            type="color"
+            value={settings.hero.color}
+            onChange={(e) => handleChange("hero", "color", e.target.value)}
+          />
+        </div>
+
+        <div className="setting-group">
+          <label>Background Image URL:</label>
+          <input
+            type="text"
+            value={settings.hero.image}
+            onChange={(e) => handleChange("hero", "image", e.target.value)}
+          />
+        </div>
       </div>
 
-      <div className="settings-group">
-        <label>Nội dung:</label>
-        <textarea
-          name="content"
-          value={settings.content}
-          onChange={handleInputChange}
-        />
+      {/* About Section */}
+      <div className="section">
+        <h3>About Section</h3>
+        <div className="setting-group">
+          <label>Text:</label>
+          <input
+            type="text"
+            value={settings.about.text}
+            onChange={(e) => handleChange("about", "text", e.target.value)}
+          />
+        </div>
+
+        <div className="setting-group">
+          <label>Description:</label>
+          <textarea
+            value={settings.about.description}
+            onChange={(e) => handleChange("about", "description", e.target.value)}
+          />
+        </div>
+
+        <div className="setting-group">
+          <label>Background Color:</label>
+          <input
+            type="color"
+            value={settings.about.color}
+            onChange={(e) => handleChange("about", "color", e.target.value)}
+          />
+        </div>
+
+        <div className="setting-group">
+          <label>Background Image URL:</label>
+          <input
+            type="text"
+            value={settings.about.image}
+            onChange={(e) => handleChange("about", "image", e.target.value)}
+          />
+        </div>
       </div>
 
-      {/* Màu sắc từng section */}
-      <div className="settings-group">
-        <h3>Màu sắc các phần</h3>
-        {Object.keys(settings.sections).map((section) => (
-          <div key={section} className="color-picker">
-            <label>{section}:</label>
-            <input
-              type="color"
-              value={settings.sections[section]}
-              onChange={(e) =>
-                handleSectionColorChange(section, e.target.value)
-              }
-            />
-          </div>
-        ))}
+      {/* Projects Section */}
+      <div className="section">
+        <h3>Projects Section</h3>
+        <div className="setting-group">
+          <label>Background Color:</label>
+          <input
+            type="color"
+            value={settings.projects.color}
+            onChange={(e) => handleChange("projects", "color", e.target.value)}
+          />
+        </div>
+
+        <div className="setting-group">
+          <label>Background Image URL:</label>
+          <input
+            type="text"
+            value={settings.projects.image}
+            onChange={(e) => handleChange("projects", "image", e.target.value)}
+          />
+        </div>
       </div>
 
+      {/* Tools Section */}
+      <div className="section">
+        <h3>Tools Section</h3>
+        <div className="setting-group">
+          <label>Background Color:</label>
+          <input
+            type="color"
+            value={settings.tools.color}
+            onChange={(e) => handleChange("tools", "color", e.target.value)}
+          />
+        </div>
+
+        <div className="setting-group">
+          <label>Background Image URL:</label>
+          <input
+            type="text"
+            value={settings.tools.image}
+            onChange={(e) => handleChange("tools", "image", e.target.value)}
+          />
+        </div>
+      </div>
+      
       <button className="save-btn" onClick={handleSave}>
-        Lưu cài đặt
+        <i className="fas fa-save"></i> Lưu Cài Đặt
       </button>
     </div>
   );
