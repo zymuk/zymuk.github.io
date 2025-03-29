@@ -65,6 +65,7 @@ const Admin = () => {
         <Route path="homepage" element={<HomepageSettings />} />
         <Route path="projects" element={<ProjectsSettings />} />
         <Route path="features" element={<FeaturesSettings />} />
+        <Route path="profile" element={<EditProfile />} />
         <Route path="users" element={<Users />} />
         <Route path="settings" element={<Settings />} />
       </Route>

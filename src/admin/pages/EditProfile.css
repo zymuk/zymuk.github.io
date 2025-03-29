@@ -1,0 +1,52 @@
+.edit-profile h2 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* Card chung cho từng form */
+.edit-profile .card {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.edit-profile .form-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.edit-profile .form-group label {
+  min-width: 150px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.edit-profile .form-group input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.edit-profile .button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.edit-profile button {
+  padding: 10px 15px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-profile button:hover {
+  background: #0056b3;
+}
