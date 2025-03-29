@@ -3,23 +3,23 @@
 } /* Xanh dương tươi */
 
 /* Projects Section */
-.project-list {
+.projects-section .project-list {
   list-style: none;
   padding: 0;
   text-align: center;
 }
 
-.project-list li {
+.projects-section .project-list li {
   margin: 10px 0;
   font-size: 1.2rem;
   transition: transform 0.3s ease-in-out;
 }
 
-.project-list li:hover {
+.projects-section .project-list li:hover {
   transform: scale(1.05);
 }
 
-.project-list a {
+.projects-section .project-list a {
   color: #00a8e8; /* Màu xanh sáng hợp mệnh Thủy */
   text-decoration: none;
   font-weight: bold;
@@ -28,7 +28,7 @@
   transition: 0.3s;
 }
 
-.project-list a:hover {
+.projects-section .project-list a:hover {
   background: #0077b6;
   color: white;
 }
