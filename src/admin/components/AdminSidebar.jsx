@@ -33,6 +33,12 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
           </NavLink>
         </li>
         <li>
+          <NavLink to="features" className="active">
+            <i className="fas fa-tools"></i>
+            <span className="menu-text">Features</span>
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="users" className="active">
             <i className="fas fa-users"></i>
             <span className="menu-text">Users</span>
