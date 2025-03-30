@@ -6,11 +6,12 @@ import Dashboard from "./pages/Dashboard";
 import HomepageSettings from "./pages/HomepageSettings";
 import ProjectsSettings from "./pages/ProjectsSettings";
 import FeaturesSettings from "./pages/FeaturesSettings";
+import EditProfile from "./pages/EditProfile";
 import Users from "./pages/Users";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import packageJson from "../../package.json";
 import "./Admin.css";
-import EditProfile from "./pages/EditProfile";
 
 const Admin = () => {
   const [auth, setAuth] = useState(false);
@@ -23,7 +24,8 @@ const Admin = () => {
       navigate("/admin/login");
     } else {
       try {
-        fetch("http://localhost/zymuk_page_api/api/verify_token.php", {
+        const apiPage = packageJson.apipage !== undefined && packageJson.apipage.length > 0 ? packageJson.apipage : "http://localhost/zymuk_page_api/";
+        fetch(apiPage + "/api/verify_token.php", {
           headers: { Authorization: `token ${token}` }
         })
           .then(res => res.json())

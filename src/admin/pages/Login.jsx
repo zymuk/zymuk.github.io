@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import packageJson from "../../../package.json";
 import "./Login.css";
 
 const Login = () => {
@@ -17,12 +18,13 @@ const Login = () => {
   }, [navigate]);
 
   const handleLogin = async (e) => {
-    const response = await fetch("http://localhost/zymuk_page_api/api/login.php", {
+    const apiPage = packageJson.apipage !== undefined && packageJson.apipage.length > 0 ? packageJson.apipage : "http://localhost/zymuk_page_api/";
+    const response = await fetch(apiPage + "/api/login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
-    
+
     const data = await response.json();
     if (data.token) {
       localStorage.setItem("admin_token", data.token);
