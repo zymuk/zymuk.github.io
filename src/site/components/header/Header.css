@@ -63,7 +63,7 @@
   display: inline;
 }
 
-.nav ul li button {
+.nav ul li button, .nav ul li a  {
   background: none;
   border: none;
   color: white;
@@ -77,13 +77,13 @@
   border-radius: 5px;
 }
 
-.nav ul li button:hover {
+.nav ul li button:hover, .nav ul li a:hover {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   transform: translateY(-2px);
 }
 
-.nav ul li button.active {
+.nav ul li button.active, .nav ul li a.active {
   background: #00a8e8;
   color: white;
 }
@@ -123,7 +123,7 @@
     padding: 10px 0;
   }
 
-  .nav ul li button {
+  .nav ul li button, .nav ul li a {
     width: 100%;
     text-align: right;
     padding: 10px;

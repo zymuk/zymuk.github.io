@@ -7,6 +7,9 @@ const Header = ({ scrollToSection }) => {
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const navigate = useNavigate();
 
+  const listFeatures = JSON.parse(localStorage.getItem("featuresSettings")) || [];
+  const listActiveFeatures = listFeatures.filter(feature => feature.isVisible);
+
   const handleLogoClick = () => {
     navigate("/");
   };
@@ -56,15 +59,17 @@ const Header = ({ scrollToSection }) => {
     } else {
       return (
         <ul>
+        {listActiveFeatures.length > 0 ? (listActiveFeatures.map((element) => {
+          return (
+            <li key={element.id}>
+              <Link to={"/"+element.id}>{element.displayName}</Link>
+            </li>
+          );
+        })) : (
           <li>
-            <Link to="/tools/app1">App 1</Link>
+            <Link to="/" key="no">No features available</Link>
           </li>
-          <li>
-            <Link to="/tools/app2">App 2</Link>
-          </li>
-          <li>
-            <Link to="/tools">Tools</Link>
-          </li>
+        )}
         </ul>
       );
     }

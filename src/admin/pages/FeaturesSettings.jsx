@@ -28,7 +28,7 @@ const FeaturesSettings = () => {
 			id: feature.id,
 			displayName: feature.displayName,
 			description: feature.description,
-			visible: feature.visible,
+			isVisible: feature.isVisible,
 		}));
 
 		localStorage.setItem("featuresSettings", JSON.stringify(updatedFeatures));

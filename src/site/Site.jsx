@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/header/Header";
 import Home from "./pages/home/Home";
-import Tools from "./pages/tools/Tools";
+import Features from "./pages/home/features/Features";
 import NotFound from "./pages/notFound/NotFound";
 import Footer from "./components/footer/Footer";
 import "./Site.css";
@@ -58,7 +58,7 @@ const Site = () => {
       <Header scrollToSection={scrollToSection} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/tools" element={<Tools />} />
+        <Route path="/features" element={<Features />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
