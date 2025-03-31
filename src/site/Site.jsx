@@ -5,6 +5,7 @@ import Home from "./pages/home/Home";
 import Features from "./pages/home/features/Features";
 import NotFound from "./pages/notFound/NotFound";
 import Footer from "./components/footer/Footer";
+import Calculator from "./pages/calculator/Calculator";
 import "./Site.css";
 
 const Site = () => {
@@ -59,6 +60,7 @@ const Site = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/features" element={<Features />} />
+        <Route path="/calculator" element={<Calculator />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
