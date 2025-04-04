@@ -1,24 +1,32 @@
 /* Footer */
-.footer {
-  background: #003366;
+.footer-site {
+  background: #333;
   color: white;
   text-align: center;
-  padding: 20px;
+  padding: 10px 0px 1px 0px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
 
-.social-icons {
+.footer-site-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-site-content .social-icons {
   display: flex;
   justify-content: center;
   gap: 15px;
   margin-bottom: 10px;
 }
 
-.social-icons a {
+.footer-site-content .social-icons a {
   color: white;
   font-size: 1.5rem;
   text-decoration: none;
 }
 
-.social-icons a:hover {
+.footer-site-content .social-icons a:hover {
   color: #00a8e8;
 }

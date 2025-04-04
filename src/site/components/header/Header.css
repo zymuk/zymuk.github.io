@@ -2,22 +2,17 @@
 .header {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
-  background: rgba(0, 51, 102, 1); /* Màu xanh đậm ban đầu */
-  color: white;
-  padding: 15px 30px;
+  height: 60px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #333;
+  color: #fff;
   z-index: 1000;
   box-sizing: border-box;
-  transition: padding 0.3s ease-in-out, background 0.3s ease-in-out;
-}
-
-/* Khi cuộn xuống, header sẽ trong suốt 50% */
-.header.scrolled {
-  background: rgba(0, 51, 102, 0.5);
-  padding: 0px 30px;
 }
 
 .header-content {
@@ -28,64 +23,54 @@
 }
 
 .site-title {
-  font-size: 1.5rem;
-  color: white;
+  font-size: 24px;
+  color: #fff;
   margin-right: auto;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .site-title:hover {
-  color: #00a8e8;
+  color: #ccc;
 }
 
-/* Button menu */
 .menu-toggle {
   display: none;
   background: none;
   border: none;
   font-size: 24px;
-  color: white;
+  color: #fff;
   cursor: pointer;
 }
 
-/* Navigation */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .nav ul {
   list-style: none;
-  display: flex;
-  gap: 25px;
   margin: 0;
   padding: 0;
-  flex-wrap: nowrap;
+  display: flex;
 }
 
 .nav ul li {
-  display: inline;
+  margin-right: 20px;
 }
 
-.nav ul li button, .nav ul li a  {
+.nav ul li button,
+.nav ul li a {
   background: none;
   border: none;
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 10px 15px;
+  color: #fff;
+  font-size: 18px;
   cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-  white-space: nowrap;
-  position: relative;
-  border-radius: 5px;
 }
 
-.nav ul li button:hover, .nav ul li a:hover {
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  transform: translateY(-2px);
-}
-
-.nav ul li button.active, .nav ul li a.active {
-  background: #00a8e8;
-  color: white;
+.nav ul li button:hover,
+.nav ul li a:hover {
+  color: #ccc;
 }
 
 /* Responsive menu */
@@ -103,7 +88,7 @@
     top: 60px;
     right: 0;
     width: 200px;
-    background: rgba(0, 51, 102, 0.9);
+    background-color: #333;
     flex-direction: column;
     text-align: right;
     padding: 10px;
@@ -123,7 +108,8 @@
     padding: 10px 0;
   }
 
-  .nav ul li button, .nav ul li a {
+  .nav ul li button,
+  .nav ul li a {
     width: 100%;
     text-align: right;
     padding: 10px;
