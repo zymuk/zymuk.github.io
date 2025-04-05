@@ -17,24 +17,30 @@ const Admin = () => {
   const [auth, setAuth] = useState(false);
   const [displayName, setDisplayName] = useState("");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("admin_token");
     if (!token) {
-      navigate("/admin/login");
+      setLoading(false);
     } else {
+      setLoading(true);
       try {
-        const apiPage = packageJson.apipage !== undefined && packageJson.apipage.length > 0 ? packageJson.apipage : "http://localhost/zymuk_page_api/";
+        const apiPage =
+          packageJson.apipage !== undefined && packageJson.apipage.length > 0
+            ? packageJson.apipage
+            : "http://localhost/zymuk_page_api/";
         fetch(apiPage + "/api/verify_token.php", {
-          headers: { Authorization: `token ${token}` }
+          headers: { Authorization: `token ${token}` },
         })
-          .then(res => res.json())
-          .then(data => {
+          .then((res) => res.json())
+          .then((data) => {
             if (data.error) {
-              alert("Session expired. Please log in again. Error: " + data.error);
+              alert(
+                "Session expired. Please log in again. Error: " + data.error
+              );
               localStorage.removeItem("admin_token");
-            }
-            else {
+            } else {
               const decodedToken = JSON.parse(atob(token.split(".")[1]));
               const expirationTime = decodedToken.exp * 1000;
               const currentTime = Date.now();
@@ -47,21 +53,33 @@ const Admin = () => {
                 setAuth(true);
               }
             }
+            setLoading(false);
           });
       } catch (error) {
         console.error("Error parsing token:", error);
         localStorage.removeItem("admin_token");
+        setLoading(false);
         navigate("/admin/login");
       }
     }
   }, [navigate]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Routes>
       <Route path="login" element={<Login />} />
       <Route
         path="/"
-        element={auth ? <AdminLayout displayName={displayName} /> : <Navigate to="login" />}
+        element={
+          auth ? (
+            <AdminLayout displayName={displayName} />
+          ) : (
+            <Navigate to="login" replace />
+          )
+        }
       >
         <Route index element={<Dashboard />} />
         <Route path="homepage" element={<HomepageSettings />} />
