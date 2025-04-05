@@ -7,6 +7,7 @@ import NotFound from "./pages/notFound/NotFound";
 import Footer from "./components/footer/Footer";
 import Calculator from "./pages/calculator/Calculator";
 import "./Site.css";
+import NumerologyName from "./pages/numerologyName/NumerologyName";
 
 const Site = () => {
   useEffect(() => {
@@ -57,12 +58,15 @@ const Site = () => {
   return (
     <div className="container">
       <Header scrollToSection={scrollToSection} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/features" element={<Features />} />
-        <Route path="/calculator" element={<Calculator />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <p className="siteContent">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/features" element={<Features />} />
+          <Route path="/calculator" element={<Calculator />} />
+          <Route path="/numerology-name" element={<NumerologyName />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </p>
       <Footer />
     </div>
   );
