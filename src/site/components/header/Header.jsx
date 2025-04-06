@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import packageJson from "../../../../package.json";
 import "./Header.css";
@@ -12,6 +12,26 @@ const Header = ({ scrollToSection }) => {
       ? packageJson.apipage
       : "http://localhost/zymuk_page_api/";
   const [listActivedFeatures, setListActivedFeatures] = useState([]);
+
+  useEffect(() => {
+    fetch(apiPage + "/api/load_features.php", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          setListActivedFeatures(data.data);
+        } else {
+          alert(data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Error loading features:", error);
+      });
+  }, [apiPage]);
 
   const handleLogoClick = () => {
     navigate("/");
@@ -60,24 +80,6 @@ const Header = ({ scrollToSection }) => {
         </ul>
       );
     } else {
-      fetch(apiPage + "/api/load_features.php", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success) {
-            setListActivedFeatures(data.data);
-          } else {
-            alert(data.message);
-          }
-        })
-        .catch((error) => {
-          console.error("Error loading features:", error);
-        });
-
       return (
         <ul>
           {listActivedFeatures.length > 0 ? (
