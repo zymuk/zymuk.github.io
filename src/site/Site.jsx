@@ -8,6 +8,7 @@ import Footer from "./components/footer/Footer";
 import Calculator from "./pages/calculator/Calculator";
 import "./Site.css";
 import NumerologyName from "./pages/numerologyName/NumerologyName";
+import TextEncoderDecoder from "./pages/textEncoderDecoder/TextEncoderDecoder";
 
 const Site = () => {
   useEffect(() => {
@@ -58,15 +59,19 @@ const Site = () => {
   return (
     <div className="container">
       <Header scrollToSection={scrollToSection} />
-      <p className="siteContent">
+      <div className="siteContent">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/features" element={<Features />} />
           <Route path="/calculator" element={<Calculator />} />
           <Route path="/numerology-name" element={<NumerologyName />} />
+          <Route
+            path="/text_encoder_decoder"
+            element={<TextEncoderDecoder />}
+          />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </p>
+      </div>
       <Footer />
     </div>
   );
