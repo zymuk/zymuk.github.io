@@ -17,15 +17,15 @@ const Login = () => {
     }
   }, [navigate]);
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     const apiPage = packageJson.apipage !== undefined && packageJson.apipage.length > 0 ? packageJson.apipage : "http://localhost/zymuk_page_api/";
-    const response = await fetch(apiPage + "/api/login.php", {
+    const response = fetch(apiPage + "/api/login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
     });
 
-    const data = await response.json();
+    const data = response.json();
     if (data.token) {
       localStorage.setItem("admin_token", data.token);
       alert("Login successful!");
