@@ -28,7 +28,7 @@ const Login = () => {
       body: JSON.stringify({ username, password }),
     });
 
-    const data = await response.json();
+    const data = response.json();
     if (data.token) {
       localStorage.setItem("admin_token", data.token);
       alert("Login successful!");
