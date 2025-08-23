@@ -14,6 +14,11 @@ const Projects = () => {
       demo: "",
       github: "https://github.com/zymuk/zymuk.github.io",
     },
+    {
+      name: "Personal page",
+      demo: "http://zymuk.lovestoblog.com",
+      github: "https://github.com/zymuk",
+    },
   ];
 
   return (
