@@ -10,8 +10,8 @@ root.render(
   <React.StrictMode>
     <HashRouter>
       <Routes>
-        <Route path="/*" element={<Site />} /> {/* Trang người dùng */}
-        <Route path="/admin/*" element={<Admin />} /> {/* Trang admin */}
+        <Route path="/*" element={<Site />} />
+        <Route path="/admin/*" element={<Admin />} />
       </Routes>
     </HashRouter>
   </React.StrictMode>

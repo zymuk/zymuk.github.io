@@ -28,7 +28,7 @@ const HomepageSettings = () => {
   // Hàm lưu vào localStorage
   const handleSave = () => {
     localStorage.setItem("homepageSettings", JSON.stringify(settings));
-    alert("Cài đặt đã được lưu! ✅");
+    alert("This setting saved! ✅");
   };
 
   return (
@@ -91,7 +91,9 @@ const HomepageSettings = () => {
           <label>Description:</label>
           <textarea
             value={settings.about.description}
-            onChange={(e) => handleChange("about", "description", e.target.value)}
+            onChange={(e) =>
+              handleChange("about", "description", e.target.value)
+            }
           />
         </div>
 
@@ -157,7 +159,7 @@ const HomepageSettings = () => {
           />
         </div>
       </div>
-      
+
       <button className="save-btn" onClick={handleSave}>
         <i className="fas fa-save"></i> Lưu Cài Đặt
       </button>

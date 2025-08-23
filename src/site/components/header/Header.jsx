@@ -11,7 +11,33 @@ const Header = ({ scrollToSection }) => {
     packageJson.apipage !== undefined && packageJson.apipage.length > 0
       ? packageJson.apipage
       : "http://localhost/zymuk_page_api/";
-  const [listActivedFeatures, setListActivedFeatures] = useState([]);
+  const [listActivedFeatures, setListActivedFeatures] = useState([
+    {
+      id: "calculator",
+      displayName: "Calculator",
+      description: "",
+      isVisible: true,
+    },
+    { id: "notes", displayName: "Notes", description: "", isVisible: true },
+    {
+      id: "save_web",
+      displayName: "Save Web Page",
+      description: "",
+      isVisible: false,
+    },
+    {
+      id: "numerology-name",
+      displayName: "Auto generate numerology name",
+      description: "",
+      isVisible: true,
+    },
+    {
+      id: "text_encoder_decoder",
+      displayName: "Encode/Decode Text",
+      description: "",
+      isVisible: false,
+    },
+  ]);
 
   useEffect(() => {
     fetch(apiPage + "/api/load_features.php", {
@@ -85,8 +111,8 @@ const Header = ({ scrollToSection }) => {
           {listActivedFeatures.length > 0 ? (
             listActivedFeatures.map((element) => {
               return (
-                <li key={element.key}>
-                  <Link to={"/" + element.key}>{element.displayName}</Link>
+                <li key={element.id}>
+                  <Link to={"/" + element.id}>{element.displayName}</Link>
                 </li>
               );
             })

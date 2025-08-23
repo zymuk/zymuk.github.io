@@ -66,6 +66,10 @@
   background-color: #3e8e41;
 }
 
+.numerologyName button[type="submit"]:active {
+  background-color: #2e7031;
+}
+
 .numerologyName .error {
   color: #f44336;
   font-size: 14px;

@@ -18,7 +18,10 @@ const Login = () => {
   }, [navigate]);
 
   const handleLogin = async (e) => {
-    const apiPage = packageJson.apipage !== undefined && packageJson.apipage.length > 0 ? packageJson.apipage : "http://localhost/zymuk_page_api/";
+    const apiPage =
+      packageJson.apipage !== undefined && packageJson.apipage.length > 0
+        ? packageJson.apipage
+        : "http://localhost/zymuk_page_api/";
     const response = await fetch(apiPage + "/api/login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -69,9 +72,7 @@ const Login = () => {
           </button>
         </form>
       </div>
-      <div className="footer">
-        &copy; 2025 Zymuk Trần. All rights reserved.
-      </div>
+      <div className="footer">&copy; 2025 Zymuk Trần. All rights reserved.</div>
     </div>
   );
 };
