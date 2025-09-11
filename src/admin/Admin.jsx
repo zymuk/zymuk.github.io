@@ -20,51 +20,14 @@ const Admin = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Static site: just check if token exists in localStorage
     const token = localStorage.getItem("admin_token");
-    if (!token) {
-      setLoading(false);
-    } else {
-      setLoading(true);
-      try {
-        const apiPage =
-          packageJson.apipage !== undefined && packageJson.apipage.length > 0
-            ? packageJson.apipage
-            : "http://localhost/zymuk_page_api/";
-        fetch(apiPage + "/api/verify_token.php", {
-          headers: { Authorization: `token ${token}` },
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.error) {
-              // NOTE: Using alert for error notification. Consider replacing with a proper UI notification in production.
-              alert(
-                "Session expired. Please log in again. Error: " + data.error
-              );
-              localStorage.removeItem("admin_token");
-            } else {
-              const decodedToken = JSON.parse(atob(token.split(".")[1]));
-              const expirationTime = decodedToken.exp * 1000;
-              const currentTime = Date.now();
-              setDisplayName(decodedToken.displayName);
-              if (expirationTime < currentTime) {
-                // NOTE: Using alert for session expiration. Consider replacing with a proper UI notification in production.
-                alert("Session expired. Please log in again.");
-                localStorage.removeItem("admin_token");
-                navigate("/admin/login");
-              } else {
-                setAuth(true);
-              }
-            }
-            setLoading(false);
-          });
-      } catch (error) {
-        console.error("Error parsing token:", error);
-        localStorage.removeItem("admin_token");
-        setLoading(false);
-        navigate("/admin/login");
-      }
+    if (token) {
+      setAuth(true);
+      setDisplayName("Admin");
     }
-  }, [navigate]);
+    setLoading(false);
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;

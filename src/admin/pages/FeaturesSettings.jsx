@@ -4,39 +4,16 @@ import "./FeaturesSettings.css";
 
 const FeaturesSettings = () => {
   const [features, setFeatures] = useState([]);
-  const apiPage =
-    packageJson.apipage !== undefined && packageJson.apipage.length > 0
-      ? packageJson.apipage
-      : "http://localhost/zymuk_page_api/";
-  const yourJWTToken = localStorage.getItem("admin_token");
 
   useEffect(() => {
-    fetch(apiPage + "/api/load_features.php", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `token ${yourJWTToken}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          const updatedFeatures = data.data.map((feature) => ({
-            ...feature,
-            isVisible: feature.isVisible === 1,
-          }));
-          setFeatures(updatedFeatures);
-          // NOTE: Using console.log for debugging. Consider removing in production.
-          console.log(updatedFeatures);
-        } else {
-          // NOTE: Using alert for error notification. Consider replacing with a proper UI notification in production.
-          alert(data.message);
-        }
-      })
-      .catch((error) => {
-        console.error("Error loading features:", error);
-      });
-  }, [apiPage, yourJWTToken]);
+    // Load features from localStorage if available
+    const savedFeatures = localStorage.getItem("featuresSettings");
+    if (savedFeatures) {
+      setFeatures(JSON.parse(savedFeatures));
+    } else {
+      setFeatures([]);
+    }
+  }, []);
 
   const handleChange = (index, field, value) => {
     const updatedFeatures = [...features];
@@ -45,36 +22,9 @@ const FeaturesSettings = () => {
   };
 
   const handleSave = () => {
-    const updatedFeatures = features.map((feature) => ({
-      key: feature.key,
-      name: feature.displayName,
-      description: feature.description,
-      isVisible: feature.isVisible,
-    }));
-
-    fetch(apiPage + "/api/save_features.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `token ${yourJWTToken}`,
-      },
-      body: JSON.stringify({ features: updatedFeatures }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          // NOTE: Using alert for save success. Consider replacing with a proper UI notification in production.
-          alert("Features settings have been saved!");
-        } else {
-          // NOTE: Using alert for error notification. Consider replacing with a proper UI notification in production.
-          alert(`Error: ${data.message}`);
-        }
-      })
-      .catch((error) => {
-        console.error("Error saving features:", error);
-        // NOTE: Using alert for error notification. Consider replacing with a proper UI notification in production.
-        alert("Failed to save features settings.");
-      });
+    // Save features to localStorage
+    localStorage.setItem("featuresSettings", JSON.stringify(features));
+    alert("Features settings have been saved!");
   };
 
   return (

@@ -18,28 +18,13 @@ const Login = () => {
   }, [navigate]);
 
   const handleLogin = async (e) => {
-    const apiPage =
-      packageJson.apipage !== undefined && packageJson.apipage.length > 0
-        ? packageJson.apipage
-        : "http://localhost/zymuk_page_api/";
-    const response = await fetch(apiPage + "/api/login.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
-
-    const data = response.json();
-    if (data.token) {
-      localStorage.setItem("admin_token", data.token);
-      // NOTE: Using alert for login success. Consider replacing with a proper UI notification in production.
-      alert("Login successful!");
-      setTimeout(() => {
-        navigate("/admin");
-      }, 100);
-    } else {
-      // NOTE: Using alert for login error. Consider replacing with a proper UI notification in production.
-      alert(data.message);
-    }
+    e.preventDefault();
+    // Fake login: always succeed and set a dummy token
+    localStorage.setItem("admin_token", "dummy_token");
+    alert("Login successful! (Static site mode)");
+    setTimeout(() => {
+      navigate("/admin");
+    }, 100);
   };
 
   return (
