@@ -25,15 +25,18 @@ const EditProfile = () => {
 
   const handleProfileSubmit = (e) => {
     e.preventDefault();
+    // NOTE: Using alert for profile update success. Consider replacing with a proper UI notification in production.
     alert("Profile updated successfully!");
   };
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
     if (passwords.newPassword !== passwords.confirmPassword) {
+      // NOTE: Using alert for password mismatch error. Consider replacing with a proper UI notification in production.
       alert("New passwords do not match!");
       return;
     }
+    // NOTE: Using alert for password change success. Consider replacing with a proper UI notification in production.
     alert("Password changed successfully!");
   };
 
@@ -51,11 +54,21 @@ const EditProfile = () => {
           </div>
           <div className="form-group">
             <label>Display Name:</label>
-            <input type="text" name="displayName" value={profile.displayName} onChange={handleProfileChange} />
+            <input
+              type="text"
+              name="displayName"
+              value={profile.displayName}
+              onChange={handleProfileChange}
+            />
           </div>
           <div className="form-group">
             <label>Email:</label>
-            <input type="email" name="email" value={profile.email} onChange={handleProfileChange} />
+            <input
+              type="email"
+              name="email"
+              value={profile.email}
+              onChange={handleProfileChange}
+            />
           </div>
           <div className="form-group">
             <label>Account Created:</label>
@@ -73,15 +86,33 @@ const EditProfile = () => {
         <form onSubmit={handlePasswordSubmit}>
           <div className="form-group">
             <label>Current Password:</label>
-            <input type="password" name="currentPassword" value={passwords.currentPassword} onChange={handlePasswordChange} required />
+            <input
+              type="password"
+              name="currentPassword"
+              value={passwords.currentPassword}
+              onChange={handlePasswordChange}
+              required
+            />
           </div>
           <div className="form-group">
             <label>New Password:</label>
-            <input type="password" name="newPassword" value={passwords.newPassword} onChange={handlePasswordChange} required />
+            <input
+              type="password"
+              name="newPassword"
+              value={passwords.newPassword}
+              onChange={handlePasswordChange}
+              required
+            />
           </div>
           <div className="form-group">
             <label>Confirm Password:</label>
-            <input type="password" name="confirmPassword" value={passwords.confirmPassword} onChange={handlePasswordChange} required />
+            <input
+              type="password"
+              name="confirmPassword"
+              value={passwords.confirmPassword}
+              onChange={handlePasswordChange}
+              required
+            />
           </div>
           <div className="button-group">
             <button type="submit">Change Password</button>

@@ -28,6 +28,7 @@ const HomepageSettings = () => {
   // Hàm lưu vào localStorage
   const handleSave = () => {
     localStorage.setItem("homepageSettings", JSON.stringify(settings));
+    // NOTE: Using alert for save success. Consider replacing with a proper UI notification in production.
     alert("This setting saved! ✅");
   };
 

@@ -31,11 +31,13 @@ const Login = () => {
     const data = response.json();
     if (data.token) {
       localStorage.setItem("admin_token", data.token);
+      // NOTE: Using alert for login success. Consider replacing with a proper UI notification in production.
       alert("Login successful!");
       setTimeout(() => {
         navigate("/admin");
       }, 100);
     } else {
+      // NOTE: Using alert for login error. Consider replacing with a proper UI notification in production.
       alert(data.message);
     }
   };

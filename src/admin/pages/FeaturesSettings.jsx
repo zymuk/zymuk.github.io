@@ -26,8 +26,10 @@ const FeaturesSettings = () => {
             isVisible: feature.isVisible === 1,
           }));
           setFeatures(updatedFeatures);
+          // NOTE: Using console.log for debugging. Consider removing in production.
           console.log(updatedFeatures);
         } else {
+          // NOTE: Using alert for error notification. Consider replacing with a proper UI notification in production.
           alert(data.message);
         }
       })
@@ -61,13 +63,16 @@ const FeaturesSettings = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
+          // NOTE: Using alert for save success. Consider replacing with a proper UI notification in production.
           alert("Features settings have been saved!");
         } else {
+          // NOTE: Using alert for error notification. Consider replacing with a proper UI notification in production.
           alert(`Error: ${data.message}`);
         }
       })
       .catch((error) => {
         console.error("Error saving features:", error);
+        // NOTE: Using alert for error notification. Consider replacing with a proper UI notification in production.
         alert("Failed to save features settings.");
       });
   };

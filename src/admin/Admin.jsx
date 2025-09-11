@@ -36,6 +36,7 @@ const Admin = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.error) {
+              // NOTE: Using alert for error notification. Consider replacing with a proper UI notification in production.
               alert(
                 "Session expired. Please log in again. Error: " + data.error
               );
@@ -46,6 +47,7 @@ const Admin = () => {
               const currentTime = Date.now();
               setDisplayName(decodedToken.displayName);
               if (expirationTime < currentTime) {
+                // NOTE: Using alert for session expiration. Consider replacing with a proper UI notification in production.
                 alert("Session expired. Please log in again.");
                 localStorage.removeItem("admin_token");
                 navigate("/admin/login");

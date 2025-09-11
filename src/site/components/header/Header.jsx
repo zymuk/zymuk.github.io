@@ -51,6 +51,7 @@ const Header = ({ scrollToSection }) => {
         if (data.success) {
           setListActivedFeatures(data.data);
         } else {
+          // NOTE: alert để thông báo lỗi, cân nhắc thay thế UI thông báo phù hợp
           alert(data.message);
         }
       })
