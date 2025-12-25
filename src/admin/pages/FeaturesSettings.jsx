@@ -2,7 +2,16 @@ import React, { useState, useEffect } from "react";
 import "./FeaturesSettings.css";
 
 const FeaturesSettings = () => {
+  const [t, setT] = useState({});
+  const lang = localStorage.getItem("lang") || "en";
   const [features, setFeatures] = useState([]);
+
+  useEffect(() => {
+    fetch(`/${lang}.json`)
+      .then((res) => res.json())
+      .then((data) => setT(data))
+      .catch((error) => console.error("Error loading translations:", error));
+  }, [lang]);
 
   useEffect(() => {
     // Load features from localStorage if available
@@ -27,20 +36,20 @@ const FeaturesSettings = () => {
   const handleSave = () => {
     // Save features to localStorage
     localStorage.setItem("features", JSON.stringify(features));
-    alert("Features settings have been saved!");
+    alert(t.features_saved || "Features settings have been saved!");
   };
 
   return (
     <div className="admin-features">
-      <h2>Features Settings</h2>
+      <h2>{t.features_settings || "Features Settings"}</h2>
       <table className="features-table">
         <thead>
           <tr>
-            <th>Feature ID</th>
-            <th>Display Name</th>
-            <th>Description</th>
-            <th>Path</th>
-            <th>Visible</th>
+            <th>{t.feature_id || "Feature ID"}</th>
+            <th>{t.display_name || "Display Name"}</th>
+            <th>{t.description || "Description"}</th>
+            <th>{t.path || "Path"}</th>
+            <th>{t.visible || "Visible"}</th>
           </tr>
         </thead>
         <tbody>
@@ -87,7 +96,7 @@ const FeaturesSettings = () => {
       </table>
       <div className="features-save-btn">
         <button onClick={handleSave}>
-          <i className="fas fa-save"></i> Save Changes
+          <i className="fas fa-save"></i> {t.save_changes || "Save Changes"}
         </button>
       </div>
     </div>

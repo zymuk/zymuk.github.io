@@ -2,12 +2,21 @@ import React, { useState, useEffect } from "react";
 import "./HomepageSettings.css";
 
 const HomepageSettings = () => {
+  const [t, setT] = useState({});
+  const lang = localStorage.getItem("lang") || "en";
   const [settings, setSettings] = useState({
     hero: { title: "", content: "", color: "#ffffff", image: "" },
     about: { text: "", description: "", color: "#ffffff", image: "" },
     projects: { color: "#ffffff", image: "" },
     tools: { color: "#ffffff", image: "" },
   });
+
+  useEffect(() => {
+    fetch(`/${lang}.json`)
+      .then((res) => res.json())
+      .then((data) => setT(data))
+      .catch((error) => console.error("Error loading translations:", error));
+  }, [lang]);
 
   // Load dữ liệu từ localStorage khi component mount
   useEffect(() => {
@@ -34,14 +43,14 @@ const HomepageSettings = () => {
 
   return (
     <div className="homepage-settings">
-      <h2>Homepage Settings</h2>
+      <h2>{t.homepage_settings || "Homepage Settings"}</h2>
 
       {/* Hero Section */}
       <div className="section">
-        <h3>Hero Section</h3>
+        <h3>{t.hero_section || "Hero Section"}</h3>
 
         <div className="setting-group">
-          <label>Title:</label>
+          <label>{t.title || "Title"}:</label>
           <input
             type="text"
             value={settings.hero.title}
@@ -50,7 +59,7 @@ const HomepageSettings = () => {
         </div>
 
         <div className="setting-group">
-          <label>Content:</label>
+          <label>{t.content || "Content"}:</label>
           <textarea
             value={settings.hero.content}
             onChange={(e) => handleChange("hero", "content", e.target.value)}
@@ -58,7 +67,7 @@ const HomepageSettings = () => {
         </div>
 
         <div className="setting-group">
-          <label>Background Color:</label>
+          <label>{t.background_color || "Background Color"}:</label>
           <input
             type="color"
             value={settings.hero.color}
@@ -67,7 +76,7 @@ const HomepageSettings = () => {
         </div>
 
         <div className="setting-group">
-          <label>Background Image URL:</label>
+          <label>{t.background_image_url || "Background Image URL"}:</label>
           <input
             type="text"
             value={settings.hero.image}
@@ -78,9 +87,9 @@ const HomepageSettings = () => {
 
       {/* About Section */}
       <div className="section">
-        <h3>About Section</h3>
+        <h3>{t.about_section || "About Section"}</h3>
         <div className="setting-group">
-          <label>Text:</label>
+          <label>{t.text || "Text"}:</label>
           <input
             type="text"
             value={settings.about.text}
@@ -89,7 +98,7 @@ const HomepageSettings = () => {
         </div>
 
         <div className="setting-group">
-          <label>Description:</label>
+          <label>{t.description || "Description"}:</label>
           <textarea
             value={settings.about.description}
             onChange={(e) =>
@@ -99,7 +108,7 @@ const HomepageSettings = () => {
         </div>
 
         <div className="setting-group">
-          <label>Background Color:</label>
+          <label>{t.background_color || "Background Color"}:</label>
           <input
             type="color"
             value={settings.about.color}
@@ -108,7 +117,7 @@ const HomepageSettings = () => {
         </div>
 
         <div className="setting-group">
-          <label>Background Image URL:</label>
+          <label>{t.background_image_url || "Background Image URL"}:</label>
           <input
             type="text"
             value={settings.about.image}
@@ -119,9 +128,9 @@ const HomepageSettings = () => {
 
       {/* Projects Section */}
       <div className="section">
-        <h3>Projects Section</h3>
+        <h3>{t.projects_section || "Projects Section"}</h3>
         <div className="setting-group">
-          <label>Background Color:</label>
+          <label>{t.background_color || "Background Color"}:</label>
           <input
             type="color"
             value={settings.projects.color}
@@ -130,7 +139,7 @@ const HomepageSettings = () => {
         </div>
 
         <div className="setting-group">
-          <label>Background Image URL:</label>
+          <label>{t.background_image_url || "Background Image URL"}:</label>
           <input
             type="text"
             value={settings.projects.image}
@@ -141,9 +150,9 @@ const HomepageSettings = () => {
 
       {/* Tools Section */}
       <div className="section">
-        <h3>Tools Section</h3>
+        <h3>{t.tools_section || "Tools Section"}</h3>
         <div className="setting-group">
-          <label>Background Color:</label>
+          <label>{t.background_color || "Background Color"}:</label>
           <input
             type="color"
             value={settings.tools.color}
@@ -152,7 +161,7 @@ const HomepageSettings = () => {
         </div>
 
         <div className="setting-group">
-          <label>Background Image URL:</label>
+          <label>{t.background_image_url || "Background Image URL"}:</label>
           <input
             type="text"
             value={settings.tools.image}
@@ -162,7 +171,7 @@ const HomepageSettings = () => {
       </div>
 
       <button className="save-btn" onClick={handleSave}>
-        <i className="fas fa-save"></i> Lưu Cài Đặt
+        <i className="fas fa-save"></i> {t.save || "Save"}
       </button>
     </div>
   );

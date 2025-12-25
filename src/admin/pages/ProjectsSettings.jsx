@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./ProjectsSettings.css";
 
 const ProjectsSettings = () => {
+  const [t, setT] = useState({});
+  const lang = localStorage.getItem("lang") || "en";
   const [projects, setProjects] = useState([]);
   const [project, setProject] = useState({
     name: "",
@@ -11,6 +13,13 @@ const ProjectsSettings = () => {
     isVisible: true,
   });
   const [editIndex, setEditIndex] = useState(null);
+
+  useEffect(() => {
+    fetch(`/${lang}.json`)
+      .then((res) => res.json())
+      .then((data) => setT(data))
+      .catch((error) => console.error("Error loading translations:", error));
+  }, [lang]);
 
   useEffect(() => {
     const storedProjects = JSON.parse(localStorage.getItem("projects"));
@@ -81,10 +90,10 @@ const ProjectsSettings = () => {
 
   return (
     <div className="admin-projects">
-      <h2>Manage Projects</h2>
+      <h2>{t.manage_projects || "Manage Projects"}</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Project Name:</label>
+          <label>{t.project_name || "Project Name"}:</label>
           <input
             type="text"
             name="name"
@@ -94,7 +103,7 @@ const ProjectsSettings = () => {
           />
         </div>
         <div className="form-group">
-          <label>Description:</label>
+          <label>{t.description || "Description"}:</label>
           <textarea
             name="description"
             value={project.description}
@@ -102,7 +111,7 @@ const ProjectsSettings = () => {
           />
         </div>
         <div className="form-group">
-          <label>Demo Link:</label>
+          <label>{t.demo_link || "Demo Link"}:</label>
           <input
             type="url"
             name="demoLink"
@@ -112,7 +121,7 @@ const ProjectsSettings = () => {
           />
         </div>
         <div className="form-group">
-          <label>Source Code Link:</label>
+          <label>{t.source_code_link || "Source Code Link"}:</label>
           <input
             type="url"
             name="sourceLink"
@@ -122,7 +131,7 @@ const ProjectsSettings = () => {
           />
         </div>
         <div className="form-group checkbox-group">
-          <label>Visible:</label>
+          <label>{t.visible || "Visible"}:</label>
           <input
             type="checkbox"
             name="isVisible"
@@ -135,7 +144,9 @@ const ProjectsSettings = () => {
             <i
               className={editIndex !== null ? "fas fa-save" : "fas fa-plus"}
             ></i>{" "}
-            {editIndex !== null ? "Update Project" : "Add Project"}
+            {editIndex !== null
+              ? t.update_project || "Update Project"
+              : t.add_project || "Add Project"}
           </button>
           {editIndex !== null && (
             <button
@@ -143,13 +154,13 @@ const ProjectsSettings = () => {
               className="cancel-btn"
               onClick={() => setEditIndex(null)}
             >
-              <i className="fas fa-times"></i> Cancel
+              <i className="fas fa-times"></i> {t.cancel || "Cancel"}
             </button>
           )}
         </div>
       </form>
 
-      <h3>Project List</h3>
+      <h3>{t.project_list || "Project List"}</h3>
       <ul className="project-list">
         {projects.map((proj, index) => (
           <li key={index}>
@@ -157,10 +168,10 @@ const ProjectsSettings = () => {
             {proj.isVisible ? "Visible" : "Hidden"}
             <div className="actions">
               <button onClick={() => handleEdit(index)}>
-                <i className="fas fa-edit"></i> Edit
+                <i className="fas fa-edit"></i> {t.edit || "Edit"}
               </button>
               <button onClick={() => handleDelete(index)}>
-                <i className="fas fa-trash"></i> Delete
+                <i className="fas fa-trash"></i> {t.delete || "Delete"}
               </button>
             </div>
           </li>
