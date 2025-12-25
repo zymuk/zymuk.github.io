@@ -1,21 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./Projects.css";
 
-const Projects = () => {
-  const [listProject, setListProject] = useState([]);
+const Projects = ({ settings, data }) => {
+  const sectionStyle = {
+    backgroundColor: settings.color,
+    backgroundImage: settings.image ? `url(${settings.image})` : undefined,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
 
-  useEffect(() => {
-    fetch("/data.json")
-      .then((res) => res.json())
-      .then((data) => setListProject(data.projects))
-      .catch((err) => console.error("Error loading projects:", err));
-  }, []);
+  const visibleProjects = data.filter((project) => project.isVisible !== false);
 
   return (
-    <section id="projects" className="section projects-section">
+    <section
+      id="projects"
+      className="section projects-section"
+      style={sectionStyle}
+    >
       <h2 className="section-title">Projects</h2>
       <ul className="project-list">
-        {listProject.map((item) => {
+        {visibleProjects.map((item) => {
           return (
             <li key={item.name}>
               <strong>{item.name}</strong> - <a href={item.demo}>Demo</a> |{" "}

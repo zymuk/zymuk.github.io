@@ -11,7 +11,6 @@
   margin-bottom: 10px;
 }
 
-
 .homepage-settings label {
   display: block;
   font-weight: bold;
@@ -55,27 +54,47 @@
   border-radius: 5px;
 }
 
-.homepage-settings .save-btn {
+.homepage-settings .button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.homepage-settings .save-btn,
+.homepage-settings .reset-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin: 20px auto;
   padding: 10px 20px;
   font-size: 16px;
   font-weight: bold;
-  background-color: #007bff;
-  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s ease;
 }
 
-.homepage-settings .save-btn i {
-  font-size: 18px;
+.homepage-settings .save-btn {
+  background-color: #007bff;
+  color: white;
 }
 
 .homepage-settings .save-btn:hover {
   background-color: #0056b3;
+}
+
+.homepage-settings .reset-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.homepage-settings .reset-btn:hover {
+  background-color: #545b62;
+}
+
+.homepage-settings .save-btn i,
+.homepage-settings .reset-btn i {
+  font-size: 18px;
 }

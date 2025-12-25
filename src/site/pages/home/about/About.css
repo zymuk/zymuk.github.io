@@ -1,9 +1,6 @@
+/* About Section - Style mặc định, có thể override bằng inline style */
 .about-section {
-  background-color: #004d80;
-} /* Xanh biển đậm */
-
-/* About Section */
-.about-section {
+  background-color: #004d80; /* Fallback color */
   text-align: center;
   padding: 100px 20px;
 }

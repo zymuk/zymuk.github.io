@@ -22,25 +22,26 @@ const ProjectsSettings = () => {
   }, [lang]);
 
   useEffect(() => {
-    const storedProjects = JSON.parse(localStorage.getItem("projects"));
+    const storedProjects = localStorage.getItem("projects");
     if (storedProjects) {
-      setProjects(storedProjects);
+      setProjects(JSON.parse(storedProjects));
     } else {
-      // Load default data from data.json if no localStorage data
+      // Load default data from data.json
       fetch("/data.json")
         .then((res) => res.json())
         .then((data) => {
-          // Convert from public format to admin format
-          const adminFormat = data.projects.map((project) => ({
-            name: project.name,
+          const defaultProjects = data.projects || [];
+          // Convert old format to new format if needed
+          const formattedProjects = defaultProjects.map((project) => ({
+            name: project.name || "",
             description: project.description || "",
-            demoLink: project.demo || "",
-            sourceLink: project.github || "",
-            isVisible: true,
+            demoLink: project.demo || project.demoLink || "",
+            sourceLink: project.github || project.sourceLink || "",
+            isVisible: project.isVisible !== false,
           }));
-          setProjects(adminFormat);
+          setProjects(formattedProjects);
         })
-        .catch((err) => console.error("Error loading default projects:", err));
+        .catch((err) => console.error("Error loading projects:", err));
     }
   }, []);
 

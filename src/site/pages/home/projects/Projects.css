@@ -1,6 +1,7 @@
+/* Projects Section - Style mặc định, có thể override bằng inline style */
 .projects-section {
-  background-color: #0077b6;
-} /* Xanh dương tươi */
+  background-color: #0077b6; /* Fallback color */
+}
 
 /* Projects Section */
 .projects-section .project-list {

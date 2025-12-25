@@ -1,9 +1,20 @@
 import React from "react";
 import "./Contact.css";
 
-const Contact = () => {
+const Contact = ({ settings }) => {
+  const sectionStyle = {
+    backgroundColor: settings.color,
+    backgroundImage: settings.image ? `url(${settings.image})` : undefined,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
+
   return (
-    <section id="contact" className="section contact-section">
+    <section
+      id="contact"
+      className="section contact-section"
+      style={sectionStyle}
+    >
       <h2 className="section-title">Contact Me</h2>
       <form className="contact-form">
         <label>Name:</label>

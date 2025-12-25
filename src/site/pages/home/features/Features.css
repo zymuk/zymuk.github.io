@@ -1,6 +1,7 @@
+/* Features Section - Style mặc định, có thể override bằng inline style */
 .features-section {
-  background-color: #00a8e8;
-} /* Xanh da trời sáng */
+  background-color: #00a8e8; /* Fallback color */
+}
 
 /* Tools Buttons */
 .features-buttons {

@@ -1,42 +1,37 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Features.css";
 
-const Features = () => {
-  const [listActivedFeatures, setListActivedFeatures] = useState([]);
+const Features = ({ settings, data }) => {
+  const sectionStyle = {
+    backgroundColor: settings.color,
+    backgroundImage: settings.image ? `url(${settings.image})` : undefined,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  };
 
-  useEffect(() => {
-    // First try to load from localStorage (admin overrides)
-    const savedFeatures = localStorage.getItem("features");
-    if (savedFeatures) {
-      setListActivedFeatures(JSON.parse(savedFeatures));
-    } else {
-      // Fallback to data.json
-      fetch("/data.json")
-        .then((res) => res.json())
-        .then((data) => setListActivedFeatures(data.features))
-        .catch((err) => console.error("Error loading features:", err));
-    }
-  }, []);
+  const visibleFeatures = data.filter((feature) => feature.isVisible !== false);
 
   return (
-    <section id="features" className="section features-section">
+    <section
+      id="features"
+      className="section features-section"
+      style={sectionStyle}
+    >
       <h2 className="section-title">Features</h2>
       <div className="features-buttons">
-        {listActivedFeatures.length > 0 ? (
-          listActivedFeatures
-            .filter((feature) => feature.isVisible)
-            .map((element) => {
-              return (
-                <NavLink
-                  to={element.path || "/" + element.id}
-                  className="features-button"
-                  key={element.id}
-                >
-                  {element.displayName}
-                </NavLink>
-              );
-            })
+        {visibleFeatures.length > 0 ? (
+          visibleFeatures.map((element) => {
+            return (
+              <NavLink
+                to={element.path || "/" + element.id}
+                className="features-button"
+                key={element.id}
+              >
+                {element.displayName}
+              </NavLink>
+            );
+          })
         ) : (
           <p>No features available</p>
         )}

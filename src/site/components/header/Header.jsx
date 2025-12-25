@@ -1,64 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import packageJson from "../../../../package.json";
 import "./Header.css";
 
 const Header = ({ scrollToSection }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const navigate = useNavigate();
-  const apiPage =
-    packageJson.apipage !== undefined && packageJson.apipage.length > 0
-      ? packageJson.apipage
-      : "http://localhost/zymuk_page_api/";
-  const [listActivedFeatures, setListActivedFeatures] = useState([
-    {
-      id: "calculator",
-      displayName: "Calculator",
-      description: "",
-      isVisible: true,
-    },
-    { id: "notes", displayName: "Notes", description: "", isVisible: true },
-    {
-      id: "save_web",
-      displayName: "Save Web Page",
-      description: "",
-      isVisible: false,
-    },
-    {
-      id: "numerology-name",
-      displayName: "Auto generate numerology name",
-      description: "",
-      isVisible: true,
-    },
-    {
-      id: "text_encoder_decoder",
-      displayName: "Encode/Decode Text",
-      description: "",
-      isVisible: false,
-    },
-  ]);
+  const [listActivedFeatures, setListActivedFeatures] = useState([]);
 
   useEffect(() => {
-    fetch(apiPage + "/api/load_features.php", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          setListActivedFeatures(data.data);
-        } else {
-          // NOTE: alert để thông báo lỗi, cân nhắc thay thế UI thông báo phù hợp
-          alert(data.message);
-        }
-      })
-      .catch((error) => {
-        console.error("Error loading features:", error);
-      });
-  }, [apiPage]);
+    const savedFeatures = localStorage.getItem("features");
+    if (savedFeatures) {
+      const allFeatures = JSON.parse(savedFeatures);
+      setListActivedFeatures(
+        allFeatures.filter((feature) => feature.isVisible === true)
+      );
+    } else {
+      fetch("/data.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const features = data.features || [];
+          setListActivedFeatures(
+            features.filter((feature) => feature.isVisible === true)
+          );
+        })
+        .catch((error) => {
+          console.error("Error loading features:", error);
+        });
+    }
+  }, []);
 
   const handleLogoClick = () => {
     navigate("/");
@@ -72,6 +42,11 @@ const Header = ({ scrollToSection }) => {
     if (checkHonePage) {
       return (
         <ul>
+          <li>
+            <button onClick={() => scrollToSection("hero")} data-scroll="hero">
+              Hero
+            </button>
+          </li>
           <li>
             <button
               onClick={() => scrollToSection("about")}

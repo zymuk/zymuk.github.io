@@ -5,10 +5,10 @@ const HomepageSettings = () => {
   const [t, setT] = useState({});
   const lang = localStorage.getItem("lang") || "en";
   const [settings, setSettings] = useState({
-    hero: { title: "", content: "", color: "#ffffff", image: "" },
-    about: { text: "", description: "", color: "#ffffff", image: "" },
-    projects: { color: "#ffffff", image: "" },
-    tools: { color: "#ffffff", image: "" },
+    hero: { title: "", content: "", color: "#000000", image: "" },
+    about: { text: "", description: "", color: "#000000", image: "" },
+    projects: { color: "#000000", image: "" },
+    tools: { color: "#000000", image: "" },
   });
 
   useEffect(() => {
@@ -18,15 +18,47 @@ const HomepageSettings = () => {
       .catch((error) => console.error("Error loading translations:", error));
   }, [lang]);
 
-  // Load dữ liệu từ localStorage khi component mount
   useEffect(() => {
-    const savedSettings = JSON.parse(localStorage.getItem("homepageSettings"));
-    if (savedSettings) {
-      setSettings(savedSettings);
-    }
+    const loadSettings = async () => {
+      try {
+        const savedSettings = localStorage.getItem("homepageSettings");
+        if (savedSettings) {
+          setSettings(JSON.parse(savedSettings));
+          return;
+        }
+
+        const response = await fetch("/config.json");
+        const config = await response.json();
+        setSettings({
+          hero: {
+            title: config.homepage?.hero?.title || "",
+            content: config.homepage?.hero?.content || "",
+            color: config.homepage?.hero?.color || "#000000",
+            image: config.homepage?.hero?.image || "",
+          },
+          about: {
+            text: config.homepage?.about?.text || "",
+            description: config.homepage?.about?.description || "",
+            color: config.homepage?.about?.color || "#000000",
+            image: config.homepage?.about?.image || "",
+          },
+          projects: {
+            color: config.homepage?.projects?.color || "#000000",
+            image: config.homepage?.projects?.image || "",
+          },
+          tools: {
+            color: config.homepage?.tools?.color || "#000000",
+            image: config.homepage?.tools?.image || "",
+          },
+        });
+      } catch (error) {
+        console.error("Error loading homepage settings:", error);
+      }
+    };
+
+    loadSettings();
   }, []);
 
-  // Hàm cập nhật state khi nhập dữ liệu
   const handleChange = (section, field, value) => {
     setSettings((prev) => ({
       ...prev,
@@ -34,18 +66,51 @@ const HomepageSettings = () => {
     }));
   };
 
-  // Hàm lưu vào localStorage
   const handleSave = () => {
     localStorage.setItem("homepageSettings", JSON.stringify(settings));
-    // NOTE: Using alert for save success. Consider replacing with a proper UI notification in production.
-    alert("This setting saved! ✅");
+    alert(t.save || "Settings saved! ✅ Refresh frontend to see changes.");
+  };
+
+  const handleReset = async () => {
+    try {
+      const response = await fetch("/config.json");
+      const config = await response.json();
+
+      const resetSettings = {
+        hero: {
+          title: config.homepage?.hero?.title || "",
+          content: config.homepage?.hero?.content || "",
+          color: config.homepage?.hero?.color || "#000000",
+          image: config.homepage?.hero?.image || "",
+        },
+        about: {
+          text: config.homepage?.about?.text || "",
+          description: config.homepage?.about?.description || "",
+          color: config.homepage?.about?.color || "#000000",
+          image: config.homepage?.about?.image || "",
+        },
+        projects: {
+          color: config.homepage?.projects?.color || "#000000",
+          image: config.homepage?.projects?.image || "",
+        },
+        tools: {
+          color: config.homepage?.tools?.color || "#000000",
+          image: config.homepage?.tools?.image || "",
+        },
+      };
+
+      setSettings(resetSettings);
+      localStorage.removeItem("homepageSettings");
+      alert("Reset to default settings! ✅");
+    } catch (error) {
+      console.error("Error resetting to default:", error);
+    }
   };
 
   return (
     <div className="homepage-settings">
       <h2>{t.homepage_settings || "Homepage Settings"}</h2>
 
-      {/* Hero Section */}
       <div className="section">
         <h3>{t.hero_section || "Hero Section"}</h3>
 
@@ -85,7 +150,6 @@ const HomepageSettings = () => {
         </div>
       </div>
 
-      {/* About Section */}
       <div className="section">
         <h3>{t.about_section || "About Section"}</h3>
         <div className="setting-group">
@@ -98,8 +162,9 @@ const HomepageSettings = () => {
         </div>
 
         <div className="setting-group">
-          <label>{t.description || "Description"}:</label>
-          <textarea
+          <label>{t.typing_text || "Typing Text"}:</label>
+          <input
+            type="text"
             value={settings.about.description}
             onChange={(e) =>
               handleChange("about", "description", e.target.value)
@@ -126,7 +191,6 @@ const HomepageSettings = () => {
         </div>
       </div>
 
-      {/* Projects Section */}
       <div className="section">
         <h3>{t.projects_section || "Projects Section"}</h3>
         <div className="setting-group">
@@ -148,7 +212,6 @@ const HomepageSettings = () => {
         </div>
       </div>
 
-      {/* Tools Section */}
       <div className="section">
         <h3>{t.tools_section || "Tools Section"}</h3>
         <div className="setting-group">
@@ -170,9 +233,15 @@ const HomepageSettings = () => {
         </div>
       </div>
 
-      <button className="save-btn" onClick={handleSave}>
-        <i className="fas fa-save"></i> {t.save || "Save"}
-      </button>
+      <div className="button-group">
+        <button className="save-btn" onClick={handleSave}>
+          <i className="fas fa-save"></i> {t.save || "Save"}
+        </button>
+
+        <button className="reset-btn" onClick={handleReset}>
+          <i className="fas fa-undo"></i> Reset to Default
+        </button>
+      </div>
     </div>
   );
 };
