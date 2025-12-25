@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import packageJson from "../../../package.json";
 import "./FeaturesSettings.css";
 
 const FeaturesSettings = () => {
@@ -7,11 +6,15 @@ const FeaturesSettings = () => {
 
   useEffect(() => {
     // Load features from localStorage if available
-    const savedFeatures = localStorage.getItem("featuresSettings");
+    const savedFeatures = localStorage.getItem("features");
     if (savedFeatures) {
       setFeatures(JSON.parse(savedFeatures));
     } else {
-      setFeatures([]);
+      // Load default data from data.json
+      fetch("/data.json")
+        .then((res) => res.json())
+        .then((data) => setFeatures(data.features))
+        .catch((err) => console.error("Error loading default features:", err));
     }
   }, []);
 
@@ -23,7 +26,7 @@ const FeaturesSettings = () => {
 
   const handleSave = () => {
     // Save features to localStorage
-    localStorage.setItem("featuresSettings", JSON.stringify(features));
+    localStorage.setItem("features", JSON.stringify(features));
     alert("Features settings have been saved!");
   };
 
@@ -36,13 +39,14 @@ const FeaturesSettings = () => {
             <th>Feature ID</th>
             <th>Display Name</th>
             <th>Description</th>
+            <th>Path</th>
             <th>Visible</th>
           </tr>
         </thead>
         <tbody>
           {features.map((feature, index) => (
-            <tr key={feature.key}>
-              <td>{feature.key}</td>
+            <tr key={feature.id}>
+              <td>{feature.id}</td>
               <td>
                 <input
                   type="text"
@@ -59,6 +63,13 @@ const FeaturesSettings = () => {
                   onChange={(e) =>
                     handleChange(index, "description", e.target.value)
                   }
+                />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={feature.path}
+                  onChange={(e) => handleChange(index, "path", e.target.value)}
                 />
               </td>
               <td>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import packageJson from "../../../package.json";
 import "./Login.css";
 
 const Login = () => {

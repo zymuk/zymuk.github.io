@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./AdminHeader.css";
 
-const AdminHeader = ({displayName}) => {
+const AdminHeader = ({ displayName }) => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -27,8 +27,13 @@ const AdminHeader = ({displayName}) => {
   return (
     <header className="admin-header">
       <h1 className="admin-title">Admin Dashboard</h1>
-      <div className="admin-header-user" ref={dropdownRef} onClick={() => setIsOpen(!isOpen)}>
-        <span>Hello, </span><span className="username">{displayName}</span>
+      <div
+        className="admin-header-user"
+        ref={dropdownRef}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span>Hello, </span>
+        <span className="username">{displayName}</span>
         <i className="fas fa-caret-down"></i>
         {isOpen && (
           <div className="dropdown-menu">

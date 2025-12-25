@@ -1,25 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Projects.css";
 
 const Projects = () => {
-  const listProject = [
-    {
-      name: "PHP application",
-      demo: "http://ttngoc653.byethost4.com/",
-      github:
-        "https://github.com/zymuk/WebsiteSellLaptopPHP/tree/master/Source",
-    },
-    {
-      name: "Portfolio Personal page",
-      demo: "",
-      github: "https://github.com/zymuk/zymuk.github.io",
-    },
-    {
-      name: "Personal page",
-      demo: "http://zymuk.lovestoblog.com",
-      github: "https://github.com/zymuk",
-    },
-  ];
+  const [listProject, setListProject] = useState([]);
+
+  useEffect(() => {
+    fetch("/data.json")
+      .then((res) => res.json())
+      .then((data) => setListProject(data.projects))
+      .catch((err) => console.error("Error loading projects:", err));
+  }, []);
 
   return (
     <section id="projects" className="section projects-section">

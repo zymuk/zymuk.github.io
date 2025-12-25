@@ -1,0 +1,73 @@
+{
+  "site": {
+    "title": "Zymuk Portfolio",
+    "description": "Personal portfolio and tools website",
+    "author": "Zymuk Trần"
+  },
+  "projects": [
+    {
+      "name": "PHP application",
+      "demo": "http://ttngoc653.byethost4.com/",
+      "github": "https://github.com/zymuk/WebsiteSellLaptopPHP/tree/master/Source"
+    },
+    {
+      "name": "Portfolio Personal page",
+      "demo": "",
+      "github": "https://github.com/zymuk/zymuk.github.io"
+    },
+    {
+      "name": "Personal page",
+      "demo": "http://zymuk.lovestoblog.com",
+      "github": "https://github.com/zymuk"
+    }
+  ],
+  "features": [
+    {
+      "id": "calculator",
+      "displayName": "Calculator",
+      "description": "Simple calculator tool",
+      "path": "/calculator",
+      "isVisible": true
+    },
+    {
+      "id": "notes",
+      "displayName": "Notes",
+      "description": "Note taking application",
+      "path": "/notes",
+      "isVisible": true
+    },
+    {
+      "id": "save_web",
+      "displayName": "Save Web Page",
+      "description": "Save web pages for offline viewing",
+      "path": "/save-web",
+      "isVisible": false
+    },
+    {
+      "id": "numerology-name",
+      "displayName": "Auto generate numerology name",
+      "description": "Generate names based on numerology",
+      "path": "/numerology-name",
+      "isVisible": true
+    },
+    {
+      "id": "text_encoder_decoder",
+      "displayName": "Encode/Decode Text",
+      "description": "Text encoding and decoding tool",
+      "path": "/text-encoder-decoder",
+      "isVisible": false
+    }
+  ],
+  "contact": {
+    "email": "contact@zymuk.com",
+    "github": "https://github.com/zymuk",
+    "linkedin": ""
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "features": "Features",
+    "contact": "Contact"
+  }
+}
