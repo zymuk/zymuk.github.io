@@ -1,0 +1,34 @@
+{
+  "homepage": {
+    "hero": {
+      "color": "#001f2e",
+      "title": "Welcome to My Portfolio",
+      "content": "I'm a passionate developer creating amazing web experiences",
+      "image": ""
+    },
+    "about": {
+      "color": "#004d80",
+      "text": "TRẦN THẾ NGỌC",
+      "description": "I am a programer/coder/developer.",
+      "image": ""
+    },
+    "projects": {
+      "color": "#0077b6",
+      "title": "Projects",
+      "description": "My latest work and projects",
+      "image": ""
+    },
+    "tools": {
+      "color": "#00a8e8",
+      "title": "Features",
+      "description": "Useful tools and utilities",
+      "image": ""
+    },
+    "contact": {
+      "color": "#005f73",
+      "title": "Contact Me",
+      "description": "Get in touch with me",
+      "image": ""
+    }
+  }
+}
