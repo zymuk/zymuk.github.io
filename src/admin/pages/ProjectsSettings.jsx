@@ -112,7 +112,7 @@ const ProjectsSettings = () => {
           />
         </div>
         <div className="form-group">
-          <label>{t.demo_link || "Demo Link"}:</label>
+          <label>{t.demo_link || "Live Site Link"}:</label>
           <input
             type="url"
             name="demoLink"

@@ -22,8 +22,27 @@ const Projects = ({ settings, data }) => {
         {visibleProjects.map((item) => {
           return (
             <li key={item.name}>
-              <strong>{item.name}</strong> - <a href={item.demo}>Demo</a> |{" "}
-              <a href={item.github}>GitHub</a>
+              <strong>{item.name}</strong>
+              {item.demo && (
+                <>
+                  {" - "}
+                  <a href={item.demo} target="_blank" rel="noopener noreferrer">
+                    Live Site
+                  </a>
+                </>
+              )}
+              {item.github && (
+                <>
+                  {item.demo ? " | " : " - "}
+                  <a
+                    href={item.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GitHub
+                  </a>
+                </>
+              )}
             </li>
           );
         })}
