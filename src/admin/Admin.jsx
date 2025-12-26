@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import AdminLayout from "./pages/AdminLayout";
 import Dashboard from "./pages/Dashboard";
@@ -11,13 +11,11 @@ import EditProfile from "./pages/EditProfile";
 import Users from "./pages/Users";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
-import packageJson from "../../package.json";
 import "./Admin.css";
 
 const Admin = () => {
   const [auth, setAuth] = useState(false);
   const [displayName, setDisplayName] = useState("");
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
