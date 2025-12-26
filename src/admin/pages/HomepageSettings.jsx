@@ -7,6 +7,7 @@ const HomepageSettings = () => {
   const [settings, setSettings] = useState({
     hero: { title: "", content: "", color: "#000000", image: "" },
     about: { text: "", description: "", color: "#000000", image: "" },
+    experience: { title: "", description: "", color: "#000000" },
     projects: { color: "#000000", image: "" },
     tools: { color: "#000000", image: "" },
   });
@@ -41,6 +42,11 @@ const HomepageSettings = () => {
             description: config.homepage?.about?.description || "",
             color: config.homepage?.about?.color || "#000000",
             image: config.homepage?.about?.image || "",
+          },
+          experience: {
+            title: config.homepage?.experience?.title || "",
+            description: config.homepage?.experience?.description || "",
+            color: config.homepage?.experience?.color || "#000000",
           },
           projects: {
             color: config.homepage?.projects?.color || "#000000",
@@ -88,6 +94,11 @@ const HomepageSettings = () => {
           description: config.homepage?.about?.description || "",
           color: config.homepage?.about?.color || "#000000",
           image: config.homepage?.about?.image || "",
+        },
+        experience: {
+          title: config.homepage?.experience?.title || "",
+          description: config.homepage?.experience?.description || "",
+          color: config.homepage?.experience?.color || "#000000",
         },
         projects: {
           color: config.homepage?.projects?.color || "#000000",
@@ -187,6 +198,44 @@ const HomepageSettings = () => {
             type="text"
             value={settings.about.image}
             onChange={(e) => handleChange("about", "image", e.target.value)}
+          />
+        </div>
+      </div>
+
+      <div className="section">
+        <h3>Experience Section</h3>
+        <div className="setting-group">
+          <label>{t.title || "Title"}:</label>
+          <input
+            type="text"
+            placeholder="Experience"
+            value={settings.experience.title}
+            onChange={(e) =>
+              handleChange("experience", "title", e.target.value)
+            }
+          />
+        </div>
+
+        <div className="setting-group">
+          <label>{t.description || "Description"}:</label>
+          <input
+            type="text"
+            placeholder="My professional journey"
+            value={settings.experience.description}
+            onChange={(e) =>
+              handleChange("experience", "description", e.target.value)
+            }
+          />
+        </div>
+
+        <div className="setting-group">
+          <label>{t.background_color || "Background Color"}:</label>
+          <input
+            type="color"
+            value={settings.experience.color}
+            onChange={(e) =>
+              handleChange("experience", "color", e.target.value)
+            }
           />
         </div>
       </div>

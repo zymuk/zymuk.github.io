@@ -54,6 +54,12 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
           </NavLink>
         </li>
         <li>
+          <NavLink to="experience" className="active">
+            <i className="fas fa-briefcase"></i>
+            <span className="menu-text">{t.experience || "Experience"}</span>
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="profile">
             <i className="fas fa-user-edit"></i>
             <span className="menu-text">

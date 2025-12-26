@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import HomepageSettings from "./pages/HomepageSettings";
 import ProjectsSettings from "./pages/ProjectsSettings";
 import FeaturesSettings from "./pages/FeaturesSettings";
+import ExperienceSettings from "./pages/ExperienceSettings";
 import EditProfile from "./pages/EditProfile";
 import Users from "./pages/Users";
 import Settings from "./pages/Settings";
@@ -50,6 +51,7 @@ const Admin = () => {
         <Route path="homepage" element={<HomepageSettings />} />
         <Route path="projects" element={<ProjectsSettings />} />
         <Route path="features" element={<FeaturesSettings />} />
+        <Route path="experience" element={<ExperienceSettings />} />
         <Route path="profile" element={<EditProfile />} />
         <Route path="users" element={<Users />} />
         <Route path="settings" element={<Settings />} />
