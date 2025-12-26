@@ -7,13 +7,13 @@
       "image": ""
     },
     "about": {
-      "color": "#004d80",
+      "color": "#003855",
       "text": "TRẦN THẾ NGỌC",
       "description": "I am a programer/coder/developer.",
       "image": ""
     },
     "experience": {
-      "color": "#2d5aa0",
+      "color": "#005577",
       "title": "Experience",
       "description": "My professional journey",
       "image": ""
@@ -25,13 +25,13 @@
       "image": ""
     },
     "tools": {
-      "color": "#00a8e8",
+      "color": "#0099d4",
       "title": "Features",
       "description": "Useful tools and utilities",
       "image": ""
     },
     "contact": {
-      "color": "#005f73",
+      "color": "#00bbf2",
       "title": "Contact Me",
       "description": "Get in touch with me",
       "image": ""
