@@ -58,8 +58,120 @@
       "isVisible": false
     }
   ],
+  "experience": [
+    {
+      "role": "Software Engineer",
+      "company": "EVINA SOFTWARE CO. LTD",
+      "period": "Jul 2025 - Dec 2025",
+      "description": "Tasked with the technical maintenance and enhancement of the OpenTestSystem core modules. Focused on ensuring the stability of the OTX development environment and providing specialized technical support for automotive diagnostic standards.",
+      "isVisible": true,
+      "projects": [
+        {
+          "name": "OpenTestSystem (Legacy Maintenance & Support)",
+          "description": "An ISO 13209 compliant diagnostic testing platform. Continued to support the OpenTestFramework and OTX Runtime, ensuring cross-platform execution reliability for automotive procedures on Windows and embedded systems during the organizational transition.",
+          "technologies": ["C++", "OTX/OTL", "CMake", "WPF", "WinForms", "SVN"],
+          "responsibilities": [
+            "Maintained and patched core components of the OpenTestFramework to ensure system integrity.",
+            "Refactored legacy modules within the OTX Runtime to improve execution performance and stability.",
+            "Collaborated with the QA team to investigate and resolve complex, low-level bugs reported by end-users.",
+            "Provided technical documentation and expertise to support the transition of the testing suite to the new corporate entity."
+          ]
+        },
+        {
+          "name": "CI/CD Pipeline Maintenance & File Management",
+          "description": "Responsible for maintaining CI/CD pipelines and updating file configurations when source code changes occur. Focused on ensuring pipeline stability and accurate file naming conventions during the organizational transition period.",
+          "technologies": [
+            "Jenkins Pipeline",
+            "Docker",
+            "Bash Script",
+            "Batch Script",
+            "SVN"
+          ],
+          "responsibilities": [
+            "Maintained existing CI/CD pipelines to ensure continuous operation.",
+            "Updated and modified file names in pipeline configurations when source code changes required adjustments.",
+            "Performed routine maintenance on build scripts and deployment processes.",
+            "Ensured file naming consistency across different pipeline stages and environments."
+          ]
+        }
+      ]
+    },
+    {
+      "role": "Software Developer, CI/CD Engineer",
+      "company": "Emotive Software Co. Ltd",
+      "period": "Apr 2019 - Jun 2025",
+      "description": "Engineered and optimized OpenTestSystem, a high-performance automotive testing ecosystem. Played a key role in developing diagnostic APIs, execution frameworks, and streamlining CI/CD pipelines for automated testing solutions.",
+      "isVisible": true,
+      "projects": [
+        {
+          "name": "OpenTestSystem (Automotive Diagnostic & Testing Platform)",
+          "description": "A comprehensive Desktop IDE designed for process-reliable automotive testing. The platform features OpenTestFramework (an OTX development environment compliant with ISO 13209) and OpenTestPlayer for Windows (x86/x64). It includes a cross-platform OTX Runtime enabling procedure execution across Windows, Linux, Android, and embedded systems. The solution empowers users to deploy complex tester sequences via an intuitive UI without deep programming expertise.",
+          "technologies": [
+            "C++",
+            "OTX/OTL (ISO 13209)",
+            "CMake",
+            "WPF",
+            "WinForms",
+            "Java Swing",
+            "SVN"
+          ],
+          "responsibilities": [
+            "Architected and developed core components of the OpenTestFramework application suite.",
+            "Implemented robust engines for loading and executing OTX diagnostic procedures.",
+            "Developed and maintained Unit Test APIs to enhance automated testing coverage and reliability.",
+            "Collaborated with the QA team to reproduce, analyze, and resolve complex issues reported by global automotive clients."
+          ]
+        },
+        {
+          "name": "CI/CD Pipeline & Automated Testing Infrastructure",
+          "description": "Designed and implemented comprehensive CI/CD pipelines for OpenTestSystem deployment and quality assurance. Built automated testing frameworks and deployment processes to ensure reliable software delivery across multiple environments and platforms.",
+          "technologies": [
+            "Jenkins Pipeline",
+            "Docker",
+            "Bash Script",
+            "Batch Script",
+            "SVN"
+          ],
+          "responsibilities": [
+            "Designed and built CI/CD pipelines for building source code from version control systems.",
+            "Automated collection and packaging of essential files required for product delivery and distribution.",
+            "Integrated and executed comprehensive unittest suites across all system components within the pipeline.",
+            "Implemented automated reporting systems to send unittest results and build status to relevant stakeholders via email notifications.",
+            "Configured scheduled automated pipeline execution at specified time intervals for continuous integration."
+          ]
+        }
+      ]
+    },
+    {
+      "role": "Manual Tester",
+      "company": "IM Group - Digital Business Training Academy",
+      "period": "Dec 2017 - Dec 2018",
+      "description": "Ensured the quality and usability of the Webitop (iTop) platform - an automated website builder and E-commerce ecosystem for digital businesses.",
+      "isVisible": true,
+      "projects": [
+        {
+          "name": "Webitop (iTop Website Builder Platform)",
+          "description": "Webitop is a comprehensive SaaS platform enabling users to create SEO-optimized websites and automated sales systems. The platform integrates drag-and-drop web building tools, automated SEO modules, and marketing automation features.",
+          "technologies": [
+            "Manual Testing",
+            "Web Compatibility Testing",
+            "Jira",
+            "Black-box Testing",
+            "SEO Standards Testing"
+          ],
+          "responsibilities": [
+            "Performed end-to-end manual testing for the web builder interface to ensure smooth drag-and-drop functionality and UI consistency.",
+            "Executed functional and regression tests on core E-commerce features, including shopping carts, payment gateway integrations, and order management.",
+            "Verified SEO-friendly components and automated schema markup features to ensure compliance with search engine standards.",
+            "Conducted cross-browser and responsiveness testing to guarantee platform stability across various devices and browsers.",
+            "Documented detailed bug reports and collaborated with the development team to prioritize and resolve critical issues before product releases."
+          ]
+        }
+      ]
+    }
+  ],
   "contact": {
-    "email": "contact@zymuk.com",
+    "email": "thengoc0605@yahoo.com",
     "github": "https://github.com/zymuk",
     "linkedin": ""
   },

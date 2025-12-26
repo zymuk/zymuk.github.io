@@ -1,0 +1,198 @@
+.experience-section {
+  padding: 4rem 2rem;
+  color: white;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.experience-timeline {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.experience-timeline::before {
+  content: "";
+  position: absolute;
+  left: 2rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.experience-item {
+  margin-bottom: 3rem;
+  padding-left: 4rem;
+  position: relative;
+}
+
+.experience-item::before {
+  content: "";
+  position: absolute;
+  left: 1.5rem;
+  top: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  background: white;
+  border-radius: 50%;
+}
+
+.experience-header {
+  margin-bottom: 1.5rem;
+}
+
+.role {
+  color: white;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.company {
+  color: #f0f8ff;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.period {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.experience-content {
+  color: #f0f8ff;
+}
+
+.main-work {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.projects {
+  margin-top: 1.5rem;
+}
+
+.projects h5 {
+  color: white;
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.project-item {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border-left: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.project-name {
+  color: white;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.project-description {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  color: #f0f8ff;
+}
+
+.technologies {
+  margin-bottom: 1rem;
+}
+
+.technologies strong {
+  color: white;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-tag {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.responsibilities strong {
+  color: white;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.responsibilities ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: #f0f8ff;
+}
+
+.responsibilities li {
+  margin-bottom: 0.3rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .experience-section {
+    padding: 3rem 1rem;
+  }
+
+  .experience-timeline::before {
+    left: 1rem;
+  }
+
+  .experience-item {
+    padding-left: 3rem;
+  }
+
+  .experience-item::before {
+    left: 0.5rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .role {
+    font-size: 1.3rem;
+  }
+
+  .company {
+    font-size: 1.1rem;
+  }
+
+  .project-item {
+    padding: 1rem;
+  }
+
+  .tech-tags {
+    gap: 0.3rem;
+  }
+
+  .tech-tag {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.6rem;
+  }
+}

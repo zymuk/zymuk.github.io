@@ -12,6 +12,12 @@
       "description": "I am a programer/coder/developer.",
       "image": ""
     },
+    "experience": {
+      "color": "#2d5aa0",
+      "title": "Experience",
+      "description": "My professional journey",
+      "image": ""
+    },
     "projects": {
       "color": "#0077b6",
       "title": "Projects",

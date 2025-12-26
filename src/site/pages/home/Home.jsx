@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Hero from "./hero/Hero";
 import About from "./about/About";
+import Experience from "./experience/Experience";
 import Projects from "./projects/Projects";
 import Features from "./features/Features";
 import Contact from "./contact/Contact";
@@ -27,13 +28,16 @@ const Home = () => {
 
         let projectsData = [];
         let featuresData = [];
+        let experienceData = [];
 
         const savedProjects = localStorage.getItem("projects");
         const savedFeatures = localStorage.getItem("features");
+        const savedExperience = localStorage.getItem("experience");
 
-        if (savedProjects && savedFeatures) {
+        if (savedProjects && savedFeatures && savedExperience) {
           projectsData = JSON.parse(savedProjects);
           featuresData = JSON.parse(savedFeatures);
+          experienceData = JSON.parse(savedExperience);
         } else {
           const dataResponse = await fetch("/data.json");
           const jsonData = await dataResponse.json();
@@ -44,9 +48,16 @@ const Home = () => {
           featuresData = savedFeatures
             ? JSON.parse(savedFeatures)
             : jsonData.features || [];
+          experienceData = savedExperience
+            ? JSON.parse(savedExperience)
+            : jsonData.experience || [];
         }
 
-        setData({ projects: projectsData, features: featuresData });
+        setData({
+          projects: projectsData,
+          features: featuresData,
+          experience: experienceData,
+        });
       } catch (error) {
         console.error("Error loading home data:", error);
         setSettings({});
@@ -67,6 +78,10 @@ const Home = () => {
     <div>
       <Hero settings={settings.homepage?.hero || settings.hero || {}} />
       <About settings={settings.homepage?.about || settings.about || {}} />
+      <Experience
+        settings={settings.homepage?.experience || settings.experience || {}}
+        data={data.experience || []}
+      />
       <Projects
         settings={settings.homepage?.projects || settings.projects || {}}
         data={data.projects || []}
