@@ -203,7 +203,7 @@ const ExperienceSettings = () => {
           </button>
         </div>
         {data.experience.map((exp, expIndex) => (
-          <div key={expIndex} className="experience-item">
+          <div key={expIndex} className="admin-experience-item">
             <div className="item-header">
               <h3>Experience #{expIndex + 1}</h3>
               <div className="item-actions">
@@ -288,8 +288,8 @@ const ExperienceSettings = () => {
               </div>
 
               {exp.projects?.map((project, projIndex) => (
-                <div key={projIndex} className="project-item">
-                  <div className="project-header">
+                <div key={projIndex} className="admin-project-item">
+                  <div className="admin-project-header">
                     <h5>Project #{projIndex + 1}</h5>
                     <button
                       onClick={() => removeProject(expIndex, projIndex)}
@@ -350,8 +350,8 @@ const ExperienceSettings = () => {
                   </div>
 
                   {/* Responsibilities */}
-                  <div className="responsibilities-section">
-                    <div className="responsibilities-header">
+                  <div className="admin-responsibilities-section">
+                    <div className="admin-responsibilities-header">
                       <label>Responsibilities:</label>
                       <button
                         type="button"
@@ -364,7 +364,10 @@ const ExperienceSettings = () => {
 
                     {project.responsibilities?.map(
                       (responsibility, respIndex) => (
-                        <div key={respIndex} className="responsibility-item">
+                        <div
+                          key={respIndex}
+                          className="admin-responsibility-item"
+                        >
                           <input
                             type="text"
                             value={responsibility}

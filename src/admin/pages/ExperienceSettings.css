@@ -93,13 +93,6 @@
   padding: 0;
 }
 
-.projects-section {
-  margin-top: 1.5rem;
-  background: #fafafa;
-  border-radius: 6px;
-  padding: 1rem;
-}
-
 .projects-header {
   display: flex;
   justify-content: space-between;
@@ -114,14 +107,14 @@
   color: #636e72;
 }
 
-.project-header {
+.admin-project-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 }
 
-.project-header h5 {
+.admin-project-header h5 {
   margin: 0;
   color: #636e72;
   font-size: 1rem;
@@ -170,7 +163,7 @@
   cursor: pointer;
 }
 
-.experience-item {
+.admin-experience-item {
   background: #f8f9fa;
   border: 1px solid #e1e5e9;
   border-radius: 8px;
@@ -207,7 +200,7 @@
   margin: 0;
 }
 
-.project-item {
+.admin-project-item {
   background: white;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -215,7 +208,7 @@
   margin-top: 1rem;
 }
 
-.project-item h4 {
+.admin-project-item h4 {
   color: #636e72;
   margin-bottom: 1rem;
   font-size: 1.1rem;
@@ -223,18 +216,18 @@
   padding-bottom: 0.5rem;
 }
 
-.responsibilities-section {
+.admin-responsibilities-section {
   margin-top: 1rem;
 }
 
-.responsibilities-header {
+.admin-responsibilities-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 }
 
-.responsibilities-header label {
+.admin-responsibilities-header label {
   margin: 0;
   font-weight: 600;
   color: #2d3436;
@@ -255,14 +248,14 @@
   background: #0770c7;
 }
 
-.responsibility-item {
+.admin-responsibility-item {
   display: flex;
   gap: 0.5rem;
   margin-bottom: 0.5rem;
   align-items: center;
 }
 
-.responsibility-item input {
+.admin-responsibility-item input {
   flex: 1;
   margin-bottom: 0;
 }
@@ -325,7 +318,7 @@
     padding: 1rem;
   }
 
-  .responsibility-item {
+  .admin-responsibility-item {
     flex-direction: column;
     align-items: stretch;
   }
