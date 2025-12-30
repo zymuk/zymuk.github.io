@@ -6,6 +6,7 @@ import Features from "./pages/home/features/Features";
 import NotFound from "./pages/notFound/NotFound";
 import Footer from "./components/footer/Footer";
 import Calculator from "./pages/calculator/Calculator";
+import Notes from "./pages/notes/Notes";
 import "./Site.css";
 import NumerologyName from "./pages/numerologyName/NumerologyName";
 import TextEncoderDecoder from "./pages/textEncoderDecoder/TextEncoderDecoder";
@@ -64,6 +65,7 @@ const Site = () => {
           <Route path="/" element={<Home />} />
           <Route path="/features" element={<Features />} />
           <Route path="/calculator" element={<Calculator />} />
+          <Route path="/notes" element={<Notes />} />
           <Route path="/numerology-name" element={<NumerologyName />} />
           <Route
             path="/text_encoder_decoder"

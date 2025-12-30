@@ -1,0 +1,879 @@
+/* ========================================
+   NOTES PAGE - COMPLETE STYLING
+   ======================================== */
+
+/* Page Container */
+.notes-page {
+  min-height: 100vh;
+  padding: 0.5rem;
+}
+
+.notes-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header Section */
+.notes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.notes-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-input {
+  width: 300px;
+  padding: 0.75rem 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 1rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.btn-add-note {
+  background: #001f3f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-add-note:hover {
+  background: #003366;
+  transform: translateY(-2px);
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 20px;
+  padding: 0;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-header {
+  background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.btn-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Form Styling */
+.note-form {
+  padding: 1.5rem;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  resize: vertical;
+  font-family: inherit;
+}
+
+/* Special styling for description textarea */
+.description-textarea {
+  min-height: 80px;
+  background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+  border: 2px solid #e1e5e9;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+.description-textarea:focus {
+  background: #ffffff;
+  border-color: #001f3f;
+  box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
+}
+
+/* Rich Text Editor Styling */
+.rich-text-editor {
+  border: 2px solid #e1e5e9;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.rich-text-editor:focus-within {
+  border-color: #001f3f;
+  box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
+}
+
+.editor-toolbar {
+  background: #f8f9fa;
+  border-bottom: 1px solid #e1e5e9;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.toolbar-btn {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolbar-btn:hover {
+  background: #e9ecef;
+  border-color: #001f3f;
+}
+
+.toolbar-btn:active,
+.toolbar-btn.active {
+  background: #001f3f;
+  color: white;
+  border-color: #001f3f;
+}
+
+.toolbar-btn.active:hover {
+  background: #003366;
+}
+
+.toolbar-separator {
+  color: #ddd;
+  margin: 0 0.25rem;
+}
+
+.editor-content {
+  padding: 0.75rem;
+  min-height: 100px;
+  outline: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: #333;
+}
+
+.editor-content[contenteditable="true"]:empty:before {
+  content: attr(data-placeholder);
+  color: #999;
+  font-style: italic;
+}
+
+.editor-content:focus {
+  outline: none;
+}
+
+/* Rich text content styling */
+.editor-content h1,
+.editor-content h2,
+.editor-content h3 {
+  color: #001f3f;
+  margin: 0.5rem 0;
+  font-weight: 600;
+}
+
+.editor-content h2 {
+  font-size: 1.3rem;
+}
+.editor-content h3 {
+  font-size: 1.1rem;
+}
+
+.editor-content ul,
+.editor-content ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.editor-content a {
+  color: #001f3f;
+  text-decoration: underline;
+}
+
+/* Label styling */
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ========================================
+   RICH TEXT CONTENT STYLING
+   ======================================== */
+
+.rich-text-content {
+  line-height: 1.6;
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI",
+    Roboto, "Helvetica Neue", sans-serif;
+}
+
+.rich-text-content p {
+  margin: 0.5rem 0;
+}
+
+.rich-text-content strong {
+  font-weight: 700;
+  color: #001f3f;
+}
+
+.rich-text-content em {
+  font-style: italic;
+  color: #333;
+}
+
+.rich-text-content h1,
+.rich-text-content h2,
+.rich-text-content h3,
+.rich-text-content h4,
+.rich-text-content h5,
+.rich-text-content h6 {
+  color: #001f3f;
+  margin: 1rem 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.rich-text-content h1 {
+  font-size: 1.5rem;
+}
+.rich-text-content h2 {
+  font-size: 1.3rem;
+}
+.rich-text-content h3 {
+  font-size: 1.1rem;
+}
+
+.rich-text-content ul,
+.rich-text-content ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.rich-text-content li {
+  margin-bottom: 0.25rem;
+  color: #333;
+}
+
+.rich-text-content a {
+  color: #001f3f;
+  text-decoration: underline;
+  transition: all 0.3s ease;
+}
+
+.rich-text-content a:hover {
+  background: rgba(0, 31, 63, 0.1);
+  color: #003366;
+}
+
+.rich-text-content blockquote {
+  border-left: 4px solid #001f3f;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 31, 63, 0.05);
+  font-style: italic;
+}
+
+.rich-text-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.rich-text-content th,
+.rich-text-content td {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.rich-text-content th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #001f3f;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #001f3f;
+  box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e1e5e9;
+}
+
+.btn-cancel,
+.btn-save {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-cancel {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background: #5a6268;
+}
+
+.btn-save {
+  background: #001f3f;
+  color: white;
+}
+
+.btn-save:hover {
+  background: #003366;
+  transform: translateY(-2px);
+}
+
+/* Notes Content */
+.notes-content {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.notes-stats {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: #b8c5d1; /* Light blue-gray for dark background */
+}
+
+.notes-stats strong {
+  color: #4a9eff; /* Bright blue for dark background */
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.empty-state h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #87ceeb; /* Light blue để match theme */
+}
+
+.empty-state p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+/* Notes Grid */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 0.75rem;
+}
+
+/* Note Card */
+.note-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.note-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  background: white;
+}
+
+/* Clickable header */
+.note-header {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  padding: 0.5rem;
+  margin: -0.5rem;
+}
+
+.note-header:hover {
+  background: rgba(0, 31, 63, 0.05);
+}
+
+.note-header.clickable {
+  display: block;
+}
+
+.note-title {
+  color: #333;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.expand-icon {
+  font-size: 0.9rem;
+  opacity: 0.6;
+  transition: all 0.2s ease;
+}
+
+.note-header:hover .expand-icon {
+  opacity: 1;
+}
+
+/* Content sections */
+.note-content {
+  transition: all 0.3s ease;
+}
+
+.note-content.expanded {
+  max-height: none;
+}
+
+.note-content.collapsed {
+  position: relative;
+}
+
+.read-more-btn {
+  background: none;
+  border: none;
+  color: #001f3f;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.read-more-btn:hover {
+  color: #003366;
+  text-decoration: underline;
+}
+
+/* Actions moved to bottom */
+.note-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  margin-top: auto;
+}
+
+.btn-edit,
+.btn-delete,
+.btn-view {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+}
+
+.btn-view:hover {
+  background: #28a745;
+  color: white;
+}
+
+.btn-edit:hover {
+  background: #001f3f;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #d32f2f;
+  color: white;
+}
+
+.note-short-content {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background: rgba(0, 31, 63, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid #001f3f;
+  white-space: pre-wrap;
+}
+
+.note-content {
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  white-space: pre-wrap;
+}
+
+.note-content p {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.note-meta {
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .notes-page {
+    padding: 1rem;
+  }
+
+  .notes-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .notes-header h1 {
+    font-size: 2rem;
+  }
+
+  .header-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .notes-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .modal-overlay {
+    padding: 1rem;
+  }
+
+  .note-form {
+    padding: 1.5rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .btn-cancel,
+  .btn-save {
+    width: 100%;
+  }
+
+  .note-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .note-actions {
+    margin-left: 0;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .notes-header {
+    padding: 1.5rem;
+  }
+
+  .notes-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .notes-content {
+    padding: 1rem;
+  }
+
+  .note-card {
+    padding: 1rem;
+  }
+
+  .modal-content {
+    margin: 1rem;
+  }
+
+  .modal-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .note-form {
+    padding: 1rem;
+  }
+}
+
+/* ========================================
+   VIEW MODAL STYLING
+   ======================================== */
+
+.view-modal {
+  max-width: 700px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.view-content {
+  padding: 2rem;
+  background: #f8f9fa;
+}
+
+.view-section {
+  margin-bottom: 2rem;
+}
+
+.view-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #001f3f;
+  margin: 0;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #001f3f;
+}
+
+.view-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 0.5rem 0;
+}
+
+.view-description {
+  background: rgba(0, 31, 63, 0.05);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #001f3f;
+  white-space: pre-wrap;
+  line-height: 1.6;
+  color: #555;
+  font-style: italic;
+}
+
+.view-text {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 2px solid #e1e5e9;
+  white-space: pre-wrap;
+  line-height: 1.7;
+  color: #333;
+  font-size: 1rem;
+  min-height: 100px;
+}
+
+.view-meta {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #e1e5e9;
+  margin-bottom: 1.5rem;
+}
+
+.meta-item {
+  margin-bottom: 0.5rem;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.meta-item strong {
+  color: #001f3f;
+}
+
+.view-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  padding-top: 1rem;
+  border-top: 2px solid #e1e5e9;
+}
+
+.btn-edit-from-view {
+  background: #001f3f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-edit-from-view:hover {
+  background: #003366;
+  transform: translateY(-2px);
+}
+
+.btn-close-view {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-close-view:hover {
+  background: #5a6268;
+}
+
+/* Responsive for view modal */
+@media (max-width: 768px) {
+  .view-modal {
+    max-width: 95%;
+    margin: 2rem auto;
+  }
+
+  .view-actions {
+    flex-direction: column;
+  }
+
+  .btn-edit-from-view,
+  .btn-close-view {
+    width: 100%;
+  }
+}
