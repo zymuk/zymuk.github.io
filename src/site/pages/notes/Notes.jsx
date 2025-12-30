@@ -320,9 +320,9 @@ const Notes = () => {
 
   return (
     <div className="notes-page">
-      <div className="notes-container">
-        <div className="notes-header">
-          <h1>My Notes</h1>
+      <div className="page-container">
+        <div className="glass-header spaced">
+          <h1 className="page-title">My Notes</h1>
           <div className="header-actions">
             <div className="search-box">
               <input
@@ -495,7 +495,7 @@ const Notes = () => {
         )}
 
         {/* Notes List */}
-        <div className="notes-content">
+        <div className="glass-content">
           <div className="notes-stats">
             <p>
               Total: <strong>{notes.length}</strong> notes | Showing:{" "}

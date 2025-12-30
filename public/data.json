@@ -55,7 +55,7 @@
       "displayName": "Encode/Decode Text",
       "description": "Text encoding and decoding tool",
       "path": "/text-encoder-decoder",
-      "isVisible": false
+      "isVisible": true
     }
   ],
   "experience": [
