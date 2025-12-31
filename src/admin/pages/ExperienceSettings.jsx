@@ -226,7 +226,7 @@ const ExperienceSettings = () => {
             </div>
 
             <div className="form-row">
-              <div className="form-group">
+              <div className="admin-form-group">
                 <label>Role:</label>
                 <input
                   type="text"
@@ -236,7 +236,7 @@ const ExperienceSettings = () => {
                   }
                 />
               </div>
-              <div className="form-group">
+              <div className="admin-form-group">
                 <label>Company:</label>
                 <input
                   type="text"
@@ -248,7 +248,7 @@ const ExperienceSettings = () => {
               </div>
             </div>
 
-            <div className="form-group">
+            <div className="admin-form-group">
               <label>Period:</label>
               <input
                 type="text"
@@ -260,7 +260,7 @@ const ExperienceSettings = () => {
               />
             </div>
 
-            <div className="form-group">
+            <div className="admin-form-group">
               <label>Description:</label>
               <textarea
                 value={exp.description || ""}
@@ -300,7 +300,7 @@ const ExperienceSettings = () => {
                     </button>
                   </div>
 
-                  <div className="form-group">
+                  <div className="admin-form-group">
                     <label>Project Name:</label>
                     <input
                       type="text"
@@ -316,7 +316,7 @@ const ExperienceSettings = () => {
                     />
                   </div>
 
-                  <div className="form-group">
+                  <div className="admin-form-group">
                     <label>Project Description:</label>
                     <textarea
                       value={project.description || ""}
@@ -332,7 +332,7 @@ const ExperienceSettings = () => {
                     />
                   </div>
 
-                  <div className="form-group">
+                  <div className="admin-form-group">
                     <label>Technologies (comma-separated):</label>
                     <input
                       type="text"

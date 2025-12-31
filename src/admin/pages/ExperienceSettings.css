@@ -127,19 +127,15 @@
   margin-bottom: 1rem;
 }
 
-.form-group {
-  margin-bottom: 1.5rem;
-}
-
-.form-group label {
+.admin-form-group label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
   color: #2d3436;
 }
 
-.form-group input,
-.form-group textarea {
+.admin-form-group input,
+.admin-form-group textarea {
   width: 100%;
   padding: 0.75rem;
   border: 2px solid #e1e5e9;
@@ -148,14 +144,14 @@
   transition: border-color 0.3s ease;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
+.admin-form-group input:focus,
+.admin-form-group textarea:focus {
   outline: none;
   border-color: #0984e3;
   box-shadow: 0 0 0 3px rgba(9, 132, 227, 0.1);
 }
 
-.form-group input[type="color"] {
+.admin-form-group input[type="color"] {
   width: 60px;
   height: 40px;
   padding: 0;
@@ -258,6 +254,17 @@
 .admin-responsibility-item input {
   flex: 1;
   margin-bottom: 0;
+  padding: 0.5rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease;
+}
+
+.admin-responsibility-item input:focus {
+  outline: none;
+  border-color: #0984e3;
+  box-shadow: 0 0 0 2px rgba(9, 132, 227, 0.1);
 }
 
 .btn-remove {

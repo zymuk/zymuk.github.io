@@ -1,22 +1,17 @@
-/* Projects Section - Style mặc định, có thể override bằng inline style */
-.projects-section {
-  background-color: #0077b6; /* Fallback color */
-}
-
 /* Projects Section */
-.projects-section .project-list {
+.project-list {
   list-style: none;
   padding: 0;
   text-align: center;
 }
 
-.projects-section .project-list li {
+.project-list li {
   margin: 10px 0;
   font-size: 1.2rem;
   transition: transform 0.3s ease-in-out;
 }
 
-.projects-section .project-list li:hover {
+.project-list li:hover {
   transform: scale(1.05);
 }
 
