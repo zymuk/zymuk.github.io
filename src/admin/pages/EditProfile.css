@@ -23,6 +23,7 @@
   min-width: 150px;
   font-weight: bold;
   text-align: right;
+  color: #333; /* Dark text for light background */
 }
 
 .edit-profile .form-group input {
