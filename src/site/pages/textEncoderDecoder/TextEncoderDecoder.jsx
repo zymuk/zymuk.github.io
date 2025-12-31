@@ -48,20 +48,18 @@ function TextEncoderDecoder() {
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder="Enter text to encode/decode"
+                className="form-input"
               />
             </div>
             <div className="text-encoder-decoder-output-group">
-              <button
-                className="text-encoder-decoder-button"
-                onClick={handleEncode}
-              >
+              <button className="btn-primary" onClick={handleEncode}>
                 Encode
               </button>
               <p>Encoded Text:</p>
-              <textarea value={encodedUrl} readOnly />
+              <textarea value={encodedUrl} readOnly className="form-textarea" />
               {encodedUrl && (
                 <button
-                  className="text-encoder-decoder-copy-button"
+                  className="btn-primary"
                   onClick={() => navigator.clipboard.writeText(encodedUrl)}
                 >
                   Copy
@@ -69,17 +67,14 @@ function TextEncoderDecoder() {
               )}
             </div>
             <div className="text-encoder-decoder-output-group">
-              <button
-                className="text-encoder-decoder-button"
-                onClick={handleDecode}
-              >
+              <button className="btn-primary" onClick={handleDecode}>
                 Decode
               </button>
               <p>Decoded Text:</p>
-              <textarea value={decodedUrl} readOnly />
+              <textarea value={decodedUrl} readOnly className="form-textarea" />
               {decodedUrl && (
                 <button
-                  className="text-encoder-decoder-copy-button"
+                  className="btn-primary"
                   onClick={() => navigator.clipboard.writeText(decodedUrl)}
                 >
                   Copy

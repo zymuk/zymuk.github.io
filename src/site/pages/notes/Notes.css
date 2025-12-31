@@ -40,61 +40,7 @@
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-.btn-add-note {
-  background: #001f3f;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-add-note:hover {
-  background: #003366;
-  transform: translateY(-2px);
-}
-
-/* Modal Styling */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: 2rem;
-}
-
-.modal-content {
-  background: white;
-  border-radius: 20px;
-  padding: 0;
-  max-width: 600px;
-  width: 100%;
-  max-height: 90vh;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  animation: modalSlideIn 0.3s ease-out;
-}
-
-@keyframes modalSlideIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9) translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
+/* Modal Styling - using shared modal styles */
 
 .modal-header {
   background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
@@ -126,6 +72,7 @@
 
 .btn-close:hover {
   background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
 }
 
 /* Form Styling */
@@ -145,6 +92,7 @@
   margin-bottom: 0.5rem;
   font-weight: 600;
   color: #333;
+  font-size: 16px;
 }
 
 .notes-page .form-group input,
@@ -406,25 +354,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
-}
-
-.btn-cancel {
-  background: #6c757d;
   color: white;
-}
-
-.btn-cancel:hover {
-  background: #5a6268;
-}
-
-.btn-save {
-  background: #001f3f;
-  color: white;
-}
-
-.btn-save:hover {
-  background: #003366;
-  transform: translateY(-2px);
 }
 
 /* Notes Content */
@@ -578,27 +508,31 @@
   padding: 0.5rem 1rem;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 14px;
+  font-weight: 600;
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
   gap: 0.25rem;
-  font-weight: 500;
+  color: #333;
 }
 
 .btn-view:hover {
   background: #28a745;
   color: white;
+  transform: translateY(-1px);
 }
 
 .btn-edit:hover {
   background: #001f3f;
   color: white;
+  transform: translateY(-1px);
 }
 
 .btn-delete:hover {
   background: #d32f2f;
   color: white;
+  transform: translateY(-1px);
 }
 
 .note-short-content {
@@ -669,12 +603,12 @@
     padding: 1.5rem;
   }
 
-  .form-actions {
+  .button-group {
     flex-direction: column;
   }
 
-  .btn-cancel,
-  .btn-save {
+  .btn-secondary,
+  .btn-primary {
     width: 100%;
   }
 
@@ -726,7 +660,7 @@
 .view-modal {
   max-width: 700px;
   max-height: 85vh;
-  overflow-y: auto;
+  overflow-y: auto !important;
 }
 
 .view-content {
@@ -798,26 +732,9 @@
 .view-actions {
   display: flex;
   gap: 1rem;
-  justify-content: flex-end;
+  justify-content: center;
   padding-top: 1rem;
   border-top: 2px solid #e1e5e9;
-}
-
-.btn-edit-from-view {
-  background: #001f3f;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-edit-from-view:hover {
-  background: #003366;
-  transform: translateY(-2px);
 }
 
 .btn-close-view {
@@ -834,6 +751,7 @@
 
 .btn-close-view:hover {
   background: #5a6268;
+  transform: translateY(-2px);
 }
 
 /* Responsive for view modal */

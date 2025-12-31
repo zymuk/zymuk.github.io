@@ -8,81 +8,26 @@
   margin: 0 auto;
 }
 
+/* Use shared form-group label styles */
+.text-encoder-decoder-page .form-group label {
+  color: #333;
+}
+
 .text-encoder-decoder-input-group {
   margin-bottom: 20px;
 }
 
-.text-encoder-decoder-input-group input[type="text"] {
-  width: 100%;
-  padding: 0.75rem;
-  border: 2px solid #e1e5e9;
-  border-radius: 10px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-  font-family: inherit;
-  box-sizing: border-box;
-}
-
-.text-encoder-decoder-input-group input[type="text"]:focus {
-  outline: none;
-  border-color: #001f3f;
-  box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
-}
-
-.text-encoder-decoder-button {
-  width: 100%;
-  height: 40px;
-  padding: 10px;
-  font-size: 16px;
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.text-encoder-decoder-button:hover {
-  background-color: #3e8e41;
-}
-
-.text-encoder-decoder-copy-button {
-  width: 100%;
-  height: 40px;
-  padding: 10px;
-  font-size: 16px;
-  background-color: #2196f3;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.text-encoder-decoder-copy-button:hover {
-  background-color: #1976d2;
-}
 .text-encoder-decoder-output-group {
   margin-bottom: 20px;
+}
+
+.text-encoder-decoder-output-group button {
+  display: block;
+  margin: 0 auto;
 }
 
 .text-encoder-decoder-output-group p {
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 10px;
-}
-
-.text-encoder-decoder-output-group textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 2px solid #e1e5e9;
-  border-radius: 10px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease;
-  font-family: inherit;
-  resize: vertical;
-  box-sizing: border-box;
-}
-
-.text-encoder-decoder-output-group textarea:focus {
-  outline: none;
-  border-color: #001f3f;
-  box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
 }

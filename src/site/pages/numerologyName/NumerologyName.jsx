@@ -220,8 +220,9 @@ const NumerologyName = () => {
                   value={birthDate}
                   onChange={handleBirthDateChange}
                   required
+                  className="form-input"
                 />
-                <button type="submit" className="btn-generate-inline">
+                <button type="submit" className="btn-primary">
                   Generate Name
                 </button>
               </div>
@@ -286,7 +287,7 @@ const NumerologyName = () => {
                   <button
                     type="button"
                     onClick={handleSave}
-                    className="btn-save"
+                    className="btn-primary"
                   >
                     Save to History
                   </button>
@@ -349,7 +350,7 @@ const NumerologyName = () => {
                 <div className="view-actions">
                   <button
                     onClick={() => setViewingEntry(null)}
-                    className="btn-close-view"
+                    className="btn-primary"
                   >
                     Close
                   </button>

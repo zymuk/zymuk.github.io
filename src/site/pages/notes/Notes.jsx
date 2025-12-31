@@ -333,7 +333,7 @@ const Notes = () => {
                 className="search-input"
               />
             </div>
-            <button onClick={() => setShowForm(true)} className="btn-add-note">
+            <button onClick={() => setShowForm(true)} className="btn-primary">
               ➕ Add Note
             </button>
           </div>
@@ -396,15 +396,15 @@ const Notes = () => {
                   />
                 </div>
 
-                <div className="form-actions">
+                <div className="button-group">
                   <button
                     type="button"
                     onClick={resetForm}
-                    className="btn-cancel"
+                    className="btn-secondary"
                   >
                     Cancel
                   </button>
-                  <button type="submit" className="btn-save">
+                  <button type="submit" className="btn-primary">
                     {editingNote ? "Update" : "Save"}
                   </button>
                 </div>
@@ -478,13 +478,13 @@ const Notes = () => {
                       setViewingNote(null);
                       handleEdit(viewingNote);
                     }}
-                    className="btn-edit-from-view"
+                    className="btn-primary btn-center"
                   >
                     Edit This Note
                   </button>
                   <button
                     onClick={() => setViewingNote(null)}
-                    className="btn-close-view"
+                    className="btn-primary"
                   >
                     Close
                   </button>
@@ -516,7 +516,7 @@ const Notes = () => {
                   <p>Create your first note to get started!</p>
                   <button
                     onClick={() => setShowForm(true)}
-                    className="btn-add-note"
+                    className="btn-primary"
                   >
                     ➕ Create First Note
                   </button>
