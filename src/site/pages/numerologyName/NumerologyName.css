@@ -164,7 +164,6 @@
 /* Date Input Group */
 .date-input-group {
   display: flex;
-  flex-direction: column;
   gap: 0.5rem;
   align-items: center;
 }
