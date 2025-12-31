@@ -35,45 +35,59 @@ function TextEncoderDecoder() {
   };
 
   return (
-    <div className="text-encoder-decoder-container">
-      <h1>Text Encoder/Decoder</h1>
-      <div className="text-encoder-decoder-input-group">
-        <input
-          type="text"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          placeholder="Enter text to encode/decode"
-        />
-      </div>
-      <div className="text-encoder-decoder-output-group">
-        <button className="text-encoder-decoder-button" onClick={handleEncode}>
-          Encode
-        </button>
-        <p>Encoded Text:</p>
-        <textarea value={encodedUrl} readOnly />
-        {encodedUrl && (
-          <button
-            className="text-encoder-decoder-copy-button"
-            onClick={() => navigator.clipboard.writeText(encodedUrl)}
-          >
-            Copy
-          </button>
-        )}
-      </div>
-      <div className="text-encoder-decoder-output-group">
-        <button className="text-encoder-decoder-button" onClick={handleDecode}>
-          Decode
-        </button>
-        <p>Decoded Text:</p>
-        <textarea value={decodedUrl} readOnly />
-        {decodedUrl && (
-          <button
-            className="text-encoder-decoder-copy-button"
-            onClick={() => navigator.clipboard.writeText(decodedUrl)}
-          >
-            Copy
-          </button>
-        )}
+    <div className="text-encoder-decoder-page">
+      <div className="page-container">
+        <div className="glass-header centered">
+          <h1 className="page-title">Text Encoder/Decoder</h1>
+        </div>
+        <div className="glass-content">
+          <div className="text-encoder-decoder-container">
+            <div className="text-encoder-decoder-input-group">
+              <input
+                type="text"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                placeholder="Enter text to encode/decode"
+              />
+            </div>
+            <div className="text-encoder-decoder-output-group">
+              <button
+                className="text-encoder-decoder-button"
+                onClick={handleEncode}
+              >
+                Encode
+              </button>
+              <p>Encoded Text:</p>
+              <textarea value={encodedUrl} readOnly />
+              {encodedUrl && (
+                <button
+                  className="text-encoder-decoder-copy-button"
+                  onClick={() => navigator.clipboard.writeText(encodedUrl)}
+                >
+                  Copy
+                </button>
+              )}
+            </div>
+            <div className="text-encoder-decoder-output-group">
+              <button
+                className="text-encoder-decoder-button"
+                onClick={handleDecode}
+              >
+                Decode
+              </button>
+              <p>Decoded Text:</p>
+              <textarea value={decodedUrl} readOnly />
+              {decodedUrl && (
+                <button
+                  className="text-encoder-decoder-copy-button"
+                  onClick={() => navigator.clipboard.writeText(decodedUrl)}
+                >
+                  Copy
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

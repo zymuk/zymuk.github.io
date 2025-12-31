@@ -1,87 +1,628 @@
-.numerologyName {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* ========================================
+   NUMEROLOGY NAME PAGE - BASED ON NOTES UI
+   ======================================== */
+
+/* Page Container */
+.numerology-page .form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #ffd700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
 }
 
-.numerologyName table {
-  margin-top: 20px;
+.numerology-page {
+  padding: 0.5rem;
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-input {
+  width: 300px;
+  padding: 0.75rem 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 1rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.numerology-page .btn-generate {
+  background: #001f3f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.numerology-page .btn-generate:hover {
+  background: #003366;
+  transform: translateY(-2px);
+}
+
+/* Section Header */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.numerology-page .section-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 20px;
+  padding: 0;
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-header {
+  background: linear-gradient(135deg, #001f3f 0%, #003366 100%);
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.numerology-page .modal-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.btn-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Form Styling */
+.numerology-form {
+  padding: 1.5rem;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #ffd700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.numerology-page .form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e1e5e9;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+.numerology-page .form-group input:focus {
+  outline: none;
+  border-color: #001f3f;
+  box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
+}
+
+/* Date Input Group */
+.date-input-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.date-input-group input {
+  flex: 1;
+}
+
+.btn-generate-inline {
+  background: #001f3f;
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-generate-inline:hover {
+  background: #003366;
+  transform: translateY(-1px);
+}
+
+.generation-count {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+/* Mapping Table */
+.mapping-table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 0.5rem;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mapping-table th,
+.mapping-table td {
+  padding: 0.75rem;
   text-align: center;
+  border: 1px solid #e1e5e9;
 }
 
-.numerologyName table th,
-.numerologyName table td {
-  border: 1px solid #ddd;
-  padding: 10px;
+.mapping-table th {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  font-weight: 600;
+  color: #001f3f;
 }
 
-.numerologyName table th {
-  background-color: #696969;
-}
-
-.numerologyName .gray {
-  background-color: #ccc;
-}
-
-.numerologyName .green {
-  background-color: #00ff00;
-}
-
-.numerologyName form {
-  margin-top: 20px;
-}
-
-.numerologyName label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.numerologyName input[type="date"] {
-  width: 100%;
-  height: 40px;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-.numerologyName button[type="submit"] {
-  width: 100%;
-  height: 40px;
-  padding: 10px;
-  font-size: 16px;
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-.numerologyName button[type="submit"]:hover {
-  background-color: #3e8e41;
-}
-
-.numerologyName button[type="submit"]:active {
-  background-color: #2e7031;
-}
-
-.numerologyName .error {
-  color: #f44336;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-.numerologyName .result {
-  font-size: 18px;
+.mapping-table td.used {
+  background-color: #d4edda;
+  color: #155724;
   font-weight: bold;
-  margin-top: 20px;
 }
 
-.numerologyName p {
+.mapping-table td.selected {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  font-weight: bold;
+  animation: highlight 0.5s ease;
+}
+
+@keyframes highlight {
+  0% {
+    background-color: #d1ecf1;
+  }
+  50% {
+    background-color: #bee5eb;
+  }
+  100% {
+    background-color: #d1ecf1;
+  }
+}
+
+/* Result Section */
+.result-section {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
+  border: 2px solid #e1e5e9;
+  border-radius: 10px;
+}
+
+.result-section h3 {
+  margin: 0 0 0.5rem 0;
+  color: #001f3f;
+  font-weight: 600;
+}
+
+.result-display {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #001f3f;
   text-align: center;
+  padding: 0.5rem;
+  background: rgba(0, 31, 63, 0.1);
+  border-radius: 5px;
+  border: 1px solid rgba(0, 31, 63, 0.2);
+}
+
+/* Generated List */
+.generated-list {
+  max-height: 200px;
+  overflow-y: auto;
+  margin: 1rem 0;
+}
+
+.generated-item {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid #e1e5e9;
+  display: flex;
+  justify-content: center;
+  color: #001f3f;
+  font-weight: 500;
+}
+
+.result-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.btn-clear {
+  background: #ffc107;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-clear:hover {
+  background: #e0a800;
+}
+
+.error-message {
+  color: #dc3545;
+  font-weight: 600;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 2rem;
+}
+
+.btn-cancel {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancel:hover {
+  background: #5a6268;
+}
+
+.numerology-page .btn-save {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.numerology-page .btn-save:hover {
+  background: #218838;
+}
+
+/* View Modal */
+.view-modal .modal-content {
+  max-width: 500px;
+}
+
+.view-content {
+  padding: 1.5rem;
+}
+
+.view-section {
+  margin-bottom: 1.5rem;
+}
+
+.view-title {
+  color: #001f3f;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.view-label {
+  color: #001f3f;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+}
+
+.results-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.result-item {
+  padding: 0.5rem;
+  margin-bottom: 0.25rem;
+  background: rgba(0, 31, 63, 0.1);
+  border-radius: 5px;
+  font-weight: 600;
+  color: #001f3f;
+  text-align: center;
+  border: 1px solid rgba(0, 31, 63, 0.2);
+}
+
+.view-meta {
+  border-top: 1px solid #e1e5e9;
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.meta-item {
+  margin-bottom: 0.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+}
+
+.view-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.btn-close-view {
+  background: #001f3f;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-close-view:hover {
+  background: #003366;
+}
+
+/* History Stats */
+.history-stats {
+  margin-bottom: 1rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.clear-link {
+  color: #dc3545;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.clear-link:hover {
+  text-decoration: underline;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.empty-state h3 {
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  margin-bottom: 0.5rem;
+}
+
+/* History Grid */
+.history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.history-card {
+  background: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.history-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.history-header {
+  margin-bottom: 1rem;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clickable:hover {
+  opacity: 0.8;
+}
+
+.history-title {
+  margin: 0;
+  color: #001f3f;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.history-results {
+  margin-bottom: 1rem;
+}
+
+.results-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.result-tag {
+  background: rgba(0, 31, 63, 0.1);
+  color: #001f3f;
+  padding: 0.25rem 0.5rem;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid rgba(0, 31, 63, 0.2);
+}
+
+.more-results {
+  color: #001f3f;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.history-meta {
+  margin-bottom: 1rem;
+}
+
+.history-meta small {
+  color: #001f3f;
+}
+
+.history-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.numerology-page .btn-view {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.numerology-page .btn-view:hover {
+  background: #0056b3;
+}
+
+.numerology-page .btn-delete {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.numerology-page .btn-delete:hover {
+  background: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .history-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .history-actions {
+    flex-direction: column;
+  }
 }

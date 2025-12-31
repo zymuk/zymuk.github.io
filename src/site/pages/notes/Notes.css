@@ -135,19 +135,20 @@
   overflow-y: auto;
 }
 
-.form-group {
+/* Notes page specific form styling */
+.notes-page .form-group {
   margin-bottom: 1.5rem;
 }
 
-.form-group label {
+.notes-page .form-group label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
   color: #333;
 }
 
-.form-group input,
-.form-group textarea {
+.notes-page .form-group input,
+.notes-page .form-group textarea {
   width: 100%;
   padding: 0.75rem;
   border: 2px solid #e1e5e9;
@@ -158,8 +159,14 @@
   font-family: inherit;
 }
 
+/* Title input uses default form-group styling - same as rich-text-editor */
+.notes-page .form-group input[type="text"] {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
 /* Special styling for description textarea */
-.description-textarea {
+.notes-page .description-textarea {
   min-height: 80px;
   background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
   border: 2px solid #e1e5e9;
@@ -167,7 +174,7 @@
   line-height: 1.5;
 }
 
-.description-textarea:focus {
+.notes-page .description-textarea:focus {
   background: #ffffff;
   border-color: #001f3f;
   box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
@@ -175,10 +182,12 @@
 
 /* Rich Text Editor Styling */
 .rich-text-editor {
+  width: 100%;
   border: 2px solid #e1e5e9;
   border-radius: 10px;
   overflow: hidden;
   transition: border-color 0.3s ease;
+  box-sizing: border-box;
 }
 
 .rich-text-editor:focus-within {
@@ -278,14 +287,6 @@
   text-decoration: underline;
 }
 
-/* Label styling */
-.form-group label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #333;
-}
-
 /* ========================================
    RICH TEXT CONTENT STYLING
    ======================================== */
@@ -380,8 +381,8 @@
   color: #001f3f;
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
+.notes-page .form-group input:focus,
+.notes-page .form-group textarea:focus {
   outline: none;
   border-color: #001f3f;
   box-shadow: 0 0 0 3px rgba(0, 31, 63, 0.1);
