@@ -71,5 +71,17 @@
   "confirm_password": "Confirm Password",
   "profile_updated_success": "Profile updated successfully!",
   "password_mismatch_error": "New passwords do not match!",
-  "password_changed_success": "Password changed successfully!"
+  "password_changed_success": "Password changed successfully!",
+  "active_features": "Active Features",
+  "projects_description": "Manage portfolio projects",
+  "experience_description": "Manage work experience entries",
+  "features_description": "Manage site features and tools",
+  "homepage_description": "Customize homepage content",
+  "dashboard_welcome": "Welcome back! Here's an overview of your site.",
+  "quick_actions": "Quick Actions",
+  "recent_activity": "Recent Activity",
+  "site_data_loaded": "Site data loaded successfully",
+  "admin_login_success": "Admin login successful",
+  "just_now": "Just now",
+  "today": "Today"
 }
