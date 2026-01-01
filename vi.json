@@ -71,5 +71,17 @@
   "confirm_password": "Xác Nhận Mật Khẩu",
   "profile_updated_success": "Cập nhật hồ sơ thành công!",
   "password_mismatch_error": "Mật khẩu mới không khớp!",
-  "password_changed_success": "Đổi mật khẩu thành công!"
+  "password_changed_success": "Đổi mật khẩu thành công!",
+  "active_features": "Tính Năng Hoạt Động",
+  "projects_description": "Quản lý các dự án portfolio",
+  "experience_description": "Quản lý các mục kinh nghiệm làm việc",
+  "features_description": "Quản lý các tính năng và công cụ của trang",
+  "homepage_description": "Tùy chỉnh nội dung trang chủ",
+  "dashboard_welcome": "Chào mừng trở lại! Đây là tổng quan về trang web của bạn.",
+  "quick_actions": "Hành Động Nhanh",
+  "recent_activity": "Hoạt Động Gần Đây",
+  "site_data_loaded": "Dữ liệu trang web đã tải thành công",
+  "admin_login_success": "Đăng nhập admin thành công",
+  "just_now": "Vừa xong",
+  "today": "Hôm nay"
 }
