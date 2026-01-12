@@ -17,19 +17,29 @@ const Admin = () => {
   const [auth, setAuth] = useState(false);
   const [displayName, setDisplayName] = useState("");
   const [loading, setLoading] = useState(true);
+  const [t, setT] = useState({});
+  const lang = localStorage.getItem("lang") || "en";
+
+  useEffect(() => {
+    fetch(`/${lang}.json`)
+      .then((res) => res.json())
+      .then((data) => setT(data));
+  }, [lang]);
 
   useEffect(() => {
     // Static site: just check if token exists in localStorage
     const token = localStorage.getItem("admin_token");
+    console.log("Admin useEffect, token:", token);
     if (token) {
       setAuth(true);
-      setDisplayName("Admin");
+      const user = JSON.parse(localStorage.getItem("user") || "{}");
+      setDisplayName(user.email || "Admin");
     }
     setLoading(false);
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>{t.loading || "Loading..."}</div>;
   }
 
   return (

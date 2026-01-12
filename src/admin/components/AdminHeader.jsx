@@ -4,7 +4,7 @@ import "./AdminHeader.css";
 
 const LANGS = [
   { code: "en", label: "English" },
-  { code: "vi", label: "Tiếng Việt" },
+  { code: "vi", label: "Vietnamese" },
 ];
 
 const AdminHeader = ({ displayName }) => {
@@ -22,6 +22,7 @@ const AdminHeader = ({ displayName }) => {
 
   const handleLogout = () => {
     localStorage.removeItem("admin_token");
+    localStorage.removeItem("user");
     navigate("login", { replace: true });
   };
 

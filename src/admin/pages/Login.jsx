@@ -4,12 +4,14 @@ import "./Login.css";
 
 const LANGS = [
   { code: "en", label: "English" },
-  { code: "vi", label: "Tiếng Việt" },
+  { code: "vi", label: "Vietnamese" },
 ];
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [users, setUsers] = useState([]);
+  const [error, setError] = useState("");
   const [t, setT] = useState({});
   const [lang, setLang] = useState(localStorage.getItem("lang") || "en");
   const navigate = useNavigate();
@@ -36,12 +38,19 @@ const Login = () => {
             console.error("Fallback error:", fallbackError)
           );
       });
+
+    // Load users from data.json
+    fetch("/data.json")
+      .then((response) => response.json())
+      .then((data) => setUsers(data.users || []))
+      .catch((err) => console.error("Error loading users:", err));
   }, [lang]);
 
   useEffect(() => {
     const token = localStorage.getItem("admin_token");
     // Only redirect if we're on the login page and have token
     if (token && window.location.pathname === "/admin/login") {
+      console.log("Token found, redirecting to /admin");
       navigate("/admin", { replace: true });
     }
   }, [navigate]);
@@ -59,10 +68,18 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // Fake login: always succeed and set a dummy token
-    localStorage.setItem("admin_token", "dummy_token");
-    alert(t.login_success || "Login successful! (Static site mode)");
-    navigate("/admin", { replace: true });
+    const user = users.find(
+      (u) => u.email === email && u.password === password
+    );
+    if (user) {
+      console.log("Login successful, setting token and user");
+      localStorage.setItem("admin_token", "authenticated");
+      localStorage.setItem("user", JSON.stringify(user));
+      alert(t.login_success || "Login successful!");
+      navigate("/admin", { replace: true });
+    } else {
+      setError(t.login_error || "Invalid email or password!");
+    }
   };
 
   return (
@@ -88,13 +105,14 @@ const Login = () => {
       </div>
       <div className="login-container">
         <h2>{t.login_title || "Admin Login"}</h2>
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <form onSubmit={handleLogin}>
           <input
-            type="text"
+            type="email"
             className="input-box"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder={t.enter_username || "Enter username"}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder={t.enter_email || "Enter email"}
             required
           />
           <input

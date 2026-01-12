@@ -1,4 +1,18 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@zymuk.com",
+      "password": "password123",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "email": "user@zymuk.com",
+      "password": "userpass",
+      "role": "user"
+    }
+  ],
   "site": {
     "title": "Zymuk Portfolio",
     "description": "Personal portfolio and tools website",
