@@ -7,7 +7,8 @@ const Users = () => {
   useEffect(() => {
     fetch(`/${lang}.json`)
       .then((res) => res.json())
-      .then((data) => setT(data));
+      .then((data) => setT(data))
+      .catch((error) => console.error("Error loading translations:", error));
   }, [lang]);
 
   return (
