@@ -23,7 +23,7 @@ const Site = () => {
         }
       }
 
-      // Xử lý active section khi cuộn
+      // Handle active section on scroll
       let sections = document.querySelectorAll("section");
       let navLinks = document.querySelectorAll(".nav ul li a");
 
@@ -49,7 +49,7 @@ const Site = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 🟢 Hàm xử lý cuộn khi click vào menu
+  // Function to handle scroll on menu click
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {

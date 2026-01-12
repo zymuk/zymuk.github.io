@@ -20,14 +20,14 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
   }, [lang]);
   return (
     <div className={`admin-sidebar ${isOpen ? "" : "closed"}`}>
-      {/* Nút Toggle */}
+      {/* Toggle Button */}
       <div className="toggle-btn" onClick={toggleSidebar}>
         <i
           className={`fas ${isOpen ? "fa-chevron-left" : "fa-chevron-right"}`}
         ></i>
       </div>
 
-      {/* Danh sách menu */}
+      {/* Menu List */}
       <ul>
         <li>
           <NavLink to="" className="active">
