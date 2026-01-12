@@ -4,7 +4,7 @@ import AdminHeader from "../components/AdminHeader";
 import AdminSidebar from "../components/AdminSidebar";
 import "./AdminLayout.css";
 
-const AdminLayout = ({displayName}) => {
+const AdminLayout = ({ displayName }) => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
@@ -15,7 +15,9 @@ const AdminLayout = ({displayName}) => {
     <div className="admin-container">
       <AdminHeader displayName={displayName} />
       <AdminSidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      <main className={`main-content ${isSidebarOpen ? "" : "collapsed"}`}>
+      <main
+        className={`admin-main-content ${isSidebarOpen ? "" : "collapsed"}`}
+      >
         <Outlet />
       </main>
     </div>

@@ -183,32 +183,32 @@ const ExperienceSettings = () => {
 
   return (
     <div className="admin-page">
-      <div className="page-header">
+      <div className="admin-page-header">
         <h1>Experience Settings</h1>
-        <div className="page-actions">
-          <button onClick={saveSettings} className="btn btn-primary">
+        <div className="admin-page-actions">
+          <button onClick={saveSettings} className="admin-btn admin-btn-primary">
             Save Changes
           </button>
-          <button onClick={resetSettings} className="btn btn-cancel">
+          <button onClick={resetSettings} className="admin-btn admin-btn-cancel">
             Reset to Default
           </button>
         </div>
       </div>
 
       {/* Experience Items */}
-      <div className="section">
-        <div className="section-header">
+      <div className="admin-section">
+        <div className="admin-section-header">
           <h2>Experience Items</h2>
-          <button onClick={addExperience} className="btn btn-primary">
+          <button onClick={addExperience} className="admin-btn admin-btn-primary">
             <i className="fas fa-plus"></i> Add Experience
           </button>
         </div>
         {data.experience.map((exp, expIndex) => (
           <div key={expIndex} className="admin-experience-item">
-            <div className="item-header">
+            <div className="admin-item-header">
               <h3>Experience #{expIndex + 1}</h3>
-              <div className="item-actions">
-                <label className="visibility-toggle">
+              <div className="admin-item-actions">
+                <label className="admin-visibility-toggle">
                   <input
                     type="checkbox"
                     checked={exp.isVisible}
@@ -218,7 +218,7 @@ const ExperienceSettings = () => {
                 </label>
                 <button
                   onClick={() => removeExperience(expIndex)}
-                  className="btn btn-danger"
+                  className="admin-btn admin-btn-danger"
                   title="Remove Experience"
                 >
                   <i className="fas fa-trash"></i>
@@ -226,8 +226,8 @@ const ExperienceSettings = () => {
               </div>
             </div>
 
-            <div className="form-row">
-              <div className="form-group">
+            <div className="admin-form-row">
+              <div className="admin-form-group">
                 <label>Role:</label>
                 <input
                   type="text"
@@ -237,7 +237,7 @@ const ExperienceSettings = () => {
                   }
                 />
               </div>
-              <div className="form-group">
+              <div className="admin-form-group">
                 <label>Company:</label>
                 <input
                   type="text"
@@ -249,7 +249,7 @@ const ExperienceSettings = () => {
               </div>
             </div>
 
-            <div className="form-group">
+            <div className="admin-form-group">
               <label>Period:</label>
               <input
                 type="text"
@@ -261,7 +261,7 @@ const ExperienceSettings = () => {
               />
             </div>
 
-            <div className="form-group">
+            <div className="admin-form-group">
               <label>Description:</label>
               <textarea
                 value={exp.description || ""}
@@ -277,12 +277,12 @@ const ExperienceSettings = () => {
             </div>
 
             {/* Projects */}
-            <div className="projects-section">
-              <div className="section-header">
+            <div className="admin-projects-section">
+              <div className="admin-section-header">
                 <h4>Projects</h4>
                 <button
                   onClick={() => addProject(expIndex)}
-                  className="btn btn-secondary"
+                  className="admin-btn admin-btn-secondary"
                 >
                   <i className="fas fa-plus"></i> Add Project
                 </button>
@@ -290,18 +290,18 @@ const ExperienceSettings = () => {
 
               {exp.projects?.map((project, projIndex) => (
                 <div key={projIndex} className="admin-project-item">
-                  <div className="item-header">
+                  <div className="admin-item-header">
                     <h5>Project #{projIndex + 1}</h5>
                     <button
                       onClick={() => removeProject(expIndex, projIndex)}
-                      className="btn btn-danger btn-sm"
+                      className="admin-btn admin-btn-danger admin-btn-sm"
                       title="Remove Project"
                     >
                       <i className="fas fa-trash"></i>
                     </button>
                   </div>
 
-                  <div className="form-group">
+                  <div className="admin-form-group">
                     <label>Project Name:</label>
                     <input
                       type="text"
@@ -317,7 +317,7 @@ const ExperienceSettings = () => {
                     />
                   </div>
 
-                  <div className="form-group">
+                  <div className="admin-form-group">
                     <label>Project Description:</label>
                     <textarea
                       value={project.description || ""}
@@ -333,7 +333,7 @@ const ExperienceSettings = () => {
                     />
                   </div>
 
-                  <div className="form-group">
+                  <div className="admin-form-group">
                     <label>Technologies (comma-separated):</label>
                     <input
                       type="text"
@@ -357,7 +357,7 @@ const ExperienceSettings = () => {
                       <button
                         type="button"
                         onClick={() => addResponsibility(expIndex, projIndex)}
-                        className="btn btn-secondary btn-sm"
+                        className="admin-btn admin-btn-secondary admin-btn-sm"
                       >
                         Add Responsibility
                       </button>
@@ -391,7 +391,7 @@ const ExperienceSettings = () => {
                                 respIndex
                               )
                             }
-                            className="btn btn-danger btn-sm"
+                            className="admin-btn admin-btn-danger admin-btn-sm"
                           >
                             ×
                           </button>
@@ -410,3 +410,5 @@ const ExperienceSettings = () => {
 };
 
 export default ExperienceSettings;
+
+

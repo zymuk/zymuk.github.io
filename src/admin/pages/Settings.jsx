@@ -65,10 +65,13 @@ const Settings = () => {
       <h2>{t.settings_title || "Settings"}</h2>
       <p>{t.settings_description || "Admin system configuration."}</p>
 
-      <div className="section">
+      <div className="admin-section">
         <h3>{t.export_data || "Export Data"}</h3>
         <p>{t.export_description || "Export current data as JSON file"}</p>
-        <button onClick={exportData} className="btn btn-primary export-btn">
+        <button
+          onClick={exportData}
+          className="admin-btn admin-btn-primary admin-export-btn"
+        >
           {t.export_data || "Export data.json"}
         </button>
       </div>

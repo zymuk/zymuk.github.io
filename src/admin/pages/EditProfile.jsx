@@ -54,14 +54,14 @@ const EditProfile = () => {
       <h2>{t.edit_profile_title || "Edit Profile"}</h2>
 
       {/* Card 1: Update Profile */}
-      <div className="card">
+      <div className="admin-card">
         <h3>{t.update_profile || "Update Profile"}</h3>
         <form onSubmit={handleProfileSubmit}>
-          <div className="form-group">
+          <div className="admin-form-group">
             <label>{t.username || "Username"}:</label>
             <input type="text" value={profile.username} disabled />
           </div>
-          <div className="form-group">
+          <div className="admin-form-group">
             <label>{t.display_name || "Display Name"}:</label>
             <input
               type="text"
@@ -70,7 +70,7 @@ const EditProfile = () => {
               onChange={handleProfileChange}
             />
           </div>
-          <div className="form-group">
+          <div className="admin-form-group">
             <label>{t.email || "Email"}:</label>
             <input
               type="email"
@@ -79,21 +79,21 @@ const EditProfile = () => {
               onChange={handleProfileChange}
             />
           </div>
-          <div className="form-group">
+          <div className="admin-form-group">
             <label>{t.account_created || "Account Created"}:</label>
             <input type="text" value={profile.createdAt} disabled />
           </div>
-          <div className="button-group">
+          <div className="admin-button-group">
             <button type="submit">{t.save_changes || "Save Changes"}</button>
           </div>
         </form>
       </div>
 
       {/* Card 2: Change Password */}
-      <div className="card">
+      <div className="admin-card">
         <h3>{t.change_password || "Change Password"}</h3>
         <form onSubmit={handlePasswordSubmit}>
-          <div className="form-group">
+          <div className="admin-form-group">
             <label>{t.current_password || "Current Password"}:</label>
             <input
               type="password"
@@ -103,7 +103,7 @@ const EditProfile = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className="admin-form-group">
             <label>{t.new_password || "New Password"}:</label>
             <input
               type="password"
@@ -113,7 +113,7 @@ const EditProfile = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className="admin-form-group">
             <label>{t.confirm_password || "Confirm Password"}:</label>
             <input
               type="password"
@@ -123,7 +123,7 @@ const EditProfile = () => {
               required
             />
           </div>
-          <div className="button-group">
+          <div className="admin-button-group">
             <button type="submit">
               {t.change_password || "Change Password"}
             </button>

@@ -94,7 +94,7 @@ const ProjectsSettings = () => {
     <div className="admin-page">
       <h2>{t.manage_projects || "Manage Projects"}</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
+        <div className="admin-form-group">
           <label>{t.project_name || "Project Name"}:</label>
           <input
             type="text"
@@ -104,7 +104,7 @@ const ProjectsSettings = () => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className="admin-form-group">
           <label>{t.description || "Description"}:</label>
           <textarea
             name="description"
@@ -112,7 +112,7 @@ const ProjectsSettings = () => {
             onChange={handleChange}
           />
         </div>
-        <div className="form-group">
+        <div className="admin-form-group">
           <label>{t.demo_link || "Live Site Link"}:</label>
           <input
             type="url"
@@ -122,7 +122,7 @@ const ProjectsSettings = () => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className="admin-form-group">
           <label>{t.source_code_link || "Source Code Link"}:</label>
           <input
             type="url"
@@ -132,7 +132,7 @@ const ProjectsSettings = () => {
             required
           />
         </div>
-        <div className="form-group checkbox-group">
+        <div className="admin-form-group admin-checkbox-group">
           <label>{t.visible || "Visible"}:</label>
           <input
             type="checkbox"
@@ -141,8 +141,8 @@ const ProjectsSettings = () => {
             onChange={handleChange}
           />
         </div>
-        <div className="buttons">
-          <button type="submit" className="btn btn-primary">
+        <div className="admin-buttons">
+          <button type="submit" className="admin-btn admin-btn-primary">
             <i
               className={editIndex !== null ? "fas fa-save" : "fas fa-plus"}
             ></i>{" "}
@@ -153,7 +153,7 @@ const ProjectsSettings = () => {
           {editIndex !== null && (
             <button
               type="button"
-              className="btn btn-cancel"
+              className="admin-btn admin-btn-cancel"
               onClick={() => setEditIndex(null)}
             >
               <i className="fas fa-times"></i> {t.cancel || "Cancel"}
@@ -163,21 +163,21 @@ const ProjectsSettings = () => {
       </form>
 
       <h3>{t.project_list || "Project List"}</h3>
-      <ul className="project-list">
+      <ul className="admin-project-list">
         {projects.map((proj, index) => (
           <li key={index}>
             <strong>{proj.name}</strong> -{" "}
             {proj.isVisible ? "Visible" : "Hidden"}
-            <div className="actions">
+            <div className="admin-actions">
               <button
                 onClick={() => handleEdit(index)}
-                className="btn btn-secondary btn-sm"
+                className="admin-btn admin-btn-secondary admin-btn-sm"
               >
                 <i className="fas fa-edit"></i> {t.edit || "Edit"}
               </button>
               <button
                 onClick={() => handleDelete(index)}
-                className="btn btn-danger btn-sm"
+                className="admin-btn admin-btn-danger admin-btn-sm"
               >
                 <i className="fas fa-trash"></i> {t.delete || "Delete"}
               </button>
@@ -190,3 +190,5 @@ const ProjectsSettings = () => {
 };
 
 export default ProjectsSettings;
+
+

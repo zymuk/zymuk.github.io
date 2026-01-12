@@ -1,29 +1,31 @@
 /* FeaturesSettings page specific styles */
 
-.features-table {
+.admin-features-table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 15px;
 }
 
-.features-table th,
-.features-table td {
+.admin-features-table th,
+.admin-features-table td {
   padding: 10px;
   border: 1px solid #ddd;
   text-align: left;
 }
 
-.features-table th {
+.admin-features-table th {
   background: #f0f0f0;
 }
 
-.features-table input[type="text"] {
+.admin-features-table input[type="text"] {
   width: 90%;
 }
 
-.features-table input[type="checkbox"] {
+.admin-features-table input[type="checkbox"] {
   transform: scale(1.2);
   cursor: pointer;
   display: block;
   margin: auto;
 }
+
+

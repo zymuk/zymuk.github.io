@@ -43,7 +43,7 @@ const FeaturesSettings = () => {
   return (
     <div className="admin-page">
       <h2>{t.features_settings || "Features Settings"}</h2>
-      <table className="features-table">
+      <table className="admin-features-table">
         <thead>
           <tr>
             <th>{t.feature_id || "Feature ID"}</th>
@@ -95,8 +95,8 @@ const FeaturesSettings = () => {
           ))}
         </tbody>
       </table>
-      <div className="button-group">
-        <button className="btn btn-primary" onClick={handleSave}>
+      <div className="admin-button-group">
+        <button className="admin-btn admin-btn-primary" onClick={handleSave}>
           <i className="fas fa-save"></i> {t.save_changes || "Save Changes"}
         </button>
       </div>
@@ -105,3 +105,5 @@ const FeaturesSettings = () => {
 };
 
 export default FeaturesSettings;
+
+

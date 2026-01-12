@@ -25,63 +25,92 @@ body {
 }
 
 /* Form elements */
-.form-row {
+.admin-form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin-bottom: 1rem;
 }
 
-.form-group {
+.admin-form-group {
   margin-bottom: 15px;
 }
 
-.form-group-horizontal {
+.admin-form-group-horizontal {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
 }
 
-.form-group-horizontal label {
+.admin-form-group-horizontal label {
   min-width: 150px;
+  font-weight: bold;
+  color: #333;
 }
 
-.form-group-horizontal input,
-.form-group-horizontal textarea {
+.admin-form-group-horizontal input,
+.admin-form-group-horizontal textarea {
   flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-.form-group label {
+.admin-form-group-horizontal input:focus,
+.admin-form-group-horizontal textarea:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.admin-form-group-horizontal textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.admin-form-group-horizontal input[type="color"] {
+  width: 60px;
+  height: 40px;
+  padding: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  flex: 0 0 60px;
+}
+
+.admin-form-group label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
   color: #333;
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select {
+.admin-form-group input,
+.admin-form-group textarea,
+.admin-form-group select {
   width: 100%;
   padding: 8px 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 14px;
+  box-sizing: border-box;
 }
 
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
+.admin-form-group input:focus,
+.admin-form-group textarea:focus,
+.admin-form-group select:focus {
   outline: none;
   border-color: #4caf50;
 }
 
-.form-group textarea {
+.admin-form-group textarea {
   min-height: 100px;
   resize: vertical;
 }
 
-.form-group input[type="color"] {
+.admin-form-group input[type="color"] {
   width: 60px;
   height: 40px;
   padding: 0;
@@ -90,7 +119,7 @@ body {
 }
 
 /* Buttons */
-.btn {
+.admin-btn {
   padding: 10px 20px;
   font-size: 14px;
   border: none;
@@ -100,48 +129,53 @@ body {
   font-weight: 500;
 }
 
-.btn-primary {
+.admin-btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.admin-btn-primary {
   background-color: #4caf50;
   color: white;
 }
 
-.btn-primary:hover {
+.admin-btn-primary:hover {
   background-color: #45a049;
 }
 
-.btn-primary:active {
+.admin-btn-primary:active {
   background-color: #3d8b40;
 }
 
-.btn-secondary {
+.admin-btn-secondary {
   background-color: #008cba;
   color: white;
 }
 
-.btn-secondary:hover {
+.admin-btn-secondary:hover {
   background-color: #007399;
 }
 
-.btn-danger {
+.admin-btn-danger {
   background-color: #f44336;
   color: white;
 }
 
-.btn-danger:hover {
+.admin-btn-danger:hover {
   background-color: #da190b;
 }
 
-.btn-cancel {
+.admin-btn-cancel {
   background-color: #888;
   color: white;
 }
 
-.btn-cancel:hover {
+.admin-btn-cancel:hover {
   background-color: #666;
 }
 
 /* Section container */
-.section {
+.admin-section {
   background: white;
   border-radius: 12px;
   padding: 2rem;
@@ -150,8 +184,8 @@ body {
   border: 1px solid #e1e5e9;
 }
 
-.section h2,
-.section h3 {
+.admin-section h2,
+.admin-section h3 {
   color: #2d3436;
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
@@ -160,7 +194,7 @@ body {
 }
 
 /* Page headers */
-.page-header {
+.admin-page-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -169,20 +203,20 @@ body {
   border-bottom: 2px solid #e1e5e9;
 }
 
-.page-header h1 {
+.admin-page-header h1 {
   color: #2d3436;
   margin: 0;
   font-size: 2rem;
 }
 
-.section-header {
+.admin-section-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
 }
 
-.section-header h2 {
+.admin-section-header h2 {
   color: #2d3436;
   margin: 0;
   font-size: 1.5rem;
@@ -190,27 +224,27 @@ body {
   padding: 0;
 }
 
-.page-actions,
-.section-actions {
+.admin-page-actions,
+.admin-section-actions {
   display: flex;
   gap: 1rem;
 }
 
-.button-group {
+.admin-button-group {
   display: flex;
   gap: 1rem;
   justify-content: center;
   margin-top: 1rem;
 }
 
-.section p {
+.admin-section p {
   color: #666;
   margin-bottom: 15px;
   font-size: 14px;
 }
 
 /* Card styles */
-.card {
+.admin-card {
   background: white;
   border-radius: 8px;
   padding: 20px;
@@ -218,12 +252,12 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.card h3 {
+.admin-card h3 {
   margin-bottom: 10px;
   color: #333;
 }
 
-.card p {
+.admin-card p {
   color: #666;
   font-size: 14px;
 }
@@ -256,18 +290,18 @@ body {
 }
 
 /* Action buttons in table */
-.action-buttons {
+.admin-action-buttons {
   display: flex;
   gap: 10px;
 }
 
-.action-buttons button {
+.admin-action-buttons button {
   padding: 6px 12px;
   font-size: 12px;
 }
 
 /* Loading state */
-.loading {
+.admin-loading {
   text-align: center;
   padding: 40px;
   color: #666;
@@ -275,7 +309,7 @@ body {
 }
 
 /* Error message */
-.error-message {
+.admin-error-message {
   background-color: #ffebee;
   color: #c62828;
   padding: 10px 15px;
@@ -285,7 +319,7 @@ body {
 }
 
 /* Success message */
-.success-message {
+.admin-success-message {
   background-color: #e8f5e9;
   color: #2e7d32;
   padding: 10px 15px;
@@ -295,13 +329,13 @@ body {
 }
 
 /* Checkbox and toggle styles */
-.checkbox-group {
+.admin-checkbox-group {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.checkbox-group input[type="checkbox"] {
+.admin-checkbox-group input[type="checkbox"] {
   width: auto;
   cursor: pointer;
 }
@@ -321,7 +355,7 @@ input[type="color"] {
     padding: 10px;
   }
 
-  .action-buttons {
+  .admin-action-buttons {
     flex-direction: column;
   }
 

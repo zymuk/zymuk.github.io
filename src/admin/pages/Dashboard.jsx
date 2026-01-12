@@ -71,43 +71,43 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="dashboard-container">
-      <div className="dashboard-header">
+    <div className="admin-dashboard-container">
+      <div className="admin-dashboard-header">
         <h2>{t.admin_dashboard || "Admin Dashboard"}</h2>
-        <p className="dashboard-subtitle">
+        <p className="admin-dashboard-subtitle">
           {t.dashboard_welcome ||
             "Welcome back! Here's an overview of your site."}
         </p>
       </div>
 
       {/* Statistics Cards */}
-      <div className="stats-grid">
-        <div className="stat-card">
-          <div className="stat-icon">📊</div>
+      <div className="admin-stats-grid">
+        <div className="admin-stat-card">
+          <div className="admin-stat-icon">📊</div>
           <div className="stat-content">
             <h3>{data?.projects?.length || 0}</h3>
             <p>{t.projects || "Projects"}</p>
           </div>
         </div>
 
-        <div className="stat-card">
-          <div className="stat-icon">🛠️</div>
+        <div className="admin-stat-card">
+          <div className="admin-stat-icon">🛠️</div>
           <div className="stat-content">
             <h3>{data?.features?.length || 0}</h3>
             <p>{t.features || "Features"}</p>
           </div>
         </div>
 
-        <div className="stat-card">
-          <div className="stat-icon">💼</div>
+        <div className="admin-stat-card">
+          <div className="admin-stat-icon">💼</div>
           <div className="stat-content">
             <h3>{data?.experience?.length || 0}</h3>
             <p>{t.experience || "Experience"}</p>
           </div>
         </div>
 
-        <div className="stat-card">
-          <div className="stat-icon">🌐</div>
+        <div className="admin-stat-card">
+          <div className="admin-stat-icon">🌐</div>
           <div className="stat-content">
             <h3>{data?.features?.filter((f) => f.isVisible)?.length || 0}</h3>
             <p>{t.active_features || "Active Features"}</p>
@@ -116,13 +116,13 @@ const Dashboard = () => {
       </div>
 
       {/* Quick Actions */}
-      <div className="dashboard-section">
+      <div className="admin-dashboard-section">
         <h3>{t.quick_actions || "Quick Actions"}</h3>
-        <div className="actions-grid">
+        <div className="admin-actions-grid">
           {quickActions.map((action, index) => (
             <div
               key={index}
-              className="action-card"
+              className="admin-action-card"
               onClick={() => navigate(action.path)}
             >
               <div className="action-icon">{action.icon}</div>
@@ -137,21 +137,21 @@ const Dashboard = () => {
       </div>
 
       {/* Recent Activity */}
-      <div className="dashboard-section">
+      <div className="admin-dashboard-section">
         <h3>{t.recent_activity || "Recent Activity"}</h3>
-        <div className="activity-list">
-          <div className="activity-item">
+        <div className="admin-activity-list">
+          <div className="admin-activity-item">
             <div className="activity-icon">🔄</div>
             <div className="activity-content">
               <p>{t.site_data_loaded || "Site data loaded successfully"}</p>
-              <span className="activity-time">{t.just_now || "Just now"}</span>
+              <span className="admin-activity-time">{t.just_now || "Just now"}</span>
             </div>
           </div>
-          <div className="activity-item">
+          <div className="admin-activity-item">
             <div className="activity-icon">👤</div>
             <div className="activity-content">
               <p>{t.admin_login_success || "Admin login successful"}</p>
-              <span className="activity-time">{t.today || "Today"}</span>
+              <span className="admin-activity-time">{t.today || "Today"}</span>
             </div>
           </div>
         </div>
@@ -161,3 +161,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
