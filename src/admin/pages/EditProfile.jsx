@@ -50,7 +50,7 @@ const EditProfile = () => {
   };
 
   return (
-    <div className="edit-profile">
+    <div className="admin-page">
       <h2>{t.edit_profile_title || "Edit Profile"}</h2>
 
       {/* Card 1: Update Profile */}

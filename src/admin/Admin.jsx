@@ -11,7 +11,6 @@ import EditProfile from "./pages/EditProfile";
 import Users from "./pages/Users";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
-import "./Admin.css";
 
 const Admin = () => {
   const [auth, setAuth] = useState(false);

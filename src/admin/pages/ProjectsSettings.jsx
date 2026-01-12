@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./AdminCommon.css";
 import "./ProjectsSettings.css";
 
 const ProjectsSettings = () => {
@@ -90,7 +91,7 @@ const ProjectsSettings = () => {
   };
 
   return (
-    <div className="admin-projects">
+    <div className="admin-page">
       <h2>{t.manage_projects || "Manage Projects"}</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -141,7 +142,7 @@ const ProjectsSettings = () => {
           />
         </div>
         <div className="buttons">
-          <button type="submit" className="add-project-btn">
+          <button type="submit" className="btn btn-primary">
             <i
               className={editIndex !== null ? "fas fa-save" : "fas fa-plus"}
             ></i>{" "}
@@ -152,7 +153,7 @@ const ProjectsSettings = () => {
           {editIndex !== null && (
             <button
               type="button"
-              className="cancel-btn"
+              className="btn btn-cancel"
               onClick={() => setEditIndex(null)}
             >
               <i className="fas fa-times"></i> {t.cancel || "Cancel"}
@@ -168,10 +169,16 @@ const ProjectsSettings = () => {
             <strong>{proj.name}</strong> -{" "}
             {proj.isVisible ? "Visible" : "Hidden"}
             <div className="actions">
-              <button onClick={() => handleEdit(index)}>
+              <button
+                onClick={() => handleEdit(index)}
+                className="btn btn-secondary btn-sm"
+              >
                 <i className="fas fa-edit"></i> {t.edit || "Edit"}
               </button>
-              <button onClick={() => handleDelete(index)}>
+              <button
+                onClick={() => handleDelete(index)}
+                className="btn btn-danger btn-sm"
+              >
                 <i className="fas fa-trash"></i> {t.delete || "Delete"}
               </button>
             </div>

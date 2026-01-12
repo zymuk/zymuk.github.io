@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./AdminCommon.css";
 
 const Users = () => {
   const [t, setT] = useState({});

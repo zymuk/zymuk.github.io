@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./AdminCommon.css";
 import "./HomepageSettings.css";
 
 const HomepageSettings = () => {
@@ -119,13 +120,13 @@ const HomepageSettings = () => {
   };
 
   return (
-    <div className="homepage-settings">
+    <div className="admin-page">
       <h2>{t.homepage_settings || "Homepage Settings"}</h2>
 
       <div className="section">
         <h3>{t.hero_section || "Hero Section"}</h3>
 
-        <div className="setting-group">
+        <div className="form-group-horizontal">
           <label>{t.title || "Title"}:</label>
           <input
             type="text"
@@ -134,7 +135,7 @@ const HomepageSettings = () => {
           />
         </div>
 
-        <div className="setting-group">
+        <div className="form-group-horizontal">
           <label>{t.content || "Content"}:</label>
           <textarea
             value={settings.hero.content}
@@ -142,7 +143,7 @@ const HomepageSettings = () => {
           />
         </div>
 
-        <div className="setting-group">
+        <div className="form-group-horizontal">
           <label>{t.background_color || "Background Color"}:</label>
           <input
             type="color"
@@ -151,7 +152,7 @@ const HomepageSettings = () => {
           />
         </div>
 
-        <div className="setting-group">
+        <div className="form-group-horizontal">
           <label>{t.background_image_url || "Background Image URL"}:</label>
           <input
             type="text"
@@ -163,7 +164,7 @@ const HomepageSettings = () => {
 
       <div className="section">
         <h3>{t.about_section || "About Section"}</h3>
-        <div className="setting-group">
+        <div className="form-group-horizontal">
           <label>{t.text || "Text"}:</label>
           <input
             type="text"
@@ -172,7 +173,7 @@ const HomepageSettings = () => {
           />
         </div>
 
-        <div className="setting-group">
+        <div className="form-group-horizontal">
           <label>{t.typing_text || "Typing Text"}:</label>
           <input
             type="text"
@@ -183,7 +184,7 @@ const HomepageSettings = () => {
           />
         </div>
 
-        <div className="setting-group">
+        <div className="form-group-horizontal">
           <label>{t.background_color || "Background Color"}:</label>
           <input
             type="color"
@@ -192,7 +193,7 @@ const HomepageSettings = () => {
           />
         </div>
 
-        <div className="setting-group">
+        <div className="form-group-horizontal">
           <label>{t.background_image_url || "Background Image URL"}:</label>
           <input
             type="text"
@@ -204,7 +205,7 @@ const HomepageSettings = () => {
 
       <div className="section">
         <h3>Experience Section</h3>
-        <div className="setting-group">
+        <div className="form-group-horizontal">
           <label>{t.title || "Title"}:</label>
           <input
             type="text"
@@ -216,7 +217,7 @@ const HomepageSettings = () => {
           />
         </div>
 
-        <div className="setting-group">
+        <div className="form-group-horizontal">
           <label>{t.description || "Description"}:</label>
           <input
             type="text"
@@ -228,7 +229,7 @@ const HomepageSettings = () => {
           />
         </div>
 
-        <div className="setting-group">
+        <div className="form-group-horizontal">
           <label>{t.background_color || "Background Color"}:</label>
           <input
             type="color"
@@ -242,7 +243,7 @@ const HomepageSettings = () => {
 
       <div className="section">
         <h3>{t.projects_section || "Projects Section"}</h3>
-        <div className="setting-group">
+        <div className="form-group-horizontal">
           <label>{t.background_color || "Background Color"}:</label>
           <input
             type="color"
@@ -251,7 +252,7 @@ const HomepageSettings = () => {
           />
         </div>
 
-        <div className="setting-group">
+        <div className="form-group-horizontal">
           <label>{t.background_image_url || "Background Image URL"}:</label>
           <input
             type="text"
@@ -263,7 +264,7 @@ const HomepageSettings = () => {
 
       <div className="section">
         <h3>{t.tools_section || "Tools Section"}</h3>
-        <div className="setting-group">
+        <div className="form-group-horizontal">
           <label>{t.background_color || "Background Color"}:</label>
           <input
             type="color"
@@ -272,7 +273,7 @@ const HomepageSettings = () => {
           />
         </div>
 
-        <div className="setting-group">
+        <div className="form-group-horizontal">
           <label>{t.background_image_url || "Background Image URL"}:</label>
           <input
             type="text"
@@ -283,11 +284,11 @@ const HomepageSettings = () => {
       </div>
 
       <div className="button-group">
-        <button className="save-btn" onClick={handleSave}>
+        <button className="btn btn-primary" onClick={handleSave}>
           <i className="fas fa-save"></i> {t.save || "Save"}
         </button>
 
-        <button className="reset-btn" onClick={handleReset}>
+        <button className="btn btn-cancel" onClick={handleReset}>
           <i className="fas fa-undo"></i> Reset to Default
         </button>
       </div>

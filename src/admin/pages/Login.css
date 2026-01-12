@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: linear-gradient(135deg, #1e1e2f, #23232e);
+  background: #f5f5f5;
 }
 
 /* Header */
@@ -17,7 +17,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background: rgba(0, 0, 0, 0.7);
+  background: #0d3b66;
 }
 
 .admin-login-container .header .title {

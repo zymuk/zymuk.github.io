@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./AdminCommon.css";
 import "./FeaturesSettings.css";
 
 const FeaturesSettings = () => {
@@ -40,7 +41,7 @@ const FeaturesSettings = () => {
   };
 
   return (
-    <div className="admin-features">
+    <div className="admin-page">
       <h2>{t.features_settings || "Features Settings"}</h2>
       <table className="features-table">
         <thead>
@@ -94,8 +95,8 @@ const FeaturesSettings = () => {
           ))}
         </tbody>
       </table>
-      <div className="features-save-btn">
-        <button onClick={handleSave}>
+      <div className="button-group">
+        <button className="btn btn-primary" onClick={handleSave}>
           <i className="fas fa-save"></i> {t.save_changes || "Save Changes"}
         </button>
       </div>
