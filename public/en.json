@@ -31,6 +31,8 @@
   "users_description": "User list and management.",
   "settings_title": "Settings",
   "settings_description": "Admin system configuration.",
+  "export_data": "Export Data",
+  "export_description": "Export current data as JSON file",
   "description": "Description",
   "demo_link": "Live Site Link",
   "source_code_link": "Source Code Link",

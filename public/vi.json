@@ -31,6 +31,8 @@
   "users_description": "Danh sách và quản lý người dùng.",
   "settings_title": "Cài Đặt",
   "settings_description": "Cấu hình hệ thống admin.",
+  "export_data": "Xuất Dữ Liệu",
+  "export_description": "Xuất dữ liệu hiện tại ra file JSON",
   "description": "Mô tả",
   "demo_link": "Link Trang Web",
   "source_code_link": "Link Mã Nguồn",
