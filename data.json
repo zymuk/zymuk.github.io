@@ -1,4 +1,18 @@
 {
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@zymuk.com",
+      "password": "password123",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "email": "user@zymuk.com",
+      "password": "userpass",
+      "role": "user"
+    }
+  ],
   "site": {
     "title": "Zymuk Portfolio",
     "description": "Personal portfolio and tools website",
@@ -69,7 +83,14 @@
         {
           "name": "OpenTestSystem (Legacy Maintenance & Support)",
           "description": "An ISO 13209 compliant diagnostic testing platform. Continued to support the OpenTestFramework and OTX Runtime, ensuring cross-platform execution reliability for automotive procedures on Windows and embedded systems during the organizational transition.",
-          "technologies": ["C++", "OTX/OTL", "CMake", "WPF", "WinForms", "SVN"],
+          "technologies": [
+            "C++",
+            "OTX/OTL",
+            "CMake",
+            "WPF",
+            "WinForms",
+            "SVN"
+          ],
           "responsibilities": [
             "Maintained and patched core components of the OpenTestFramework to ensure system integrity.",
             "Refactored legacy modules within the OTX Runtime to improve execution performance and stability.",
