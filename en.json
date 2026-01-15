@@ -88,5 +88,14 @@
   "site_data_loaded": "Site data loaded successfully",
   "admin_login_success": "Admin login successful",
   "just_now": "Just now",
-  "today": "Today"
+  "today": "Today",
+  "certifications": "Certifications",
+  "certifications_description": "Manage professional certifications",
+  "certification_name": "Certification Name",
+  "issuer": "Issuer",
+  "issue_date": "Issue Date",
+  "credential_url": "Credential URL",
+  "add_certification": "Add Certification",
+  "update_certification": "Update Certification",
+  "confirm_delete": "Are you sure you want to delete this certification?"
 }

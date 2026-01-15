@@ -83,14 +83,7 @@
         {
           "name": "OpenTestSystem (Legacy Maintenance & Support)",
           "description": "An ISO 13209 compliant diagnostic testing platform. Continued to support the OpenTestFramework and OTX Runtime, ensuring cross-platform execution reliability for automotive procedures on Windows and embedded systems during the organizational transition.",
-          "technologies": [
-            "C++",
-            "OTX/OTL",
-            "CMake",
-            "WPF",
-            "WinForms",
-            "SVN"
-          ],
+          "technologies": ["C++", "OTX/OTL", "CMake", "WPF", "WinForms", "SVN"],
           "responsibilities": [
             "Maintained and patched core components of the OpenTestFramework to ensure system integrity.",
             "Refactored legacy modules within the OTX Runtime to improve execution performance and stability.",
@@ -196,9 +189,29 @@
     "github": "https://github.com/zymuk",
     "linkedin": ""
   },
+  "certifications": [
+    {
+      "name": "SQL (Advanced)",
+      "issuer": "HackerRank",
+      "issueDate": "2025-12-04",
+      "credentialUrl": "https://www.hackerrank.com/certificates/90dfbae98ceb",
+      "description": "It covers topics like query optimization, data modeling, Indexing, window functions, and pivots in SQL.",
+      "isVisible": true
+    },
+    {
+      "name": "Gemini Certified University Student",
+      "issuer": "Google for Education",
+      "issueDate": "2025-12-11",
+      "credentialUrl": "https://edu.google.accredible.com/1d09c27c-c62c-4f41-88a7-9fa28b068b5c",
+      "description": "A Google-certified Gemini University student can articulate and demonstrate fundamental knowledge of generative AI concepts and Gemini's core features and capabilities in an educational context.",
+      "isVisible": true
+    }
+  ],
   "navigation": {
     "home": "Home",
     "about": "About",
+    "experience": "Experience",
+    "certifications": "Certifications",
     "projects": "Projects",
     "features": "Features",
     "contact": "Contact"

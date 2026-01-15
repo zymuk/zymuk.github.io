@@ -88,5 +88,14 @@
   "site_data_loaded": "Dữ liệu trang web đã tải thành công",
   "admin_login_success": "Đăng nhập admin thành công",
   "just_now": "Vừa xong",
-  "today": "Hôm nay"
+  "today": "Hôm nay",
+  "certifications": "Chứng Chỉ",
+  "certifications_description": "Quản lý chứng chỉ chuyên môn",
+  "certification_name": "Tên Chứng Chỉ",
+  "issuer": "Đơn Vị Cấp",
+  "issue_date": "Ngày Cấp",
+  "credential_url": "Đường Dẫn Chứng Chỉ",
+  "add_certification": "Thêm Chứng Chỉ",
+  "update_certification": "Cập Nhật Chứng Chỉ",
+  "confirm_delete": "Bạn có chắc chắn muốn xóa chứng chỉ này?"
 }
