@@ -51,6 +51,13 @@ const Dashboard = () => {
       icon: "💼",
     },
     {
+      title: t.certifications || "Certifications",
+      description:
+        t.certifications_description || "Manage professional certifications",
+      path: "/admin/certifications",
+      icon: "🎓",
+    },
+    {
       title: t.features_settings || "Features Settings",
       description: t.features_description || "Manage site features and tools",
       path: "/admin/features",
@@ -107,7 +114,15 @@ const Dashboard = () => {
         </div>
 
         <div className="admin-stat-card">
-          <div className="admin-stat-icon">🌐</div>
+          <div className="admin-stat-icon">�</div>
+          <div className="stat-content">
+            <h3>{data?.certifications?.length || 0}</h3>
+            <p>{t.certifications || "Certifications"}</p>
+          </div>
+        </div>
+
+        <div className="admin-stat-card">
+          <div className="admin-stat-icon">�🌐</div>
           <div className="stat-content">
             <h3>{data?.features?.filter((f) => f.isVisible)?.length || 0}</h3>
             <p>{t.active_features || "Active Features"}</p>
@@ -144,7 +159,9 @@ const Dashboard = () => {
             <div className="activity-icon">🔄</div>
             <div className="activity-content">
               <p>{t.site_data_loaded || "Site data loaded successfully"}</p>
-              <span className="admin-activity-time">{t.just_now || "Just now"}</span>
+              <span className="admin-activity-time">
+                {t.just_now || "Just now"}
+              </span>
             </div>
           </div>
           <div className="admin-activity-item">
@@ -161,4 +178,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-

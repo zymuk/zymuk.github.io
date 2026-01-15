@@ -1,0 +1,22 @@
+/* CertificationSettings page specific styles */
+
+.admin-certification-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+.admin-certification-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #fff;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.admin-certification-list li strong {
+  flex: 1;
+}
