@@ -210,6 +210,8 @@
   "navigation": {
     "home": "Home",
     "about": "About",
+    "experience": "Experience",
+    "certifications": "Certifications",
     "projects": "Projects",
     "features": "Features",
     "contact": "Contact"

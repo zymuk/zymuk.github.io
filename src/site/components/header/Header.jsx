@@ -65,6 +65,14 @@ const Header = ({ scrollToSection }) => {
           </li>
           <li>
             <button
+              onClick={() => scrollToSection("certifications")}
+              data-scroll="certifications"
+            >
+              Certifications
+            </button>
+          </li>
+          <li>
+            <button
               onClick={() => scrollToSection("projects")}
               data-scroll="projects"
             >

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Hero from "./hero/Hero";
 import About from "./about/About";
 import Experience from "./experience/Experience";
+import Certifications from "./certifications/Certifications";
 import Projects from "./projects/Projects";
 import Features from "./features/Features";
 import Contact from "./contact/Contact";
@@ -29,15 +30,20 @@ const Home = () => {
         let projectsData = [];
         let featuresData = [];
         let experienceData = [];
+        let certificationsData = [];
 
         const savedProjects = localStorage.getItem("projects");
         const savedFeatures = localStorage.getItem("features");
         const savedExperience = localStorage.getItem("experience");
+        const savedCertifications = localStorage.getItem("certifications");
 
         if (savedProjects && savedFeatures && savedExperience) {
           projectsData = JSON.parse(savedProjects);
           featuresData = JSON.parse(savedFeatures);
           experienceData = JSON.parse(savedExperience);
+          certificationsData = savedCertifications
+            ? JSON.parse(savedCertifications)
+            : [];
         } else {
           const dataResponse = await fetch("/data.json");
           const jsonData = await dataResponse.json();
@@ -51,12 +57,16 @@ const Home = () => {
           experienceData = savedExperience
             ? JSON.parse(savedExperience)
             : jsonData.experience || [];
+          certificationsData = savedCertifications
+            ? JSON.parse(savedCertifications)
+            : jsonData.certifications || [];
         }
 
         setData({
           projects: projectsData,
           features: featuresData,
           experience: experienceData,
+          certifications: certificationsData,
         });
       } catch (error) {
         console.error("Error loading home data:", error);
@@ -82,6 +92,7 @@ const Home = () => {
         settings={settings.homepage?.experience || settings.experience || {}}
         data={data.experience || []}
       />
+      <Certifications data={data.certifications || []} />
       <Projects
         settings={settings.homepage?.projects || settings.projects || {}}
         data={data.projects || []}
