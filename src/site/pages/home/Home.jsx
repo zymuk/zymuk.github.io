@@ -92,7 +92,12 @@ const Home = () => {
         settings={settings.homepage?.experience || settings.experience || {}}
         data={data.experience || []}
       />
-      <Certifications data={data.certifications || []} />
+      <Certifications
+        settings={
+          settings.homepage?.certifications || settings.certifications || {}
+        }
+        data={data.certifications || []}
+      />
       <Projects
         settings={settings.homepage?.projects || settings.projects || {}}
         data={data.projects || []}

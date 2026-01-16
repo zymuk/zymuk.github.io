@@ -9,6 +9,7 @@ const HomepageSettings = () => {
     hero: { title: "", content: "", color: "#000000", image: "" },
     about: { text: "", description: "", color: "#000000", image: "" },
     experience: { title: "", description: "", color: "#000000" },
+    certifications: { color: "#000000", image: "" },
     projects: { color: "#000000", image: "" },
     tools: { color: "#000000", image: "" },
   });
@@ -48,6 +49,10 @@ const HomepageSettings = () => {
             title: config.homepage?.experience?.title || "",
             description: config.homepage?.experience?.description || "",
             color: config.homepage?.experience?.color || "#000000",
+          },
+          certifications: {
+            color: config.homepage?.certifications?.color || "#000000",
+            image: config.homepage?.certifications?.image || "",
           },
           projects: {
             color: config.homepage?.projects?.color || "#000000",
@@ -100,6 +105,10 @@ const HomepageSettings = () => {
           title: config.homepage?.experience?.title || "",
           description: config.homepage?.experience?.description || "",
           color: config.homepage?.experience?.color || "#000000",
+        },
+        certifications: {
+          color: config.homepage?.certifications?.color || "#000000",
+          image: config.homepage?.certifications?.image || "",
         },
         projects: {
           color: config.homepage?.projects?.color || "#000000",
@@ -236,6 +245,31 @@ const HomepageSettings = () => {
             value={settings.experience.color}
             onChange={(e) =>
               handleChange("experience", "color", e.target.value)
+            }
+          />
+        </div>
+      </div>
+
+      <div className="admin-section">
+        <h3>{t.certifications || "Certifications"} Section</h3>
+        <div className="admin-form-group-horizontal">
+          <label>{t.background_color || "Background Color"}:</label>
+          <input
+            type="color"
+            value={settings.certifications.color}
+            onChange={(e) =>
+              handleChange("certifications", "color", e.target.value)
+            }
+          />
+        </div>
+
+        <div className="admin-form-group-horizontal">
+          <label>{t.background_image_url || "Background Image URL"}:</label>
+          <input
+            type="text"
+            value={settings.certifications.image}
+            onChange={(e) =>
+              handleChange("certifications", "image", e.target.value)
             }
           />
         </div>

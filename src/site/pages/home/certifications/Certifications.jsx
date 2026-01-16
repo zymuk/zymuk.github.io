@@ -1,13 +1,24 @@
 import React from "react";
 import "./Certifications.css";
 
-const Certifications = ({ data }) => {
+const Certifications = ({ data, settings = {} }) => {
   const visibleCertifications = data.filter((cert) => cert.isVisible !== false);
 
   if (visibleCertifications.length === 0) return null;
 
+  const sectionStyle = {
+    backgroundColor: settings.color || "#006994",
+    backgroundImage: settings.image ? `url(${settings.image})` : undefined,
+    backgroundSize: settings.image ? "cover" : undefined,
+    backgroundPosition: settings.image ? "center" : undefined,
+  };
+
   return (
-    <section id="certifications" className="section certifications-section">
+    <section
+      id="certifications"
+      className="section certifications-section"
+      style={sectionStyle}
+    >
       <h2 className="section-title">Certifications</h2>
       <div className="certifications-grid">
         {visibleCertifications.map((cert, index) => (
