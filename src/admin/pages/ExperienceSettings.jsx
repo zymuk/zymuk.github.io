@@ -178,237 +178,219 @@ const ExperienceSettings = () => {
   };
 
   if (loading) {
-    return <div className="admin-page loading">Loading...</div>;
+    return <div className="admin-page">Loading...</div>;
   }
 
   return (
     <div className="admin-page">
-      <div className="admin-page-header">
-        <h1>Experience Settings</h1>
-        <div className="admin-page-actions">
-          <button onClick={saveSettings} className="admin-btn admin-btn-primary">
-            Save Changes
-          </button>
-          <button onClick={resetSettings} className="admin-btn admin-btn-cancel">
-            Reset to Default
-          </button>
-        </div>
+      <h2>Experience Settings</h2>
+      <div className="admin-buttons">
+        <button onClick={saveSettings} className="admin-btn admin-btn-primary">
+          <i className="fas fa-save"></i> Save Changes
+        </button>
+        <button onClick={resetSettings} className="admin-btn admin-btn-cancel">
+          <i className="fas fa-undo"></i> Reset to Default
+        </button>
+        <button onClick={addExperience} className="admin-btn admin-btn-primary">
+          <i className="fas fa-plus"></i> Add Experience
+        </button>
       </div>
 
-      {/* Experience Items */}
-      <div className="admin-section">
-        <div className="admin-section-header">
-          <h2>Experience Items</h2>
-          <button onClick={addExperience} className="admin-btn admin-btn-primary">
-            <i className="fas fa-plus"></i> Add Experience
-          </button>
-        </div>
-        {data.experience.map((exp, expIndex) => (
-          <div key={expIndex} className="admin-experience-item">
-            <div className="admin-item-header">
-              <h3>Experience #{expIndex + 1}</h3>
-              <div className="admin-item-actions">
-                <label className="admin-visibility-toggle">
-                  <input
-                    type="checkbox"
-                    checked={exp.isVisible}
-                    onChange={() => toggleVisibility(expIndex)}
-                  />
-                  Visible
-                </label>
-                <button
-                  onClick={() => removeExperience(expIndex)}
-                  className="admin-btn admin-btn-danger"
-                  title="Remove Experience"
-                >
-                  <i className="fas fa-trash"></i>
-                </button>
-              </div>
-            </div>
-
-            <div className="admin-form-row">
-              <div className="admin-form-group">
-                <label>Role:</label>
+      {data.experience.map((exp, expIndex) => (
+        <div key={expIndex} className="admin-experience-item">
+          <div className="admin-item-header">
+            <h3>Experience #{expIndex + 1}</h3>
+            <div className="admin-item-actions">
+              <label className="admin-visibility-toggle">
                 <input
-                  type="text"
-                  value={exp.role || ""}
-                  onChange={(e) =>
-                    handleExperienceChange(expIndex, "role", e.target.value)
-                  }
+                  type="checkbox"
+                  checked={exp.isVisible}
+                  onChange={() => toggleVisibility(expIndex)}
                 />
-              </div>
-              <div className="admin-form-group">
-                <label>Company:</label>
-                <input
-                  type="text"
-                  value={exp.company || ""}
-                  onChange={(e) =>
-                    handleExperienceChange(expIndex, "company", e.target.value)
-                  }
-                />
-              </div>
+                Visible
+              </label>
+              <button
+                onClick={() => removeExperience(expIndex)}
+                className="admin-btn admin-btn-danger"
+                title="Remove Experience"
+              >
+                <i className="fas fa-trash"></i>
+              </button>
             </div>
+          </div>
 
+          <div className="admin-form-row">
             <div className="admin-form-group">
-              <label>Period:</label>
+              <label>Role:</label>
               <input
                 type="text"
-                value={exp.period || ""}
+                value={exp.role || ""}
                 onChange={(e) =>
-                  handleExperienceChange(expIndex, "period", e.target.value)
+                  handleExperienceChange(expIndex, "role", e.target.value)
                 }
-                placeholder="Jan 2020 - Dec 2022"
               />
             </div>
-
             <div className="admin-form-group">
-              <label>Description:</label>
-              <textarea
-                value={exp.description || ""}
+              <label>Company:</label>
+              <input
+                type="text"
+                value={exp.company || ""}
                 onChange={(e) =>
-                  handleExperienceChange(
-                    expIndex,
-                    "description",
-                    e.target.value
-                  )
+                  handleExperienceChange(expIndex, "company", e.target.value)
                 }
-                rows="3"
               />
             </div>
+          </div>
 
-            {/* Projects */}
-            <div className="admin-projects-section">
-              <div className="admin-section-header">
-                <h4>Projects</h4>
-                <button
-                  onClick={() => addProject(expIndex)}
-                  className="admin-btn admin-btn-secondary"
-                >
-                  <i className="fas fa-plus"></i> Add Project
-                </button>
-              </div>
+          <div className="admin-form-group">
+            <label>Period:</label>
+            <input
+              type="text"
+              value={exp.period || ""}
+              onChange={(e) =>
+                handleExperienceChange(expIndex, "period", e.target.value)
+              }
+              placeholder="Jan 2020 - Dec 2022"
+            />
+          </div>
 
-              {exp.projects?.map((project, projIndex) => (
-                <div key={projIndex} className="admin-project-item">
-                  <div className="admin-item-header">
-                    <h5>Project #{projIndex + 1}</h5>
+          <div className="admin-form-group">
+            <label>Description:</label>
+            <textarea
+              value={exp.description || ""}
+              onChange={(e) =>
+                handleExperienceChange(expIndex, "description", e.target.value)
+              }
+              rows="3"
+            />
+          </div>
+
+          {/* Projects */}
+          <div className="admin-projects-section">
+            <div className="admin-section-header">
+              <h4>Projects</h4>
+              <button
+                onClick={() => addProject(expIndex)}
+                className="admin-btn admin-btn-secondary"
+              >
+                <i className="fas fa-plus"></i> Add Project
+              </button>
+            </div>
+
+            {exp.projects?.map((project, projIndex) => (
+              <div key={projIndex} className="admin-project-item">
+                <div className="admin-item-header">
+                  <h5>Project #{projIndex + 1}</h5>
+                  <button
+                    onClick={() => removeProject(expIndex, projIndex)}
+                    className="admin-btn admin-btn-danger admin-btn-sm"
+                    title="Remove Project"
+                  >
+                    <i className="fas fa-trash"></i>
+                  </button>
+                </div>
+
+                <div className="admin-form-group">
+                  <label>Project Name:</label>
+                  <input
+                    type="text"
+                    value={project.name || ""}
+                    onChange={(e) =>
+                      handleProjectChange(
+                        expIndex,
+                        projIndex,
+                        "name",
+                        e.target.value
+                      )
+                    }
+                  />
+                </div>
+
+                <div className="admin-form-group">
+                  <label>Project Description:</label>
+                  <textarea
+                    value={project.description || ""}
+                    onChange={(e) =>
+                      handleProjectChange(
+                        expIndex,
+                        projIndex,
+                        "description",
+                        e.target.value
+                      )
+                    }
+                    rows="3"
+                  />
+                </div>
+
+                <div className="admin-form-group">
+                  <label>Technologies (comma-separated):</label>
+                  <input
+                    type="text"
+                    value={project.technologies?.join(", ") || ""}
+                    onChange={(e) =>
+                      handleProjectChange(
+                        expIndex,
+                        projIndex,
+                        "technologies",
+                        e.target.value.split(", ")
+                      )
+                    }
+                    placeholder="React, Node.js, MongoDB"
+                  />
+                </div>
+
+                {/* Responsibilities */}
+                <div className="admin-responsibilities-section">
+                  <div className="admin-responsibilities-header">
+                    <label>Responsibilities:</label>
                     <button
-                      onClick={() => removeProject(expIndex, projIndex)}
-                      className="admin-btn admin-btn-danger admin-btn-sm"
-                      title="Remove Project"
+                      type="button"
+                      onClick={() => addResponsibility(expIndex, projIndex)}
+                      className="admin-btn admin-btn-secondary admin-btn-sm"
                     >
-                      <i className="fas fa-trash"></i>
+                      Add Responsibility
                     </button>
                   </div>
 
-                  <div className="admin-form-group">
-                    <label>Project Name:</label>
-                    <input
-                      type="text"
-                      value={project.name || ""}
-                      onChange={(e) =>
-                        handleProjectChange(
-                          expIndex,
-                          projIndex,
-                          "name",
-                          e.target.value
-                        )
-                      }
-                    />
-                  </div>
-
-                  <div className="admin-form-group">
-                    <label>Project Description:</label>
-                    <textarea
-                      value={project.description || ""}
-                      onChange={(e) =>
-                        handleProjectChange(
-                          expIndex,
-                          projIndex,
-                          "description",
-                          e.target.value
-                        )
-                      }
-                      rows="3"
-                    />
-                  </div>
-
-                  <div className="admin-form-group">
-                    <label>Technologies (comma-separated):</label>
-                    <input
-                      type="text"
-                      value={project.technologies?.join(", ") || ""}
-                      onChange={(e) =>
-                        handleProjectChange(
-                          expIndex,
-                          projIndex,
-                          "technologies",
-                          e.target.value.split(", ")
-                        )
-                      }
-                      placeholder="React, Node.js, MongoDB"
-                    />
-                  </div>
-
-                  {/* Responsibilities */}
-                  <div className="admin-responsibilities-section">
-                    <div className="admin-responsibilities-header">
-                      <label>Responsibilities:</label>
-                      <button
-                        type="button"
-                        onClick={() => addResponsibility(expIndex, projIndex)}
-                        className="admin-btn admin-btn-secondary admin-btn-sm"
+                  {project.responsibilities?.map(
+                    (responsibility, respIndex) => (
+                      <div
+                        key={respIndex}
+                        className="admin-responsibility-item"
                       >
-                        Add Responsibility
-                      </button>
-                    </div>
-
-                    {project.responsibilities?.map(
-                      (responsibility, respIndex) => (
-                        <div
-                          key={respIndex}
-                          className="admin-responsibility-item"
+                        <input
+                          type="text"
+                          value={responsibility}
+                          onChange={(e) =>
+                            handleResponsibilityChange(
+                              expIndex,
+                              projIndex,
+                              respIndex,
+                              e.target.value
+                            )
+                          }
+                          placeholder="Responsibility description"
+                        />
+                        <button
+                          type="button"
+                          onClick={() =>
+                            removeResponsibility(expIndex, projIndex, respIndex)
+                          }
+                          className="admin-btn admin-btn-danger admin-btn-sm"
                         >
-                          <input
-                            type="text"
-                            value={responsibility}
-                            onChange={(e) =>
-                              handleResponsibilityChange(
-                                expIndex,
-                                projIndex,
-                                respIndex,
-                                e.target.value
-                              )
-                            }
-                            placeholder="Responsibility description"
-                          />
-                          <button
-                            type="button"
-                            onClick={() =>
-                              removeResponsibility(
-                                expIndex,
-                                projIndex,
-                                respIndex
-                              )
-                            }
-                            className="admin-btn admin-btn-danger admin-btn-sm"
-                          >
-                            ×
-                          </button>
-                        </div>
-                      )
-                    )}
-                  </div>
+                          ×
+                        </button>
+                      </div>
+                    )
+                  )}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };
 
 export default ExperienceSettings;
-
-
