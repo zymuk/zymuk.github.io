@@ -12,6 +12,7 @@ const HomepageSettings = () => {
     certifications: { color: "#000000", image: "" },
     projects: { color: "#000000", image: "" },
     tools: { color: "#000000", image: "" },
+    contact: { color: "#000000", image: "" },
   });
 
   useEffect(() => {
@@ -61,6 +62,10 @@ const HomepageSettings = () => {
           tools: {
             color: config.homepage?.tools?.color || "#000000",
             image: config.homepage?.tools?.image || "",
+          },
+          contact: {
+            color: config.homepage?.contact?.color || "#000000",
+            image: config.homepage?.contact?.image || "",
           },
         });
       } catch (error) {
@@ -117,6 +122,10 @@ const HomepageSettings = () => {
         tools: {
           color: config.homepage?.tools?.color || "#000000",
           image: config.homepage?.tools?.image || "",
+        },
+        contact: {
+          color: config.homepage?.contact?.color || "#000000",
+          image: config.homepage?.contact?.image || "",
         },
       };
 
@@ -313,6 +322,27 @@ const HomepageSettings = () => {
             type="text"
             value={settings.tools.image}
             onChange={(e) => handleChange("tools", "image", e.target.value)}
+          />
+        </div>
+      </div>
+
+      <div className="admin-section">
+        <h3>{t.contact_section || "Contact Section"}</h3>
+        <div className="admin-form-group-horizontal">
+          <label>{t.background_color || "Background Color"}:</label>
+          <input
+            type="color"
+            value={settings.contact.color}
+            onChange={(e) => handleChange("contact", "color", e.target.value)}
+          />
+        </div>
+
+        <div className="admin-form-group-horizontal">
+          <label>{t.background_image_url || "Background Image URL"}:</label>
+          <input
+            type="text"
+            value={settings.contact.image}
+            onChange={(e) => handleChange("contact", "image", e.target.value)}
           />
         </div>
       </div>
