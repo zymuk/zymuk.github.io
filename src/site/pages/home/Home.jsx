@@ -3,6 +3,7 @@ import Hero from "./hero/Hero";
 import About from "./about/About";
 import Experience from "./experience/Experience";
 import Certifications from "./certifications/Certifications";
+import Skills from "./skills/Skills";
 import Projects from "./projects/Projects";
 import Features from "./features/Features";
 import Contact from "./contact/Contact";
@@ -31,11 +32,13 @@ const Home = () => {
         let featuresData = [];
         let experienceData = [];
         let certificationsData = [];
+        let skillsData = [];
 
         const savedProjects = localStorage.getItem("projects");
         const savedFeatures = localStorage.getItem("features");
         const savedExperience = localStorage.getItem("experience");
         const savedCertifications = localStorage.getItem("certifications");
+        const savedSkills = localStorage.getItem("skills");
 
         if (savedProjects && savedFeatures && savedExperience) {
           projectsData = JSON.parse(savedProjects);
@@ -44,6 +47,7 @@ const Home = () => {
           certificationsData = savedCertifications
             ? JSON.parse(savedCertifications)
             : [];
+          skillsData = savedSkills ? JSON.parse(savedSkills) : [];
         } else {
           const dataResponse = await fetch("/data.json");
           const jsonData = await dataResponse.json();
@@ -60,6 +64,9 @@ const Home = () => {
           certificationsData = savedCertifications
             ? JSON.parse(savedCertifications)
             : jsonData.certifications || [];
+          skillsData = savedSkills
+            ? JSON.parse(savedSkills)
+            : jsonData.skills || [];
         }
 
         setData({
@@ -67,6 +74,7 @@ const Home = () => {
           features: featuresData,
           experience: experienceData,
           certifications: certificationsData,
+          skills: skillsData,
         });
       } catch (error) {
         console.error("Error loading home data:", error);
@@ -97,6 +105,10 @@ const Home = () => {
           settings.homepage?.certifications || settings.certifications || {}
         }
         data={data.certifications || []}
+      />
+      <Skills
+        settings={settings.homepage?.skills || settings.skills || {}}
+        data={data.skills || []}
       />
       <Projects
         settings={settings.homepage?.projects || settings.projects || {}}

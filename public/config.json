@@ -24,6 +24,12 @@
       "description": "Professional certifications and achievements",
       "image": ""
     },
+    "skills": {
+      "color": "#007099",
+      "title": "Skills & Technologies",
+      "description": "Technical expertise and proficiency",
+      "image": ""
+    },
     "projects": {
       "color": "#0077b6",
       "title": "Projects",

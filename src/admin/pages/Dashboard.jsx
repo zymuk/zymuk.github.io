@@ -58,6 +58,12 @@ const Dashboard = () => {
       icon: "🎓",
     },
     {
+      title: t.skills_settings || "Skills Settings",
+      description: t.skills_description || "Manage technical skills and expertise",
+      path: "/admin/skills",
+      icon: "💻",
+    },
+    {
       title: t.features_settings || "Features Settings",
       description: t.features_description || "Manage site features and tools",
       path: "/admin/features",
@@ -114,7 +120,7 @@ const Dashboard = () => {
         </div>
 
         <div className="admin-stat-card">
-          <div className="admin-stat-icon">�</div>
+          <div className="admin-stat-icon">🎓</div>
           <div className="stat-content">
             <h3>{data?.certifications?.length || 0}</h3>
             <p>{t.certifications || "Certifications"}</p>
@@ -122,7 +128,15 @@ const Dashboard = () => {
         </div>
 
         <div className="admin-stat-card">
-          <div className="admin-stat-icon">�🌐</div>
+          <div className="admin-stat-icon">💻</div>
+          <div className="stat-content">
+            <h3>{data?.skills?.length || 0}</h3>
+            <p>{t.skills || "Skills"}</p>
+          </div>
+        </div>
+
+        <div className="admin-stat-card">
+          <div className="admin-stat-icon">🌐</div>
           <div className="stat-content">
             <h3>{data?.features?.filter((f) => f.isVisible)?.length || 0}</h3>
             <p>{t.active_features || "Active Features"}</p>

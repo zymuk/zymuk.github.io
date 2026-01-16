@@ -8,6 +8,7 @@ import ProjectsSettings from "./pages/ProjectsSettings";
 import FeaturesSettings from "./pages/FeaturesSettings";
 import ExperienceSettings from "./pages/ExperienceSettings";
 import CertificationSettings from "./pages/CertificationSettings";
+import SkillsSettings from "./pages/SkillsSettings";
 import EditProfile from "./pages/EditProfile";
 import Users from "./pages/Users";
 import Settings from "./pages/Settings";
@@ -61,6 +62,7 @@ const Admin = () => {
         <Route path="features" element={<FeaturesSettings />} />
         <Route path="experience" element={<ExperienceSettings />} />
         <Route path="certifications" element={<CertificationSettings />} />
+        <Route path="skills" element={<SkillsSettings />} />
         <Route path="profile" element={<EditProfile />} />
         <Route path="users" element={<Users />} />
         <Route path="settings" element={<Settings />} />

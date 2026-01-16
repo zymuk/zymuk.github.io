@@ -10,6 +10,7 @@ const HomepageSettings = () => {
     about: { text: "", description: "", color: "#000000", image: "" },
     experience: { title: "", description: "", color: "#000000" },
     certifications: { color: "#000000", image: "" },
+    skills: { color: "#000000", image: "" },
     projects: { color: "#000000", image: "" },
     tools: { color: "#000000", image: "" },
     contact: { color: "#000000", image: "" },
@@ -54,6 +55,10 @@ const HomepageSettings = () => {
           certifications: {
             color: config.homepage?.certifications?.color || "#000000",
             image: config.homepage?.certifications?.image || "",
+          },
+          skills: {
+            color: config.homepage?.skills?.color || "#000000",
+            image: config.homepage?.skills?.image || "",
           },
           projects: {
             color: config.homepage?.projects?.color || "#000000",
@@ -114,6 +119,10 @@ const HomepageSettings = () => {
         certifications: {
           color: config.homepage?.certifications?.color || "#000000",
           image: config.homepage?.certifications?.image || "",
+        },
+        skills: {
+          color: config.homepage?.skills?.color || "#000000",
+          image: config.homepage?.skills?.image || "",
         },
         projects: {
           color: config.homepage?.projects?.color || "#000000",
@@ -280,6 +289,27 @@ const HomepageSettings = () => {
             onChange={(e) =>
               handleChange("certifications", "image", e.target.value)
             }
+          />
+        </div>
+      </div>
+
+      <div className="admin-section">
+        <h3>{t.skills || "Skills"} Section</h3>
+        <div className="admin-form-group-horizontal">
+          <label>{t.background_color || "Background Color"}:</label>
+          <input
+            type="color"
+            value={settings.skills?.color}
+            onChange={(e) => handleChange("skills", "color", e.target.value)}
+          />
+        </div>
+
+        <div className="admin-form-group-horizontal">
+          <label>{t.background_image_url || "Background Image URL"}:</label>
+          <input
+            type="text"
+            value={settings.skills?.image}
+            onChange={(e) => handleChange("skills", "image", e.target.value)}
           />
         </div>
       </div>
