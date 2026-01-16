@@ -20,35 +20,25 @@ const Certifications = ({ data, settings = {} }) => {
       style={sectionStyle}
     >
       <h2 className="section-title">Certifications</h2>
-      <div className="certifications-grid">
+      <ul className="certifications-list">
         {visibleCertifications.map((cert, index) => (
-          <div key={index} className="certification-card">
-            <div className="cert-icon">
-              <i className="fas fa-certificate"></i>
-            </div>
-            <div className="cert-content">
-              <h3 className="cert-name">{cert.name}</h3>
-              <p className="cert-issuer">{cert.issuer}</p>
-              <p className="cert-date">
-                <i className="fas fa-calendar-alt"></i> {cert.issueDate}
-              </p>
-              {cert.description && (
-                <p className="cert-description">{cert.description}</p>
-              )}
-              {cert.credentialUrl && (
+          <li key={index}>
+            <strong>{cert.name}</strong> - {cert.issuer} ({cert.issueDate})
+            {cert.credentialUrl && (
+              <>
+                {" | "}
                 <a
                   href={cert.credentialUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="cert-link"
                 >
-                  View Credential <i className="fas fa-external-link-alt"></i>
+                  View Credential
                 </a>
-              )}
-            </div>
-          </div>
+              </>
+            )}
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 };

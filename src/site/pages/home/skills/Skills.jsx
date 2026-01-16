@@ -26,26 +26,16 @@ const Skills = ({ settings = {}, data = [] }) => {
         {visibleCategories.map((category, catIndex) => (
           <div key={catIndex} className="skill-category">
             <h3 className="category-title">{category.category}</h3>
-            <div className="skills-grid">
+            <ul className="skills-list">
               {category.items
                 ?.filter((item) => item.isVisible !== false)
                 .map((skill, skillIndex) => (
-                  <div key={skillIndex} className="skill-item">
-                    <div className="skill-header">
-                      <span className="skill-name">{skill.name}</span>
-                      <span className="skill-percentage">
-                        {skill.years} {skill.years === 1 ? "year" : "years"}
-                      </span>
-                    </div>
-                    <div className="skill-bar">
-                      <div
-                        className="skill-progress"
-                        style={{ width: `${Math.min(skill.years * 15, 100)}%` }}
-                      ></div>
-                    </div>
-                  </div>
+                  <li key={skillIndex}>
+                    <strong>{skill.name}</strong> - {skill.years}{" "}
+                    {skill.years === 1 ? "year" : "years"}
+                  </li>
                 ))}
-            </div>
+            </ul>
           </div>
         ))}
       </div>
