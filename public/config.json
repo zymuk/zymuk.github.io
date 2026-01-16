@@ -18,6 +18,12 @@
       "description": "My professional journey",
       "image": ""
     },
+    "certifications": {
+      "color": "#006994",
+      "title": "Certifications",
+      "description": "Professional certifications and achievements",
+      "image": ""
+    },
     "projects": {
       "color": "#0077b6",
       "title": "Projects",
