@@ -18,10 +18,8 @@ const Settings = () => {
     // Load data from localStorage first, fallback to data.json
     const cachedData = localStorage.getItem("site_data");
     if (cachedData) {
-      console.log("Loading data from localStorage");
       setData(JSON.parse(cachedData));
     } else {
-      console.log("Loading data from data.json");
       fetch("/data.json")
         .then((res) => res.json())
         .then((jsonData) => {
@@ -33,13 +31,10 @@ const Settings = () => {
   }, []);
 
   const exportData = () => {
-    console.log("Export button clicked");
     if (!data) {
       alert("No data to export!");
       return;
     }
-
-    console.log("Exporting data:", data);
 
     // Create JSON blob
     const jsonString = JSON.stringify(data, null, 2);
@@ -56,8 +51,6 @@ const Settings = () => {
     // Cleanup
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
-
-    console.log("Download triggered");
   };
 
   return (

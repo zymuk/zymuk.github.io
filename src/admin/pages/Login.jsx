@@ -50,7 +50,6 @@ const Login = () => {
     const token = localStorage.getItem("admin_token");
     // Only redirect if we're on the login page and have token
     if (token && window.location.pathname === "/admin/login") {
-      console.log("Token found, redirecting to /admin");
       navigate("/admin", { replace: true });
     }
   }, [navigate]);
@@ -72,7 +71,6 @@ const Login = () => {
       (u) => u.email === email && u.password === password
     );
     if (user) {
-      console.log("Login successful, setting token and user");
       localStorage.setItem("admin_token", "authenticated");
       localStorage.setItem("user", JSON.stringify(user));
       alert(t.login_success || "Login successful!");
