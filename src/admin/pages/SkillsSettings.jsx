@@ -6,9 +6,6 @@ const SkillsSettings = () => {
   const [t, setT] = useState({});
   const lang = localStorage.getItem("lang") || "en";
   const [skills, setSkills] = useState([]);
-  const [editingCategoryIndex, setEditingCategoryIndex] = useState(null);
-  const [editingItemIndex, setEditingItemIndex] = useState(null);
-
   useEffect(() => {
     fetch(`/${lang}.json`)
       .then((res) => res.json())
@@ -59,7 +56,6 @@ const SkillsSettings = () => {
       isVisible: true,
     };
     setSkills([...skills, newCategory]);
-    setEditingCategoryIndex(skills.length);
   };
 
   const removeCategory = (index) => {
@@ -85,8 +81,6 @@ const SkillsSettings = () => {
       newItem,
     ];
     setSkills(updatedSkills);
-    setEditingCategoryIndex(categoryIndex);
-    setEditingItemIndex(updatedSkills[categoryIndex].items.length - 1);
   };
 
   const removeItem = (categoryIndex, itemIndex) => {
