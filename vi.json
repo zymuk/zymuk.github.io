@@ -110,5 +110,18 @@
   "edit_skill": "Chỉnh Sửa Kỹ Năng",
   "add_certification": "Thêm Chứng Chỉ",
   "update_certification": "Cập Nhật Chứng Chỉ",
-  "confirm_delete": "Bạn có chắc chắn muốn xóa chứng chỉ này?"
+  "confirm_delete": "Bạn có chắc chắn muốn xóa chứng chỉ này?",
+  "education": "Học Vấn",
+  "education_settings": "Cài Đặt Học Vấn",
+  "education_description": "Lý lịch học vấn của tôi",
+  "degree": "Bằng Cấp",
+  "school": "Trường/Đại Học",
+  "period": "Thời Gian",
+  "gpa": "Điểm GPA",
+  "achievements": "Thành Tích",
+  "achievement": "Thành Tích",
+  "add_education": "Thêm Học Vấn",
+  "add_achievement": "Thêm Thành Tích",
+  "new_education": "Mục Học Vấn Mới",
+  "no_education": "Chưa có mục học vấn nào"
 }

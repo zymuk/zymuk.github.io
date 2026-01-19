@@ -110,5 +110,18 @@
   "edit_skill": "Edit Skill",
   "add_certification": "Add Certification",
   "update_certification": "Update Certification",
-  "confirm_delete": "Are you sure you want to delete this certification?"
+  "confirm_delete": "Are you sure you want to delete this certification?",
+  "education": "Education",
+  "education_settings": "Education Settings",
+  "education_description": "My educational background",
+  "degree": "Degree",
+  "school": "School/University",
+  "period": "Period",
+  "gpa": "GPA",
+  "achievements": "Achievements",
+  "achievement": "Achievement",
+  "add_education": "Add Education",
+  "add_achievement": "Add Achievement",
+  "new_education": "New Education Entry",
+  "no_education": "No education entries added yet"
 }
