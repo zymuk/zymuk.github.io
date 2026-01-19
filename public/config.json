@@ -18,6 +18,12 @@
       "description": "My professional journey",
       "image": ""
     },
+    "education": {
+      "color": "#006080",
+      "title": "Education",
+      "description": "My educational background",
+      "image": ""
+    },
     "certifications": {
       "color": "#006994",
       "title": "Certifications",

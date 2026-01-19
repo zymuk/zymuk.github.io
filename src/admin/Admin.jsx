@@ -7,6 +7,7 @@ import HomepageSettings from "./pages/HomepageSettings";
 import ProjectsSettings from "./pages/ProjectsSettings";
 import FeaturesSettings from "./pages/FeaturesSettings";
 import ExperienceSettings from "./pages/ExperienceSettings";
+import EducationSettings from "./pages/EducationSettings";
 import CertificationSettings from "./pages/CertificationSettings";
 import SkillsSettings from "./pages/SkillsSettings";
 import EditProfile from "./pages/EditProfile";
@@ -61,6 +62,7 @@ const Admin = () => {
         <Route path="projects" element={<ProjectsSettings />} />
         <Route path="features" element={<FeaturesSettings />} />
         <Route path="experience" element={<ExperienceSettings />} />
+        <Route path="education" element={<EducationSettings />} />
         <Route path="certifications" element={<CertificationSettings />} />
         <Route path="skills" element={<SkillsSettings />} />
         <Route path="profile" element={<EditProfile />} />

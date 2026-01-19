@@ -13,7 +13,7 @@ const Header = ({ scrollToSection }) => {
     if (savedFeatures) {
       const allFeatures = JSON.parse(savedFeatures);
       setListActivedFeatures(
-        allFeatures.filter((feature) => feature.isVisible === true)
+        allFeatures.filter((feature) => feature.isVisible === true),
       );
     } else {
       fetch("/data.json")
@@ -21,7 +21,7 @@ const Header = ({ scrollToSection }) => {
         .then((data) => {
           const features = data.features || [];
           setListActivedFeatures(
-            features.filter((feature) => feature.isVisible === true)
+            features.filter((feature) => feature.isVisible === true),
           );
         })
         .catch((error) => {
@@ -36,7 +36,7 @@ const Header = ({ scrollToSection }) => {
 
   const renderMenu = () => {
     const regexHomePage = new RegExp(
-      "([hpts]{4,}[:/]{0,}[a-zA-Z0-9.:]{1,}[/]{0,}([#]{1,}[a-zA-Z0-9]{0,}){0,}[/]{0,}){1,}$"
+      "([hpts]{4,}[:/]{0,}[a-zA-Z0-9.:]{1,}[/]{0,}([#]{1,}[a-zA-Z0-9]{0,}){0,}[/]{0,}){1,}$",
     );
     const checkHonePage = regexHomePage.test(window.location.href);
     if (checkHonePage) {
@@ -61,6 +61,14 @@ const Header = ({ scrollToSection }) => {
               data-scroll="experience"
             >
               Experience
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => scrollToSection("education")}
+              data-scroll="education"
+            >
+              Education
             </button>
           </li>
           <li>

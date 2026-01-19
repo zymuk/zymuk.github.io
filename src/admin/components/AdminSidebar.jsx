@@ -60,6 +60,12 @@ const AdminSidebar = ({ isOpen, toggleSidebar }) => {
           </NavLink>
         </li>
         <li>
+          <NavLink to="education" className="active">
+            <i className="fas fa-graduation-cap"></i>
+            <span className="menu-text">{t.education || "Education"}</span>
+          </NavLink>
+        </li>
+        <li>
           <NavLink to="certifications" className="active">
             <i className="fas fa-certificate"></i>
             <span className="menu-text">

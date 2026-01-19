@@ -1,0 +1,59 @@
+.education-section {
+  padding: 80px 20px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.education-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem auto 0;
+  max-width: 800px;
+  text-align: center;
+}
+
+.education-list li {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.education-list li:hover {
+  transform: scale(1.02);
+}
+
+.education-degree {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.education-school {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 0.3rem;
+}
+
+.education-gpa {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .education-section {
+    padding: 60px 15px;
+  }
+
+  .education-list li {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+}

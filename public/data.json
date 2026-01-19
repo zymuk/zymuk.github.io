@@ -184,6 +184,34 @@
       ]
     }
   ],
+  "education": [
+    {
+      "degree": "Bachelor of Science in Information Technology",
+      "school": "Ho Chi Minh City University of Science (HCMUS)",
+      "period": "2017 - 2019",
+      "gpa": "6.63/10",
+      "description": "Advanced studies in software engineering and system architecture through continuation program",
+      "achievements": [
+        "Dean's List for academic excellence",
+        "Graduated with Good honors",
+        "Completed capstone project on web application development"
+      ],
+      "isVisible": true
+    },
+    {
+      "degree": "Associate of Science in Information Technology",
+      "school": "Ho Chi Minh City University of Science (HCMUS)",
+      "period": "2014 - 2017",
+      "gpa": "7.37/10",
+      "description": "Focused on software engineering, algorithms, and system design",
+      "achievements": [
+        "Dean's List multiple semesters",
+        "Graduated with Good honors",
+        "Completed thesis on automated testing systems"
+      ],
+      "isVisible": true
+    }
+  ],
   "contact": {
     "email": "thengoc0605@yahoo.com",
     "github": "https://github.com/zymuk",

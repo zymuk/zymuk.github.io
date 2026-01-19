@@ -51,15 +51,22 @@ const Dashboard = () => {
       icon: "💼",
     },
     {
+      title: t.education_settings || "Education Settings",
+      description: t.education_description || "Manage educational background",
+      path: "/admin/education",
+      icon: "🎓",
+    },
+    {
       title: t.certifications || "Certifications",
       description:
         t.certifications_description || "Manage professional certifications",
       path: "/admin/certifications",
-      icon: "🎓",
+      icon: "📜",
     },
     {
       title: t.skills_settings || "Skills Settings",
-      description: t.skills_description || "Manage technical skills and expertise",
+      description:
+        t.skills_description || "Manage technical skills and expertise",
       path: "/admin/skills",
       icon: "💻",
     },
@@ -121,6 +128,14 @@ const Dashboard = () => {
 
         <div className="admin-stat-card">
           <div className="admin-stat-icon">🎓</div>
+          <div className="stat-content">
+            <h3>{data?.education?.length || 0}</h3>
+            <p>{t.education || "Education"}</p>
+          </div>
+        </div>
+
+        <div className="admin-stat-card">
+          <div className="admin-stat-icon">📜</div>
           <div className="stat-content">
             <h3>{data?.certifications?.length || 0}</h3>
             <p>{t.certifications || "Certifications"}</p>

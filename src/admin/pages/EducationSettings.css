@@ -1,12 +1,12 @@
-/* ProjectsSettings page specific styles */
+/* EducationSettings page specific styles */
 
-.admin-project-list {
+.admin-education-list {
   list-style: none;
   padding: 0;
   margin-top: 15px;
 }
 
-.admin-project-list li {
+.admin-education-list li {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,18 +17,17 @@
   border-radius: 5px;
 }
 
-.admin-project-list li strong {
+.admin-education-list li strong {
   flex: 1;
 }
 
-.admin-actions {
+.achievement-item {
   display: flex;
-  gap: 5px;
-  padding-left: inherit;
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 5px;
 }
 
-.admin-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
+.achievement-item input {
+  flex: 1;
 }

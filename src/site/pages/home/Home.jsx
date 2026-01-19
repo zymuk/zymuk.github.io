@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Hero from "./hero/Hero";
 import About from "./about/About";
 import Experience from "./experience/Experience";
+import Education from "./education/Education";
 import Certifications from "./certifications/Certifications";
 import Skills from "./skills/Skills";
 import Projects from "./projects/Projects";
@@ -31,12 +32,14 @@ const Home = () => {
         let projectsData = [];
         let featuresData = [];
         let experienceData = [];
+        let educationData = [];
         let certificationsData = [];
         let skillsData = [];
 
         const savedProjects = localStorage.getItem("projects");
         const savedFeatures = localStorage.getItem("features");
         const savedExperience = localStorage.getItem("experience");
+        const savedEducation = localStorage.getItem("education");
         const savedCertifications = localStorage.getItem("certifications");
         const savedSkills = localStorage.getItem("skills");
 
@@ -44,9 +47,8 @@ const Home = () => {
           projectsData = JSON.parse(savedProjects);
           featuresData = JSON.parse(savedFeatures);
           experienceData = JSON.parse(savedExperience);
-          certificationsData = savedCertifications
-            ? JSON.parse(savedCertifications)
-            : [];
+          educationData = JSON.parse(savedEducation);
+          certificationsData = JSON.parse(savedCertifications);
           skillsData = savedSkills ? JSON.parse(savedSkills) : [];
         } else {
           const dataResponse = await fetch("/data.json");
@@ -61,6 +63,9 @@ const Home = () => {
           experienceData = savedExperience
             ? JSON.parse(savedExperience)
             : jsonData.experience || [];
+          educationData = savedEducation
+            ? JSON.parse(savedEducation)
+            : jsonData.education || [];
           certificationsData = savedCertifications
             ? JSON.parse(savedCertifications)
             : jsonData.certifications || [];
@@ -73,6 +78,7 @@ const Home = () => {
           projects: projectsData,
           features: featuresData,
           experience: experienceData,
+          education: educationData,
           certifications: certificationsData,
           skills: skillsData,
         });
@@ -99,6 +105,10 @@ const Home = () => {
       <Experience
         settings={settings.homepage?.experience || settings.experience || {}}
         data={data.experience || []}
+      />
+      <Education
+        settings={settings.homepage?.education || settings.education || {}}
+        data={data.education || []}
       />
       <Certifications
         settings={
