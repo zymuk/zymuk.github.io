@@ -43,6 +43,7 @@
 .category-actions {
   display: flex;
   gap: 0.5rem;
+  padding-left: 12px;
 }
 
 .skills-items-list {

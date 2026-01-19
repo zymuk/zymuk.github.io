@@ -84,7 +84,9 @@ const EditProfile = () => {
             <input type="text" value={profile.createdAt} disabled />
           </div>
           <div className="admin-button-group">
-            <button type="submit">{t.save_changes || "Save Changes"}</button>
+            <button type="submit" className="admin-btn admin-btn-primary">
+              {t.save_changes || "Save Changes"}
+            </button>
           </div>
         </form>
       </div>
@@ -124,7 +126,7 @@ const EditProfile = () => {
             />
           </div>
           <div className="admin-button-group">
-            <button type="submit">
+            <button type="submit" className="admin-btn admin-btn-primary">
               {t.change_password || "Change Password"}
             </button>
           </div>
