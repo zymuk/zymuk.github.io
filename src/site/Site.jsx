@@ -10,6 +10,7 @@ import Notes from "./pages/notes/Notes";
 import "./Site.css";
 import NumerologyName from "./pages/numerologyName/NumerologyName";
 import TextEncoderDecoder from "./pages/textEncoderDecoder/TextEncoderDecoder";
+import SaveWeb from "./pages/saveWeb/SaveWeb";
 
 const Site = () => {
   useEffect(() => {
@@ -36,7 +37,7 @@ const Site = () => {
         if (top >= offset && top < offset + height) {
           navLinks.forEach((link) => link.classList.remove("active"));
           const activeLink = document.querySelector(
-            `.nav ul li a[data-scroll="${id}"]`
+            `.nav ul li a[data-scroll="${id}"]`,
           );
           if (activeLink) {
             activeLink.classList.add("active");
@@ -71,6 +72,7 @@ const Site = () => {
             path="/text_encoder_decoder"
             element={<TextEncoderDecoder />}
           />
+          <Route path="/save-web" element={<SaveWeb />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

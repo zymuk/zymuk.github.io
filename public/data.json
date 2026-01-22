@@ -51,11 +51,11 @@
       "isVisible": true
     },
     {
-      "id": "save_web",
+      "id": "save-web",
       "displayName": "Save Web Page",
-      "description": "Save web pages for offline viewing",
+      "description": "Bookmark manager with title, URL and notes",
       "path": "/save-web",
-      "isVisible": false
+      "isVisible": true
     },
     {
       "id": "numerology-name",
