@@ -11,6 +11,7 @@ import "./Site.css";
 import NumerologyName from "./pages/numerologyName/NumerologyName";
 import TextEncoderDecoder from "./pages/textEncoderDecoder/TextEncoderDecoder";
 import SaveWeb from "./pages/saveWeb/SaveWeb";
+import EncryptDecrypt from "./pages/encryptDecrypt/EncryptDecrypt";
 
 const Site = () => {
   useEffect(() => {
@@ -69,10 +70,11 @@ const Site = () => {
           <Route path="/notes" element={<Notes />} />
           <Route path="/numerology-name" element={<NumerologyName />} />
           <Route
-            path="/text_encoder_decoder"
+            path="/text-encoder-decoder"
             element={<TextEncoderDecoder />}
           />
           <Route path="/save-web" element={<SaveWeb />} />
+          <Route path="/encrypt-decrypt" element={<EncryptDecrypt />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

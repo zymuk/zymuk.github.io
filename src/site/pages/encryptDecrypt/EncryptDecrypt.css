@@ -1,0 +1,372 @@
+.encrypt-decrypt-page {
+  padding: 0.5rem;
+}
+
+.encrypt-decrypt-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Controls Section */
+.controls-section {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.control-group {
+  margin-bottom: 20px;
+}
+
+.control-group:last-child {
+  margin-bottom: 0;
+}
+
+.control-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.required {
+  color: #ff6b6b;
+}
+
+/* Mode Toggle */
+.mode-toggle {
+  display: flex;
+  gap: 10px;
+}
+
+.mode-btn {
+  flex: 1;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mode-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.mode-btn.active {
+  background: #001f3f;
+  border-color: #001f3f;
+  box-shadow: 0 4px 15px rgba(0, 31, 63, 0.3);
+}
+
+/* Algorithm Select */
+.algorithm-select {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.algorithm-select:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.algorithm-select option {
+  background: #001f3f;
+  color: #fff;
+  padding: 8px;
+}
+
+.algorithm-select optgroup {
+  background: #002a54;
+  color: #4dd0e1;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 5px 0;
+}
+
+/* Password Input */
+.password-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.password-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.password-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* I/O Section */
+.io-section {
+  margin-bottom: 25px;
+}
+
+.io-group {
+  margin-bottom: 20px;
+}
+
+.io-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.io-header label {
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.char-count {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+}
+
+.io-textarea {
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-family: "Courier New", monospace;
+  resize: vertical;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.io-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-family: inherit;
+}
+
+.io-textarea:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.io-textarea.output {
+  background: rgba(0, 0, 0, 0.2);
+  cursor: default;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.btn-process,
+.btn-swap,
+.btn-clear,
+.btn-copy {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.btn-process {
+  background-color: #001f3f;
+  color: #fff;
+  flex: 1;
+}
+
+.btn-process:hover {
+  background-color: #003366;
+  transform: translateY(-2px);
+}
+
+.btn-swap {
+  background: rgba(156, 39, 176, 0.8);
+  color: #fff;
+  padding: 12px 16px;
+}
+
+.btn-swap:hover:not(:disabled) {
+  background: rgba(156, 39, 176, 1);
+  transform: translateY(-2px);
+}
+
+.btn-swap:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-clear {
+  background: rgba(244, 67, 54, 0.8);
+  color: #fff;
+}
+
+.btn-clear:hover {
+  background: rgba(244, 67, 54, 1);
+  transform: translateY(-2px);
+}
+
+.btn-copy {
+  background: rgba(76, 175, 80, 0.8);
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+}
+
+.btn-copy:hover:not(:disabled) {
+  background: rgba(76, 175, 80, 1);
+  transform: translateY(-2px);
+}
+
+.btn-copy:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Status Message */
+.status-message {
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin: 20px 0;
+  font-weight: 500;
+  text-align: center;
+  animation: slideIn 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.status-message.success {
+  background: rgba(76, 175, 80, 0.2);
+  border: 1px solid rgba(76, 175, 80, 0.5);
+  color: #c8e6c9;
+}
+
+.status-message.error {
+  background: rgba(244, 67, 54, 0.2);
+  border: 1px solid rgba(244, 67, 54, 0.5);
+  color: #ffcdd2;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Info Section */
+.info-section {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 25px;
+}
+
+.info-section h3 {
+  color: #fff;
+  margin: 0 0 15px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.algorithm-info {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.algorithm-info p {
+  margin: 0;
+}
+
+.algorithm-info strong {
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .encrypt-decrypt-page {
+    padding: 0.5rem;
+  }
+
+  .encrypt-decrypt-wrapper {
+    padding: 0;
+  }
+
+  .controls-section {
+    padding: 20px;
+  }
+
+  .mode-toggle {
+    flex-direction: column;
+  }
+
+  .action-buttons {
+    flex-wrap: wrap;
+  }
+
+  .btn-process {
+    flex: 1 1 100%;
+  }
+
+  .btn-swap,
+  .btn-clear {
+    flex: 1;
+  }
+
+  .io-textarea {
+    font-size: 0.9rem;
+  }
+}

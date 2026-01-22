@@ -65,10 +65,17 @@
       "isVisible": true
     },
     {
-      "id": "text_encoder_decoder",
+      "id": "text-encoder-decoder",
       "displayName": "Encode/Decode Text",
       "description": "Text encoding and decoding tool",
       "path": "/text-encoder-decoder",
+      "isVisible": true
+    },
+    {
+      "id": "encrypt-decrypt",
+      "displayName": "Encrypt/Decrypt Text",
+      "description": "Encrypt and decrypt text with various algorithms",
+      "path": "/encrypt-decrypt",
       "isVisible": true
     }
   ],
