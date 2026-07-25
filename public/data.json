@@ -240,6 +240,22 @@
       "credentialUrl": "https://edu.google.accredible.com/1d09c27c-c62c-4f41-88a7-9fa28b068b5c",
       "description": "A Google-certified Gemini University student can articulate and demonstrate fundamental knowledge of generative AI concepts and Gemini's core features and capabilities in an educational context.",
       "isVisible": true
+    },
+    {
+      "name": "SQL Advanced",
+      "issuer": "Xóm Data",
+      "issueDate": "2026-07-15",
+      "credentialUrl": "https://xomdata.com/certificates/XA-4QRQHE",
+      "description": "This certification covers advanced SQL topics including Window Functions, Common Table Expressions (CTEs), Set Operations, and other advanced data analysis techniques.",
+      "isVisible": true
+    },
+    {
+      "name": "Google AI",
+      "issuer": "Coursera - Google",
+      "issueDate": "2026-07-22",
+      "credentialUrl": "https://coursera.org/share/9fbbbcfa8c84b07196a163c1c713949b",
+      "description": "This course provides a comprehensive understanding of generative AI, focusing on large language models (LLMs). It covers the principles, applications, and ethical considerations of LLMs in various domains.",
+      "isVisible": true
     }
   ],
   "skills": [
