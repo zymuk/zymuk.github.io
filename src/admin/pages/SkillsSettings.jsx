@@ -72,7 +72,7 @@ const SkillsSettings = () => {
   const addItem = (categoryIndex) => {
     const newItem = {
       name: "",
-      years: 1,
+      startDate: "",
       isVisible: true,
     };
     const updatedSkills = [...skills];
@@ -172,22 +172,20 @@ const SkillsSettings = () => {
                     placeholder={t.skill_name || "Skill Name"}
                     className="skill-name-input"
                   />
+                  <span className="date-label">Start from: </span>
                   <input
-                    type="number"
-                    value={item.years}
+                    type="month"
+                    value={item.startDate || ""}
                     onChange={(e) =>
                       handleItemChange(
                         catIndex,
                         itemIndex,
-                        "years",
+                        "startDate",
                         e.target.value
                       )
                     }
-                    min="0"
-                    max="20"
-                    className="skill-level-input"
+                    className="skill-date-input"
                   />
-                  <span className="level-label">years</span>
                   <label className="checkbox-label">
                     <input
                       type="checkbox"

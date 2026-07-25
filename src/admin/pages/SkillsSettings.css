@@ -73,21 +73,21 @@
   border-radius: 4px;
 }
 
-.skill-level-input {
-  width: 80px;
+.skill-date-input {
+  width: 160px;
   padding: 0.5rem;
   border: 1px solid #ddd;
   border-radius: 4px;
   text-align: center;
 }
 
-.level-label {
+.date-label {
   font-weight: 600;
   color: #666;
 }
 
 .skill-name-input:focus,
-.skill-level-input:focus {
+.skill-date-input:focus {
   outline: none;
   border-color: #4caf50;
 }
@@ -140,7 +140,7 @@
     min-width: 100%;
   }
 
-  .skill-level-input {
+  .skill-date-input {
     flex: 1;
   }
 }

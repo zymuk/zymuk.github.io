@@ -262,40 +262,40 @@
     {
       "category": "Programming Languages",
       "items": [
-        { "name": "C++", "years": 6, "isVisible": true },
-        { "name": "Dotnet", "years": 6, "isVisible": true },
-        { "name": "Java", "years": 7, "isVisible": true },
-        { "name": "Python", "years": 0.5, "isVisible": true },
-        { "name": "JavaScript", "years": 5, "isVisible": true },
-        { "name": "Bash/Shell", "years": 5, "isVisible": true }
+        { "name": "C++", "startDate": "2020-01", "isVisible": true },
+        { "name": "Dotnet", "startDate": "2020-01", "isVisible": true },
+        { "name": "Java", "startDate": "2019-01", "isVisible": true },
+        { "name": "Python", "startDate": "2025-12", "isVisible": true },
+        { "name": "JavaScript", "startDate": "2021-01", "isVisible": true },
+        { "name": "Bash/Shell", "startDate": "2021-01", "isVisible": true }
       ],
       "isVisible": true
     },
     {
       "category": "Web Development",
       "items": [
-        { "name": "React", "years": 2, "isVisible": true },
-        { "name": "HTML/CSS", "years": 6, "isVisible": true },
-        { "name": "Node.js", "years": 3, "isVisible": true }
+        { "name": "React", "startDate": "2024-01", "isVisible": true },
+        { "name": "HTML/CSS", "startDate": "2020-01", "isVisible": true },
+        { "name": "Node.js", "startDate": "2023-01", "isVisible": true }
       ],
       "isVisible": true
     },
     {
       "category": "DevOps & Tools",
       "items": [
-        { "name": "Docker", "years": 1, "isVisible": true },
-        { "name": "Jenkins", "years": 4, "isVisible": true },
-        { "name": "Git", "years": 7, "isVisible": true },
-        { "name": "SVN", "years": 5, "isVisible": true },
-        { "name": "CMake", "years": 4, "isVisible": true }
+        { "name": "Docker", "startDate": "2025-01", "isVisible": true },
+        { "name": "Jenkins", "startDate": "2022-01", "isVisible": true },
+        { "name": "Git", "startDate": "2019-01", "isVisible": true },
+        { "name": "SVN", "startDate": "2021-01", "isVisible": true },
+        { "name": "CMake", "startDate": "2022-01", "isVisible": true }
       ],
       "isVisible": true
     },
     {
       "category": "Databases",
       "items": [
-        { "name": "MS SQL Server", "years": 7, "isVisible": true },
-        { "name": "MySQL", "years": 4, "isVisible": true }
+        { "name": "MS SQL Server", "startDate": "2019-01", "isVisible": true },
+        { "name": "MySQL", "startDate": "2022-01", "isVisible": true }
       ],
       "isVisible": true
     }

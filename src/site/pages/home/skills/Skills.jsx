@@ -9,6 +9,16 @@ const Skills = ({ settings = {}, data = [] }) => {
     backgroundPosition: settings.image ? "center" : undefined,
   };
 
+  const formatStartDate = (startDate) => {
+    if (!startDate) return null;
+    const date = new Date(`${startDate}-01`);
+    if (Number.isNaN(date.getTime())) return null;
+    return date.toLocaleDateString(undefined, {
+      month: "long",
+      year: "numeric",
+    });
+  };
+
   const visibleCategories = data.filter(
     (category) => category.isVisible !== false
   );
@@ -31,8 +41,11 @@ const Skills = ({ settings = {}, data = [] }) => {
                 ?.filter((item) => item.isVisible !== false)
                 .map((skill, skillIndex) => (
                   <li key={skillIndex}>
-                    <strong>{skill.name}</strong> - {skill.years}{" "}
-                    {skill.years === 1 ? "year" : "years"}
+                    <strong>{skill.name}</strong> - {
+                      skill.startDate
+                        ? `Since ${formatStartDate(skill.startDate)}`
+                        : `${skill.years} ${skill.years === 1 ? "year" : "years"}`
+                    }
                   </li>
                 ))}
             </ul>
