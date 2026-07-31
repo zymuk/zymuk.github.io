@@ -41,11 +41,14 @@ const Skills = ({ settings = {}, data = [] }) => {
                 ?.filter((item) => item.isVisible !== false)
                 .map((skill, skillIndex) => (
                   <li key={skillIndex}>
-                    <strong>{skill.name}</strong> - {
-                      skill.startDate
-                        ? `Since ${formatStartDate(skill.startDate)}`
-                        : `${skill.years} ${skill.years === 1 ? "year" : "years"}`
-                    }
+                    <strong>{skill.name}</strong>
+                    {skill.startDate
+                      ? ` - Since ${formatStartDate(skill.startDate)}`
+                      : skill.years
+                        ? ` - ${skill.years} ${
+                            skill.years === 1 ? "year" : "years"
+                          }`
+                        : null}
                   </li>
                 ))}
             </ul>

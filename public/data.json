@@ -20,17 +20,17 @@
   },
   "projects": [
     {
-      "name": "PHP application",
+      "name": "Laptop E-commerce Website (PHP)",
       "demo": "http://ttngoc653.byethost4.com/",
       "github": "https://github.com/zymuk/WebsiteSellLaptopPHP/tree/master/Source"
     },
     {
-      "name": "Portfolio Personal page",
+      "name": "Zymuk Portfolio Website (React)",
       "demo": "",
       "github": "https://github.com/zymuk/zymuk.github.io"
     },
     {
-      "name": "Personal page",
+      "name": "Personal Website",
       "demo": "http://zymuk.lovestoblog.com",
       "github": "https://github.com/zymuk"
     }
@@ -81,52 +81,15 @@
   ],
   "experience": [
     {
-      "role": "Software Engineer",
-      "company": "EVINA SOFTWARE CO. LTD",
-      "period": "Jul 2025 - Dec 2025",
-      "description": "Tasked with the technical maintenance and enhancement of the OpenTestSystem core modules. Focused on ensuring the stability of the OTX development environment and providing specialized technical support for automotive diagnostic standards.",
-      "isVisible": true,
-      "projects": [
-        {
-          "name": "OpenTestSystem (Legacy Maintenance & Support)",
-          "description": "An ISO 13209 compliant diagnostic testing platform. Continued to support the OpenTestFramework and OTX Runtime, ensuring cross-platform execution reliability for automotive procedures on Windows and embedded systems during the organizational transition.",
-          "technologies": ["C++", "OTX/OTL", "CMake", "WPF", "WinForms", "SVN"],
-          "responsibilities": [
-            "Maintained and patched core components of the OpenTestFramework to ensure system integrity.",
-            "Refactored legacy modules within the OTX Runtime to improve execution performance and stability.",
-            "Collaborated with the QA team to investigate and resolve complex, low-level bugs reported by end-users.",
-            "Provided technical documentation and expertise to support the transition of the testing suite to the new corporate entity."
-          ]
-        },
-        {
-          "name": "CI/CD Pipeline Maintenance & File Management",
-          "description": "Responsible for maintaining CI/CD pipelines and updating file configurations when source code changes occur. Focused on ensuring pipeline stability and accurate file naming conventions during the organizational transition period.",
-          "technologies": [
-            "Jenkins Pipeline",
-            "Docker",
-            "Bash Script",
-            "Batch Script",
-            "SVN"
-          ],
-          "responsibilities": [
-            "Maintained existing CI/CD pipelines to ensure continuous operation.",
-            "Updated and modified file names in pipeline configurations when source code changes required adjustments.",
-            "Performed routine maintenance on build scripts and deployment processes.",
-            "Ensured file naming consistency across different pipeline stages and environments."
-          ]
-        }
-      ]
-    },
-    {
-      "role": "Software Developer, CI/CD Engineer",
-      "company": "Emotive Software Co. Ltd",
-      "period": "Apr 2019 - Jun 2025",
-      "description": "Engineered and optimized OpenTestSystem, a high-performance automotive testing ecosystem. Played a key role in developing diagnostic APIs, execution frameworks, and streamlining CI/CD pipelines for automated testing solutions.",
+      "role": "Software Developer → QA Tester",
+      "company": "EVINA SOFTWARE CO. LTD (formerly Emotive Software Co. Ltd)",
+      "period": "Apr 2019 - Dec 2025",
+      "description": "Engineered and optimized OpenTestSystem, a high-performance automotive testing ecosystem. Played a key role in developing diagnostic APIs, execution frameworks, and streamlining CI/CD pipelines for automated testing solutions. Later focused on the technical maintenance and enhancement of OpenTestSystem core modules, ensuring stability of the OTX development environment and providing specialized support for automotive diagnostic standards during the organizational transition to EVINA.",
       "isVisible": true,
       "projects": [
         {
           "name": "OpenTestSystem (Automotive Diagnostic & Testing Platform)",
-          "description": "A comprehensive Desktop IDE designed for process-reliable automotive testing. The platform features OpenTestFramework (an OTX development environment compliant with ISO 13209) and OpenTestPlayer for Windows (x86/x64). It includes a cross-platform OTX Runtime enabling procedure execution across Windows, Linux, Android, and embedded systems. The solution empowers users to deploy complex tester sequences via an intuitive UI without deep programming expertise.",
+          "description": "A comprehensive Desktop IDE designed for process-reliable automotive testing. The platform features OpenTestFramework (an OTX development environment compliant with ISO 13209) and OpenTestPlayer for Windows (x86/x64). It includes a cross-platform OTX Runtime enabling procedure execution across Windows, Linux, Android, and embedded systems. Continued to support and enhance the platform during the organizational transition, ensuring cross-platform execution reliability for automotive procedures and providing specialized support for automotive diagnostic standards.",
           "technologies": [
             "C++",
             "OTX/OTL (ISO 13209)",
@@ -139,13 +102,18 @@
           "responsibilities": [
             "Architected and developed core components of the OpenTestFramework application suite.",
             "Implemented robust engines for loading and executing OTX diagnostic procedures.",
-            "Developed and maintained Unit Test APIs to enhance automated testing coverage and reliability.",
-            "Collaborated with the QA team to reproduce, analyze, and resolve complex issues reported by global automotive clients."
+            "Wrote 1,000+ unit test cases running directly within the OpenTestFramework IDE.",
+            "Developed code-generation templates producing API unit tests for C++, .NET, and Java (120+ test cases).",
+            "Achieved ~75% test code coverage on the OpenTestSystem project.",
+            "Collaborated with the QA team to investigate and resolve complex issues reported by EU automotive clients (Porsche, VW, HCP5).",
+            "Resolved 40+ issues within 6 months while maintaining and patching core components of the OpenTestFramework.",
+            "Wrote and converted test cases for 6+ OTX extensions to ensure functionality and stability.",
+            "Provided technical documentation and expertise to support the transition of the testing suite to the new corporate entity."
           ]
         },
         {
           "name": "CI/CD Pipeline & Automated Testing Infrastructure",
-          "description": "Designed and implemented comprehensive CI/CD pipelines for OpenTestSystem deployment and quality assurance. Built automated testing frameworks and deployment processes to ensure reliable software delivery across multiple environments and platforms.",
+          "description": "Designed, built, and maintained comprehensive CI/CD pipelines for OpenTestSystem deployment and quality assurance. Automated testing frameworks and deployment processes ensured reliable software delivery across multiple environments and platforms, with ongoing maintenance of build scripts, file configurations, and pipeline stability during the organizational transition.",
           "technologies": [
             "Jenkins Pipeline",
             "Docker",
@@ -157,8 +125,12 @@
             "Designed and built CI/CD pipelines for building source code from version control systems.",
             "Automated collection and packaging of essential files required for product delivery and distribution.",
             "Integrated and executed comprehensive unittest suites across all system components within the pipeline.",
-            "Implemented automated reporting systems to send unittest results and build status to relevant stakeholders via email notifications.",
-            "Configured scheduled automated pipeline execution at specified time intervals for continuous integration."
+            "Implemented automated reporting systems delivering unittest results and build status to 3-5 team members via email notifications.",
+            "Automated scheduled builds running twice daily on new commits for continuous integration.",
+            "Built and maintained the Jenkins CI/CD system, reducing test execution time by 25%.",
+            "Updated and modified file names in pipeline configurations when source code changes required adjustments.",
+            "Performed routine maintenance on build scripts and deployment processes.",
+            "Ensured file naming consistency across different pipeline stages and environments."
           ]
         }
       ]
@@ -181,6 +153,7 @@
             "SEO Standards Testing"
           ],
           "responsibilities": [
+            "Acted as the sole QA engineer on the project, identifying and reporting 500+ bugs (major and minor) through manual testing.",
             "Performed end-to-end manual testing for the web builder interface to ensure smooth drag-and-drop functionality and UI consistency.",
             "Executed functional and regression tests on core E-commerce features, including shopping carts, payment gateway integrations, and order management.",
             "Verified SEO-friendly components and automated schema markup features to ensure compliance with search engine standards.",
@@ -196,7 +169,6 @@
       "degree": "Bachelor of Science in Information Technology",
       "school": "Ho Chi Minh City University of Science (HCMUS)",
       "period": "2017 - 2019",
-      "gpa": "6.63/10",
       "description": "Advanced studies in software engineering and system architecture through continuation program",
       "achievements": [
         "Dean's List for academic excellence",
@@ -209,7 +181,6 @@
       "degree": "Associate of Science in Information Technology",
       "school": "Ho Chi Minh City University of Science (HCMUS)",
       "period": "2014 - 2017",
-      "gpa": "7.37/10",
       "description": "Focused on software engineering, algorithms, and system design",
       "achievements": [
         "Dean's List multiple semesters",
@@ -219,11 +190,33 @@
       "isVisible": true
     }
   ],
-  "contact": {
-    "email": "thengoc0605@yahoo.com",
-    "github": "https://github.com/zymuk",
-    "linkedin": ""
-  },
+  "contact": [
+    {
+      "icon": "fab fa-github",
+      "url": "https://github.com/zymuk",
+      "title": "GitHub"
+    },
+    {
+      "icon": "fab fa-linkedin",
+      "url": "https://www.linkedin.com/in/ngoctrt",
+      "title": "LinkedIn"
+    },
+    {
+      "icon": "fab fa-facebook",
+      "url": "https://www.facebook.com/trtngoc656/",
+      "title": "Facebook"
+    },
+    {
+      "icon": "fas fa-envelope",
+      "url": "mailto:ttngoc653@gmail.com",
+      "title": "Email (Gmail)"
+    },
+    {
+      "icon": "fas fa-envelope",
+      "url": "mailto:thengoc0605@yahoo.com",
+      "title": "Email (Yahoo)"
+    }
+  ],
   "certifications": [
     {
       "name": "SQL (Advanced)",
@@ -263,11 +256,21 @@
       "category": "Programming Languages",
       "items": [
         { "name": "C++", "startDate": "2020-01", "isVisible": true },
-        { "name": "Dotnet", "startDate": "2020-01", "isVisible": true },
+        { "name": ".NET", "startDate": "2020-01", "isVisible": true },
         { "name": "Java", "startDate": "2019-01", "isVisible": true },
-        { "name": "Python", "startDate": "2025-12", "isVisible": true },
         { "name": "JavaScript", "startDate": "2021-01", "isVisible": true },
         { "name": "Bash/Shell", "startDate": "2021-01", "isVisible": true }
+      ],
+      "isVisible": true
+    },
+    {
+      "category": "Testing Tools & Frameworks",
+      "items": [
+        { "name": "OpenTestFramework", "startDate": "2019-04", "isVisible": true },
+        { "name": "Jenkins Pipeline", "startDate": "2022-05", "isVisible": true },
+        { "name": "JUnit", "startDate": "2019-04", "isVisible": true },
+        { "name": "Selenium", "isVisible": true },
+        { "name": "Jira", "startDate": "2017-01", "isVisible": true }
       ],
       "isVisible": true
     },
@@ -284,7 +287,6 @@
       "category": "DevOps & Tools",
       "items": [
         { "name": "Docker", "startDate": "2025-01", "isVisible": true },
-        { "name": "Jenkins", "startDate": "2022-01", "isVisible": true },
         { "name": "Git", "startDate": "2019-01", "isVisible": true },
         { "name": "SVN", "startDate": "2021-01", "isVisible": true },
         { "name": "CMake", "startDate": "2022-01", "isVisible": true }
