@@ -18,23 +18,157 @@ const Calculator = () => {
     setInput((prev) => prev.slice(0, -1));
   };
 
+  const evaluate = (expression) => {
+    const tokens = expression
+      .replace(/×/g, "*")
+      .replace(/÷/g, "/")
+      .replace(/√/g, "sqrt")
+      .replace(/π/g, "pi");
+    let pos = 0;
+
+    const tokenize = () => {
+      const result = [];
+      while (pos < tokens.length) {
+        const char = tokens[pos];
+        if (/\s/.test(char)) {
+          pos++;
+        } else if (/[0-9.]/.test(char)) {
+          let number = "";
+          while (pos < tokens.length && /[0-9.]/.test(tokens[pos])) {
+            number += tokens[pos];
+            pos++;
+          }
+          const value = Number(number);
+          if (Number.isNaN(value)) throw new Error("Invalid number");
+          result.push({ type: "number", value });
+        } else if (/[a-zA-Z]/.test(char)) {
+          let word = "";
+          while (pos < tokens.length && /[a-zA-Z]/.test(tokens[pos])) {
+            word += tokens[pos];
+            pos++;
+          }
+          result.push({ type: "word", value: word });
+        } else {
+          result.push({ type: "symbol", value: char });
+          pos++;
+        }
+      }
+      return result;
+    };
+
+    const parser = (tokens) => {
+      let current = 0;
+
+      const peek = () => tokens[current];
+
+      const next = () => tokens[current++];
+
+      const match = (value) => {
+        const token = peek();
+        if (token && token.value === value) {
+          current++;
+          return true;
+        }
+        return false;
+      };
+
+      const parseNumber = () => {
+        const token = next();
+        if (token.type === "number") return token.value;
+        if (token.type === "word") {
+          if (token.value === "pi") return Math.PI;
+          if (token.value === "e") return Math.E;
+          throw new Error("Unknown constant");
+        }
+        throw new Error("Expected number");
+      };
+
+      const parsePrimary = () => {
+        const token = peek();
+        if (!token) throw new Error("Unexpected end");
+        if (token.value === "(") {
+          next();
+          const value = parseExpression();
+          if (!match(")")) throw new Error("Missing closing parenthesis");
+          return value;
+        }
+        if (token.type === "word") {
+          const functions = {
+            sin: Math.sin,
+            cos: Math.cos,
+            tan: Math.tan,
+            log: Math.log10,
+            ln: Math.log,
+            exp: Math.exp,
+            sqrt: Math.sqrt,
+          };
+          const fn = functions[token.value];
+          if (fn) {
+            next();
+            if (!match("(")) throw new Error("Missing opening parenthesis");
+            const value = parseExpression();
+            if (!match(")")) throw new Error("Missing closing parenthesis");
+            return fn(value);
+          }
+          return parseNumber();
+        }
+        return parseNumber();
+      };
+
+      const parseUnary = () => {
+        if (match("-")) return -parseUnary();
+        if (match("+")) return parseUnary();
+        return parsePrimary();
+      };
+
+      const parsePower = () => {
+        let value = parseUnary();
+        while (match("^")) {
+          value = Math.pow(value, parsePower());
+        }
+        return value;
+      };
+
+      const parseTerm = () => {
+        let value = parsePower();
+        while (peek() && (peek().value === "*" || peek().value === "/")) {
+          const operator = next().value;
+          const right = parsePower();
+          value = operator === "*" ? value * right : value / right;
+        }
+        return value;
+      };
+
+      const parseExpression = () => {
+        let value = parseTerm();
+        while (peek() && (peek().value === "+" || peek().value === "-")) {
+          const operator = next().value;
+          const right = parseTerm();
+          value = operator === "+" ? value + right : value - right;
+        }
+        return value;
+      };
+
+      const result = parseExpression();
+      if (current < tokens.length) throw new Error("Invalid expression");
+      return result;
+    };
+
+    return parser(tokenize());
+  };
+
   const handleCalculate = () => {
     try {
-      let expression = input
-        .replace(/×/g, "*")
-        .replace(/÷/g, "/")
-        .replace(/√/g, "Math.sqrt")
-        .replace(/π/g, "Math.PI")
-        .replace(/e/g, "Math.E")
-        .replace(/sin/g, "Math.sin")
-        .replace(/cos/g, "Math.cos")
-        .replace(/tan/g, "Math.tan")
-        .replace(/log/g, "Math.log10")
-        .replace(/ln/g, "Math.log")
-        .replace(/exp/g, "Math.exp");
-
-      // eslint-disable-next-line no-eval
-      setResult(eval(expression));
+      if (!input.trim()) {
+        setResult("");
+        return;
+      }
+      const value = evaluate(input);
+      if (Number.isFinite(value)) {
+        setResult(String(parseFloat(value.toPrecision(12))));
+      } else {
+        setResult("Error");
+      }
     } catch {
       setResult("Error");
     }
