@@ -237,9 +237,12 @@ Quy tắc truy cập nhất quán: `localStorage.setItem(key, JSON.stringify(val
 | Khóa | Shape | Bên ghi | Bên đọc |
 |---|---|---|---|
 | `lang` | `"en"` / `"vi"` | `AdminHeader`, `Login` | mọi trang admin |
-| `admin_token` | chuỗi cứng `"authenticated"` | `Login` | `Admin.jsx`, `Dashboard`, `Login` |
+| `admin_token` | chuỗi hex ngẫu nhiên 128-bit (sinh bởi `generateToken()`) | `Login` | `Admin.jsx`, `Dashboard`, `Login` |
+| `admin_token_exp` | timestamp (ms) hết hạn phiên, mặc định +24h | `Login` | `Admin.jsx`, `Dashboard`, `Login` |
 | `user` | JSON `{id, email, password, role}` | `Login` | `Admin.jsx` |
 | `site_data` | toàn bộ object `data.json` | `Settings` (cache) | `Settings` |
+
+> **Lưu ý:** `admin_token`/`admin_token_exp` do `src/utils/auth.js` quản lý — `isAuthenticated()` yêu cầu token tồn tại **và** chưa hết hạn; `logout()` xóa cả 3 khóa. Vẫn là cơ chế giả lập: ai cũng set tay được qua DevTools.
 
 ### 6.3. Khóa công cụ (chỉ site, dữ liệu cá nhân người dùng)
 
@@ -255,11 +258,11 @@ Quy tắc truy cập nhất quán: `localStorage.setItem(key, JSON.stringify(val
 |---|---|---|
 | `localStorage` | toàn app | Lưu trữ dữ liệu (xem mục 6) |
 | `crypto.subtle.digest` | `EncryptDecrypt.jsx` | Tính SHA-1/SHA-256/SHA-512 |
+| `crypto.getRandomValues` | `src/utils/auth.js` | Sinh token phiên ngẫu nhiên 128-bit |
 | `navigator.clipboard.writeText` | `EncryptDecrypt`, `TextEncoderDecoder` | Nút Copy |
 | `btoa` / `atob` | `EncryptDecrypt` | Base64 (bọc `unescape`/`encodeURIComponent` cho UTF-8) |
 | `document.execCommand` | `Notes.jsx` (RichTextEditor) | Lệnh định dạng rich-text — **đã deprecated** |
 | `URL.createObjectURL` + Blob | `Settings.jsx` (export JSON) | Tải file `data_<timestamp>.json` về máy |
-| `eval` | `Calculator.jsx` | Tính biểu thức — **không an toàn với input mở** |
 | `window.confirm` / `prompt` | `Notes`, `NumerologyName`, `SaveWeb` | Xác nhận xóa, nhập URL |
 | `scrollIntoView` | `Site.jsx` | Cuộn mượt tới section |
 

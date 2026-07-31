@@ -214,18 +214,21 @@ Toàn bộ ứng dụng vận hành trên một quy ước duy nhất:
 
 ### 5.3. Xác thực admin — cơ chế giả lập
 
-`Login.jsx` fetch `data.json`, tìm `user` trong `users` khớp `email` + `password` (so khớp **plaintext phía client**), rồi ghi `admin_token = "authenticated"` (giá trị cứng, không có token thật, không hết hạn) và `user`.
+`Login.jsx` fetch `data.json`, tìm `user` trong `users` khớp `email` + `password` (so khớp **plaintext phía client**), rồi ghi `admin_token` (token **ngẫu nhiên 128-bit**, hết hạn sau 24h) và `user`.
 
 ```js
 const user = users.find((u) => u.email === email && u.password === password);
 if (user) {
-  localStorage.setItem("admin_token", "authenticated");
-  localStorage.setItem("user", JSON.stringify(user));
+  localStorage.setItem(TOKEN_KEY, generateToken());
+  localStorage.setItem(TOKEN_EXP_KEY, String(Date.now() + SESSION_DURATION_MS));
+  localStorage.setItem(USER_KEY, JSON.stringify(user));
   ...
 }
 ```
 
-**Hệ quả bảo mật:** chỉ cần tồn tại khóa `admin_token` là vào được `/admin` — ai cũng có thể set khóa này qua DevTools console. Đây là hạn chế chấp nhận được cho site tĩnh cá nhân, nhưng **không dùng cho dữ liệu nhạy cảm**.
+Logic dùng chung nằm trong `src/utils/auth.js`: `generateToken()`, `isAuthenticated()` (token tồn tại **và** chưa hết hạn), `logout()`. `Admin.jsx` tính `auth = isAuthenticated()` **ngay trong render** (kèm `useLocation()` để subscribe theo đổi route — không dùng state/effect chạy một lần, tránh bug "login xong không vào được dashboard"), `Dashboard.jsx` kiểm tra qua `isAuthenticated()` trong `useEffect`.
+
+**Hệ quả bảo mật:** token có hết hạn nhưng vẫn là giả lập — ai cũng có thể tự set `admin_token` + `admin_token_exp` qua DevTools console. Mật khẩu vẫn plaintext trong `data.json`. Đây là hạn chế chấp nhận được cho site tĩnh cá nhân, nhưng **không dùng cho dữ liệu nhạy cảm**.
 
 **Dead code:** `src/admin/AuthContext.jsx` (định nghĩa `AuthProvider`/`useAuth` nhưng không được mount ở đâu) và `src/admin/components/ProtectedRoute.jsx` (không được import; hơn nữa import `./AuthContext` sai đường dẫn — file thật nằm một cấp trên). `src/admin/components/layout/Sidebar.jsx` cũng không được dùng (AdminLayout dùng `AdminSidebar`).
 
@@ -235,12 +238,9 @@ Tất cả công cụ đều chạy 100% phía client (không fetch dữ liệu 
 
 ### 6.1. Calculator (`pages/calculator/Calculator.jsx`)
 
-State `input` (chuỗi biểu thức) + `result`. Bàn phím số/chức năng (π, e, sin, cos, tan, log, ln, exp, `^`, √). Khi tính:
+State `input` (chuỗi biểu thức) + `result`. Bàn phím số/chức năng (π, e, sin, cos, tan, log, ln, exp, `^`, √). Khi tính, chuỗi được parse bằng **recursive-descent parser an toàn** (tokenizer + 4 mức ưu tiên: dấu trừ một ngôi, `^` kết hợp phải, `*`/`/`, `+`/`-`; hỗ trợ hàm lượng giác/π/e/√), thay vì `eval`. Kết quả hiển thị với `toPrecision(12)`.
 
-1. Chuẩn hóa ký hiệu (`×`→`*`, `÷`→`/`, `√`→`Math.sqrt`, `π`→`Math.PI`, `e`→`Math.E`, các hàm lượng giác...).
-2. `eval(expression)` trong try/catch → `"Error"` nếu lỗi.
-
-> **Rủi ro:** dùng `eval` trên input người dùng (đã disable lint `no-eval`). Input của trang này bị giới hạn bởi các nút bấm, nhưng nếu mở rộng cần thay bằng trình parse biểu thức an toàn (ví dụ `mathjs`).
+> **Đã sửa:** trước đây dùng `eval` trên input người dùng (disable lint `no-eval`) — rủi ro code injection. Giờ dùng parser thuần không `eval`, đã xác minh bằng 15 test vector.
 
 ### 6.2. Notes (`pages/notes/Notes.jsx`, 621 dòng)
 
@@ -310,11 +310,11 @@ Luồng xử lý (`handleProcess`):
 
 ## 9. Hạn chế đã biết (từ phân tích code)
 
-> **Ghi chú cập nhật:** sáu hạn chế trước đây **đã được sửa** — lệch key Experience (`ExperienceSettings` giờ đọc/ghi khóa `experience` khớp `Home.jsx`, kèm migration từ `experienceData`), form Contact (`Contact.jsx` giờ mở `mailto:` với nội dung đã điền sẵn), route `/features` đứng riêng (`Features.jsx` giờ tự fetch `data.json` + `config.json` khi không được truyền props — trước đây crash `TypeError` vì `data.filter` trên `undefined`), Header heuristic (`Header.jsx` dùng `useLocation().pathname === "/"` thay vì regex đoán URL), MD5 giả (`EncryptDecrypt.jsx` giờ implement MD5 thật thuần JS, đã xác minh khớp vector chuẩn — trước đây là SHA-1 cắt ngắn), và Calculator `eval` (`Calculator.jsx` giờ dùng recursive-descent parser an toàn, hỗ trợ + - * / ^ hàm lượng giác/π/e/√, đã xác minh bằng test vector — trước đây `eval` mở rủi ro code injection). Các mục dưới đây vẫn chưa được xử lý.
+> **Ghi chú cập nhật:** sáu hạn chế trước đây **đã được sửa** — lệch key Experience (`ExperienceSettings` giờ đọc/ghi khóa `experience` khớp `Home.jsx`, kèm migration từ `experienceData`), form Contact (`Contact.jsx` giờ mở `mailto:` với nội dung đã điền sẵn), route `/features` đứng riêng (`Features.jsx` giờ tự fetch `data.json` + `config.json` khi không được truyền props — trước đây crash `TypeError` vì `data.filter` trên `undefined`), Header heuristic (`Header.jsx` dùng `useLocation().pathname === "/"` thay vì regex đoán URL), MD5 giả (`EncryptDecrypt.jsx` giờ implement MD5 thật thuần JS, đã xác minh khớp vector chuẩn — trước đây là SHA-1 cắt ngắn), và Calculator `eval` (`Calculator.jsx` giờ dùng recursive-descent parser an toàn, hỗ trợ + - * / ^ hàm lượng giác/π/e/√, đã xác minh bằng test vector — trước đây `eval` mở rủi ro code injection). Auth giả lập được cải thiện một phần: token cứng `"authenticated"` đã thay bằng **token ngẫu nhiên 128-bit hết hạn sau 24h** (`src/utils/auth.js`) — nhưng mật khẩu vẫn dạng plaintext trong `data.json` và ai cũng tự set token được qua DevTools nên vẫn là hạn chế còn lại (dòng 1). Các mục dưới đây vẫn chưa được xử lý.
 
 | # | Hạn chế | Vị trí | Ảnh hưởng |
 |---|---|---|---|
-| 1 | Auth giả lập, token cứng `"authenticated"`, mật khẩu plaintext | `Login.jsx`, `Admin.jsx` | Ai cũng vào được admin bằng DevTools |
+| 1 | Auth giả lập, mật khẩu plaintext — token ngẫu nhiên có hạn (24h) nhưng vẫn set tay được | `Login.jsx`, `Admin.jsx` | Ai cũng vào được admin bằng DevTools |
 | 2 | Notes dùng `document.execCommand` (deprecated) + `dangerouslySetInnerHTML` | `Notes.jsx` | Rủi ro XSS với nội dung không tin cậy |
 | 3 | EditProfile & Users là stub | `EditProfile.jsx`, `Users.jsx` | Tính năng chưa hoàn thiện |
 

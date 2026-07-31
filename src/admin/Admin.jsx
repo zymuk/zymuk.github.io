@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import React from "react";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { isAuthenticated } from "../utils/auth";
 import Login from "./pages/Login";
 import AdminLayout from "./pages/AdminLayout";
 import Dashboard from "./pages/Dashboard";
@@ -16,33 +17,11 @@ import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const Admin = () => {
-  const [auth, setAuth] = useState(false);
-  const [displayName, setDisplayName] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [t, setT] = useState({});
-  const lang = localStorage.getItem("lang") || "en";
+  useLocation();
 
-  useEffect(() => {
-    fetch(`/${lang}.json`)
-      .then((res) => res.json())
-      .then((data) => setT(data));
-  }, [lang]);
-
-  useEffect(() => {
-    // Static site: just check if token exists in localStorage
-    const token = localStorage.getItem("admin_token");
-    console.log("Admin useEffect, token:", token);
-    if (token) {
-      setAuth(true);
-      const user = JSON.parse(localStorage.getItem("user") || "{}");
-      setDisplayName(user.email || "Admin");
-    }
-    setLoading(false);
-  }, []);
-
-  if (loading) {
-    return <div>{t.loading || "Loading..."}</div>;
-  }
+  const auth = isAuthenticated();
+  const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+  const displayName = storedUser.email || "Admin";
 
   return (
     <Routes>

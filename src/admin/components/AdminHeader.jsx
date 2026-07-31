@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../../utils/auth";
 import "./AdminHeader.css";
 
 const LANGS = [
@@ -21,8 +22,7 @@ const AdminHeader = ({ displayName }) => {
   }, [lang]);
 
   const handleLogout = () => {
-    localStorage.removeItem("admin_token");
-    localStorage.removeItem("user");
+    logout();
     navigate("login", { replace: true });
   };
 
