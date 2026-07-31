@@ -132,7 +132,7 @@ Khi render, `Home` truyền props theo mẫu `settings.homepage?.<section> || se
 
 ### 3.3. Header và Footer
 
-- **`Header`** (`components/header/Header.jsx`): đọc `localStorage["features"]` (lọc `isVisible`), fallback `fetch("/data.json")`. Render menu theo **heuristic URL**: nếu `window.location.href` khớp regex "URL trần không có hash-path" → menu cuộn một trang (9 nút `data-scroll` gọi `scrollToSection`); ngược lại → menu link tới các công cụ (`<Link to={"/"+id}>`). Kèm hamburger menu mobile.
+- **`Header`** (`components/header/Header.jsx`): đọc `localStorage["features"]` (lọc `isVisible`), fallback `fetch("/data.json")`. Render menu theo **pathname** (`useLocation().pathname === "/"`): nếu đang ở trang chủ → menu cuộn một trang (9 nút `data-scroll` gọi `scrollToSection`); ngược lại → menu link tới các công cụ (`<Link to={"/"+id}>`). Kèm hamburger menu mobile.
 - **`Footer`** (`components/footer/Footer.jsx`): fetch `/data.json?v=${Date.now()}` (cache-busting), chỉ render khi `Array.isArray(data.contact)`, vẽ link xã hội theo từng item `{icon, url, title}` trong mảng `contact` (thay cho danh sách cứng cũ). Vẫn import `package.json` để đọc `datetimedeploy` (hiển thị "Deploy at ..." nếu khác rỗng — `deploy.bat` tự điền).
 
 ## 4. Kiến trúc Admin
@@ -310,7 +310,7 @@ Luồng xử lý (`handleProcess`):
 
 ## 9. Hạn chế đã biết (từ phân tích code)
 
-> **Ghi chú cập nhật:** ba hạn chế trước đây **đã được sửa** — lệch key Experience (`ExperienceSettings` giờ đọc/ghi khóa `experience` khớp `Home.jsx`, kèm migration từ `experienceData`), form Contact (`Contact.jsx` giờ mở `mailto:` với nội dung đã điền sẵn), và route `/features` đứng riêng (`Features.jsx` giờ tự fetch `data.json` + `config.json` khi không được truyền props — trước đây crash `TypeError` vì `data.filter` trên `undefined`). Các mục dưới đây vẫn chưa được xử lý.
+> **Ghi chú cập nhật:** bốn hạn chế trước đây **đã được sửa** — lệch key Experience (`ExperienceSettings` giờ đọc/ghi khóa `experience` khớp `Home.jsx`, kèm migration từ `experienceData`), form Contact (`Contact.jsx` giờ mở `mailto:` với nội dung đã điền sẵn), route `/features` đứng riêng (`Features.jsx` giờ tự fetch `data.json` + `config.json` khi không được truyền props — trước đây crash `TypeError` vì `data.filter` trên `undefined`), và Header heuristic (`Header.jsx` dùng `useLocation().pathname === "/"` thay vì regex đoán URL). Các mục dưới đây vẫn chưa được xử lý.
 
 | # | Hạn chế | Vị trí | Ảnh hưởng |
 |---|---|---|---|
@@ -319,7 +319,6 @@ Luồng xử lý (`handleProcess`):
 | 3 | Calculator dùng `eval` | `Calculator.jsx:21-41` | Rủi ro bảo mật nếu mở rộng input |
 | 4 | Notes dùng `document.execCommand` (deprecated) + `dangerouslySetInnerHTML` | `Notes.jsx` | Rủi ro XSS với nội dung không tin cậy |
 | 5 | `/features` đứng riêng không có dữ liệu; EditProfile & Users là stub | `EditProfile.jsx`, `Users.jsx` | Tính năng chưa hoàn thiện |
-| 6 | Header dùng regex heuristic để phân biệt 2 chế độ menu | `Header.jsx:37-46` | Nhạy cảm với format URL |
 
 ## 10. Tiếp theo
 

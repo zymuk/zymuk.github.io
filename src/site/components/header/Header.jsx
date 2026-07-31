@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Header.css";
 
 const Header = ({ scrollToSection }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const navigate = useNavigate();
+  const location = useLocation();
   const [listActivedFeatures, setListActivedFeatures] = useState([]);
 
   useEffect(() => {
@@ -35,11 +36,8 @@ const Header = ({ scrollToSection }) => {
   };
 
   const renderMenu = () => {
-    const regexHomePage = new RegExp(
-      "([hpts]{4,}[:/]{0,}[a-zA-Z0-9.:]{1,}[/]{0,}([#]{1,}[a-zA-Z0-9]{0,}){0,}[/]{0,}){1,}$",
-    );
-    const checkHonePage = regexHomePage.test(window.location.href);
-    if (checkHonePage) {
+    const checkHomePage = location.pathname === "/";
+    if (checkHomePage) {
       return (
         <ul>
           <li>
