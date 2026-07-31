@@ -1,16 +1,67 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "./Features.css";
 
-const Features = ({ settings, data }) => {
+const Features = ({ settings = {}, data = [] }) => {
+  const [sectionSettings, setSectionSettings] = useState(settings);
+  const [features, setFeatures] = useState(data);
+  const [loading, setLoading] = useState(!(data && data.length > 0));
+
+  useEffect(() => {
+    let active = true;
+
+    if (data && data.length > 0) {
+      setSectionSettings(settings);
+      setFeatures(data);
+      setLoading(false);
+      return () => {
+        active = false;
+      };
+    }
+
+    Promise.all([fetch("/data.json"), fetch("/config.json")])
+      .then(([dataResponse, configResponse]) =>
+        Promise.all([dataResponse.json(), configResponse.json()])
+      )
+      .then(([jsonData, configData]) => {
+        if (!active) return;
+        setFeatures(jsonData.features || []);
+        setSectionSettings(configData.homepage?.tools || configData.tools || {});
+      })
+      .catch((error) => console.error("Error loading features:", error))
+      .finally(() => {
+        if (active) setLoading(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [data, settings]);
+
   const sectionStyle = {
-    backgroundColor: settings.color,
-    backgroundImage: settings.image ? `url(${settings.image})` : undefined,
+    backgroundColor: sectionSettings.color || "#0099d4",
+    backgroundImage: sectionSettings.image
+      ? `url(${sectionSettings.image})`
+      : undefined,
     backgroundSize: "cover",
     backgroundPosition: "center",
   };
 
-  const visibleFeatures = data.filter((feature) => feature.isVisible !== false);
+  const visibleFeatures = features.filter(
+    (feature) => feature.isVisible !== false
+  );
+
+  if (loading) {
+    return (
+      <section
+        id="features"
+        className="section features-section"
+        style={sectionStyle}
+      >
+        <div>Loading...</div>
+      </section>
+    );
+  }
 
   return (
     <section

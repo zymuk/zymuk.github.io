@@ -127,7 +127,7 @@ Khi render, `Home` truyền props theo mẫu `settings.homepage?.<section> || se
 | **Certifications** | `home/certifications/Certifications.jsx` | `name — issuer (issueDate)` + link "View Credential" nếu có `credentialUrl` |
 | **Skills** | `home/skills/Skills.jsx` | Nhóm theo `category`; `formatStartDate("2020-01")` → "January 2020", hiển thị "Since ..." hoặc "N years" |
 | **Projects** | `home/projects/Projects.jsx` | Link "Live Site" (`demo`) / "GitHub" (`github`) |
-| **Features** | `home/features/Features.jsx` | Trung tâm điều hướng tới các công cụ — `<NavLink>` tới `path || "/" + id`, hiển thị `displayName` |
+| **Features** | `home/features/Features.jsx` | Trung tâm điều hướng tới các công cụ — `<NavLink>` tới `path || "/" + id`, hiển thị `displayName`; nếu không được truyền `data` (route `/features` đứng riêng) tự fetch `data.json` + `config.json` |
 | **Contact** | `home/contact/Contact.jsx` | Form `mailto:` — submit mở email client với nội dung name/email/subject/message được điền sẵn (không cần backend) |
 
 ### 3.3. Header và Footer
@@ -310,7 +310,7 @@ Luồng xử lý (`handleProcess`):
 
 ## 9. Hạn chế đã biết (từ phân tích code)
 
-> **Ghi chú cập nhật:** hai hạn chế trước đây **đã được sửa** — lệch key Experience (`ExperienceSettings` giờ đọc/ghi khóa `experience` khớp `Home.jsx`, kèm migration từ `experienceData`) và form Contact (`Contact.jsx` giờ mở `mailto:` với nội dung đã điền sẵn). Các mục dưới đây vẫn chưa được xử lý.
+> **Ghi chú cập nhật:** ba hạn chế trước đây **đã được sửa** — lệch key Experience (`ExperienceSettings` giờ đọc/ghi khóa `experience` khớp `Home.jsx`, kèm migration từ `experienceData`), form Contact (`Contact.jsx` giờ mở `mailto:` với nội dung đã điền sẵn), và route `/features` đứng riêng (`Features.jsx` giờ tự fetch `data.json` + `config.json` khi không được truyền props — trước đây crash `TypeError` vì `data.filter` trên `undefined`). Các mục dưới đây vẫn chưa được xử lý.
 
 | # | Hạn chế | Vị trí | Ảnh hưởng |
 |---|---|---|---|
@@ -318,9 +318,8 @@ Luồng xử lý (`handleProcess`):
 | 2 | MD5 là SHA-1 cắt ngắn | `EncryptDecrypt.jsx` | Không dùng được như hash thật |
 | 3 | Calculator dùng `eval` | `Calculator.jsx:21-41` | Rủi ro bảo mật nếu mở rộng input |
 | 4 | Notes dùng `document.execCommand` (deprecated) + `dangerouslySetInnerHTML` | `Notes.jsx` | Rủi ro XSS với nội dung không tin cậy |
-| 5 | Route `/features` standalone rỗng | `Site.jsx:68` | Truy cập trực tiếp không thấy nội dung |
-| 6 | `/features` đứng riêng không có dữ liệu; EditProfile & Users là stub | `EditProfile.jsx`, `Users.jsx` | Tính năng chưa hoàn thiện |
-| 7 | Header dùng regex heuristic để phân biệt 2 chế độ menu | `Header.jsx:37-46` | Nhạy cảm với format URL |
+| 5 | `/features` đứng riêng không có dữ liệu; EditProfile & Users là stub | `EditProfile.jsx`, `Users.jsx` | Tính năng chưa hoàn thiện |
+| 6 | Header dùng regex heuristic để phân biệt 2 chế độ menu | `Header.jsx:37-46` | Nhạy cảm với format URL |
 
 ## 10. Tiếp theo
 
