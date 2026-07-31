@@ -48,7 +48,7 @@ yarn build
 Tài liệu trung thực với hiện trạng code. Trong quá trình phân tích, tôi phát hiện những điểm cần lưu ý (chi tiết trong [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)):
 
 - **Xác thực admin chỉ mang tính giả lập** — chỉ cần tồn tại khóa `admin_token` trong `localStorage` là vào được panel; mật khẩu lưu dạng plaintext trong `public/data.json`.
-- **Form Contact chưa hoạt động** — không có handler submit hay backend nhận dữ liệu.
+- **Form Contact hoạt động qua `mailto:`** — nút Send mở email client với nội dung đã điền sẵn (không có backend, không gửi qua web).
 - **Thuật toán MD5 trong EncryptDecrypt không thật** — thực chất là SHA-1 bị cắt ngắn.
 - **Calculator dùng `eval`** — tính biểu thức bằng `eval`; cần cân nhắc khi mở rộng.
 - **i18n chỉ áp dụng cho admin** — trang công khai dùng nội dung tiếng Anh/Việt cứng trong JSON cấu hình.
