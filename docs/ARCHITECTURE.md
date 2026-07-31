@@ -154,7 +154,7 @@ Mọi trang settings đều tuân theo cùng một khuôn mẫu: **đọc localS
 | Homepage | `pages/HomepageSettings.jsx` | `GET /config.json` | Sửa 8 section (hero, about, experience, education, certifications, skills, projects, tools, contact) — màu/title/text/ảnh; có Reset | `homepageSettings` |
 | Projects | `pages/ProjectsSettings.jsx` | `GET /data.json` | CRUD qua form; tự chuyển key cũ `demo`/`github` → `demoLink`/`sourceLink` | `projects` |
 | Features | `pages/FeaturesSettings.jsx` | `GET /data.json` | Sửa inline các hàng hiện có (`displayName`, `description`, `path`, `isVisible`); **không thêm/xóa** | `features` |
-| Experience | `pages/ExperienceSettings.jsx` | `GET /data.json` | CRUD entry + nested projects + responsibilities + visibility | `experienceData` ⚠️ |
+| Experience | `pages/ExperienceSettings.jsx` | `GET /data.json` | CRUD entry + nested projects + responsibilities + visibility | `experience` |
 | Education | `pages/EducationSettings.jsx` | `GET /data.json` | CRUD qua form (`degree, school, period, gpa, description, achievements[]`) | `education` |
 | Certifications | `pages/CertificationSettings.jsx` | `GET /data.json` | CRUD (`name, issuer, issueDate, credentialUrl, description, isVisible`) | `certifications` |
 | Skills | `pages/SkillsSettings.jsx` | `GET /data.json` | CRUD category + item con (`name`, `startDate`, `isVisible`) | `skills` |
@@ -200,7 +200,7 @@ Toàn bộ ứng dụng vận hành trên một quy ước duy nhất:
 | `homepageSettings` | object 8 section | `HomepageSettings` | `Home.jsx`, `HomepageSettings` |
 | `projects` | array `{name, description, demoLink, sourceLink, isVisible}` | `ProjectsSettings` | `Home.jsx`, `ProjectsSettings` |
 | `features` | array `{id, displayName, description, path, isVisible}` | `FeaturesSettings` | `Home.jsx`, `Header.jsx`, `FeaturesSettings` |
-| `experienceData` | array experience (kèm nested projects) | `ExperienceSettings` | chỉ `ExperienceSettings` ⚠️ |
+| `experience` | array experience (kèm nested projects) | `ExperienceSettings` | `Home.jsx`, `ExperienceSettings` |
 | `education` | array education | `EducationSettings` | `Home.jsx`, `EducationSettings` |
 | `certifications` | array certifications | `CertificationSettings` | `Home.jsx`, `CertificationSettings` |
 | `skills` | array category (kèm items) | `SkillsSettings` | `Home.jsx`, `SkillsSettings` |
@@ -310,10 +310,11 @@ Luồng xử lý (`handleProcess`):
 
 ## 9. Hạn chế đã biết (từ phân tích code)
 
+> **Ghi chú cập nhật:** hạn chế #1 (lệch key Experience) **đã được sửa** — `ExperienceSettings.jsx` giờ đọc/ghi khóa `experience` khớp với `Home.jsx`, kèm migration tự động từ khóa cũ `experienceData`. Các mục còn lại dưới đây vẫn chưa được xử lý.
+
 | # | Hạn chế | Vị trí | Ảnh hưởng |
 |---|---|---|---|
-| 1 | **Lệch key Experience**: admin ghi `experienceData`, site đọc `experience` | `ExperienceSettings.jsx` ghi / `Home.jsx:41` đọc | Chỉnh sửa Experience trong admin **không hiển thị** trên trang công khai (luôn fallback `data.json`) |
-| 2 | Auth giả lập, token cứng `"authenticated"`, mật khẩu plaintext | `Login.jsx`, `Admin.jsx` | Ai cũng vào được admin bằng DevTools |
+| 1 | Auth giả lập, token cứng `"authenticated"`, mật khẩu plaintext | `Login.jsx`, `Admin.jsx` | Ai cũng vào được admin bằng DevTools |
 | 3 | Form Contact không có submit handler | `home/contact/Contact.jsx` | Nút "Send" vô tác dụng |
 | 4 | MD5 là SHA-1 cắt ngắn | `EncryptDecrypt.jsx` | Không dùng được như hash thật |
 | 5 | Calculator dùng `eval` | `Calculator.jsx:21-41` | Rủi ro bảo mật nếu mở rộng input |

@@ -12,8 +12,15 @@ const ExperienceSettings = () => {
 
   const loadSettings = async () => {
     try {
+      // Migrate legacy "experienceData" key to "experience"
+      const legacyData = localStorage.getItem("experienceData");
+      if (legacyData && !localStorage.getItem("experience")) {
+        localStorage.setItem("experience", legacyData);
+        localStorage.removeItem("experienceData");
+      }
+
       // Check localStorage first
-      const savedData = localStorage.getItem("experienceData");
+      const savedData = localStorage.getItem("experience");
       if (savedData) {
         setData({ experience: JSON.parse(savedData) });
         setLoading(false);
@@ -167,11 +174,12 @@ const ExperienceSettings = () => {
   };
 
   const saveSettings = () => {
-    localStorage.setItem("experienceData", JSON.stringify(data.experience));
+    localStorage.setItem("experience", JSON.stringify(data.experience));
     alert("Experience settings saved successfully!");
   };
 
   const resetSettings = () => {
+    localStorage.removeItem("experience");
     localStorage.removeItem("experienceData");
     loadSettings();
     alert("Experience settings reset successfully!");

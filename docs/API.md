@@ -215,12 +215,12 @@ Quy tắc truy cập nhất quán: `localStorage.setItem(key, JSON.stringify(val
 | `homepageSettings` | object 8 section (giống `config.json.homepage`) | `HomepageSettings` | `Home.jsx`, `HomepageSettings` |
 | `projects` | array `{name, description, demoLink, sourceLink, isVisible}` | `ProjectsSettings` | `Home.jsx`, `ProjectsSettings` |
 | `features` | array `{id, displayName, description, path, isVisible}` | `FeaturesSettings` | `Home.jsx`, `Header.jsx`, `FeaturesSettings` |
-| `experienceData` | array experience (kèm nested projects/responsibilities) | `ExperienceSettings` | chỉ `ExperienceSettings` ⚠️ |
+| `experience` | array experience (kèm nested projects/responsibilities) | `ExperienceSettings` | `Home.jsx`, `ExperienceSettings` |
 | `education` | array education (`degree, school, period, gpa, description, achievements[], isVisible`) | `EducationSettings` | `Home.jsx`, `EducationSettings` |
 | `certifications` | array `{name, issuer, issueDate, credentialUrl, description, isVisible}` | `CertificationSettings` | `Home.jsx`, `CertificationSettings` |
 | `skills` | array category `{category, isVisible, items:[{name, startDate, isVisible}]}` | `SkillsSettings` | `Home.jsx`, `SkillsSettings` |
 
-> ⚠️ **Bug đã biết:** khóa `experienceData` do admin ghi **không khớp** khóa `experience` mà `Home.jsx` đọc → chỉnh sửa Experience không bao giờ lên trang công khai. Sửa: đổi `ExperienceSettings.jsx` ghi vào `"experience"` (đồng thời cập nhật điều kiện gate ở `Home.jsx:46`).
+> **Đã sửa:** trước đây `ExperienceSettings` ghi nhầm khóa `experienceData` trong khi `Home.jsx` đọc `experience`, khiến chỉnh sửa Experience không lên trang công khai. Hiện khóa thống nhất là `experience`; khi đọc, nếu tồn tại `experienceData` cũ sẽ được tự động migrate sang `experience`.
 
 ### 6.2. Khóa phiên & tài khoản (admin)
 

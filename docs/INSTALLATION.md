@@ -122,7 +122,7 @@ Dành cho quy trình một-chạm: cài dependency → build → mở dev server
 |---|---|
 | **`ERR_OSSL_EVP_UNSUPPORTED` khi build** | Node quá mới so với webpack của CRA 5 → dùng Node 18 LTS |
 | **Cổng 3000 bị chiếm** | CRA tự nhảy sang port khác (thông báo trong console); hoặc kill tiến trình chiếm cổng |
-| **Sửa dữ liệu trong Admin nhưng trang công khai không đổi** | Dữ liệu bị ghi đè bởi `localStorage` của trình duyệt. Mở DevTools → Application → Local Storage, xóa các key liên quan (`homepageSettings`, `projects`, `features`, `experienceData`, `education`, `certifications`, `skills`) rồi tải lại trang để dùng lại dữ liệu mặc định từ `public/*.json` |
+| **Sửa dữ liệu trong Admin nhưng trang công khai không đổi** | Dữ liệu bị ghi đè bởi `localStorage` của trình duyệt. Mở DevTools → Application → Local Storage, xóa các key liên quan (`homepageSettings`, `projects`, `features`, `experience`, `education`, `certifications`, `skills`) rồi tải lại trang để dùng lại dữ liệu mặc định từ `public/*.json` |
 | **Mất hết dữ liệu admin** | `localStorage` là dữ liệu local của từng máy/trình duyệt, không đồng bộ. Dùng Admin → Settings → Export để tải file JSON sao lưu |
 | **Vào `/admin` bị đẩy về login** | Bình thường khi chưa đăng nhập. Thông tin đăng nhập mặc định nằm trong `public/data.json` → `users` |
 | **Ảnh không hiện** | Field `image` trong `config.json` đang để trống; các section dùng màu nền fallback |
