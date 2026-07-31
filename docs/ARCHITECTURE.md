@@ -310,15 +310,14 @@ Luồng xử lý (`handleProcess`):
 
 ## 9. Hạn chế đã biết (từ phân tích code)
 
-> **Ghi chú cập nhật:** bốn hạn chế trước đây **đã được sửa** — lệch key Experience (`ExperienceSettings` giờ đọc/ghi khóa `experience` khớp `Home.jsx`, kèm migration từ `experienceData`), form Contact (`Contact.jsx` giờ mở `mailto:` với nội dung đã điền sẵn), route `/features` đứng riêng (`Features.jsx` giờ tự fetch `data.json` + `config.json` khi không được truyền props — trước đây crash `TypeError` vì `data.filter` trên `undefined`), và Header heuristic (`Header.jsx` dùng `useLocation().pathname === "/"` thay vì regex đoán URL). Các mục dưới đây vẫn chưa được xử lý.
+> **Ghi chú cập nhật:** năm hạn chế trước đây **đã được sửa** — lệch key Experience (`ExperienceSettings` giờ đọc/ghi khóa `experience` khớp `Home.jsx`, kèm migration từ `experienceData`), form Contact (`Contact.jsx` giờ mở `mailto:` với nội dung đã điền sẵn), route `/features` đứng riêng (`Features.jsx` giờ tự fetch `data.json` + `config.json` khi không được truyền props — trước đây crash `TypeError` vì `data.filter` trên `undefined`), Header heuristic (`Header.jsx` dùng `useLocation().pathname === "/"` thay vì regex đoán URL), và MD5 giả (`EncryptDecrypt.jsx` giờ implement MD5 thật thuần JS, đã xác minh khớp vector chuẩn — trước đây là SHA-1 cắt ngắn). Các mục dưới đây vẫn chưa được xử lý.
 
 | # | Hạn chế | Vị trí | Ảnh hưởng |
 |---|---|---|---|
 | 1 | Auth giả lập, token cứng `"authenticated"`, mật khẩu plaintext | `Login.jsx`, `Admin.jsx` | Ai cũng vào được admin bằng DevTools |
-| 2 | MD5 là SHA-1 cắt ngắn | `EncryptDecrypt.jsx` | Không dùng được như hash thật |
-| 3 | Calculator dùng `eval` | `Calculator.jsx:21-41` | Rủi ro bảo mật nếu mở rộng input |
-| 4 | Notes dùng `document.execCommand` (deprecated) + `dangerouslySetInnerHTML` | `Notes.jsx` | Rủi ro XSS với nội dung không tin cậy |
-| 5 | `/features` đứng riêng không có dữ liệu; EditProfile & Users là stub | `EditProfile.jsx`, `Users.jsx` | Tính năng chưa hoàn thiện |
+| 2 | Calculator dùng `eval` | `Calculator.jsx:21-41` | Rủi ro bảo mật nếu mở rộng input |
+| 3 | Notes dùng `document.execCommand` (deprecated) + `dangerouslySetInnerHTML` | `Notes.jsx` | Rủi ro XSS với nội dung không tin cậy |
+| 4 | `/features` đứng riêng không có dữ liệu; EditProfile & Users là stub | `EditProfile.jsx`, `Users.jsx` | Tính năng chưa hoàn thiện |
 
 ## 10. Tiếp theo
 
