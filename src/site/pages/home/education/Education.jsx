@@ -27,7 +27,7 @@ const Education = ({ data = [], settings = {} }) => {
             <div className="education-school">
               {edu.school} ({edu.period})
             </div>
-            <div className="education-gpa">GPA: {edu.gpa}</div>
+            {edu.gpa && <div className="education-gpa">GPA: {edu.gpa}</div>}
           </li>
         ))}
       </ul>

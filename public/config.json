@@ -1,15 +1,15 @@
 {
   "homepage": {
     "hero": {
-      "color": "#001f2e",
-      "title": "Welcome to My Portfolio",
-      "content": "I'm a passionate developer creating amazing web experiences",
-      "image": ""
-    },
+       "color": "#001f2e",
+       "title": "QA Engineer | A Tester Who Codes",
+       "content": "6+ years in QA Automation: C++, Java, Jenkins, Docker. Automated 1,000+ test cases and built CI/CD pipelines that cut test execution time by 25%, ensuring the quality of the OpenTestSystem automotive testing suite to ISO 13209 standard for European car brands (Porsche, VW).",
+       "image": ""
+     },
     "about": {
       "color": "#003855",
       "text": "TRẦN THẾ NGỌC",
-      "description": "A dedicated software engineer with a love for building innovative solutions. I specialize in web development and have a strong background in React, Node.js, and modern web technologies.",
+       "description": "QA Engineer with 6+ years progressing from manual testing to automation, specializing in OpenTestSystem, CI/CD pipeline testing, and end-to-end bug tracking.",
       "image": ""
     },
     "experience": {
