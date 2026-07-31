@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  generateToken,
+  isAuthenticated,
+  TOKEN_KEY,
+  TOKEN_EXP_KEY,
+  USER_KEY,
+  SESSION_DURATION_MS,
+} from "../../utils/auth";
 import "./Login.css";
 
 const LANGS = [
@@ -47,9 +55,8 @@ const Login = () => {
   }, [lang]);
 
   useEffect(() => {
-    const token = localStorage.getItem("admin_token");
-    // Only redirect if we're on the login page and have token
-    if (token && window.location.pathname === "/admin/login") {
+    // Only redirect if we're on the login page and have a valid session
+    if (isAuthenticated() && window.location.pathname === "/admin/login") {
       navigate("/admin", { replace: true });
     }
   }, [navigate]);
@@ -71,8 +78,12 @@ const Login = () => {
       (u) => u.email === email && u.password === password
     );
     if (user) {
-      localStorage.setItem("admin_token", "authenticated");
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem(TOKEN_KEY, generateToken());
+      localStorage.setItem(
+        TOKEN_EXP_KEY,
+        String(Date.now() + SESSION_DURATION_MS)
+      );
+      localStorage.setItem(USER_KEY, JSON.stringify(user));
       alert(t.login_success || "Login successful!");
       navigate("/admin", { replace: true });
     } else {

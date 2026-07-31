@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { isAuthenticated } from "../../utils/auth";
 import "./AdminCommon.css";
 import "./Dashboard.css";
 
@@ -24,8 +25,7 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    const token = localStorage.getItem("admin_token");
-    if (!token) {
+    if (!isAuthenticated()) {
       navigate("login", { replace: true });
     }
   }, [navigate]);
