@@ -1,6 +1,6 @@
 # Zymuk Page
 
-> Portfolio cá nhân + bộ công cụ trực tuyến của **Trần Thế Ngọc** (Senior QA Engineer), chạy hoàn toàn phía client (SPA tĩnh), deploy trên **GitHub Pages**.
+> Portfolio cá nhân + bộ công cụ trực tuyến của **Trần Thế Ngọc** (QA Engineer), chạy hoàn toàn phía client (SPA tĩnh), deploy trên **GitHub Pages**.
 
 Zymuk Page là một ứng dụng web đơn trang (Single Page Application) được xây dựng bằng **React 19** và **Create React App**, đóng vai trò vừa là CV/portfolio online, vừa là bộ sưu tập các tiện ích hằng ngày (máy tính, ghi chú, mã hóa, lưu trang web, thần số học...). Điểm đặc biệt: **toàn bộ hệ thống không có backend** — dữ liệu được quản lý qua `localStorage` và các file JSON tĩnh trong thư mục `public/`, kèm một panel quản trị tích hợp sẵn để chỉnh sửa nội dung.
 

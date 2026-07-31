@@ -78,7 +78,7 @@ File có 10 khóa cấp cao: `users`, `site`, `projects`, `features`, `experienc
 ### 3.5. `experience` — array (mỗi mục kèm nested projects)
 ```json
 {
-  "role": "Software Engineer",
+  "role": "Software Developer → QA Tester",
   "company": "EVINA SOFTWARE CO. LTD",
   "period": "Jul 2025 - Dec 2025",
   "description": "Tasked with the technical maintenance...",
@@ -118,10 +118,20 @@ Cấp con `projects[]`: `name` (string), `description` (string), `technologies` 
 | `achievements` | string[] | thành tích |
 | `isVisible` | boolean | hiện/ẩn |
 
-### 3.7. `contact` — object
+### 3.7. `contact` — array (link xã hội footer)
 ```json
-{ "email": "thengoc0605@yahoo.com", "github": "https://github.com/zymuk", "linkedin": "" }
+[
+  { "icon": "fab fa-github", "url": "https://github.com/zymuk", "title": "GitHub" },
+  { "icon": "fab fa-linkedin", "url": "https://www.linkedin.com/in/ngoctrt", "title": "LinkedIn" }
+]
 ```
+| Khóa | Kiểu | Mô tả |
+|---|---|---|
+| `icon` | string | class Font Awesome (CDN `public/index.html`) |
+| `url` | string | link đích |
+| `title` | string | tooltip / tiêu đề |
+
+> Lưu ý: `Footer.jsx` fetch `/data.json?v=${Date.now()}` (cache-busting) và chỉ render khi `Array.isArray(data.contact)`. Trước đây là **object** `{email, github, linkedin}` — không tương thích với Footer hiện tại.
 
 ### 3.8. `certifications` — array
 ```json
@@ -145,7 +155,7 @@ Cấp con `projects[]`: `name` (string), `description` (string), `technologies` 
 }
 ```
 Cấp cha: `category` (string), `items` (array), `isVisible` (boolean).
-Cấp con `items[]`: `name` (string), `startDate` (string `YYYY-MM`, tùy chọn — nếu thiếu thì hiển thị `years`), `isVisible` (boolean).
+Cấp con `items[]`: `name` (string), `startDate` (string `YYYY-MM`, tùy chọn — nếu thiếu thì hiển thị `years`; thiếu cả hai thì `Skills.jsx` chỉ render tên, không hiện "undefined years"), `isVisible` (boolean).
 
 ### 3.10. `navigation` — object (map nhãn menu)
 ```json
@@ -174,8 +184,8 @@ Cấu trúc một khóa duy nhất `homepage` chứa 9 section. Mỗi section c�
   "homepage": {
     "hero": {
       "color": "#001f2e",
-      "title": "Senior QA Engineer | Tester biết code",
-      "content": "6+ năm QA Automation: C++, Java, Jenkins, Docker...",
+      "title": "QA Engineer | A Tester Who Codes",
+      "content": "6+ years in QA Automation: C++, Java, Jenkins, Docker...",
       "image": ""
     },
     "about": { "color": "#003855", "text": "TRẦN THẾ NGỌC", "description": "...", "image": "" }

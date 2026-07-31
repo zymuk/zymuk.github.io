@@ -133,7 +133,7 @@ Khi render, `Home` truyền props theo mẫu `settings.homepage?.<section> || se
 ### 3.3. Header và Footer
 
 - **`Header`** (`components/header/Header.jsx`): đọc `localStorage["features"]` (lọc `isVisible`), fallback `fetch("/data.json")`. Render menu theo **heuristic URL**: nếu `window.location.href` khớp regex "URL trần không có hash-path" → menu cuộn một trang (9 nút `data-scroll` gọi `scrollToSection`); ngược lại → menu link tới các công cụ (`<Link to={"/"+id}>`). Kèm hamburger menu mobile.
-- **`Footer`** (`components/footer/Footer.jsx`): import trực tiếp `package.json` để đọc `datetimedeploy` (hiển thị "Deploy at ..." nếu khác rỗng — `deploy.bat` tự điền); 4 link xã hội cứng (GitHub, LinkedIn, Facebook, email).
+- **`Footer`** (`components/footer/Footer.jsx`): fetch `/data.json?v=${Date.now()}` (cache-busting), chỉ render khi `Array.isArray(data.contact)`, vẽ link xã hội theo từng item `{icon, url, title}` trong mảng `contact` (thay cho danh sách cứng cũ). Vẫn import `package.json` để đọc `datetimedeploy` (hiển thị "Deploy at ..." nếu khác rỗng — `deploy.bat` tự điền).
 
 ## 4. Kiến trúc Admin
 
