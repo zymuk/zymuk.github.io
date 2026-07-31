@@ -316,7 +316,7 @@ Luồng xử lý (`handleProcess`):
 |---|---|---|---|
 | 1 | Auth giả lập, token cứng `"authenticated"`, mật khẩu plaintext | `Login.jsx`, `Admin.jsx` | Ai cũng vào được admin bằng DevTools |
 | 2 | Notes dùng `document.execCommand` (deprecated) + `dangerouslySetInnerHTML` | `Notes.jsx` | Rủi ro XSS với nội dung không tin cậy |
-| 3 | `/features` đứng riêng không có dữ liệu; EditProfile & Users là stub | `EditProfile.jsx`, `Users.jsx` | Tính năng chưa hoàn thiện |
+| 3 | EditProfile & Users là stub | `EditProfile.jsx`, `Users.jsx` | Tính năng chưa hoàn thiện |
 
 ## 10. Tiếp theo
 
