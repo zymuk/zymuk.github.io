@@ -79,6 +79,7 @@ File `deploy.bat` ở gốc dự án thực hiện chuỗi sau:
 2. Đọc lại timestamp và xóa file tạm.
 3. Dùng PowerShell cập nhật field **`datetimedeploy`** trong `package.json` thành timestamp vừa lấy (khiến dòng "Deploy at ..." ở footer tự cập nhật — component `Footer.jsx` đọc trực tiếp từ `package.json`).
 4. Chạy `yarn deploy` → `predeploy` chạy `build` rồi `gh-pages -d build` đẩy lên nhánh `gh-pages`.
+5. **Revert `package.json`** bằng dòng PowerShell cuối cùng — đưa `datetimedeploy` về `""` (giữ đúng trạng thái đã commit, tránh để file dơ trên working tree sau mỗi lần deploy).
 
 ```bash
 deploy.bat

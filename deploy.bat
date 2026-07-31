@@ -3,3 +3,4 @@ set /p dateTimeLastCommit=<dateTimeLastCommit.txt
 del dateTimeLastCommit.txt
 powershell -command "(gc '%~dp0\package.json') -replace '(\"datetimedeploy\": \")(.{0,})(\",)', '${1}%dateTimeLastCommit%${3}' | Out-File -encoding ASCII '%~dp0\package.json'"
 yarn deploy
+powershell -command "(gc '%~dp0\package.json') -replace '(\"datetimedeploy\": \")(.{0,})(\",)', '${1}${3}' | Out-File -encoding ASCII '%~dp0\package.json'"
