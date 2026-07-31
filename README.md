@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Zymuk Page
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Portfolio cá nhân + bộ công cụ trực tuyến của **Trần Thế Ngọc** (Senior QA Engineer), chạy hoàn toàn phía client (SPA tĩnh), deploy trên **GitHub Pages**.
 
-## Available Scripts
+Zymuk Page là một ứng dụng web đơn trang (Single Page Application) được xây dựng bằng **React 19** và **Create React App**, đóng vai trò vừa là CV/portfolio online, vừa là bộ sưu tập các tiện ích hằng ngày (máy tính, ghi chú, mã hóa, lưu trang web, thần số học...). Điểm đặc biệt: **toàn bộ hệ thống không có backend** — dữ liệu được quản lý qua `localStorage` và các file JSON tĩnh trong thư mục `public/`, kèm một panel quản trị tích hợp sẵn để chỉnh sửa nội dung.
 
-In the project directory, you can run:
+## Tính năng chính
 
-### `yarn start`
+| Khu vực | Đường dẫn | Mô tả |
+|---|---|---|
+| **Trang công khai** | `/#/` | 9 section: Hero, About (hiệu ứng gõ chữ), Experience (timeline), Education, Certifications, Skills, Projects, Features, Contact |
+| **Công cụ** | `/#/calculator`, `/#/notes`, `/#/numerology-name`, `/#/text-encoder-decoder`, `/#/save-web`, `/#/encrypt-decrypt` | Máy tính khoa học, ghi chú rich-text, thần số học, mã hóa URL, quản lý bookmark, mã hóa/giải mã văn bản |
+| **Admin Panel** | `/#/admin/...` | Dashboard, CRUD từng section, cài đặt homepage (màu/title/ảnh), đổi ngôn ngữ EN/VI, export dữ liệu JSON |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Tài liệu này là phần mở đầu của một bộ tài liệu kỹ thuật hoàn chỉnh. Sau khi đọc xong phần tổng quan dưới đây, bạn nên tiếp tục theo thứ tự:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **[docs/INSTALLATION.md](docs/INSTALLATION.md)** — Hướng dẫn cài đặt, chạy dev, build và triển khai production.
+2. **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** — Kiến trúc hệ thống, luồng dữ liệu và chi tiết từng mô-đun.
+3. **[docs/API.md](docs/API.md)** — Hợp đồng dữ liệu (data contract): file JSON tĩnh, khóa `localStorage` và các Web API trình duyệt.
 
-### `yarn test`
+## Công nghệ sử dụng
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React 19** + **ReactDOM 19** với `StrictMode`
+- **React Router DOM v7** (`react-router-dom@^7.4.0`) — dùng `HashRouter` để hoạt động đúng trên GitHub Pages
+- **Create React App 5** (`react-scripts@^5.0.1`)
+- **Font Awesome 6** (qua CDN trong `public/index.html`)
+- **cross-env** (đồng bộ biến môi trường trên Windows)
+- **gh-pages** (triển khai build lên GitHub Pages)
+- **Web Crypto API**, `localStorage`, `navigator.clipboard` — các Web API trình duyệt
 
-### `yarn build`
+## Bắt đầu nhanh
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Yêu cầu: **Node.js ≥ 16** và **Yarn 1.x** (hoặc npm). Chi tiết xem [docs/INSTALLATION.md](docs/INSTALLATION.md).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+# 1. Cài đặt dependencies
+yarn install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# 2. Chạy development (http://localhost:3000)
+yarn start
 
-### `yarn eject`
+# 3. Build production vào thư mục build/
+yarn build
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Ghi chú & hạn chế đã biết
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Tài liệu trung thực với hiện trạng code. Trong quá trình phân tích, tôi phát hiện những điểm cần lưu ý (chi tiết trong [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)):
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Xác thực admin chỉ mang tính giả lập** — chỉ cần tồn tại khóa `admin_token` trong `localStorage` là vào được panel; mật khẩu lưu dạng plaintext trong `public/data.json`.
+- **Lỗi khóa dữ liệu** — admin lưu Experience vào `experienceData` nhưng trang công khai đọc `experience`, khiến thay đổi Experience không hiển thị (xem chi tiết mục "Hạn chế đã biết").
+- **Form Contact chưa hoạt động** — không có handler submit hay backend nhận dữ liệu.
+- **Thuật toán MD5 trong EncryptDecrypt không thật** — thực chất là SHA-1 bị cắt ngắn.
+- **Contact/Features dùng `eval`** — Calculator tính biểu thức bằng `eval`; cần cân nhắc khi mở rộng.
+- **i18n chỉ áp dụng cho admin** — trang công khai dùng nội dung tiếng Anh/Việt cứng trong JSON cấu hình.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Giấy phép
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+© 2025 Zymuk Trần — All rights reserved.
