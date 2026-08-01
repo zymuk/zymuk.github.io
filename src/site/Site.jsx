@@ -1,17 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/header/Header";
 import Home from "./pages/home/Home";
 import Features from "./pages/home/features/Features";
 import NotFound from "./pages/notFound/NotFound";
 import Footer from "./components/footer/Footer";
-import Calculator from "./pages/calculator/Calculator";
-import Notes from "./pages/notes/Notes";
 import "./Site.css";
-import NumerologyName from "./pages/numerologyName/NumerologyName";
-import TextEncoderDecoder from "./pages/textEncoderDecoder/TextEncoderDecoder";
-import SaveWeb from "./pages/saveWeb/SaveWeb";
-import EncryptDecrypt from "./pages/encryptDecrypt/EncryptDecrypt";
+
+const Calculator = lazy(() => import("./pages/calculator/Calculator"));
+const Notes = lazy(() => import("./pages/notes/Notes"));
+const NumerologyName = lazy(() =>
+  import("./pages/numerologyName/NumerologyName"),
+);
+const TextEncoderDecoder = lazy(() =>
+  import("./pages/textEncoderDecoder/TextEncoderDecoder"),
+);
+const SaveWeb = lazy(() => import("./pages/saveWeb/SaveWeb"));
+const EncryptDecrypt = lazy(() =>
+  import("./pages/encryptDecrypt/EncryptDecrypt"),
+);
 
 const Site = () => {
   const [showUp, setShowUp] = useState(false);
@@ -106,20 +113,22 @@ const Site = () => {
     <div className="container">
       <Header scrollToSection={scrollToSection} />
       <div className="siteContent">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/features" element={<Features />} />
-          <Route path="/calculator" element={<Calculator />} />
-          <Route path="/notes" element={<Notes />} />
-          <Route path="/numerology-name" element={<NumerologyName />} />
-          <Route
-            path="/text-encoder-decoder"
-            element={<TextEncoderDecoder />}
-          />
-          <Route path="/save-web" element={<SaveWeb />} />
-          <Route path="/encrypt-decrypt" element={<EncryptDecrypt />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<div className="site-loading">Loading...</div>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/calculator" element={<Calculator />} />
+            <Route path="/notes" element={<Notes />} />
+            <Route path="/numerology-name" element={<NumerologyName />} />
+            <Route
+              path="/text-encoder-decoder"
+              element={<TextEncoderDecoder />}
+            />
+            <Route path="/save-web" element={<SaveWeb />} />
+            <Route path="/encrypt-decrypt" element={<EncryptDecrypt />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </div>
       <Footer />
       <div className="scroll-buttons">
