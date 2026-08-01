@@ -47,11 +47,16 @@ const Login = () => {
           );
       });
 
-    // Load users from data.json
-    fetch("/data.json")
-      .then((response) => response.json())
-      .then((data) => setUsers(data.users || []))
-      .catch((err) => console.error("Error loading users:", err));
+    // Load users from localStorage first, fallback to data.json
+    const storedUsers = localStorage.getItem("users");
+    if (storedUsers) {
+      setUsers(JSON.parse(storedUsers));
+    } else {
+      fetch("/data.json")
+        .then((response) => response.json())
+        .then((data) => setUsers(data.users || []))
+        .catch((err) => console.error("Error loading users:", err));
+    }
   }, [lang]);
 
   useEffect(() => {
