@@ -10,11 +10,20 @@ const Header = ({ scrollToSection }) => {
   const [listActivedFeatures, setListActivedFeatures] = useState([]);
 
   useEffect(() => {
+    let parsedFeatures = null;
     const savedFeatures = localStorage.getItem("features");
     if (savedFeatures) {
-      const allFeatures = JSON.parse(savedFeatures);
+      try {
+        parsedFeatures = JSON.parse(savedFeatures);
+      } catch (error) {
+        console.error("Invalid features data in localStorage:", error);
+        parsedFeatures = null;
+      }
+    }
+
+    if (parsedFeatures) {
       setListActivedFeatures(
-        allFeatures.filter((feature) => feature.isVisible === true),
+        parsedFeatures.filter((feature) => feature.isVisible === true),
       );
     } else {
       fetch("/data.json")
