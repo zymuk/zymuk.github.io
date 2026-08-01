@@ -1,6 +1,6 @@
 # Hướng dẫn cài đặt & triển khai
 
-> Tài liệu này là phần tiếp nối của [README.md](../README.md). Sau khi bạn đã nắm tổng quan, đây là hành trình chi tiết đưa dự án từ một repo trống cho tới khi **chạy được trên local** rồi **lên GitHub Pages**. Toàn bộ lệnh được thực hiện tại thư mục gốc của dự án (`D:\Repositories\Git\zymuk.github.io`).
+> Tài liệu này là phần tiếp nối của [README.md](README.md). Sau khi bạn đã nắm tổng quan, đây là hành trình chi tiết đưa dự án từ một repo trống cho tới khi **chạy được trên local** rồi **lên GitHub Pages**. Toàn bộ lệnh được thực hiện tại thư mục gốc của dự án (`D:\Repositories\Git\zymuk.github.io`).
 
 ## 1. Yêu cầu hệ thống
 
@@ -130,4 +130,4 @@ Dành cho quy trình một-chạm: cài dependency → build → mở dev server
 
 ## 8. Tiếp theo
 
-Ứng dụng đã chạy và deploy thành công. Bạn đã biết *cách vận hành* — giờ hãy đọc **[docs/ARCHITECTURE.md](ARCHITECTURE.md)** để hiểu *cách nó hoạt động bên trong*: sơ đồ route, luồng dữ liệu localStorage ↔ file JSON, và chi tiết từng mô-đun.
+Ứng dụng đã chạy và deploy thành công. Bạn đã biết *cách vận hành* — giờ hãy đọc **[ARCHITECTURE.md](ARCHITECTURE.md)** để hiểu *cách nó hoạt động bên trong*: sơ đồ route, luồng dữ liệu localStorage ↔ file JSON, và chi tiết từng mô-đun.

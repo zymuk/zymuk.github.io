@@ -1,6 +1,6 @@
 # API & Hợp đồng dữ liệu
 
-> Đây là tài liệu cuối cùng của bộ kỹ thuật, khép lại mạch: tổng quan ([README](../README.md)) → cài đặt ([INSTALLATION.md](INSTALLATION.md)) → kiến trúc ([ARCHITECTURE.md](ARCHITECTURE.md)) → dữ liệu (tài liệu này). Trong [ARCHITECTURE.md](ARCHITECTURE.md) bạn đã thấy *luồng* dữ liệu; giờ ta đặc tả chính xác *hình dạng* của nó.
+> Đây là tài liệu cuối cùng của bộ kỹ thuật, khép lại mạch: tổng quan ([README.md](README.md)) → cài đặt ([INSTALLATION.md](INSTALLATION.md)) → kiến trúc ([ARCHITECTURE.md](ARCHITECTURE.md)) → dữ liệu (tài liệu này). Trong [ARCHITECTURE.md](ARCHITECTURE.md) bạn đã thấy *luồng* dữ liệu; giờ ta đặc tả chính xác *hình dạng* của nó.
 
 ## 1. Mở đầu: "API" ở đây nghĩa là gì?
 

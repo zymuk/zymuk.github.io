@@ -321,4 +321,4 @@ Luồng xử lý (`handleProcess`):
 
 ## 10. Tiếp theo
 
-Bạn đã hiểu *kiến trúc hoạt động*: route nào dẫn đâu, dữ liệu lưu ở đâu, ai đọc/ghi gì. Tài liệu cuối cùng — **[docs/API.md](API.md)** — sẽ đặc tả chính xác *hình dạng của dữ liệu*: lược đồ từng file JSON, hợp đồng từng khóa localStorage, và các Web API trình duyệt mà code đang dùng.
+Bạn đã hiểu *kiến trúc hoạt động*: route nào dẫn đâu, dữ liệu lưu ở đâu, ai đọc/ghi gì. Tài liệu cuối cùng — **[API.md](API.md)** — sẽ đặc tả chính xác *hình dạng của dữ liệu*: lược đồ từng file JSON, hợp đồng từng khóa localStorage, và các Web API trình duyệt mà code đang dùng.
