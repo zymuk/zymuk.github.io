@@ -159,7 +159,7 @@ Mọi trang settings đều tuân theo cùng một khuôn mẫu: **đọc localS
 | Certifications | `pages/CertificationSettings.jsx` | `GET /data.json` | CRUD (`name, issuer, issueDate, credentialUrl, description, isVisible`) | `certifications` |
 | Skills | `pages/SkillsSettings.jsx` | `GET /data.json` | CRUD category + item con (`name`, `startDate`, `isVisible`) | `skills` |
 | Edit Profile | `pages/EditProfile.jsx` | — | **Stub/no-op** — form chỉ hiện `alert()` thành công, không lưu gì | — |
-| Users | `pages/Users.jsx` | — | **Placeholder** — chỉ render tiêu đề | — |
+| Users | `pages/Users.jsx` | `GET /data.json` | CRUD user (`email, password, role`), kiểm tra email trùng, show/hide mật khẩu, role badge | `users` |
 | Settings | `pages/Settings.jsx` | `GET /data.json` | **Export duy nhất**: tải toàn bộ data về dạng `data_<timestamp>.json` qua Blob | `site_data` (cache) |
 
 ## 5. Luồng dữ liệu — trái tim của kiến trúc
@@ -204,6 +204,7 @@ Toàn bộ ứng dụng vận hành trên một quy ước duy nhất:
 | `education` | array education | `EducationSettings` | `Home.jsx`, `EducationSettings` |
 | `certifications` | array certifications | `CertificationSettings` | `Home.jsx`, `CertificationSettings` |
 | `skills` | array category (kèm items) | `SkillsSettings` | `Home.jsx`, `SkillsSettings` |
+| `users` | array `{email, password, role}` | `Users` | `Login`, `Users` |
 | `lang` | `"en"` / `"vi"` | `AdminHeader`, `Login` | mọi trang admin |
 | `admin_token` | chuỗi cứng `"authenticated"` | `Login` | `Admin.jsx`, `Dashboard`, `Login` |
 | `user` | JSON `{id, email, password, role}` | `Login` | `Admin.jsx` |
@@ -214,7 +215,7 @@ Toàn bộ ứng dụng vận hành trên một quy ước duy nhất:
 
 ### 5.3. Xác thực admin — cơ chế giả lập
 
-`Login.jsx` fetch `data.json`, tìm `user` trong `users` khớp `email` + `password` (so khớp **plaintext phía client**), rồi ghi `admin_token` (token **ngẫu nhiên 128-bit**, hết hạn sau 24h) và `user`.
+`Login.jsx` nạp danh sách `users` từ `localStorage["users"]` (do trang **Users** ghi) — nếu chưa có thì fallback fetch `data.json` — rồi tìm `user` khớp `email` + `password` (so khớp **plaintext phía client**), sau đó ghi `admin_token` (token **ngẫu nhiên 128-bit**, hết hạn sau 24h) và `user`.
 
 ```js
 const user = users.find((u) => u.email === email && u.password === password);
@@ -310,13 +311,13 @@ Luồng xử lý (`handleProcess`):
 
 ## 9. Hạn chế đã biết (từ phân tích code)
 
-> **Ghi chú cập nhật:** sáu hạn chế trước đây **đã được sửa** — lệch key Experience (`ExperienceSettings` giờ đọc/ghi khóa `experience` khớp `Home.jsx`, kèm migration từ `experienceData`), form Contact (`Contact.jsx` giờ mở `mailto:` với nội dung đã điền sẵn), route `/features` đứng riêng (`Features.jsx` giờ tự fetch `data.json` + `config.json` khi không được truyền props — trước đây crash `TypeError` vì `data.filter` trên `undefined`), Header heuristic (`Header.jsx` dùng `useLocation().pathname === "/"` thay vì regex đoán URL), MD5 giả (`EncryptDecrypt.jsx` giờ implement MD5 thật thuần JS, đã xác minh khớp vector chuẩn — trước đây là SHA-1 cắt ngắn), và Calculator `eval` (`Calculator.jsx` giờ dùng recursive-descent parser an toàn, hỗ trợ + - * / ^ hàm lượng giác/π/e/√, đã xác minh bằng test vector — trước đây `eval` mở rủi ro code injection). Auth giả lập được cải thiện một phần: token cứng `"authenticated"` đã thay bằng **token ngẫu nhiên 128-bit hết hạn sau 24h** (`src/utils/auth.js`) — nhưng mật khẩu vẫn dạng plaintext trong `data.json` và ai cũng tự set token được qua DevTools nên vẫn là hạn chế còn lại (dòng 1). Các mục dưới đây vẫn chưa được xử lý.
+> **Ghi chú cập nhật:** sáu hạn chế trước đây **đã được sửa** — lệch key Experience (`ExperienceSettings` giờ đọc/ghi khóa `experience` khớp `Home.jsx`, kèm migration từ `experienceData`), form Contact (`Contact.jsx` giờ mở `mailto:` với nội dung đã điền sẵn), route `/features` đứng riêng (`Features.jsx` giờ tự fetch `data.json` + `config.json` khi không được truyền props — trước đây crash `TypeError` vì `data.filter` trên `undefined`), Header heuristic (`Header.jsx` dùng `useLocation().pathname === "/"` thay vì regex đoán URL), MD5 giả (`EncryptDecrypt.jsx` giờ implement MD5 thật thuần JS, đã xác minh khớp vector chuẩn — trước đây là SHA-1 cắt ngắn), và Calculator `eval` (`Calculator.jsx` giờ dùng recursive-descent parser an toàn, hỗ trợ + - * / ^ hàm lượng giác/π/e/√, đã xác minh bằng test vector — trước đây `eval` mở rủi ro code injection). Auth giả lập được cải thiện một phần: token cứng `"authenticated"` đã thay bằng **token ngẫu nhiên 128-bit hết hạn sau 24h** (`src/utils/auth.js`) — nhưng mật khẩu vẫn dạng plaintext trong `data.json` và ai cũng tự set token được qua DevTools nên vẫn là hạn chế còn lại (dòng 1). **Users giờ là CRUD đầy đủ** (thêm/sửa/xóa user, lưu `localStorage["users"]`, `Login` đọc từ đó trước rồi mới fallback `data.json`) — không còn là placeholder. Các mục dưới đây vẫn chưa được xử lý.
 
 | # | Hạn chế | Vị trí | Ảnh hưởng |
 |---|---|---|---|
 | 1 | Auth giả lập, mật khẩu plaintext — token ngẫu nhiên có hạn (24h) nhưng vẫn set tay được | `Login.jsx`, `Admin.jsx` | Ai cũng vào được admin bằng DevTools |
 | 2 | Notes dùng `document.execCommand` (deprecated) + `dangerouslySetInnerHTML` | `Notes.jsx` | Rủi ro XSS với nội dung không tin cậy |
-| 3 | EditProfile & Users là stub | `EditProfile.jsx`, `Users.jsx` | Tính năng chưa hoàn thiện |
+| 3 | EditProfile là stub | `EditProfile.jsx` | Tính năng chưa hoàn thiện |
 
 ## 10. Tiếp theo
 

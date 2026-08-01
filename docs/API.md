@@ -18,7 +18,7 @@ Chỉ có **4 URL** được fetch trong toàn bộ codebase, tất cả là fil
 
 | Endpoint | Nguồn dữ liệu | Nơi gọi | Mục đích |
 |---|---|---|---|
-| `GET /data.json` | `public/data.json` | `Home.jsx:54`, `Header.jsx:19`, `Login.jsx`, `Dashboard`, `ProjectsSettings`, `FeaturesSettings`, `ExperienceSettings`, `EducationSettings`, `CertificationSettings`, `SkillsSettings`, `Settings` | Dữ liệu nội dung mặc định (sections, users) |
+| `GET /data.json` | `public/data.json` | `Home.jsx:54`, `Header.jsx:19`, `Login.jsx` (fallback khi chưa có `localStorage["users"]`), `Dashboard`, `ProjectsSettings`, `FeaturesSettings`, `ExperienceSettings`, `EducationSettings`, `CertificationSettings`, `SkillsSettings`, `Users` (fallback), `Settings` | Dữ liệu nội dung mặc định (sections, users) |
 | `GET /config.json` | `public/config.json` | `Home.jsx:26`, `HomepageSettings` (load + reset) | Cấu hình trình bày 8 section của homepage |
 | `GET /en.json` | `public/en.json` | mọi component admin | Bundle dịch tiếng Anh (map phẳng) |
 | `GET /vi.json` | `public/vi.json` | mọi component admin | Bundle dịch tiếng Việt |
@@ -43,6 +43,8 @@ File có 10 khóa cấp cao: `users`, `site`, `projects`, `features`, `experienc
 | `email` | string | email đăng nhập |
 | `password` | string | mật khẩu **plaintext** (dùng cho đăng nhập giả lập) |
 | `role` | string | `"admin"` / `"user"` |
+
+> `data.json` là danh sách mặc định seed trong repo. Ở runtime, admin quản lý qua trang **Users** (`Users.jsx`), lưu danh sách đã chỉnh vào `localStorage["users"]`; `Login.jsx` đọc từ đó trước, nếu chưa có mới fallback `data.json` (xem mục 6.2).
 
 > ⚠️ **Cảnh báo bảo mật:** mật khẩu được công khai trong repo và chỉ so khớp phía client — hoàn toàn không an toàn. Xem mục 8.
 
@@ -237,12 +239,15 @@ Quy tắc truy cập nhất quán: `localStorage.setItem(key, JSON.stringify(val
 | Khóa | Shape | Bên ghi | Bên đọc |
 |---|---|---|---|
 | `lang` | `"en"` / `"vi"` | `AdminHeader`, `Login` | mọi trang admin |
+| `users` | array `{email, password, role}` | `Users` | `Login`, `Users` |
 | `admin_token` | chuỗi hex ngẫu nhiên 128-bit (sinh bởi `generateToken()`) | `Login` | `Admin.jsx`, `Dashboard`, `Login` |
 | `admin_token_exp` | timestamp (ms) hết hạn phiên, mặc định +24h | `Login` | `Admin.jsx`, `Dashboard`, `Login` |
 | `user` | JSON `{id, email, password, role}` | `Login` | `Admin.jsx` |
 | `site_data` | toàn bộ object `data.json` | `Settings` (cache) | `Settings` |
 
 > **Lưu ý:** `admin_token`/`admin_token_exp` do `src/utils/auth.js` quản lý — `isAuthenticated()` yêu cầu token tồn tại **và** chưa hết hạn; `logout()` xóa cả 3 khóa. Vẫn là cơ chế giả lập: ai cũng set tay được qua DevTools.
+>
+> **Users:** trang `Users.jsx` ghi `localStorage["users"]`; `Login.jsx` đọc từ đó trước, fallback `data.json` — nên user thêm/xóa trong admin có hiệu lực ngay khi đăng nhập.
 
 ### 6.3. Khóa công cụ (chỉ site, dữ liệu cá nhân người dùng)
 
