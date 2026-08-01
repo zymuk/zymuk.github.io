@@ -10,13 +10,7 @@ Zymuk Page là một ứng dụng web đơn trang (Single Page Application) đư
 |---|---|---|
 | **Trang công khai** | `/#/` | 9 section: Hero, About (hiệu ứng gõ chữ), Experience (timeline), Education, Certifications, Skills, Projects, Features, Contact |
 | **Công cụ** | `/#/calculator`, `/#/notes`, `/#/numerology-name`, `/#/text-encoder-decoder`, `/#/save-web`, `/#/encrypt-decrypt` | Máy tính khoa học, ghi chú rich-text, thần số học, mã hóa URL, quản lý bookmark, mã hóa/giải mã văn bản |
-| **Admin Panel** | `/#/admin/...` | Dashboard, CRUD từng section, cài đặt homepage (màu/title/ảnh), đổi ngôn ngữ EN/VI, export dữ liệu JSON |
-
-Tài liệu này là phần mở đầu của một bộ tài liệu kỹ thuật hoàn chỉnh. Sau khi đọc xong phần tổng quan dưới đây, bạn nên tiếp tục theo thứ tự:
-
-1. **[docs/INSTALLATION.md](docs/INSTALLATION.md)** — Hướng dẫn cài đặt, chạy dev, build và triển khai production.
-2. **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** — Kiến trúc hệ thống, luồng dữ liệu và chi tiết từng mô-đun.
-3. **[docs/API.md](docs/API.md)** — Hợp đồng dữ liệu (data contract): file JSON tĩnh, khóa `localStorage` và các Web API trình duyệt.
+| **Admin Panel** | `/#/admin/...` | Dashboard, CRUD từng section, quản lý người dùng (Users CRUD), cài đặt homepage (màu/title/ảnh), đổi ngôn ngữ EN/VI, export dữ liệu JSON |
 
 ## Công nghệ sử dụng
 
@@ -30,7 +24,7 @@ Tài liệu này là phần mở đầu của một bộ tài liệu kỹ thuậ
 
 ## Bắt đầu nhanh
 
-Yêu cầu: **Node.js ≥ 16** và **Yarn 1.x** (hoặc npm). Chi tiết xem [docs/INSTALLATION.md](docs/INSTALLATION.md).
+Yêu cầu: **Node.js ≥ 16** và **Yarn 1.x** (hoặc npm).
 
 ```bash
 # 1. Cài đặt dependencies
@@ -45,7 +39,7 @@ yarn build
 
 ## Ghi chú & hạn chế đã biết
 
-Tài liệu trung thực với hiện trạng code. Trong quá trình phân tích, tôi phát hiện những điểm cần lưu ý (chi tiết trong [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)):
+Tài liệu trung thực với hiện trạng code. Trong quá trình phân tích, tôi phát hiện những điểm cần lưu ý:
 
 - **Xác thực admin chỉ mang tính giả lập** — phiên dùng token ngẫu nhiên 128-bit hết hạn sau 24h (`src/utils/auth.js`), nhưng mật khẩu vẫn dạng plaintext trong `public/data.json` và ai cũng tự set token qua DevTools; không dùng cho dữ liệu nhạy cảm.
 - **Form Contact hoạt động qua `mailto:`** — nút Send mở email client với nội dung đã điền sẵn (không có backend, không gửi qua web).
