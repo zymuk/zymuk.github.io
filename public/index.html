@@ -29,6 +29,38 @@
     <meta name="twitter:image" content="%PUBLIC_URL%/og-image.jpg" />
     <meta name="google-site-verification" content="F1SV9QpfTlFKpVkwIdP8anoccRmNfaQLGF2SP5ZTH8c" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://zymuk.github.io/#person",
+            "name": "Zymuk Trần",
+            "url": "https://zymuk.github.io/",
+            "image": "https://zymuk.github.io/og-image.jpg",
+            "jobTitle": "QA Engineer",
+            "description": "Software testing engineer (QA) with experience in automotive testing platforms, manual and automated testing, and technical documentation.",
+            "email": "mailto:ttngoc653@gmail.com",
+            "sameAs": [
+              "https://github.com/zymuk",
+              "https://www.linkedin.com/in/ngoctrt",
+              "https://www.facebook.com/trtngoc656/"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "url": "https://zymuk.github.io/",
+            "name": "Zymuk Trần - QA Engineer Portfolio",
+            "description": "Personal portfolio and free online tools by Zymuk Trần, a QA engineer who codes.",
+            "inLanguage": "en",
+            "author": {
+              "@id": "https://zymuk.github.io/#person"
+            }
+          }
+        ]
+      }
+    </script>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -44,6 +76,11 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Zymuk Trần - QA Engineer Portfolio</title>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link
+      rel="dns-prefetch"
+      href="https://cdnjs.cloudflare.com"
+    />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"

@@ -23,7 +23,7 @@ const Home = () => {
         if (savedSettings) {
           loadedSettings = JSON.parse(savedSettings);
         } else {
-          const settingsResponse = await fetch("/config.json");
+          const settingsResponse = await fetch("/data.json");
           const configData = await settingsResponse.json();
           loadedSettings = configData;
         }

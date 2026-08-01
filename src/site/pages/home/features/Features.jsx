@@ -19,14 +19,12 @@ const Features = ({ settings = {}, data = [] }) => {
       };
     }
 
-    Promise.all([fetch("/data.json"), fetch("/config.json")])
-      .then(([dataResponse, configResponse]) =>
-        Promise.all([dataResponse.json(), configResponse.json()])
-      )
-      .then(([jsonData, configData]) => {
+    fetch("/data.json")
+      .then((dataResponse) => dataResponse.json())
+      .then((jsonData) => {
         if (!active) return;
         setFeatures(jsonData.features || []);
-        setSectionSettings(configData.homepage?.tools || configData.tools || {});
+        setSectionSettings(jsonData.homepage?.tools || jsonData.tools || {});
       })
       .catch((error) => console.error("Error loading features:", error))
       .finally(() => {

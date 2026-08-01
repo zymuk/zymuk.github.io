@@ -1,7 +1,12 @@
 import { useState } from "react";
+import usePageMeta from "../../../utils/usePageMeta";
 import "./EncryptDecrypt.css";
 
 const EncryptDecrypt = () => {
+  usePageMeta({
+    title: "Encrypt/Decrypt Text",
+    description: "Encrypt and decrypt text online with various algorithms and password protection.",
+  });
   const [inputText, setInputText] = useState("");
   const [password, setPassword] = useState("");
   const [outputText, setOutputText] = useState("");
