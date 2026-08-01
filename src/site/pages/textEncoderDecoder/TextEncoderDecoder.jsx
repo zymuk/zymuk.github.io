@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import usePageMeta from "../../../utils/usePageMeta";
 import "./TextEncoderDecoder.css";
 
 function TextEncoderDecoder() {
+  usePageMeta({
+    title: "Text Encoder/Decoder",
+    description: "Encode and decode text online with URL encoding and other formats.",
+  });
   const [url, setUrl] = useState("");
   const [encodedUrl, setEncodedUrl] = useState("");
   const [decodedUrl, setDecodedUrl] = useState("");

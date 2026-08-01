@@ -1,7 +1,13 @@
 import { useState } from "react";
+import usePageMeta from "../../../utils/usePageMeta";
 import "./Calculator.css";
 
 const Calculator = () => {
+  usePageMeta({
+    title: "Calculator",
+    description:
+      "Free online calculator with advanced functions (trigonometry, logarithms, square root).",
+  });
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
 

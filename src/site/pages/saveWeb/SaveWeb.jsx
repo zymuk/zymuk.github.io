@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
+import usePageMeta from "../../../utils/usePageMeta";
 import "./SaveWeb.css";
 
 const SaveWeb = () => {
+  usePageMeta({
+    title: "Save Web Page",
+    description: "Bookmark manager to save web pages with title, URL and notes.",
+  });
   const [bookmarks, setBookmarks] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
