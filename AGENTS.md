@@ -15,3 +15,10 @@
 - `main`: code chính thức + `README.md` ngắn gọn (KHÔNG có thư mục `docs/` chi tiết).
 - `docs`: tài liệu kỹ thuật chi tiết (`docs/API.md`, `docs/ARCHITECTURE.md`, `docs/INSTALLATION.md`) + code (đang phát triển).
 - Tài liệu chi tiết chỉ sống trên nhánh `docs`, không bao giờ được merge lên `main`.
+
+## Quy ước 2 README
+
+- `README.md` (bản chi tiết): sống trên nhánh `docs`, trỏ tới bộ tài liệu `docs/*.md`.
+- `README.main.md` (bản rút gọn): là **bản nháp dành cho main** — nội dung chính xác sẽ được đưa lên `README.md` của nhánh `main` qua MR.
+- Khi cần thay đổi README trên `main`: sửa `README.main.md` trên nhánh `docs`, rồi đưa vào MR docs→main (copy nội dung sang `README.md` khi tạo MR).
+- KHÔNG sửa trực tiếp `README.md` trên `main` khi làm việc trên `docs`.
