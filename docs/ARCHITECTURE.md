@@ -50,6 +50,7 @@ src/
 - **Header đổi màu khi cuộn**: listener `scroll` thêm/rem class `scrolled` vào `.header` khi `window.scrollY > 50` (Site.jsx:18-25).
 - **Highlight nav active theo section**: với mỗi `section` đang nằm trong vùng nhìn, thêm class `active` vào link `a[data-scroll="<section-id>"]` (Site.jsx:32-46).
 - **`scrollToSection(id)`** — cuộn mượt tới `document.getElementById(id)`, được truyền xuống `Header`.
+- **Cụm nút cuộn cố định** (`scroll-buttons`, góc dưới phải): 4 nút `↑↑` / `↑` / `↓` / `↓↓` — lên đầu trang, lên phần trước (`scrollToPrevSection`), xuống phần tiếp theo (`scrollToNextSection`), xuống cuối trang (`scrollToBottom`). Nút hướng lên chỉ hiện khi `scrollY > 50`, nút hướng xuống chỉ hiện khi chưa ở cuối trang; nút ẩn dùng `display: none`. `scrollIntoView` với `scroll-margin-top: 60px` trên `.container .section` để tránh header che tiêu đề section.
 
 | Route | Component | File |
 |---|---|---|

@@ -270,6 +270,7 @@ Quy tắc truy cập nhất quán: `localStorage.setItem(key, JSON.stringify(val
 | `URL.createObjectURL` + Blob | `Settings.jsx` (export JSON) | Tải file `data_<timestamp>.json` về máy |
 | `window.confirm` / `prompt` | `Notes`, `NumerologyName`, `SaveWeb` | Xác nhận xóa, nhập URL |
 | `scrollIntoView` | `Site.jsx` | Cuộn mượt tới section |
+| `window.scrollTo` | `Site.jsx` | Cuộn tới đầu/cuối trang (nút `↑↑` / `↓↓`) |
 
 ## 8. Khuyến nghị mở rộng với backend thật
 

@@ -6,16 +6,60 @@
 
 /* Sections */
 .container .section {
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 2rem 0;
+  scroll-margin-top: 60px;
 }
 
 .container .siteContent {
   margin-top: 60px;
+}
+
+/* ========================================
+   SCROLL BUTTONS (fixed bottom-right)
+   ======================================== */
+
+.scroll-buttons {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1000;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-buttons:hover {
+  opacity: 1;
+}
+
+.scroll-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  background: rgba(0, 31, 63, 0.35);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.scroll-btn:hover {
+  background: rgba(0, 51, 102, 0.9);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.scroll-btn.hidden {
+  display: none;
 }
 
 /* ========================================
