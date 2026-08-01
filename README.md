@@ -12,8 +12,6 @@ Zymuk Page là một ứng dụng web đơn trang (Single Page Application) đư
 | **Công cụ** | `/#/calculator`, `/#/notes`, `/#/numerology-name`, `/#/text-encoder-decoder`, `/#/save-web`, `/#/encrypt-decrypt` | Máy tính khoa học, ghi chú rich-text, thần số học, mã hóa URL, quản lý bookmark, mã hóa/giải mã văn bản |
 | **Admin Panel** | `/#/admin/...` | Dashboard, CRUD từng section, cài đặt homepage (màu/title/ảnh), đổi ngôn ngữ EN/VI, export dữ liệu JSON |
 
-Bộ tài liệu kỹ thuật chi tiết (cài đặt, kiến trúc, API/data contract) được quản lý trên nhánh **`docs`**.
-
 ## Công nghệ sử dụng
 
 - **React 19** + **ReactDOM 19** với `StrictMode`
