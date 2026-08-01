@@ -123,5 +123,22 @@
   "add_education": "Add Education",
   "add_achievement": "Add Achievement",
   "new_education": "New Education Entry",
-  "no_education": "No education entries added yet"
+  "no_education": "No education entries added yet",
+  "add_user": "Add User",
+  "edit_user": "Edit User",
+  "update_user": "Update User",
+  "user_list": "User List",
+  "role": "Role",
+  "role_admin": "Admin",
+  "role_user": "User",
+  "actions": "Actions",
+  "no_users": "No users found",
+  "fill_required_fields": "Please fill all required fields!",
+  "email_exists_error": "This email is already in use!",
+  "user_added_success": "User added successfully!",
+  "user_updated_success": "User updated successfully!",
+  "user_deleted_success": "User deleted successfully!",
+  "confirm_delete_user": "Are you sure you want to delete this user?",
+  "show_password": "Show password",
+  "hide_password": "Hide password"
 }
