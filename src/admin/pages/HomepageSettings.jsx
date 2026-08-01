@@ -32,7 +32,7 @@ const HomepageSettings = () => {
           return;
         }
 
-        const response = await fetch("/config.json");
+        const response = await fetch("/data.json");
         const config = await response.json();
         setSettings({
           hero: {
@@ -95,7 +95,7 @@ const HomepageSettings = () => {
 
   const handleReset = async () => {
     try {
-      const response = await fetch("/config.json");
+      const response = await fetch("/data.json");
       const config = await response.json();
 
       const resetSettings = {

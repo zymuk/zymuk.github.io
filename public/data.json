@@ -255,49 +255,124 @@
     {
       "category": "Programming Languages",
       "items": [
-        { "name": "C++", "startDate": "2020-01", "isVisible": true },
-        { "name": ".NET", "startDate": "2020-01", "isVisible": true },
-        { "name": "Java", "startDate": "2019-01", "isVisible": true },
-        { "name": "JavaScript", "startDate": "2021-01", "isVisible": true },
-        { "name": "Bash/Shell", "startDate": "2021-01", "isVisible": true }
+        {
+          "name": "C++",
+          "startDate": "2020-01",
+          "isVisible": true
+        },
+        {
+          "name": ".NET",
+          "startDate": "2020-01",
+          "isVisible": true
+        },
+        {
+          "name": "Java",
+          "startDate": "2019-01",
+          "isVisible": true
+        },
+        {
+          "name": "JavaScript",
+          "startDate": "2021-01",
+          "isVisible": true
+        },
+        {
+          "name": "Bash/Shell",
+          "startDate": "2021-01",
+          "isVisible": true
+        }
       ],
       "isVisible": true
     },
     {
       "category": "Testing Tools & Frameworks",
       "items": [
-        { "name": "OpenTestFramework", "startDate": "2019-04", "isVisible": true },
-        { "name": "Jenkins Pipeline", "startDate": "2022-05", "isVisible": true },
-        { "name": "JUnit", "startDate": "2019-04", "isVisible": true },
-        { "name": "Selenium", "isVisible": true },
-        { "name": "Jira", "startDate": "2017-01", "isVisible": true }
+        {
+          "name": "OpenTestFramework",
+          "startDate": "2019-04",
+          "isVisible": true
+        },
+        {
+          "name": "Jenkins Pipeline",
+          "startDate": "2022-05",
+          "isVisible": true
+        },
+        {
+          "name": "JUnit",
+          "startDate": "2019-04",
+          "isVisible": true
+        },
+        {
+          "name": "Selenium",
+          "isVisible": true
+        },
+        {
+          "name": "Jira",
+          "startDate": "2017-01",
+          "isVisible": true
+        }
       ],
       "isVisible": true
     },
     {
       "category": "Web Development",
       "items": [
-        { "name": "React", "startDate": "2024-01", "isVisible": true },
-        { "name": "HTML/CSS", "startDate": "2020-01", "isVisible": true },
-        { "name": "Node.js", "startDate": "2023-01", "isVisible": true }
+        {
+          "name": "React",
+          "startDate": "2024-01",
+          "isVisible": true
+        },
+        {
+          "name": "HTML/CSS",
+          "startDate": "2020-01",
+          "isVisible": true
+        },
+        {
+          "name": "Node.js",
+          "startDate": "2023-01",
+          "isVisible": true
+        }
       ],
       "isVisible": true
     },
     {
       "category": "DevOps & Tools",
       "items": [
-        { "name": "Docker", "startDate": "2025-01", "isVisible": true },
-        { "name": "Git", "startDate": "2019-01", "isVisible": true },
-        { "name": "SVN", "startDate": "2021-01", "isVisible": true },
-        { "name": "CMake", "startDate": "2022-01", "isVisible": true }
+        {
+          "name": "Docker",
+          "startDate": "2025-01",
+          "isVisible": true
+        },
+        {
+          "name": "Git",
+          "startDate": "2019-01",
+          "isVisible": true
+        },
+        {
+          "name": "SVN",
+          "startDate": "2021-01",
+          "isVisible": true
+        },
+        {
+          "name": "CMake",
+          "startDate": "2022-01",
+          "isVisible": true
+        }
       ],
       "isVisible": true
     },
     {
       "category": "Databases",
       "items": [
-        { "name": "MS SQL Server", "startDate": "2019-01", "isVisible": true },
-        { "name": "MySQL", "startDate": "2022-01", "isVisible": true }
+        {
+          "name": "MS SQL Server",
+          "startDate": "2019-01",
+          "isVisible": true
+        },
+        {
+          "name": "MySQL",
+          "startDate": "2022-01",
+          "isVisible": true
+        }
       ],
       "isVisible": true
     }
@@ -311,5 +386,61 @@
     "projects": "Projects",
     "features": "Features",
     "contact": "Contact"
+  },
+  "homepage": {
+    "hero": {
+      "color": "#001f2e",
+      "title": "QA Engineer | A Tester Who Codes",
+      "content": "6+ years in QA Automation: C++, Java, Jenkins, Docker. Automated 1,000+ test cases and built CI/CD pipelines that cut test execution time by 25%, ensuring the quality of the OpenTestSystem automotive testing suite to ISO 13209 standard for European car brands (Porsche, VW).",
+      "image": ""
+    },
+    "about": {
+      "color": "#003855",
+      "text": "TRẦN THẾ NGỌC",
+      "description": "QA Engineer with 6+ years progressing from manual testing to automation, specializing in OpenTestSystem, CI/CD pipeline testing, and end-to-end bug tracking.",
+      "image": ""
+    },
+    "experience": {
+      "color": "#005577",
+      "title": "Experience",
+      "description": "My professional journey",
+      "image": ""
+    },
+    "education": {
+      "color": "#006080",
+      "title": "Education",
+      "description": "My educational background",
+      "image": ""
+    },
+    "certifications": {
+      "color": "#006994",
+      "title": "Certifications",
+      "description": "Professional certifications and achievements",
+      "image": ""
+    },
+    "skills": {
+      "color": "#007099",
+      "title": "Skills & Technologies",
+      "description": "Technical expertise and proficiency",
+      "image": ""
+    },
+    "projects": {
+      "color": "#0077b6",
+      "title": "Projects",
+      "description": "My latest work and projects",
+      "image": ""
+    },
+    "tools": {
+      "color": "#0099d4",
+      "title": "Features",
+      "description": "Useful tools and utilities",
+      "image": ""
+    },
+    "contact": {
+      "color": "#00bbf2",
+      "title": "Contact Me",
+      "description": "Get in touch with me",
+      "image": ""
+    }
   }
 }

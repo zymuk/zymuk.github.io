@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
+import usePageMeta from "../../../utils/usePageMeta";
 import "./NumerologyName.css";
 
 const NumerologyName = () => {
+  usePageMeta({
+    title: "Numerology Name",
+    description: "Auto generate names based on your numerology birth date.",
+  });
   const [birthDate, setBirthDate] = useState("");
   const [currentResult, setCurrentResult] = useState("");
   const [error, setError] = useState("");

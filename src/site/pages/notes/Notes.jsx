@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import usePageMeta from "../../../utils/usePageMeta";
 import "./Notes.css";
 
 // Modern Rich Text Editor Component
@@ -170,6 +171,10 @@ const RichTextEditor = ({
 };
 
 const Notes = () => {
+  usePageMeta({
+    title: "Notes",
+    description: "Free online notes app with rich text editor for quick note taking.",
+  });
   const [notes, setNotes] = useState([]);
   const [editingNote, setEditingNote] = useState(null);
   const [viewingNote, setViewingNote] = useState(null);
