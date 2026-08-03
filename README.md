@@ -37,13 +37,13 @@ yarn start
 # 3. Build production vào thư mục build/
 yarn build
 
-# 4. Chạy bộ kiểm thử (13 test suite / 113 test)
+# 4. Chạy bộ kiểm thử
 yarn test --watchAll=false
 ```
 
 ## Kiểm thử
 
-Dự án đi kèm bộ kiểm thử tự động viết bằng **Jest + React Testing Library**, đặt trong thư mục `test/` (soi gương cây `src/`). Bộ test phủ các phần giàu logic nhất: các công cụ (máy tính, mã hóa 16 thuật toán, ghi chú, lưu trang, thần số học...), luồng dữ liệu `localStorage` ↔ file JSON, và panel admin (đăng nhập, CRUD user, export dữ liệu). Hiện trạng: **13 test suite / 113 test, tất cả pass**.
+Dự án đi kèm bộ kiểm thử tự động viết bằng **Jest + React Testing Library**, đặt trong thư mục `test/` (soi gương cây `src/`). Bộ test phủ các phần giàu logic nhất: các công cụ (máy tính, mã hóa 16 thuật toán, ghi chú, lưu trang, thần số học, JSON formatter...), luồng dữ liệu `localStorage` ↔ file JSON, và panel admin (đăng nhập, CRUD user, export dữ liệu). Hiện trạng: **tất cả test pass**.
 
 ## Ghi chú & hạn chế đã biết
 
