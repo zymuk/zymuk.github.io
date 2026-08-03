@@ -614,7 +614,7 @@ const EncryptDecrypt = () => {
         <div className="glass-content">
           <div className="encrypt-decrypt-wrapper">
             {/* Controls */}
-            <div className="controls-section">
+            <div className="controls-section glass-content">
               <div className="control-group">
                 <label>Mode:</label>
                 <div className="mode-toggle">
@@ -752,7 +752,7 @@ const EncryptDecrypt = () => {
             )}
 
             {/* Algorithm Info */}
-            <div className="info-section">
+            <div className="info-section glass-content">
               <h3>Algorithm Information</h3>
               <div className="algorithm-info">
                 {algorithm === "base64" && (

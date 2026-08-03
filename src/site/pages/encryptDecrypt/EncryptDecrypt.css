@@ -7,14 +7,9 @@
   margin: 0 auto;
 }
 
-/* Controls Section */
+/* Controls Section - reuses shared .glass-content for the glass look */
 .controls-section {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  padding: 25px;
   margin-bottom: 25px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .control-group {
@@ -301,13 +296,8 @@
   }
 }
 
-/* Info Section */
+/* Info Section - reuses shared .glass-content for the glass look */
 .info-section {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border-radius: 15px;
-  padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: 25px;
 }
 

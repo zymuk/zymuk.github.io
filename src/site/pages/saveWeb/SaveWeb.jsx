@@ -156,7 +156,7 @@ const SaveWeb = () => {
         <div className="glass-content">
           <div className="save-web-wrapper">
             {/* Add/Edit Form */}
-            <div className="bookmark-form">
+            <div className="bookmark-form glass-content">
               <h3>
                 {editingId ? (
                   <>

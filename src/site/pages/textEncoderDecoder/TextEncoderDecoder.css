@@ -8,11 +8,6 @@
   margin: 0 auto;
 }
 
-/* Use shared form-group label styles */
-.text-encoder-decoder-page .form-group label {
-  color: #333;
-}
-
 .text-encoder-decoder-input-group {
   margin-bottom: 20px;
 }

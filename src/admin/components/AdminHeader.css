@@ -3,7 +3,7 @@
   justify-content: space-between; /* Canh đều 2 bên */
   align-items: center;
   background: #002855; /* Giữ màu header */
-  color: white;
+  color: #fff;
   padding: 15px 20px; /* Cách đều viền */
   height: 60px; /* Định chiều cao header */
   width: 100%;
@@ -25,7 +25,7 @@
   padding: 8px 12px;
   border-radius: 5px;
   transition: background 0.2s;
-  color: white;
+  color: #fff;
 }
 
 .admin-header-user:hover {

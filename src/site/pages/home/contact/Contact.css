@@ -33,7 +33,7 @@
   border-radius: 5px;
   font-size: 1rem;
   background: rgba(255, 255, 255, 0.2);
-  color: white;
+  color: #fff;
   outline: none;
   transition: 0.3s;
 }
@@ -59,7 +59,7 @@
   margin-top: 15px;
   padding: 12px;
   background: #0077b6;
-  color: white;
+  color: #fff;
   border: none;
   cursor: pointer;
   font-size: 1.1rem;
