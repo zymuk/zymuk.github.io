@@ -77,6 +77,13 @@
       "description": "Encrypt and decrypt text with various algorithms",
       "path": "/encrypt-decrypt",
       "isVisible": true
+    },
+    {
+      "id": "json-formatter",
+      "displayName": "JSON Formatter/Validator",
+      "description": "Format, minify and validate JSON with precise error location",
+      "path": "/json-formatter",
+      "isVisible": true
     }
   ],
   "experience": [
