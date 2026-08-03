@@ -20,6 +20,7 @@ Zymuk Page là một ứng dụng web đơn trang (Single Page Application) đư
 - **Font Awesome 6** (qua CDN trong `public/index.html`)
 - **cross-env** (đồng bộ biến môi trường trên Windows)
 - **gh-pages** (triển khai build lên GitHub Pages)
+- **Jest + React Testing Library** — bộ kiểm thử tự động
 - **Web Crypto API**, `localStorage`, `navigator.clipboard` — các Web API trình duyệt
 
 ## Bắt đầu nhanh
@@ -35,7 +36,14 @@ yarn start
 
 # 3. Build production vào thư mục build/
 yarn build
+
+# 4. Chạy bộ kiểm thử (13 test suite / 113 test)
+yarn test --watchAll=false
 ```
+
+## Kiểm thử
+
+Dự án đi kèm bộ kiểm thử tự động viết bằng **Jest + React Testing Library**, đặt trong thư mục `test/` (soi gương cây `src/`). Bộ test phủ các phần giàu logic nhất: các công cụ (máy tính, mã hóa 16 thuật toán, ghi chú, lưu trang, thần số học...), luồng dữ liệu `localStorage` ↔ file JSON, và panel admin (đăng nhập, CRUD user, export dữ liệu). Hiện trạng: **13 test suite / 113 test, tất cả pass**.
 
 ## Ghi chú & hạn chế đã biết
 
