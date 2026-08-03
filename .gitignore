@@ -45,6 +45,11 @@ jspm_packages/
 /.pnp
 .pnp.js
 
+# Lockfiles
+# The project is managed with Yarn; keep the npm lockfile out of the repo.
+package-lock.json
+npm-shrinkwrap.json
+
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
 
