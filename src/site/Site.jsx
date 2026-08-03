@@ -19,6 +19,7 @@ const SaveWeb = lazy(() => import("./pages/saveWeb/SaveWeb"));
 const EncryptDecrypt = lazy(() =>
   import("./pages/encryptDecrypt/EncryptDecrypt"),
 );
+const JsonFormatter = lazy(() => import("./pages/jsonFormatter/JsonFormatter"));
 
 const Site = () => {
   const [showUp, setShowUp] = useState(false);
@@ -126,6 +127,7 @@ const Site = () => {
             />
             <Route path="/save-web" element={<SaveWeb />} />
             <Route path="/encrypt-decrypt" element={<EncryptDecrypt />} />
+            <Route path="/json-formatter" element={<JsonFormatter />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

@@ -1,0 +1,56 @@
+/* Page Layout */
+.json-formatter-page {
+  padding: 0.5rem;
+}
+
+.json-formatter-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.json-formatter-input-group label,
+.json-formatter-output-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.json-formatter-input-group textarea,
+.json-formatter-output-group textarea {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.json-formatter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.json-formatter-status {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.json-formatter-status.error {
+  color: #b00020;
+  background: rgba(176, 0, 32, 0.1);
+}
+
+.json-formatter-status.success {
+  color: #1e7e34;
+  background: rgba(30, 126, 52, 0.1);
+}
+
+.json-formatter-output-group .btn-primary {
+  display: block;
+  margin: 10px auto 0;
+}
