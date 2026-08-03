@@ -176,7 +176,7 @@
 .toolbar-btn:active,
 .toolbar-btn.active {
   background: #001f3f;
-  color: white;
+  color: #fff;
   border-color: #001f3f;
 }
 
@@ -354,7 +354,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
-  color: white;
+  color: #fff;
 }
 
 /* Notes Content */
@@ -519,19 +519,19 @@
 
 .btn-view:hover {
   background: #28a745;
-  color: white;
+  color: #fff;
   transform: translateY(-1px);
 }
 
 .btn-edit:hover {
   background: #001f3f;
-  color: white;
+  color: #fff;
   transform: translateY(-1px);
 }
 
 .btn-delete:hover {
   background: #d32f2f;
-  color: white;
+  color: #fff;
   transform: translateY(-1px);
 }
 
@@ -739,7 +739,7 @@
 
 .btn-close-view {
   background: #6c757d;
-  color: white;
+  color: #fff;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;

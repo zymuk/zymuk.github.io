@@ -1,6 +1,6 @@
 .experience-section {
   padding: 4rem 2rem;
-  color: white;
+  color: #fff;
 }
 
 .section-title {
@@ -48,7 +48,7 @@
 }
 
 .role {
-  color: white;
+  color: #fff;
   margin: 0 0 0.5rem 0;
   font-size: 1.5rem;
   font-weight: 600;
@@ -63,7 +63,7 @@
 
 .period {
   background: rgba(255, 255, 255, 0.2);
-  color: white;
+  color: #fff;
   padding: 0.3rem 0.8rem;
   border-radius: 15px;
   font-size: 0.9rem;
@@ -85,7 +85,7 @@
 }
 
 .projects h5 {
-  color: white;
+  color: #fff;
   margin: 0 0 1rem 0;
   font-size: 1.1rem;
   font-weight: 600;
@@ -100,7 +100,7 @@
 }
 
 .project-name {
-  color: white;
+  color: #fff;
   margin: 0 0 0.5rem 0;
   font-size: 1.1rem;
   font-weight: 600;
@@ -117,7 +117,7 @@
 }
 
 .technologies strong {
-  color: white;
+  color: #fff;
   display: block;
   margin-bottom: 0.5rem;
 }
@@ -130,7 +130,7 @@
 
 .tech-tag {
   background: rgba(255, 255, 255, 0.2);
-  color: white;
+  color: #fff;
   padding: 0.3rem 0.8rem;
   border-radius: 15px;
   font-size: 0.85rem;
@@ -138,7 +138,7 @@
 }
 
 .responsibilities strong {
-  color: white;
+  color: #fff;
   display: block;
   margin-bottom: 0.5rem;
 }
