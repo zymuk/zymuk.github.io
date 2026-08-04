@@ -1,6 +1,8 @@
 {
-  "short_name": "Zymuk Trần",
+  "short_name": "Zymuk Page",
   "name": "Zymuk Trần - QA Engineer Portfolio",
+  "id": "/",
+  "description": "Personal portfolio and free online tools by Zymuk Trần, a QA engineer who codes.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -10,16 +12,21 @@
     {
       "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "logo512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
   "start_url": ".",
+  "scope": ".",
   "display": "standalone",
+  "orientation": "portrait",
   "theme_color": "#001f3f",
-  "background_color": "#ffffff"
+  "background_color": "#001f3f",
+  "prefer_related_applications": false
 }

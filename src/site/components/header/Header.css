@@ -73,6 +73,20 @@
   color: #ccc;
 }
 
+.nav-badge {
+  display: inline-block;
+  margin-left: 6px;
+  min-width: 18px;
+  padding: 1px 5px;
+  border-radius: 10px;
+  background-color: #00bbf2;
+  color: #003342;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 16px;
+}
+
 /* Responsive menu */
 @media (max-width: 768px) {
   .menu-toggle {

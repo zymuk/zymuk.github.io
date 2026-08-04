@@ -8,6 +8,27 @@ const Header = ({ scrollToSection }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [listActivedFeatures, setListActivedFeatures] = useState([]);
+  const [reminderCount, setReminderCount] = useState(0);
+
+  useEffect(() => {
+    const updateReminderCount = () => {
+      try {
+        const raw = localStorage.getItem("reminders");
+        const items = raw ? JSON.parse(raw) : [];
+        setReminderCount(items.filter((reminder) => !reminder.notified).length);
+      } catch (error) {
+        console.error("Invalid reminders data in localStorage:", error);
+        setReminderCount(0);
+      }
+    };
+    updateReminderCount();
+    window.addEventListener("zymuk-reminders-changed", updateReminderCount);
+    window.addEventListener("storage", updateReminderCount);
+    return () => {
+      window.removeEventListener("zymuk-reminders-changed", updateReminderCount);
+      window.removeEventListener("storage", updateReminderCount);
+    };
+  }, []);
 
   useEffect(() => {
     let parsedFeatures = null;
@@ -127,7 +148,14 @@ const Header = ({ scrollToSection }) => {
             listActivedFeatures.map((element) => {
               return (
                 <li key={element.id}>
-                  <Link to={"/" + element.id}>{element.displayName}</Link>
+                  <Link to={"/" + element.id}>
+                    {element.displayName}
+                    {element.id === "reminders" && reminderCount > 0 && (
+                      <span className="nav-badge" aria-label="Pending reminders">
+                        {reminderCount}
+                      </span>
+                    )}
+                  </Link>
                 </li>
               );
             })
