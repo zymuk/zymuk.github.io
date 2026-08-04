@@ -256,6 +256,36 @@
   transform: translateY(-2px);
 }
 
+/* Shared Action Buttons Row */
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Shared Status Message */
+.status-message {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 15px 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.status-message.error {
+  color: #ffcdd2;
+  background: rgba(244, 67, 54, 0.2);
+  border: 1px solid rgba(244, 67, 54, 0.5);
+}
+
+.status-message.success {
+  color: #c8e6c9;
+  background: rgba(76, 175, 80, 0.2);
+  border: 1px solid rgba(76, 175, 80, 0.5);
+}
+
 /* Button Groups */
 .button-group {
   display: flex;

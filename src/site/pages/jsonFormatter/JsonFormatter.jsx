@@ -118,7 +118,7 @@ function JsonFormatter() {
                 spellCheck="false"
               />
             </div>
-            <div className="json-formatter-buttons">
+            <div className="action-buttons">
               <button className="btn-primary" onClick={handleFormat}>
                 Format
               </button>
@@ -136,8 +136,8 @@ function JsonFormatter() {
               <p
                 className={
                   status.startsWith("Error")
-                    ? "json-formatter-status error"
-                    : "json-formatter-status success"
+                    ? "status-message error"
+                    : "status-message success"
                 }
               >
                 {status}
