@@ -84,6 +84,13 @@
       "description": "Format, minify and validate JSON with precise error location",
       "path": "/json-formatter",
       "isVisible": true
+    },
+    {
+      "id": "reminders",
+      "displayName": "Task Reminder",
+      "description": "Schedule tasks and get OS notifications",
+      "path": "/reminders",
+      "isVisible": true
     }
   ],
   "experience": [
