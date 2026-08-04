@@ -1,10 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Header.css";
 
 const Header = ({ scrollToSection }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [featuresSubmenuOpen, setFeaturesSubmenuOpen] = useState(false);
+  const headerRef = useRef(null);
   const toggleMenu = () => setMenuOpen(!menuOpen);
+  const closeMenus = () => {
+    setMenuOpen(false);
+    setFeaturesSubmenuOpen(false);
+  };
   const navigate = useNavigate();
   const location = useLocation();
   const [listActivedFeatures, setListActivedFeatures] = useState([]);
@@ -61,6 +67,29 @@ const Header = ({ scrollToSection }) => {
     }
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (headerRef.current && !headerRef.current.contains(event.target)) {
+        closeMenus();
+      }
+    };
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeMenus();
+      }
+    };
+    document.addEventListener("click", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  useEffect(() => {
+    closeMenus();
+  }, [location.pathname]);
+
   const handleLogoClick = () => {
     navigate("/");
   };
@@ -69,7 +98,12 @@ const Header = ({ scrollToSection }) => {
     const checkHomePage = location.pathname === "/";
     if (checkHomePage) {
       return (
-        <ul>
+        <ul
+          onClick={() => {
+            setMenuOpen(false);
+            setFeaturesSubmenuOpen(false);
+          }}
+        >
           <li>
             <button onClick={() => scrollToSection("hero")} data-scroll="hero">
               Hero
@@ -123,13 +157,42 @@ const Header = ({ scrollToSection }) => {
               Projects
             </button>
           </li>
-          <li>
+          <li
+            className={`has-submenu ${featuresSubmenuOpen ? "open" : ""}`}
+          >
             <button
               onClick={() => scrollToSection("features")}
               data-scroll="features"
             >
               Features
             </button>
+            <button
+              className="submenu-toggle"
+              onClick={(event) => {
+                event.stopPropagation();
+                setFeaturesSubmenuOpen(!featuresSubmenuOpen);
+              }}
+              aria-haspopup="true"
+              aria-expanded={featuresSubmenuOpen}
+              aria-label="Toggle features submenu"
+            >
+              ▾
+            </button>
+            <ul className="submenu">
+              {listActivedFeatures.length > 0 ? (
+                listActivedFeatures.map((element) => {
+                  return (
+                    <li key={element.id}>
+                      <Link to={"/" + element.id}>{element.displayName}</Link>
+                    </li>
+                  );
+                })
+              ) : (
+                <li>
+                  <Link to="/">No features available</Link>
+                </li>
+              )}
+            </ul>
           </li>
           <li>
             <button
@@ -143,7 +206,7 @@ const Header = ({ scrollToSection }) => {
       );
     } else {
       return (
-        <ul>
+        <ul onClick={() => setMenuOpen(false)}>
           {listActivedFeatures.length > 0 ? (
             listActivedFeatures.map((element) => {
               return (
@@ -172,7 +235,7 @@ const Header = ({ scrollToSection }) => {
   };
 
   return (
-    <header className="header">
+    <header className="header" ref={headerRef}>
       <div className="header-content">
         <h1
           className="site-title"
