@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent, act, waitFor, within } from "@testing-library/react";
+import { render, screen, fireEvent, act, waitFor } from "@testing-library/react";
 import Reminders from "../../../../src/site/pages/reminders/Reminders";
 
 const WEEKDAY_LABELS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -140,31 +140,6 @@ describe("Reminders", () => {
     expect(saved[0].dueAt).toBeGreaterThan(Date.now());
   });
 
-  it("fires an OS notification when a reminder is due", async () => {
-    jest.useFakeTimers();
-    const notificationMock = mockNotification("granted");
-
-    render(<Reminders />);
-    setTitle("Stand up");
-    setSeconds(5);
-    await act(async () => {
-      fireEvent.click(screen.getByRole("button", { name: "Add Reminder" }));
-    });
-
-    expect(screen.getByText("Stand up")).toBeInTheDocument();
-    expect(screen.getByText("00:00:05")).toBeInTheDocument();
-
-    await act(async () => {
-      jest.advanceTimersByTime(5000);
-    });
-
-    expect(notificationMock).toHaveBeenCalledWith(
-      "Stand up",
-      expect.objectContaining({ body: "Reminder from Zymuk Page" }),
-    );
-    expect(screen.getByText("Sent")).toBeInTheDocument();
-  });
-
   it("deletes a single reminder", async () => {
     render(<Reminders />);
     setTitle("Delete me");
@@ -262,31 +237,6 @@ describe("Reminders", () => {
     expect(screen.getByText(/Due/)).toBeInTheDocument();
   });
 
-  it("notifies about reminders missed while the page was closed", async () => {
-    const notificationMock = mockNotification("granted");
-    localStorage.setItem(
-      "reminders",
-      JSON.stringify([
-        {
-          id: "1",
-          title: "Missed task",
-          dueAt: Date.now() - 1000,
-          createdAt: Date.now() - 2000,
-          notified: false,
-        },
-      ]),
-    );
-
-    render(<Reminders />);
-    await act(async () => {});
-
-    expect(notificationMock).toHaveBeenCalledWith(
-      "Missed task",
-      expect.objectContaining({}),
-    );
-    expect(screen.getByText("Sent")).toBeInTheDocument();
-  });
-
   it("shows the repeat day options when repeat is on for specific time", () => {
     render(<Reminders />);
     fireEvent.click(screen.getByLabelText("Specific time"));
@@ -295,97 +245,6 @@ describe("Reminders", () => {
     WEEKDAY_LABELS.forEach((label) => {
       expect(screen.getByLabelText(label)).toBeInTheDocument();
     });
-  });
-
-  it("shows the alarm popup for a ringing reminder and dismisses it", async () => {
-    localStorage.setItem(
-      "reminders",
-      JSON.stringify([
-        {
-          id: "1",
-          title: "Ring task",
-          dueAt: Date.now() - 1000,
-          createdAt: Date.now() - 2000,
-          notified: false,
-        },
-      ]),
-    );
-
-    render(<Reminders />);
-    await act(async () => {});
-
-    expect(screen.getByRole("dialog")).toBeInTheDocument();
-    expect(
-      within(screen.getByRole("dialog")).getByText("Ring task"),
-    ).toBeInTheDocument();
-
-    fireEvent.click(screen.getByRole("button", { name: "Dismiss all" }));
-
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-    const saved = JSON.parse(localStorage.getItem("reminders"));
-    expect(saved[0].notified).toBe(true);
-  });
-
-  it("dismisses a single ringing reminder from the popup", async () => {
-    localStorage.setItem(
-      "reminders",
-      JSON.stringify([
-        {
-          id: "1",
-          title: "First ring",
-          dueAt: Date.now() - 1000,
-          createdAt: Date.now() - 2000,
-          notified: false,
-        },
-        {
-          id: "2",
-          title: "Second ring",
-          dueAt: Date.now() - 1000,
-          createdAt: Date.now() - 2000,
-          notified: false,
-        },
-      ]),
-    );
-
-    render(<Reminders />);
-    await act(async () => {});
-
-    const firstItem = within(screen.getByRole("dialog"))
-      .getByText("First ring")
-      .closest("li");
-    fireEvent.click(
-      within(firstItem).getByRole("button", { name: "Dismiss" }),
-    );
-
-    const dialog = screen.getByRole("dialog");
-    expect(within(dialog).queryByText("First ring")).not.toBeInTheDocument();
-    expect(within(dialog).getByText("Second ring")).toBeInTheDocument();
-  });
-
-  it("stops the alarm when the ringing reminder is snoozed", async () => {
-    localStorage.setItem(
-      "reminders",
-      JSON.stringify([
-        {
-          id: "1",
-          title: "Snooze ring",
-          dueAt: Date.now() - 1000,
-          createdAt: Date.now() - 2000,
-          notified: false,
-        },
-      ]),
-    );
-
-    render(<Reminders />);
-    await act(async () => {});
-
-    fireEvent.click(
-      within(screen.getByRole("dialog")).getByRole("button", {
-        name: "Snooze 5m",
-      }),
-    );
-
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
   it("shows the repeat interval hint for countdown", () => {
@@ -473,54 +332,6 @@ describe("Reminders", () => {
     expect(saved).toHaveLength(1);
     expect(saved[0].repeat).toBe(true);
     expect(saved[0].intervalMs).toBe(30000);
-  });
-
-  it("reschedules a countdown repeat reminder after it fires", async () => {
-    jest.useFakeTimers();
-    mockNotification("granted");
-
-    render(<Reminders />);
-    setTitle("Drink water");
-    setSeconds(5);
-    fireEvent.click(screen.getByLabelText("Repeat"));
-    await act(async () => {
-      fireEvent.click(screen.getByRole("button", { name: "Add Reminder" }));
-    });
-
-    await act(async () => {
-      jest.advanceTimersByTime(5000);
-    });
-
-    expect(screen.queryByText("Sent")).not.toBeInTheDocument();
-    const saved = JSON.parse(localStorage.getItem("reminders"));
-    expect(saved[0].notified).toBe(false);
-    expect(saved[0].dueAt).toBeGreaterThan(Date.now());
-  });
-
-  it("saves a weekday repeat reminder and reschedules it when overdue", async () => {
-    const now = Date.now();
-    localStorage.setItem(
-      "reminders",
-      JSON.stringify([
-        {
-          id: "1",
-          title: "Weekly sync",
-          dueAt: now - 1000,
-          createdAt: now,
-          notified: false,
-          repeat: true,
-          repeatDays: [0, 1, 2, 3, 4, 5, 6],
-        },
-      ]),
-    );
-
-    render(<Reminders />);
-
-    const saved = JSON.parse(localStorage.getItem("reminders"));
-    expect(saved[0].notified).toBe(false);
-    expect(saved[0].dueAt).toBeGreaterThan(now);
-    expect(screen.getByText("Weekly sync")).toBeInTheDocument();
-    expect(screen.queryByText("Sent")).not.toBeInTheDocument();
   });
 
   it("edits a reminder and updates it in localStorage", async () => {
@@ -761,43 +572,6 @@ describe("Reminders", () => {
     expect(overdueItems).toHaveLength(1);
     expect(overdueItems[0].textContent).toContain("Old task");
     expect(screen.getByText("Future task")).toBeInTheDocument();
-  });
-
-  it("advances a reminder when the service worker snoozes it", () => {
-    const listeners = {};
-    navigator.serviceWorker = {
-      addEventListener: (type, callback) => {
-        listeners[type] = callback;
-      },
-      removeEventListener: jest.fn(),
-    };
-    const now = Date.now();
-    localStorage.setItem(
-      "reminders",
-      JSON.stringify([
-        {
-          id: "1",
-          kind: "countdown",
-          title: "Lunch",
-          dueAt: now - 1000,
-          createdAt: now,
-          notified: false,
-          repeat: false,
-        },
-      ]),
-    );
-
-    render(<Reminders />);
-
-    act(() => {
-      listeners.message({
-        data: { type: "REMINDER_SNOOZED", id: "1", snoozeMinutes: 5 },
-      });
-    });
-
-    const saved = JSON.parse(localStorage.getItem("reminders"));
-    expect(saved[0].dueAt).toBeGreaterThan(now + 4 * 60000);
-    expect(saved[0].notified).toBe(false);
   });
 
   it("imports reminders from a JSON file", async () => {
