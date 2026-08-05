@@ -1,6 +1,7 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/header/Header";
+import ReminderAlarm from "./components/reminderAlarm/ReminderAlarm";
 import Home from "./pages/home/Home";
 import Features from "./pages/home/features/Features";
 import NotFound from "./pages/notFound/NotFound";
@@ -114,6 +115,7 @@ const Site = () => {
   return (
     <div className="container">
       <Header scrollToSection={scrollToSection} />
+      <ReminderAlarm />
       <div className="siteContent">
         <Suspense fallback={<div className="site-loading">Loading...</div>}>
           <Routes>
