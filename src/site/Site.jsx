@@ -22,6 +22,7 @@ const EncryptDecrypt = lazy(() =>
 );
 const JsonFormatter = lazy(() => import("./pages/jsonFormatter/JsonFormatter"));
 const Reminders = lazy(() => import("./pages/reminders/Reminders"));
+const ImageEditor = lazy(() => import("./pages/imageEditor/ImageEditor"));
 
 const Site = () => {
   const [showUp, setShowUp] = useState(false);
@@ -132,6 +133,7 @@ const Site = () => {
             <Route path="/encrypt-decrypt" element={<EncryptDecrypt />} />
             <Route path="/json-formatter" element={<JsonFormatter />} />
             <Route path="/reminders" element={<Reminders />} />
+            <Route path="/image-editor" element={<ImageEditor />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
