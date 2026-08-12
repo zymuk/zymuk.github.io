@@ -91,6 +91,13 @@
       "description": "Schedule tasks and get OS notifications",
       "path": "/reminders",
       "isVisible": true
+    },
+    {
+      "id": "image-editor",
+      "displayName": "Image Editor",
+      "description": "Remove white background, crop, resize and export transparent images",
+      "path": "/image-editor",
+      "isVisible": true
     }
   ],
   "experience": [
