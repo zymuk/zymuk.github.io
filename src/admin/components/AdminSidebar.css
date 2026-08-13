@@ -27,7 +27,7 @@
   overflow-x: hidden;
   z-index: 1000;
   transition: width 0.3s ease-in-out;
-  padding-top: 60px; /* Đẩy xuống dưới header */
+  padding-top: 60px; /* Push down below header */
 }
 
 .admin-sidebar.closed {
@@ -111,11 +111,11 @@
 /* === MAIN CONTENT === */
 .main-content {
   margin-left: 250px;
-  margin-top: 60px; /* Đẩy xuống để tránh header */
+  margin-top: 60px; /* Push down to avoid header */
   padding: 20px;
   transition: margin-left 0.3s ease-in-out;
   position: relative;
-  z-index: 900; /* Đảm bảo không bị sidebar đè lên */
+  z-index: 900; /* Ensure sidebar does not overlap it */
 }
 
 .admin-sidebar.closed + .main-content {

@@ -1,6 +1,6 @@
 .contact-section {
   background-color: #005f73;
-} /* Xanh lam đậm */
+} /* Dark blue */
 
 /* Contact Section */
 .contact-section {
@@ -12,7 +12,7 @@
   flex-direction: column;
   width: 90%;
   max-width: 400px;
-  background: rgba(255, 255, 255, 0.1); /* Nền mờ nhẹ */
+  background: rgba(255, 255, 255, 0.1); /* Slight translucent background */
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -22,7 +22,7 @@
   font-weight: bold;
   margin-top: 10px;
   text-align: left;
-  color: #cce7ff; /* Xanh nhạt hợp mệnh Thủy */
+  color: #cce7ff; /* Light blue, matches Water element */
 }
 
 .contact-form input,
@@ -40,7 +40,7 @@
 
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: rgba(255, 255, 255, 0.7); /* Màu trắng nhạt, dễ thấy hơn */
+  color: rgba(255, 255, 255, 0.7); /* Soft white, more visible */
   font-style: italic;
 }
 

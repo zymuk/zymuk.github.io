@@ -1,4 +1,4 @@
-/* Features Section - Style mặc định, có thể override bằng inline style */
+/* Features Section - Default style, can be overridden with inline style */
 .features-section {
   background-color: #00a8e8; /* Fallback color */
 }

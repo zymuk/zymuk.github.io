@@ -13,7 +13,7 @@
   z-index: 1100;
 }
 
-/* === CONTAINER CHÍNH === */
+/* === MAIN CONTAINER === */
 .admin-container {
   display: flex;
 }
@@ -32,10 +32,10 @@
   overflow-x: hidden;
   z-index: 1000;
   transition: width 0.3s ease-in-out;
-  padding-top: 60px; /* Đẩy xuống dưới header */
+  padding-top: 60px; /* Push down below header */
 }
 
-/* Khi sidebar đóng */
+/* When sidebar is closed */
 .admin-sidebar.closed {
   width: 60px;
 }
@@ -51,12 +51,12 @@
 }
 .admin-main-content {
   flex-grow: 1;
-  background: #fff; /* Đảm bảo nội dung hiện rõ */
+  background: #fff; /* Ensure content is clearly visible */
   padding: 20px;
-  min-height: 100vh; /* Đảm bảo nội dung không bị ẩn */
+  min-height: 100vh; /* Ensure content is not hidden */
 }
 
-/* Khi sidebar đóng, nội dung đẩy sang trái */
+/* When sidebar is closed, content shifts left */
 .admin-sidebar.closed + .admin-main-content {
   margin-left: 60px;
 }

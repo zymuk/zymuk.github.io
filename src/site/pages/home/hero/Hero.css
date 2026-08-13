@@ -1,4 +1,4 @@
-/* Hero Section - Style mặc định, có thể override bằng inline style */
+/* Hero Section - Default style, can be overridden with inline style */
 .hero-section {
   background-color: #001f2e; /* Fallback color */
   min-height: 500px;
