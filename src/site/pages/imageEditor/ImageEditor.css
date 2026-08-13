@@ -11,6 +11,10 @@
   align-items: start;
 }
 
+.image-editor-result {
+  min-width: 0;
+}
+
 @media (max-width: 900px) {
   .image-editor-grid {
     grid-template-columns: 1fr;
@@ -219,10 +223,11 @@
 
 /* Stage */
 .image-editor-stage {
+  height: 820px;
+  max-height: 80vh;
   min-height: 420px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  min-width: 0;
   border-radius: 14px;
   overflow: auto;
   padding: 20px;
@@ -238,6 +243,7 @@
 .image-editor-preview-box {
   position: relative;
   max-width: 100%;
+  margin: auto;
   user-select: none;
   display: none;
 }
@@ -247,7 +253,15 @@
   max-width: 100%;
   height: auto;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
-  cursor: crosshair;
+  cursor: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'%3E%3Cline x1='2' y1='13' x2='10' y2='13' stroke='%2300bbf2' stroke-width='2'/%3E%3Cline x1='16' y1='13' x2='24' y2='13' stroke='%2300bbf2' stroke-width='2'/%3E%3Cline x1='13' y1='2' x2='13' y2='10' stroke='%2300bbf2' stroke-width='2'/%3E%3Cline x1='13' y1='16' x2='13' y2='24' stroke='%2300bbf2' stroke-width='2'/%3E%3Ccircle cx='13' cy='13' r='1.5' fill='%2300bbf2'/%3E%3C/svg%3E") 13 13, crosshair;
+}
+
+.image-editor-canvas.scroll-mode {
+  cursor: grab;
+}
+
+.image-editor-canvas.scroll-mode:active {
+  cursor: grabbing;
 }
 
 .image-editor-overlay {
@@ -263,4 +277,5 @@
   color: rgba(255, 255, 255, 0.6);
   text-align: center;
   font-size: 14px;
+  margin: auto;
 }

@@ -109,9 +109,12 @@ const ImageEditor = () => {
 
   const fileInputRef = useRef(null);
   const dropRef = useRef(null);
+  const stageRef = useRef(null);
   const previewBoxRef = useRef(null);
   const previewRef = useRef(null);
   const overlayRef = useRef(null);
+  const panRef = useRef(null);
+  const isPanning = useRef(false);
 
   const sourceRef = useRef(null);
   const resultCanvasRef = useRef(null);
@@ -131,6 +134,8 @@ const ImageEditor = () => {
   const [hasImage, setHasImage] = useState(false);
   const [erasePoints, setErasePoints] = useState([]);
   const [metaText, setMetaText] = useState("");
+  const [zoom, setZoom] = useState(100);
+  const [toolMode, setToolMode] = useState("erase");
 
   const [cropX, setCropX] = useState("0");
   const [cropY, setCropY] = useState("0");
@@ -238,6 +243,7 @@ const ImageEditor = () => {
   const renderPreview = () => {
     const out = outputCanvasRef.current;
     const preview = previewRef.current;
+    const box = previewBoxRef.current;
     if (!out || !preview) return;
     const w = out.width;
     const h = out.height;
@@ -250,13 +256,34 @@ const ImageEditor = () => {
       ctx.fillRect(0, 0, w, h);
     }
     ctx.drawImage(out, 0, 0);
+    const zx = Math.max(1, Math.round((w * zoom) / 100));
+    const zy = Math.max(1, Math.round((h * zoom) / 100));
+    if (zoom === 100) {
+      preview.style.width = "";
+      preview.style.height = "";
+      preview.style.maxWidth = "";
+      if (box) {
+        box.style.width = "";
+        box.style.height = "";
+        box.style.maxWidth = "";
+      }
+    } else {
+      preview.style.width = zx + "px";
+      preview.style.height = zy + "px";
+      preview.style.maxWidth = "none";
+      if (box) {
+        box.style.width = zx + "px";
+        box.style.height = zy + "px";
+        box.style.maxWidth = "none";
+      }
+    }
     drawCropOverlay();
   };
 
   useEffect(() => {
     renderPreview();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [background]);
+  }, [background, zoom]);
 
   const updateMeta = (ow, oh) => {
     let t = "Original: " + ow + "×" + oh + " px";
@@ -445,14 +472,50 @@ const ImageEditor = () => {
   };
 
   const handlePreviewMouseDown = (e) => {
-    if (!cropMode || !outputCanvasRef.current || drawingRef.current) return;
-    e.preventDefault();
-    const p = posToPreview(e);
-    if (!p) return;
-    dragRef.current = { x0: p.x, y0: p.y, x1: p.x, y1: p.y };
-    drawingRef.current = true;
-    drawCropOverlay();
+    if (cropMode) {
+      if (!outputCanvasRef.current || drawingRef.current) return;
+      e.preventDefault();
+      const p = posToPreview(e);
+      if (!p) return;
+      dragRef.current = { x0: p.x, y0: p.y, x1: p.x, y1: p.y };
+      drawingRef.current = true;
+      drawCropOverlay();
+      return;
+    }
+    if (toolMode === "scroll") {
+      const stage = stageRef.current;
+      if (!stage) return;
+      e.preventDefault();
+      isPanning.current = true;
+      panRef.current = {
+        startX: e.clientX,
+        startY: e.clientY,
+        scrollLeft: stage.scrollLeft,
+        scrollTop: stage.scrollTop,
+      };
+    }
   };
+
+  useEffect(() => {
+    if (toolMode !== "scroll") return undefined;
+    const handleMove = (e) => {
+      if (!isPanning.current || !panRef.current) return;
+      const stage = stageRef.current;
+      if (!stage) return;
+      stage.scrollLeft = panRef.current.scrollLeft - (e.clientX - panRef.current.startX);
+      stage.scrollTop = panRef.current.scrollTop - (e.clientY - panRef.current.startY);
+    };
+    const handleUp = () => {
+      isPanning.current = false;
+      panRef.current = null;
+    };
+    document.addEventListener("mousemove", handleMove);
+    document.addEventListener("mouseup", handleUp);
+    return () => {
+      document.removeEventListener("mousemove", handleMove);
+      document.removeEventListener("mouseup", handleUp);
+    };
+  }, [toolMode]);
 
   useEffect(() => {
     if (!cropMode) return undefined;
@@ -496,7 +559,7 @@ const ImageEditor = () => {
   }, [cropMode, tolerance, feather, trim, cropCm, scale, background, hasCrop]);
 
   const handlePreviewClick = (e) => {
-    if (!sourceRef.current || !outputCanvasRef.current || cropMode) return;
+    if (!sourceRef.current || !outputCanvasRef.current || cropMode || toolMode === "scroll") return;
     const p = posToPreview(e);
     if (!p) return;
     const s = previewToSource(p.x, p.y);
@@ -800,9 +863,64 @@ const ImageEditor = () => {
               <span>Custom color</span>
             </div>
 
+            <h2>Preview zoom</h2>
+            <div className="image-editor-field">
+              <div className="image-editor-field-head">
+                <label htmlFor="zoom">Zoom preview</label>
+                <span className="image-editor-val">{zoom}%</span>
+              </div>
+              <input
+                type="range"
+                id="zoom"
+                min="25"
+                max="400"
+                step="5"
+                value={zoom}
+                disabled={!hasImage}
+                onChange={(e) => setZoom(Number(e.target.value))}
+              />
+              <div className="image-editor-btn-row">
+                <button
+                  className="btn-secondary image-editor-btn-sm"
+                  onClick={() => setZoom((z) => Math.max(25, z - 25))}
+                  disabled={!hasImage}
+                >
+                  −
+                </button>
+                <button
+                  className="btn-secondary image-editor-btn-sm"
+                  onClick={() => setZoom(100)}
+                  disabled={!hasImage}
+                >
+                  100%
+                </button>
+                <button
+                  className="btn-secondary image-editor-btn-sm"
+                  onClick={() => setZoom((z) => Math.min(400, z + 25))}
+                  disabled={!hasImage}
+                >
+                  +
+                </button>
+              </div>
+              <p className="image-editor-hint">
+                Enlarge the preview to aim erase clicks precisely. This does not change the export size.
+              </p>
+            </div>
+
             <h2>5 · Manual erase (click the image)</h2>
+            <div className="image-editor-btn-row">
+              <button
+                className="btn-primary image-editor-btn-sm"
+                onClick={() => setToolMode((m) => (m === "scroll" ? "erase" : "scroll"))}
+                disabled={!hasImage}
+              >
+                Mode: {toolMode === "scroll" ? "Scroll" : "Erase"}
+              </button>
+            </div>
             <p className="image-editor-hint">
-              Click directly on the result image to erase a connected region of similar color at that point. Uses the white threshold as color tolerance.
+              {toolMode === "scroll"
+                ? "Scroll: drag on the image to pan around it without erasing. Useful when zoomed in."
+                : "Erase: click to erase the connected region of similar color at that point. Uses the white threshold as color tolerance."}
             </p>
             <div className="image-editor-btn-row">
               <button
@@ -872,7 +990,7 @@ const ImageEditor = () => {
           {/* Preview */}
           <div className="image-editor-result">
             <h2>Result</h2>
-            <div className="image-editor-stage">
+            <div className="image-editor-stage" ref={stageRef}>
               <div
                 ref={previewBoxRef}
                 className="image-editor-preview-box"
@@ -885,7 +1003,10 @@ const ImageEditor = () => {
                   height="1"
                   onClick={handlePreviewClick}
                   onMouseDown={handlePreviewMouseDown}
-                  className="image-editor-canvas"
+                  className={
+                    "image-editor-canvas" +
+                    (toolMode === "scroll" ? " scroll-mode" : "")
+                  }
                 />
                 <canvas ref={overlayRef} id="cropOverlay" className="image-editor-overlay" />
               </div>
