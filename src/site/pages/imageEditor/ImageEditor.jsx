@@ -136,6 +136,7 @@ const ImageEditor = () => {
   const [cropY, setCropY] = useState("0");
   const [cropW, setCropW] = useState("0");
   const [cropH, setCropH] = useState("0");
+  const [originalFileName, setOriginalFileName] = useState("");
 
   const cropRectRef = useRef(null);
   const cropOffsetRef = useRef({ x: 0, y: 0 });
@@ -410,6 +411,8 @@ const ImageEditor = () => {
       setCropH(String(img.naturalHeight));
       setHasImage(true);
       processImage();
+      // Store original filename for download
+      setOriginalFileName(file.name);
     };
     img.onerror = () => {
       URL.revokeObjectURL(url);
@@ -558,6 +561,10 @@ const ImageEditor = () => {
   const handleDownload = () => {
     const out = outputCanvasRef.current;
     if (!out) return;
+    const baseName = originalFileName
+      ? originalFileName.replace(/\.[^.]+$/, "")
+      : "edited-image";
+    const ext = format === "image/png" ? "png" : "webp";
     out.toBlob(
       (blob) => {
         if (!blob) {
@@ -566,7 +573,7 @@ const ImageEditor = () => {
         }
         const a = document.createElement("a");
         a.href = URL.createObjectURL(blob);
-        a.download = format === "image/png" ? "edited-image.png" : "edited-image.webp";
+        a.download = baseName + "." + ext;
         a.click();
         setTimeout(() => URL.revokeObjectURL(a.href), 1000);
       },
@@ -586,6 +593,7 @@ const ImageEditor = () => {
     setCropMode(false);
     setHasImage(false);
     setMetaText("");
+    setOriginalFileName("");
   };
 
   const cropValLabel = cropCm + " cm ≈ " + cmToPx(cropCm) + " px";
