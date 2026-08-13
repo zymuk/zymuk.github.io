@@ -1,4 +1,4 @@
-/* Tổng thể trang */
+/* Page layout */
 .admin-login-container {
   display: flex;
   flex-direction: column;
@@ -47,7 +47,7 @@
   text-align: center;
 }
 
-/* Tiêu đề */
+/* Title */
 .admin-login-container h2 {
   color: #fff;
   font-size: 22px;
@@ -73,7 +73,7 @@
   box-shadow: 0 0 6px rgba(0, 123, 255, 0.5);
 }
 
-/* Nút Login */
+/* Login button */
 .admin-login-container .button {
   width: 75%;
   padding: 12px;

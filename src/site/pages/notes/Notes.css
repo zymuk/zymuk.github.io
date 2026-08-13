@@ -386,7 +386,7 @@
 .empty-state h3 {
   font-size: 2rem;
   margin-bottom: 1rem;
-  color: #87ceeb; /* Light blue để match theme */
+  color: #87ceeb; /* Light blue to match theme */
 }
 
 .empty-state p {
