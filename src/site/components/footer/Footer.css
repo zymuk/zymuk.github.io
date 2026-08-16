@@ -1,7 +1,8 @@
 /* Footer */
 .footer-site {
-  background: #333;
-  color: #fff;
+  background: var(--cv-footer-bg, #333);
+  color: var(--cv-footer-text, #fff);
+  border-top: 1px solid var(--cv-header-border, transparent);
   text-align: center;
   padding: 10px 0px 1px 0px;
   position: relative;
@@ -22,11 +23,11 @@
 }
 
 .footer-site-content .social-icons a {
-  color: #fff;
+  color: var(--cv-footer-text, #fff);
   font-size: 1.5rem;
   text-decoration: none;
 }
 
 .footer-site-content .social-icons a:hover {
-  color: #00a8e8;
+  opacity: 0.7;
 }

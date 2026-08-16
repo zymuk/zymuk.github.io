@@ -7,7 +7,7 @@ const Education = ({ data = [], settings = {} }) => {
   if (visibleEducation.length === 0) return null;
 
   const sectionStyle = {
-    backgroundColor: settings.color || "#006080",
+    backgroundColor: settings.color,
     backgroundImage: settings.image ? `url(${settings.image})` : undefined,
     backgroundSize: settings.image ? "cover" : undefined,
     backgroundPosition: settings.image ? "center" : undefined,

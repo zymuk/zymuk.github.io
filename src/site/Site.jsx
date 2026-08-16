@@ -1,7 +1,10 @@
 import React, { Suspense, lazy, useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "./components/header/Header";
 import ReminderAlarm from "./components/reminderAlarm/ReminderAlarm";
+import ThemeSwitcher from "./components/themeSwitcher/ThemeSwitcher";
+import { ThemeProvider, useTheme } from "./ThemeContext";
+import { HOME_THEMES } from "./pages/home/homeThemes";
 import Home from "./pages/home/Home";
 import Features from "./pages/home/features/Features";
 import NotFound from "./pages/notFound/NotFound";
@@ -24,9 +27,15 @@ const JsonFormatter = lazy(() => import("./pages/jsonFormatter/JsonFormatter"));
 const Reminders = lazy(() => import("./pages/reminders/Reminders"));
 const ImageEditor = lazy(() => import("./pages/imageEditor/ImageEditor"));
 
-const Site = () => {
+const SiteInner = () => {
   const [showUp, setShowUp] = useState(false);
   const [showDown, setShowDown] = useState(true);
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+  const { theme } = useTheme();
+  const activeTheme = HOME_THEMES.find((t) => t.id === theme);
+  const skinAttr =
+    isHome && activeTheme?.kind === "skin" ? activeTheme.id : undefined;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -114,7 +123,7 @@ const Site = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container" data-home-skin={skinAttr}>
       <Header scrollToSection={scrollToSection} />
       <ReminderAlarm />
       <div className="siteContent">
@@ -173,8 +182,15 @@ const Site = () => {
           ↓↓
         </button>
       </div>
+      {isHome && <ThemeSwitcher />}
     </div>
   );
 };
+
+const Site = () => (
+  <ThemeProvider>
+    <SiteInner />
+  </ThemeProvider>
+);
 
 export default Site;

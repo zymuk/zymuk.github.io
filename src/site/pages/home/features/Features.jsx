@@ -37,7 +37,7 @@ const Features = ({ settings = {}, data = [] }) => {
   }, [data, settings]);
 
   const sectionStyle = {
-    backgroundColor: sectionSettings.color || "#0099d4",
+    backgroundColor: sectionSettings.color,
     backgroundImage: sectionSettings.image
       ? `url(${sectionSettings.image})`
       : undefined,

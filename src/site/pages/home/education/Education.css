@@ -1,4 +1,5 @@
 .education-section {
+  background-color: #006080; /* Fallback color */
   padding: 80px 20px;
   min-height: 400px;
   display: flex;
@@ -17,7 +18,10 @@
 
 .education-list li {
   font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--cv-text-soft, rgba(255, 255, 255, 0.9));
+  background: var(--cv-card-bg, transparent);
+  border: 1px solid var(--cv-card-border, transparent);
+  box-shadow: var(--cv-card-shadow, none);
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   border-radius: 8px;
@@ -29,21 +33,22 @@
 }
 
 .education-degree {
+  font-family: var(--cv-heading-font, inherit);
   font-size: 1.3rem;
   font-weight: 600;
-  color: #fff;
+  color: var(--cv-text, #fff);
   margin-bottom: 0.5rem;
 }
 
 .education-school {
   font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--cv-text-soft, rgba(255, 255, 255, 0.85));
   margin-bottom: 0.3rem;
 }
 
 .education-gpa {
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--cv-text-faint, rgba(255, 255, 255, 0.7));
   font-style: italic;
 }
 

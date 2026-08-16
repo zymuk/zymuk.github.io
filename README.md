@@ -8,7 +8,7 @@ Zymuk Page là một ứng dụng web đơn trang (Single Page Application) đư
 
 | Khu vực | Đường dẫn | Mô tả |
 |---|---|---|
-| **Trang công khai** | `/#/` | 9 section: Hero, About (hiệu ứng gõ chữ), Experience (timeline), Education, Certifications, Skills, Projects, Features, Contact |
+| **Trang công khai** | `/#/` | 9 section: Hero, About (hiệu ứng gõ chữ), Experience (timeline), Education, Certifications, Skills, Projects, Features, Contact — cuộn dạng slide toàn màn hình (scroll-snap) kèm nút đổi theme nổi góc dưới-trái (Default/Midnight/Sunset đổi màu nền, Harvard Clean tái thiết kế toàn bộ theo phong cách résumé học thuật) |
 | **Công cụ** | `/#/calculator`, `/#/notes`, `/#/numerology-name`, `/#/text-encoder-decoder`, `/#/save-web`, `/#/encrypt-decrypt` | Máy tính khoa học, ghi chú rich-text, thần số học, mã hóa URL, quản lý bookmark, mã hóa/giải mã văn bản |
 | **Admin Panel** | `/#/admin/...` | Dashboard, CRUD từng section, quản lý người dùng (Users CRUD), cài đặt homepage (màu/title/ảnh), đổi ngôn ngữ EN/VI, export dữ liệu JSON |
 
