@@ -1,4 +1,8 @@
 /* Certifications Section */
+.certifications-section {
+  background-color: #006994; /* Fallback color */
+}
+
 .certifications-list {
   list-style: none;
   padding: 0;
@@ -16,7 +20,6 @@
 }
 
 .certifications-section .certifications-list a {
-  color: #00a8e8;
   text-decoration: none;
   font-weight: bold;
   padding: 5px 10px;
@@ -25,6 +28,6 @@
 }
 
 .certifications-section .certifications-list a:hover {
-  background: #0077b6;
+  background: var(--cv-accent-strong, #0077b6);
   color: #fff;
 }

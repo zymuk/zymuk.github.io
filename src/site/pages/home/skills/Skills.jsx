@@ -3,7 +3,7 @@ import "./Skills.css";
 
 const Skills = ({ settings = {}, data = [] }) => {
   const sectionStyle = {
-    backgroundColor: settings.color || "#007099",
+    backgroundColor: settings.color,
     backgroundImage: settings.image ? `url(${settings.image})` : undefined,
     backgroundSize: settings.image ? "cover" : undefined,
     backgroundPosition: settings.image ? "center" : undefined,
@@ -42,13 +42,15 @@ const Skills = ({ settings = {}, data = [] }) => {
                 .map((skill, skillIndex) => (
                   <li key={skillIndex}>
                     <strong>{skill.name}</strong>
-                    {skill.startDate
-                      ? ` - Since ${formatStartDate(skill.startDate)}`
-                      : skill.years
-                        ? ` - ${skill.years} ${
-                            skill.years === 1 ? "year" : "years"
-                          }`
-                        : null}
+                    {(skill.startDate || skill.years) && (
+                      <span className="skill-meta">
+                        {skill.startDate
+                          ? ` - Since ${formatStartDate(skill.startDate)}`
+                          : ` - ${skill.years} ${
+                              skill.years === 1 ? "year" : "years"
+                            }`}
+                      </span>
+                    )}
                   </li>
                 ))}
             </ul>

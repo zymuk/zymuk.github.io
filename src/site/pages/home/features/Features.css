@@ -1,6 +1,6 @@
 /* Features Section - Default style, can be overridden with inline style */
 .features-section {
-  background-color: #00a8e8; /* Fallback color */
+  background-color: #0099d4; /* Fallback color */
 }
 
 /* Tools Buttons */
@@ -12,8 +12,9 @@
 }
 
 .features-button {
-  background: #004d80;
-  color: #fff;
+  background: var(--cv-card-bg-strong, #004d80);
+  color: var(--cv-text, #fff);
+  border: 1px solid var(--cv-card-border, transparent);
   padding: 10px 15px;
   text-decoration: none;
   border-radius: 5px;
@@ -21,5 +22,6 @@
 }
 
 .features-button:hover {
-  background: #0077b6;
+  background: var(--cv-accent-strong, #0077b6);
+  color: #fff;
 }

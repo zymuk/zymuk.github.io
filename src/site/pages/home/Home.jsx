@@ -8,12 +8,28 @@ import Skills from "./skills/Skills";
 import Projects from "./projects/Projects";
 import Features from "./features/Features";
 import Contact from "./contact/Contact";
+import { useTheme } from "../../ThemeContext";
+import { HOME_THEMES } from "./homeThemes";
 import "./Home.css";
 
 const Home = () => {
   const [settings, setSettings] = useState({});
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
+  const { theme } = useTheme();
+  const activeTheme = HOME_THEMES.find((t) => t.id === theme);
+
+  const getSectionSettings = (key) => {
+    const base = settings.homepage?.[key] || settings[key] || {};
+    if (activeTheme?.kind === "skin") {
+      // Full re-skin themes control section backgrounds via CSS
+      // ([data-home-skin] rules), so drop any settings.color here.
+      const { color, ...rest } = base;
+      return rest;
+    }
+    const themeColor = activeTheme?.colors?.[key];
+    return themeColor ? { ...base, color: themeColor } : base;
+  };
 
   useEffect(() => {
     const loadHomeData = async () => {
@@ -100,37 +116,33 @@ const Home = () => {
 
   return (
     <div>
-      <Hero settings={settings.homepage?.hero || settings.hero || {}} />
-      <About settings={settings.homepage?.about || settings.about || {}} />
+      <Hero settings={getSectionSettings("hero")} />
+      <About settings={getSectionSettings("about")} />
       <Experience
-        settings={settings.homepage?.experience || settings.experience || {}}
+        settings={getSectionSettings("experience")}
         data={data.experience || []}
       />
       <Education
-        settings={settings.homepage?.education || settings.education || {}}
+        settings={getSectionSettings("education")}
         data={data.education || []}
       />
       <Certifications
-        settings={
-          settings.homepage?.certifications || settings.certifications || {}
-        }
+        settings={getSectionSettings("certifications")}
         data={data.certifications || []}
       />
       <Skills
-        settings={settings.homepage?.skills || settings.skills || {}}
+        settings={getSectionSettings("skills")}
         data={data.skills || []}
       />
       <Projects
-        settings={settings.homepage?.projects || settings.projects || {}}
+        settings={getSectionSettings("projects")}
         data={data.projects || []}
       />
       <Features
-        settings={settings.homepage?.tools || settings.tools || {}}
+        settings={getSectionSettings("tools")}
         data={data.features || []}
       />
-      <Contact
-        settings={settings.homepage?.contact || settings.contact || {}}
-      />
+      <Contact settings={getSectionSettings("contact")} />
     </div>
   );
 };

@@ -7,7 +7,7 @@ const Certifications = ({ data, settings = {} }) => {
   if (visibleCertifications.length === 0) return null;
 
   const sectionStyle = {
-    backgroundColor: settings.color || "#006994",
+    backgroundColor: settings.color,
     backgroundImage: settings.image ? `url(${settings.image})` : undefined,
     backgroundSize: settings.image ? "cover" : undefined,
     backgroundPosition: settings.image ? "center" : undefined,

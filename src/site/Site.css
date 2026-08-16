@@ -4,6 +4,350 @@
   color: #fff;
 }
 
+/* ========================================
+   HOMEPAGE FULL RE-SKIN THEMES
+   Full visual re-skins (background, text, fonts, card chrome, accent)
+   selected via the ThemeSwitcher. Only active while [data-home-skin] is
+   set (homepage + a "skin" kind theme, see Site.jsx/homeThemes.js).
+   Every consumer below falls back to the original dark-theme value, so
+   themes without a "skin" kind (Default/Midnight/Sunset) render exactly
+   as before.
+   ======================================== */
+
+.container[data-home-skin="harvard"] {
+  color: var(--cv-text);
+  --cv-heading-font: "Times New Roman", Times, Georgia, serif;
+  --cv-text: #1a1a1a;
+  --cv-text-soft: #3a3a3a;
+  --cv-text-faint: #6b6b6b;
+  /* Authentic Harvard OCS résumé template: no color at all, pure black
+     on white — links/dates are distinguished by weight/italics/underline,
+     not color. */
+  --cv-accent: #1a1a1a;
+  --cv-accent-strong: #1a1a1a;
+  --cv-section-bg-a: #ffffff;
+  --cv-section-bg-b: #ffffff; /* no color banding — plain paper white */
+  --cv-card-bg: transparent;
+  --cv-card-bg-strong: transparent;
+  --cv-card-border: transparent;
+  --cv-card-shadow: none; /* flat academic look, no card chrome */
+  --cv-divider: #1a1a1a;
+  --cv-dot: transparent;
+  --cv-badge-text: #ffffff;
+  --cv-header-bg: #ffffff;
+  --cv-header-text: #1a1a1a;
+  --cv-header-text-muted: #1a1a1a;
+  --cv-header-submenu-bg: #ffffff;
+  --cv-header-hover-bg: #f0ede7;
+  --cv-header-border: #d8d4cc;
+  --cv-footer-bg: #ffffff;
+  --cv-footer-text: #1a1a1a;
+  --cv-footer-accent: #1a1a1a;
+  --cv-text-shadow: none;
+}
+
+.container[data-home-skin] .section:nth-of-type(odd) {
+  background-color: var(--cv-section-bg-a);
+}
+
+.container[data-home-skin] .section:nth-of-type(even) {
+  background-color: var(--cv-section-bg-b);
+}
+
+/* Harvard Clean: authentic academic résumé feel — no card chrome, dense
+   left-aligned body sections, right-aligned dates, underlined headers. */
+/* Reset only the browser's default h1-h6/p top margin — that's the part
+   nobody in this codebase sets explicitly, so it only ever adds
+   unaccounted-for gaps on top of the section's own padding. Leave
+   margin-bottom alone: many components (.about-section .section-title,
+   .projects h5, .role, .company, .project-name...) rely on their own
+   explicit margin-bottom for deliberate spacing, and this selector's
+   specificity (class + attribute + tag) is high enough to have clobbered
+   those too if bottom were included here. */
+.container[data-home-skin="harvard"] h1,
+.container[data-home-skin="harvard"] h2,
+.container[data-home-skin="harvard"] h3,
+.container[data-home-skin="harvard"] h4,
+.container[data-home-skin="harvard"] h5,
+.container[data-home-skin="harvard"] h6,
+.container[data-home-skin="harvard"] p {
+  margin-top: 0;
+}
+
+.container[data-home-skin="harvard"] .experience-section .section-title,
+.container[data-home-skin="harvard"] .education-section .section-title,
+.container[data-home-skin="harvard"] .certifications-section .section-title,
+.container[data-home-skin="harvard"] .skills-section .section-title,
+.container[data-home-skin="harvard"] .projects-section .section-title,
+.container[data-home-skin="harvard"] .features-section .section-title,
+.container[data-home-skin="harvard"] .contact-section .section-title {
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 1.15rem;
+  border-bottom: 2px solid var(--cv-text);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* One consistent body size throughout — a résumé shows hierarchy with
+   weight/case/italics, not a ladder of different font sizes. Only the
+   name (hero/about title, ~2rem) and section headers (~1.15rem, above)
+   are allowed to differ. */
+.container[data-home-skin="harvard"] .hero-title,
+.container[data-home-skin="harvard"] .about-section .section-title {
+  font-size: 2rem;
+}
+
+.container[data-home-skin="harvard"] .hero-content,
+.container[data-home-skin="harvard"] .about-section .typing-text,
+.container[data-home-skin="harvard"] .role,
+.container[data-home-skin="harvard"] .company,
+.container[data-home-skin="harvard"] .period,
+.container[data-home-skin="harvard"] .main-work,
+.container[data-home-skin="harvard"] .project-name,
+.container[data-home-skin="harvard"] .project-description,
+.container[data-home-skin="harvard"] .projects h5,
+.container[data-home-skin="harvard"] .technologies strong,
+.container[data-home-skin="harvard"] .tech-tag,
+.container[data-home-skin="harvard"] .responsibilities strong,
+.container[data-home-skin="harvard"] .responsibilities li,
+.container[data-home-skin="harvard"] .education-degree,
+.container[data-home-skin="harvard"] .education-school,
+.container[data-home-skin="harvard"] .education-gpa,
+.container[data-home-skin="harvard"] .certifications-list li,
+.container[data-home-skin="harvard"] .project-list li,
+.container[data-home-skin="harvard"] .category-title,
+.container[data-home-skin="harvard"] .skills-list li,
+.container[data-home-skin="harvard"] .contact-form label,
+.container[data-home-skin="harvard"] .contact-form input,
+.container[data-home-skin="harvard"] .contact-form textarea,
+.container[data-home-skin="harvard"] .contact-form button,
+.container[data-home-skin="harvard"] .features-button {
+  font-size: 1rem;
+}
+
+.container[data-home-skin="harvard"] .experience-section,
+.container[data-home-skin="harvard"] .education-section,
+.container[data-home-skin="harvard"] .certifications-section,
+.container[data-home-skin="harvard"] .skills-section,
+.container[data-home-skin="harvard"] .projects-section,
+.container[data-home-skin="harvard"] .features-section,
+.container[data-home-skin="harvard"] .contact-section {
+  text-align: left;
+}
+
+.container[data-home-skin="harvard"] .features-buttons {
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container[data-home-skin="harvard"] .contact-form {
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: flex-start;
+}
+
+.container[data-home-skin="harvard"] .contact-form input,
+.container[data-home-skin="harvard"] .contact-form textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--cv-text);
+  padding-left: 0;
+}
+
+.container[data-home-skin="harvard"] .contact-form input:focus,
+.container[data-home-skin="harvard"] .contact-form textarea:focus {
+  background: transparent;
+  border-bottom: 2px solid var(--cv-text);
+}
+
+.container[data-home-skin="harvard"] .contact-form button {
+  background: var(--cv-text);
+}
+
+.container[data-home-skin="harvard"] .contact-form button:hover {
+  background: var(--cv-text-soft);
+}
+
+.container[data-home-skin="harvard"] .certifications-list,
+.container[data-home-skin="harvard"] .project-list,
+.container[data-home-skin="harvard"] .education-list,
+.container[data-home-skin="harvard"] .skills-container {
+  text-align: left;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container[data-home-skin="harvard"] .certifications-list li,
+.container[data-home-skin="harvard"] .project-list li,
+.container[data-home-skin="harvard"] .skills-list {
+  text-align: left;
+}
+
+.container[data-home-skin="harvard"] .project-item,
+.container[data-home-skin="harvard"] .education-list li,
+.container[data-home-skin="harvard"] .contact-form,
+.container[data-home-skin="harvard"] .contact-form input,
+.container[data-home-skin="harvard"] .contact-form textarea,
+.container[data-home-skin="harvard"] .contact-form button,
+.container[data-home-skin="harvard"] .features-button,
+.container[data-home-skin="harvard"] .tech-tag,
+.container[data-home-skin="harvard"] .period,
+.container[data-home-skin="harvard"] .nav-badge {
+  border-radius: 0;
+}
+
+.container[data-home-skin="harvard"] .education-list li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--cv-card-border, #d8d4cc);
+}
+
+.container[data-home-skin="harvard"] .project-item {
+  padding: 0 0 1rem 0;
+  border-left: none;
+  border-bottom: 1px solid var(--cv-card-border, #d8d4cc);
+}
+
+.container[data-home-skin="harvard"] .tech-tag {
+  background: transparent;
+  padding: 0;
+  font-weight: 400;
+}
+
+.container[data-home-skin="harvard"] .tech-tags {
+  gap: 0;
+}
+
+.container[data-home-skin="harvard"] .tech-tag:not(:last-child)::after {
+  content: ", ";
+}
+
+.container[data-home-skin="harvard"] .experience-timeline::before,
+.container[data-home-skin="harvard"] .experience-item::before {
+  display: none;
+}
+
+.container[data-home-skin="harvard"] .experience-item {
+  padding-left: 0;
+}
+
+.container[data-home-skin="harvard"] .experience-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  column-gap: 1rem;
+}
+
+/* Mirrors the Harvard OCS template: ORGANIZATION (bold) on row 1,
+   Position Title (bold) + date range (italic, right-aligned) on row 2. */
+.container[data-home-skin="harvard"] .company {
+  grid-column: 1;
+  grid-row: 1;
+  font-weight: 700;
+  color: var(--cv-text);
+}
+
+.container[data-home-skin="harvard"] .role {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.container[data-home-skin="harvard"] .period {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: baseline;
+  justify-self: end;
+  background: transparent;
+  padding: 0;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--cv-text);
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .container[data-home-skin="harvard"] .experience-header {
+    display: block;
+  }
+
+  .container[data-home-skin="harvard"] .period {
+    display: block;
+    justify-self: unset;
+    margin-top: 0.3rem;
+  }
+}
+
+.container[data-home-skin="harvard"] .skills-list li:hover,
+.container[data-home-skin="harvard"] .education-list li:hover,
+.container[data-home-skin="harvard"] .certifications-list li:hover,
+.container[data-home-skin="harvard"] .project-list li:hover {
+  transform: none;
+}
+
+.container[data-home-skin="harvard"] .certifications-list a,
+.container[data-home-skin="harvard"] .project-list a {
+  text-decoration: underline;
+}
+
+.container[data-home-skin="harvard"] .certifications-list a:hover,
+.container[data-home-skin="harvard"] .project-list a:hover {
+  background: none;
+  color: var(--cv-text);
+}
+
+/* Skills & Interests: one category per line — "Category: item, item, item" —
+   instead of a multi-column card grid. */
+.container[data-home-skin="harvard"] .skills-container {
+  display: block;
+}
+
+.container[data-home-skin="harvard"] .skill-category {
+  margin-bottom: 0.5rem;
+}
+
+.container[data-home-skin="harvard"] .category-title {
+  display: inline;
+  font-size: 1rem;
+  font-weight: 700;
+  border-bottom: none;
+  margin: 0;
+  padding: 0;
+}
+
+.container[data-home-skin="harvard"] .category-title::after {
+  content: ": ";
+}
+
+.container[data-home-skin="harvard"] .skills-list {
+  display: inline;
+}
+
+.container[data-home-skin="harvard"] .skills-list li {
+  display: inline;
+  margin: 0;
+}
+
+.container[data-home-skin="harvard"] .skills-list li:not(:last-child)::after {
+  content: ", ";
+}
+
+.container[data-home-skin="harvard"] .skills-list .skill-meta {
+  display: none;
+}
+
 /* Sections */
 .container .section {
   box-sizing: border-box;
@@ -15,6 +359,22 @@
   padding: 3rem 1rem;
   scroll-margin-top: 60px;
   scroll-snap-align: start;
+}
+
+/* Harvard Clean: a résumé reads as one continuous dense document, not
+   full-screen slides — drop the forced viewport height and vertical
+   centering so sections size to their own content. */
+.container[data-home-skin="harvard"] .section {
+  min-height: 0;
+  justify-content: flex-start;
+  padding: 1rem 1rem;
+}
+
+/* The last entry in a list/timeline doesn't need its own trailing margin —
+   the section's padding-bottom above already separates it from the next
+   section. Without this, that margin added an extra unwanted gap. */
+.container[data-home-skin="harvard"] .experience-item:last-child {
+  margin-bottom: 0;
 }
 
 .container .siteContent {
