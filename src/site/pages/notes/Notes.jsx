@@ -174,6 +174,8 @@ const Notes = () => {
   usePageMeta({
     title: "Notes",
     description: "Free online notes app with rich text editor for quick note taking.",
+    keywords:
+      "online notes, free notes app, sticky notes, note taking app, rich text editor, digital notes, free notepad, notes tool, create notes",
   });
   const [notes, setNotes] = useState([]);
   const [editingNote, setEditingNote] = useState(null);
