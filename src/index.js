@@ -2,20 +2,28 @@ import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./index.css";
+import usePageTracking from "./utils/usePageTracking";
 
 const Site = lazy(() => import("./site/Site"));
 const Admin = lazy(() => import("./admin/Admin"));
+
+const AppContent = () => {
+  usePageTracking();
+  return (
+    <Suspense fallback={<div className="app-loading">Loading...</div>}>
+      <Routes>
+        <Route path="/*" element={<Site />} />
+        <Route path="/admin/*" element={<Admin />} />
+      </Routes>
+    </Suspense>
+  );
+};
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Suspense fallback={<div className="app-loading">Loading...</div>}>
-        <Routes>
-          <Route path="/*" element={<Site />} />
-          <Route path="/admin/*" element={<Admin />} />
-        </Routes>
-      </Suspense>
+      <AppContent />
     </BrowserRouter>
   </React.StrictMode>
 );
