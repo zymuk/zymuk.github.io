@@ -23,7 +23,7 @@ const showPageNotification = async (title, body, extraData = {}) => {
     const notification = new Notification(title, {
       body,
       tag: `${FALLBACK_TAG}-${extraData.id || Date.now()}`,
-      data: { url: "/#/reminders", ...extraData },
+      data: { url: "/reminders", ...extraData },
     });
     notification.onclick = () => {
       window.focus();
@@ -45,7 +45,7 @@ const showNotification = async (title, body, extraData = {}) => {
           body,
           tag: `reminder-${extraData.id || Date.now()}`,
           icon: `${process.env.PUBLIC_URL}/logo192.png`,
-          data: { url: "/#/reminders", ...extraData },
+          data: { url: "/reminders", ...extraData },
           ...(extraData.id
             ? {
                 requireInteraction: true,
