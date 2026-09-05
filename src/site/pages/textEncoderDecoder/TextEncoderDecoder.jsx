@@ -6,6 +6,8 @@ function TextEncoderDecoder() {
   usePageMeta({
     title: "Text Encoder/Decoder",
     description: "Encode and decode text online with URL encoding and other formats.",
+    keywords:
+      "text encoder, text decoder, URL encoder, base64 encoder, URL decoder, base64 decoder, encode decode online, URL encoding, URI encoding, percent encoding",
   });
   const [url, setUrl] = useState("");
   const [encodedUrl, setEncodedUrl] = useState("");

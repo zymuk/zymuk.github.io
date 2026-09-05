@@ -105,6 +105,8 @@ const ImageEditor = () => {
     title: "Image Editor",
     description:
       "Remove white background, crop, resize and export transparent images as WEBP or PNG directly in the browser.",
+    keywords:
+      "remove background, background remover, image background remover, crop image, resize image, transparent image, PNG converter, WEBP converter, image editor online, free image editor, remove image background",
   });
 
   const fileInputRef = useRef(null);

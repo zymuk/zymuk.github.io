@@ -6,6 +6,8 @@ const NumerologyName = () => {
   usePageMeta({
     title: "Numerology Name",
     description: "Auto generate names based on your numerology birth date.",
+    keywords:
+      "numerology, name numerology, life path number, numerology calculator, baby name numerology, numerology report, free numerology, numerology chart, destiny number, expression number",
   });
   const [birthDate, setBirthDate] = useState("");
   const [currentResult, setCurrentResult] = useState("");

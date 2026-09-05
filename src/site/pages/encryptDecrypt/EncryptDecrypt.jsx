@@ -6,6 +6,8 @@ const EncryptDecrypt = () => {
   usePageMeta({
     title: "Encrypt/Decrypt Text",
     description: "Encrypt and decrypt text online with various algorithms and password protection.",
+    keywords:
+      "encrypt text, decrypt text, text encryption, online encrypt, AES encryption, cipher tool, password protection, encode decode, secure text, encryption tool",
   });
   const [inputText, setInputText] = useState("");
   const [password, setPassword] = useState("");

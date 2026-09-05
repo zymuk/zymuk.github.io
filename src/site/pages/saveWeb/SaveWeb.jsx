@@ -6,6 +6,8 @@ const SaveWeb = () => {
   usePageMeta({
     title: "Save Web Page",
     description: "Bookmark manager to save web pages with title, URL and notes.",
+    keywords:
+      "save webpage, bookmark manager, web archive, offline webpage, download webpage, bookmark tool, save links, web bookmark, offline reading, web page saver",
   });
   const [bookmarks, setBookmarks] = useState([]);
   const [formData, setFormData] = useState({

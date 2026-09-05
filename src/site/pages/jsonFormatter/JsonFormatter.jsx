@@ -7,6 +7,8 @@ function JsonFormatter() {
     title: "JSON Formatter / Validator",
     description:
       "Format, minify and validate JSON online with precise error locations.",
+    keywords:
+      "JSON formatter, JSON validator, JSON beautifier, JSON minifier, JSON viewer, JSON parser, JSON online, validate JSON, format JSON, pretty print JSON",
   });
 
   const [input, setInput] = useState("");

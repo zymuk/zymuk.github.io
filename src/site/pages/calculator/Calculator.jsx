@@ -7,6 +7,8 @@ const Calculator = () => {
     title: "Calculator",
     description:
       "Free online calculator with advanced functions (trigonometry, logarithms, square root).",
+    keywords:
+      "online calculator, free calculator, scientific calculator, math calculator, trigonometry, logarithm, square root, arithmetic calculator, basic calculator, calculator tool",
   });
   const [input, setInput] = useState("");
   const [result, setResult] = useState("");
