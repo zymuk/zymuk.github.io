@@ -71,7 +71,7 @@ function showReminderNotification(title, body, id) {
     tag: `reminder-${id}`,
     icon: "logo192.png",
     requireInteraction: true,
-    data: { id, url: "/#/reminders" },
+    data: { id, url: "/reminders" },
     actions: [
       { action: "snooze5", title: "Snooze 5 min" },
       { action: "snooze10", title: "Snooze 10 min" },
@@ -172,7 +172,7 @@ self.addEventListener("push", (event) => {
       body: data.body || "",
       tag: `push-${Date.now()}`,
       icon: "logo192.png",
-      data: { url: data.url || "/#/reminders" },
+      data: { url: data.url || "/reminders" },
     }),
   );
 });
