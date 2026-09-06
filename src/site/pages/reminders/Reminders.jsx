@@ -68,6 +68,8 @@ function Reminders() {
     title: "Task Reminder",
     description:
       "Schedule tasks with a countdown or a specific time and get an OS notification.",
+    keywords:
+      "task reminder, countdown timer, schedule tasks, notification, alarm, reminder app, free reminder, task scheduler, timer tool, browser notification",
   });
 
   const [reminders, setReminders] = useState(loadReminders);

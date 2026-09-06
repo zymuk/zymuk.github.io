@@ -7,7 +7,7 @@ describe("usePageMeta", () => {
   beforeEach(() => {
     document.title = "";
     document
-      .querySelectorAll("meta[name]")
+      .querySelectorAll("meta[name], meta[property]")
       .forEach((tag) => tag.remove());
   });
 
@@ -30,7 +30,7 @@ describe("usePageMeta", () => {
     ).toBe("A short description.");
     expect(
       document
-        .querySelector('meta[name="og:description"]')
+        .querySelector('meta[property="og:description"]')
         .getAttribute("content"),
     ).toBe("A short description.");
     expect(
@@ -49,5 +49,20 @@ describe("usePageMeta", () => {
     expect(
       document.querySelector('meta[name="description"]').getAttribute("content"),
     ).toBe("second");
+  });
+
+  it("sets keywords meta when keywords prop is provided", () => {
+    renderHook(() =>
+      usePageMeta({
+        title: "T",
+        description: "d",
+        keywords: "online calculator, math tool",
+      }),
+    );
+    const content = document
+      .querySelector('meta[name="keywords"]')
+      .getAttribute("content");
+    expect(content).toContain("online calculator, math tool");
+    expect(content).toContain("Zymuk");
   });
 });
