@@ -46,7 +46,7 @@ yarn test --watchAll=false
 
 ## Kiểm thử
 
-Dự án đi kèm bộ kiểm thử tự động viết bằng **Jest + React Testing Library**, đặt trong thư mục `test/` (soi gương cây `src/`). Bộ test phủ các phần giàu logic nhất: các công cụ (máy tính, mã hóa 16 thuật toán, ghi chú, lưu trang, thần số học, JSON formatter...), luồng dữ liệu `localStorage` ↔ file JSON, và panel admin (đăng nhập, CRUD user, export dữ liệu). Hiện trạng: **tất cả test pass**.
+Dự án đi kèm bộ kiểm thử tự động viết bằng **Jest + React Testing Library**, đặt trong thư mục `test/` (soi gương cây `src/`). Bộ test phủ các phần giàu logic nhất: các công cụ (máy tính, mã hóa 17 thuật toán, ghi chú, lưu trang, thần số học, JSON formatter...), luồng dữ liệu `localStorage` ↔ file JSON, và panel admin (đăng nhập, CRUD user, export dữ liệu). Hiện trạng: **tất cả test pass**.
 
 ## Ghi chú & hạn chế đã biết
 
@@ -56,7 +56,6 @@ Tài liệu trung thực với hiện trạng code. Trong quá trình phân tíc
 - **Xác thực admin chỉ mang tính giả lập** — phiên dùng token ngẫu nhiên 128-bit hết hạn sau 24h (`src/utils/auth.js`), nhưng mật khẩu vẫn dạng plaintext trong `public/data.json` và ai cũng tự set token qua DevTools; không dùng cho dữ liệu nhạy cảm.
 - **Form Contact hoạt động qua `mailto:`** — nút Send mở email client với nội dung đã điền sẵn (không có backend, không gửi qua web).
 - **Nhắc việc dùng timer best-effort** — khi đóng tab, Service Worker chỉ gửi thông báo OS theo đúng giờ tương đối; muốn nhắc việc chính xác tuyệt đối khi đóng trình duyệt cần Web Push + server (GitHub Pages tĩnh không host được).
-- **ImageEditor không hỗ trợ crop tay bằng chạm (touch)** — kéo-thả chọn vùng crop chỉ nhận sự kiện chuột; trên di động vẫn dùng được cách nhập số 4 ô Left/Top/Width/Height.
 - **i18n chỉ áp dụng cho admin** — trang công khai dùng nội dung tiếng Anh/Việt cứng trong JSON cấu hình.
 
 ## Giấy phép

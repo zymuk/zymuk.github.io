@@ -56,7 +56,6 @@ Documentation is honest about the current state of the code. During analysis I f
 - **Admin authentication is only simulated** — the session uses a random 128-bit token that expires after 24h (`src/utils/auth.js`), but the password is still plaintext in `public/data.json` and anyone can set their own token via DevTools; do not use it for sensitive data.
 - **The Contact form works via `mailto:`** — the Send button opens the email client with pre-filled content (no backend, nothing is sent over the web).
 - **Reminders use a best-effort timer** — when the tab is closed, the Service Worker only sends OS notifications at the correct relative time; for absolutely accurate reminders while the browser is closed you would need Web Push + a server (GitHub Pages is static and cannot host one).
-- **ImageEditor does not support manual cropping with touch** — drag-and-drop to select the crop area only accepts mouse events; on mobile you can still use the four numeric inputs (Left/Top/Width/Height).
 - **i18n only applies to the admin panel** — the public page uses hard-coded English/Vietnamese content from the config JSON.
 
 ## License
