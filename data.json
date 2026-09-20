@@ -40,63 +40,86 @@
       "id": "calculator",
       "displayName": "Calculator",
       "description": "Simple calculator tool",
-      "path": "/calculator",
+      "path": "/features/calculator",
       "isVisible": true
     },
     {
       "id": "notes",
       "displayName": "Notes",
       "description": "Note taking application",
-      "path": "/notes",
+      "path": "/features/notes",
       "isVisible": true
     },
     {
       "id": "save-web",
       "displayName": "Save Web Page",
       "description": "Bookmark manager with title, URL and notes",
-      "path": "/save-web",
+      "path": "/features/save-web",
       "isVisible": true
     },
     {
       "id": "numerology-name",
       "displayName": "Auto generate numerology name",
       "description": "Generate names based on numerology",
-      "path": "/numerology-name",
+      "path": "/features/numerology-name",
       "isVisible": true
     },
     {
       "id": "text-encoder-decoder",
       "displayName": "Encode/Decode Text",
       "description": "Text encoding and decoding tool",
-      "path": "/text-encoder-decoder",
+      "path": "/features/text-encoder-decoder",
       "isVisible": true
     },
     {
       "id": "encrypt-decrypt",
       "displayName": "Encrypt/Decrypt Text",
       "description": "Encrypt and decrypt text with various algorithms",
-      "path": "/encrypt-decrypt",
+      "path": "/features/encrypt-decrypt",
       "isVisible": true
     },
     {
       "id": "json-formatter",
       "displayName": "JSON Formatter/Validator",
       "description": "Format, minify and validate JSON with precise error location",
-      "path": "/json-formatter",
+      "path": "/features/json-formatter",
       "isVisible": true
     },
     {
       "id": "reminders",
       "displayName": "Task Reminder",
       "description": "Schedule tasks and get OS notifications",
-      "path": "/reminders",
+      "path": "/features/reminders",
       "isVisible": true
     },
     {
       "id": "image-editor",
       "displayName": "Image Editor",
       "description": "Remove white background, crop, resize and export transparent images",
-      "path": "/image-editor",
+      "path": "/features/image-editor",
+      "isVisible": true
+    }
+  ],
+  "animations": [
+    {
+      "id": "dragon-cursor",
+      "displayName": "Dragon Cursor",
+      "description": "An SVG dragon that follows and morphs around your cursor",
+      "path": "/animations/dragon-cursor",
+      "isVisible": true
+    },
+    {
+      "id": "generative-lines",
+      "displayName": "Generative Lines",
+      "description": "A canvas generative artwork with flowing curved lines",
+      "path": "/animations/generative-lines",
+      "isVisible": true
+    },
+    {
+      "id": "lightbeams",
+      "displayName": "Lightbeams",
+      "description": "Rising beam of light particles rendered on canvas",
+      "path": "/animations/lightbeams",
       "isVisible": true
     }
   ],
@@ -455,6 +478,12 @@
       "color": "#0099d4",
       "title": "Features",
       "description": "Useful tools and utilities",
+      "image": ""
+    },
+    "animations": {
+      "color": "#00a6dc",
+      "title": "Animations",
+      "description": "Hand-picked animations and creative effects",
       "image": ""
     },
     "contact": {
