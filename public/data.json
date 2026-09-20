@@ -128,6 +128,13 @@
       "description": "Background photo layer with an animated CSS color overlay",
       "path": "/animations/blend-overlay",
       "isVisible": true
+    },
+    {
+      "id": "aizawa-attractor",
+      "displayName": "Aizawa Attractor",
+      "description": "Holographic 3D Aizawa attractor rendered with Three.js and WebGL shaders",
+      "path": "/animations/aizawa-attractor",
+      "isVisible": true
     }
   ],
   "experience": [

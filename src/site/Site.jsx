@@ -38,6 +38,9 @@ const Lightbeams = lazy(() =>
 const BlendOverlay = lazy(() =>
   import("./pages/animations/blend-overlay/BlendOverlay"),
 );
+const AizawaAttractor = lazy(() =>
+  import("./pages/animations/aizawa-attractor/AizawaAttractor"),
+);
 
 const SiteInner = () => {
   const [showUp, setShowUp] = useState(false);
@@ -170,6 +173,10 @@ const SiteInner = () => {
             <Route
               path="/animations/blend-overlay"
               element={<BlendOverlay />}
+            />
+            <Route
+              path="/animations/aizawa-attractor"
+              element={<AizawaAttractor />}
             />
             <Route path="*" element={<NotFound />} />
           </Routes>
