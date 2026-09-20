@@ -121,6 +121,13 @@
       "description": "Rising beam of light particles rendered on canvas",
       "path": "/animations/lightbeams",
       "isVisible": true
+    },
+    {
+      "id": "blend-overlay",
+      "displayName": "Blend Overlay",
+      "description": "Background photo layer with an animated CSS color overlay",
+      "path": "/animations/blend-overlay",
+      "isVisible": true
     }
   ],
   "experience": [
