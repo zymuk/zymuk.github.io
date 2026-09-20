@@ -15,7 +15,7 @@
 }
 
 .blend-overlay-inner {
-  z-index: 9999;
+  z-index: 1;
   mix-blend-mode: overlay;
   inset: 0;
   position: absolute;
