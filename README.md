@@ -10,7 +10,7 @@ Zymuk Page là một ứng dụng web đơn trang (Single Page Application) đư
 |---|---|---|
 | **Trang công khai** | `/` | 10 section: Hero, About (hiệu ứng gõ chữ), Experience (timeline), Education, Certifications, Skills, Projects, Features, Animations, Contact — cuộn dạng slide toàn màn hình (scroll-snap) kèm nút đổi theme nổi góc dưới-trái (Default/Midnight/Sunset đổi màu nền, Harvard Clean tái thiết kế toàn bộ theo phong cách résumé học thuật) |
 | **Công cụ** | `/features/calculator`, `/features/notes`, `/features/numerology-name`, `/features/text-encoder-decoder`, `/features/save-web`, `/features/encrypt-decrypt`, `/features/json-formatter`, `/features/reminders`, `/features/image-editor` | Máy tính khoa học, ghi chú rich-text, thần số học, mã hóa URL, quản lý bookmark, mã hóa/giải mã văn bản, format/validate JSON, nhắc việc, **loại bỏ nền trắng + cắt ảnh** |
-| **Hoạt ảnh** | `/animations/dragon-cursor`, `/animations/generative-lines`, `/animations/lightbeams` | Ba demo hoạt ảnh nhúng trực tiếp vào codebase: rồng SVG bám con trỏ (Dragon Cursor), tranh đường cong generative trên canvas, chùm chữ sáng hạt particle (Lightbeams) |
+| **Hoạt ảnh** | `/animations/dragon-cursor`, `/animations/generative-lines`, `/animations/lightbeams`, `/animations/blend-overlay` | Bốn demo hoạt ảnh nhúng trực tiếp vào codebase: rồng SVG bám con trỏ (Dragon Cursor), tranh đường cong generative trên canvas, chùm chữ sáng hạt particle (Lightbeams), ảnh nền + overlay màu đổi liên tục bằng CSS `mix-blend-mode` (Blend Overlay) |
 | **Admin Panel** | `/admin/...` | Dashboard, CRUD từng section, quản lý người dùng (Users CRUD), cài đặt homepage (màu/title/ảnh), đổi ngôn ngữ EN/VI, export dữ liệu JSON |
 
 ## Công nghệ sử dụng
@@ -22,7 +22,7 @@ Zymuk Page là một ứng dụng web đơn trang (Single Page Application) đư
 - **cross-env** (đồng bộ biến môi trường trên Windows)
 - **gh-pages** (triển khai build lên GitHub Pages)
 - **Jest + React Testing Library** — bộ kiểm thử tự động
-- **Web Crypto API**, `localStorage`, `navigator.clipboard`, **Canvas 2D API**, **SVG animation** — các Web API trình duyệt
+- **Web Crypto API**, `localStorage`, `navigator.clipboard`, **Canvas 2D API**, **SVG animation**, **CSS `mix-blend-mode`** — các Web API/kỹ thuật trình duyệt
 
 ## Bắt đầu nhanh
 
@@ -50,7 +50,7 @@ Dự án đi kèm bộ kiểm thử tự động viết bằng **Jest + React Te
 
 Tài liệu trung thực với hiện trạng code. Trong quá trình phân tích, tôi phát hiện những điểm cần lưu ý:
 
-- **Animations là demo hoạt ảnh thu thập từ web, nhúng trực tiếp vào codebase** — code nguồn (SVG rồng theo con trỏ, generative lines, lightbeams) được để nguyên trong `src/site/pages/animations/`, chạy 100% phía client, không gọi CDN runtime.
+- **Animations là demo hoạt ảnh thu thập từ web, nhúng trực tiếp vào codebase** — code nguồn (SVG rồng theo con trỏ, generative lines, lightbeams, đoạn CSS `mix-blend-mode` của demo "threejs-interactive-web-project-13") được để nguyên trong `src/site/pages/animations/`, chạy 100% phía client, không gọi CDN runtime. Lưu ý: demo project-13 của CodeTap tuy mô tả là Three.js nhưng mã nguồn thực tế **chỉ là CSS** (nền ảnh + overlay blend đổi màu qua keyframes) — bản port giữ nguyên tinh thần đó, ảnh nền tự lưu trong `public/` thay vì URL ngoài.
 - **Xác thực admin chỉ mang tính giả lập** — phiên dùng token ngẫu nhiên 128-bit hết hạn sau 24h (`src/utils/auth.js`), nhưng mật khẩu vẫn dạng plaintext trong `public/data.json` và ai cũng tự set token qua DevTools; không dùng cho dữ liệu nhạy cảm.
 - **Form Contact hoạt động qua `mailto:`** — nút Send mở email client với nội dung đã điền sẵn (không có backend, không gửi qua web).
 - **Nhắc việc dùng timer best-effort** — khi đóng tab, Service Worker chỉ gửi thông báo OS theo đúng giờ tương đối; muốn nhắc việc chính xác tuyệt đối khi đóng trình duyệt cần Web Push + server (GitHub Pages tĩnh không host được).

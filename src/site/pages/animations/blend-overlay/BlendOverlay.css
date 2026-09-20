@@ -1,0 +1,45 @@
+/* Blend Overlay - derives from the original codetap threejs-interactive-web-project-13 demo css.
+   The original demo relied on an external image URL; this port self-hosts the same photo in public/
+   and sets the background image via inline style so the bundler leaves it untouched. */
+.blend-overlay-page {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  height: calc(100vh - 60px);
+  overflow: hidden;
+  background-color: #000;
+  background-position: center;
+  background-size: cover;
+  margin: 0;
+}
+
+.blend-overlay-inner {
+  z-index: 9999;
+  mix-blend-mode: overlay;
+  inset: 0;
+  position: absolute;
+  animation: blendOverlayMove 10s ease infinite alternate;
+}
+
+@keyframes blendOverlayMove {
+  0% {
+    background-color: #f0f;
+  }
+
+  25% {
+    background-color: #0f0;
+  }
+
+  50% {
+    background-color: #00f;
+  }
+
+  75% {
+    background-color: #f00;
+  }
+
+  100% {
+    background-color: #ff0;
+  }
+}

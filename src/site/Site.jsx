@@ -35,6 +35,9 @@ const GenerativeLines = lazy(() =>
 const Lightbeams = lazy(() =>
   import("./pages/animations/lightbeams/Lightbeams"),
 );
+const BlendOverlay = lazy(() =>
+  import("./pages/animations/blend-overlay/BlendOverlay"),
+);
 
 const SiteInner = () => {
   const [showUp, setShowUp] = useState(false);
@@ -164,6 +167,10 @@ const SiteInner = () => {
               element={<GenerativeLines />}
             />
             <Route path="/animations/lightbeams" element={<Lightbeams />} />
+            <Route
+              path="/animations/blend-overlay"
+              element={<BlendOverlay />}
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
