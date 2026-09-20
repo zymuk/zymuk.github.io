@@ -7,6 +7,7 @@ import Certifications from "./certifications/Certifications";
 import Skills from "./skills/Skills";
 import Projects from "./projects/Projects";
 import Features from "./features/Features";
+import Animations from "./animations/Animations";
 import Contact from "./contact/Contact";
 import { useTheme } from "../../ThemeContext";
 import { HOME_THEMES } from "./homeThemes";
@@ -47,6 +48,7 @@ const Home = () => {
 
         let projectsData = [];
         let featuresData = [];
+        let animationsData = [];
         let experienceData = [];
         let educationData = [];
         let certificationsData = [];
@@ -54,6 +56,7 @@ const Home = () => {
 
         const savedProjects = localStorage.getItem("projects");
         const savedFeatures = localStorage.getItem("features");
+        const savedAnimations = localStorage.getItem("animations");
         const savedExperience = localStorage.getItem("experience");
         const savedEducation = localStorage.getItem("education");
         const savedCertifications = localStorage.getItem("certifications");
@@ -62,6 +65,7 @@ const Home = () => {
         if (savedProjects && savedFeatures && savedExperience) {
           projectsData = JSON.parse(savedProjects);
           featuresData = JSON.parse(savedFeatures);
+          animationsData = savedAnimations ? JSON.parse(savedAnimations) : [];
           experienceData = JSON.parse(savedExperience);
           educationData = JSON.parse(savedEducation);
           certificationsData = JSON.parse(savedCertifications);
@@ -76,6 +80,9 @@ const Home = () => {
           featuresData = savedFeatures
             ? JSON.parse(savedFeatures)
             : jsonData.features || [];
+          animationsData = savedAnimations
+            ? JSON.parse(savedAnimations)
+            : jsonData.animations || [];
           experienceData = savedExperience
             ? JSON.parse(savedExperience)
             : jsonData.experience || [];
@@ -93,6 +100,7 @@ const Home = () => {
         setData({
           projects: projectsData,
           features: featuresData,
+          animations: animationsData,
           experience: experienceData,
           education: educationData,
           certifications: certificationsData,
@@ -141,6 +149,10 @@ const Home = () => {
       <Features
         settings={getSectionSettings("tools")}
         data={data.features || []}
+      />
+      <Animations
+        settings={getSectionSettings("animations")}
+        data={data.animations || []}
       />
       <Contact settings={getSectionSettings("contact")} />
     </div>

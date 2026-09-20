@@ -1,0 +1,27 @@
+/* Animations Section - Default style, can be overridden with inline style */
+.animations-section {
+  background-color: #00a6dc; /* Fallback color */
+}
+
+/* Animations Buttons */
+.animations-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.animations-button {
+  background: var(--cv-card-bg-strong, #004d80);
+  color: var(--cv-text, #fff);
+  border: 1px solid var(--cv-card-border, transparent);
+  padding: 10px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.animations-button:hover {
+  background: var(--cv-accent-strong, #0077b6);
+  color: #fff;
+}

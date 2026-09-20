@@ -1,0 +1,14 @@
+/* Lightbeams - derives from the original codetap lightbeams 1.4 demo css */
+.lightbeams-page {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+  background: #333;
+  margin: 0;
+}
+
+.lightbeams-canvas {
+  display: block;
+  background: black;
+}

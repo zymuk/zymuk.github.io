@@ -26,6 +26,15 @@ const EncryptDecrypt = lazy(() =>
 const JsonFormatter = lazy(() => import("./pages/jsonFormatter/JsonFormatter"));
 const Reminders = lazy(() => import("./pages/reminders/Reminders"));
 const ImageEditor = lazy(() => import("./pages/imageEditor/ImageEditor"));
+const DragonCursor = lazy(() =>
+  import("./pages/animations/dragon-cursor/DragonCursor"),
+);
+const GenerativeLines = lazy(() =>
+  import("./pages/animations/generative-lines/GenerativeLines"),
+);
+const Lightbeams = lazy(() =>
+  import("./pages/animations/lightbeams/Lightbeams"),
+);
 
 const SiteInner = () => {
   const [showUp, setShowUp] = useState(false);
@@ -149,6 +158,12 @@ const SiteInner = () => {
             />
             <Route path="/features/reminders" element={<Reminders />} />
             <Route path="/features/image-editor" element={<ImageEditor />} />
+            <Route path="/animations/dragon-cursor" element={<DragonCursor />} />
+            <Route
+              path="/animations/generative-lines"
+              element={<GenerativeLines />}
+            />
+            <Route path="/animations/lightbeams" element={<Lightbeams />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

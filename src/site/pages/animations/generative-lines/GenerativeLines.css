@@ -1,0 +1,24 @@
+/* Generative Lines - derives from the original supahfunk/codetap demo css */
+.generative-lines-page {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+  background: #0c0c0c;
+  margin: 0;
+}
+
+.generative-lines-page::before {
+  content: "";
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(transparent 50%, black);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.generative-lines-canvas {
+  display: block;
+  cursor: pointer;
+}

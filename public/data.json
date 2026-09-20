@@ -100,6 +100,29 @@
       "isVisible": true
     }
   ],
+  "animations": [
+    {
+      "id": "dragon-cursor",
+      "displayName": "Dragon Cursor",
+      "description": "An SVG dragon that follows and morphs around your cursor",
+      "path": "/animations/dragon-cursor",
+      "isVisible": true
+    },
+    {
+      "id": "generative-lines",
+      "displayName": "Generative Lines",
+      "description": "A canvas generative artwork with flowing curved lines",
+      "path": "/animations/generative-lines",
+      "isVisible": true
+    },
+    {
+      "id": "lightbeams",
+      "displayName": "Lightbeams",
+      "description": "Rising beam of light particles rendered on canvas",
+      "path": "/animations/lightbeams",
+      "isVisible": true
+    }
+  ],
   "experience": [
     {
       "role": "Software Developer → QA Tester",
@@ -455,6 +478,12 @@
       "color": "#0099d4",
       "title": "Features",
       "description": "Useful tools and utilities",
+      "image": ""
+    },
+    "animations": {
+      "color": "#00a6dc",
+      "title": "Animations",
+      "description": "Hand-picked animations and creative effects",
       "image": ""
     },
     "contact": {

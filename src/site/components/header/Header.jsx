@@ -5,15 +5,18 @@ import "./Header.css";
 const Header = ({ scrollToSection }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [featuresSubmenuOpen, setFeaturesSubmenuOpen] = useState(false);
+  const [animationsSubmenuOpen, setAnimationsSubmenuOpen] = useState(false);
   const headerRef = useRef(null);
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenus = () => {
     setMenuOpen(false);
     setFeaturesSubmenuOpen(false);
+    setAnimationsSubmenuOpen(false);
   };
   const navigate = useNavigate();
   const location = useLocation();
   const [listActivedFeatures, setListActivedFeatures] = useState([]);
+  const [listActivedAnimations, setListActivedAnimations] = useState([]);
   const [reminderCount, setReminderCount] = useState(0);
 
   useEffect(() => {
@@ -37,34 +40,33 @@ const Header = ({ scrollToSection }) => {
   }, []);
 
   useEffect(() => {
-    let parsedFeatures = null;
-    const savedFeatures = localStorage.getItem("features");
-    if (savedFeatures) {
-      try {
-        parsedFeatures = JSON.parse(savedFeatures);
-      } catch (error) {
-        console.error("Invalid features data in localStorage:", error);
-        parsedFeatures = null;
+    const loadSectionList = (key, setter) => {
+      let parsed = null;
+      const saved = localStorage.getItem(key);
+      if (saved) {
+        try {
+          parsed = JSON.parse(saved);
+        } catch (error) {
+          console.error(`Invalid ${key} data in localStorage:`, error);
+          parsed = null;
+        }
       }
-    }
-
-    if (parsedFeatures) {
-      setListActivedFeatures(
-        parsedFeatures.filter((feature) => feature.isVisible === true),
-      );
-    } else {
-      fetch("/data.json")
-        .then((response) => response.json())
-        .then((data) => {
-          const features = data.features || [];
-          setListActivedFeatures(
-            features.filter((feature) => feature.isVisible === true),
-          );
-        })
-        .catch((error) => {
-          console.error("Error loading features:", error);
-        });
-    }
+      if (parsed) {
+        setter(parsed.filter((item) => item.isVisible === true));
+      } else {
+        fetch("/data.json")
+          .then((response) => response.json())
+          .then((data) => {
+            const list = data[key] || [];
+            setter(list.filter((item) => item.isVisible === true));
+          })
+          .catch((error) => {
+            console.error(`Error loading ${key}:`, error);
+          });
+      }
+    };
+    loadSectionList("features", setListActivedFeatures);
+    loadSectionList("animations", setListActivedAnimations);
   }, []);
 
   useEffect(() => {
@@ -102,6 +104,7 @@ const Header = ({ scrollToSection }) => {
           onClick={() => {
             setMenuOpen(false);
             setFeaturesSubmenuOpen(false);
+            setAnimationsSubmenuOpen(false);
           }}
         >
           <li>
@@ -196,6 +199,45 @@ const Header = ({ scrollToSection }) => {
               )}
             </ul>
           </li>
+          <li
+            className={`has-submenu ${animationsSubmenuOpen ? "open" : ""}`}
+          >
+            <button
+              onClick={() => scrollToSection("animations")}
+              data-scroll="animations"
+            >
+              Animations
+            </button>
+            <button
+              className="submenu-toggle"
+              onClick={(event) => {
+                event.stopPropagation();
+                setAnimationsSubmenuOpen(!animationsSubmenuOpen);
+              }}
+              aria-haspopup="true"
+              aria-expanded={animationsSubmenuOpen}
+              aria-label="Toggle animations submenu"
+            >
+              ▾
+            </button>
+            <ul className="submenu">
+              {listActivedAnimations.length > 0 ? (
+                listActivedAnimations.map((element) => {
+                  return (
+                    <li key={element.id}>
+                      <Link to={"/animations/" + element.id}>
+                        {element.displayName}
+                      </Link>
+                    </li>
+                  );
+                })
+              ) : (
+                <li>
+                  <Link to="/">No animations available</Link>
+                </li>
+              )}
+            </ul>
+          </li>
           <li>
             <button
               onClick={() => scrollToSection("contact")}
@@ -216,7 +258,10 @@ const Header = ({ scrollToSection }) => {
                   <Link to={"/features/" + element.id}>
                     {element.displayName}
                     {element.id === "reminders" && reminderCount > 0 && (
-                      <span className="nav-badge" aria-label="Pending reminders">
+                      <span
+                        className="nav-badge"
+                        aria-label="Pending reminders"
+                      >
                         {reminderCount}
                       </span>
                     )}
@@ -228,6 +273,23 @@ const Header = ({ scrollToSection }) => {
             <li>
               <Link to="/" key="no">
                 No features available
+              </Link>
+            </li>
+          )}
+          {listActivedAnimations.length > 0 ? (
+            listActivedAnimations.map((element) => {
+              return (
+                <li key={element.id}>
+                  <Link to={"/animations/" + element.id}>
+                    {element.displayName}
+                  </Link>
+                </li>
+              );
+            })
+          ) : (
+            <li>
+              <Link to="/" key="no">
+                No animations available
               </Link>
             </li>
           )}

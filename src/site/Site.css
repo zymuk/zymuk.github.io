@@ -80,6 +80,7 @@
 .container[data-home-skin="harvard"] .skills-section .section-title,
 .container[data-home-skin="harvard"] .projects-section .section-title,
 .container[data-home-skin="harvard"] .features-section .section-title,
+.container[data-home-skin="harvard"] .animations-section .section-title,
 .container[data-home-skin="harvard"] .contact-section .section-title {
   text-align: left;
   text-transform: uppercase;
@@ -127,7 +128,8 @@
 .container[data-home-skin="harvard"] .contact-form input,
 .container[data-home-skin="harvard"] .contact-form textarea,
 .container[data-home-skin="harvard"] .contact-form button,
-.container[data-home-skin="harvard"] .features-button {
+.container[data-home-skin="harvard"] .features-button,
+.container[data-home-skin="harvard"] .animations-button {
   font-size: 1rem;
 }
 
@@ -137,11 +139,20 @@
 .container[data-home-skin="harvard"] .skills-section,
 .container[data-home-skin="harvard"] .projects-section,
 .container[data-home-skin="harvard"] .features-section,
+.container[data-home-skin="harvard"] .animations-section,
 .container[data-home-skin="harvard"] .contact-section {
   text-align: left;
 }
 
 .container[data-home-skin="harvard"] .features-buttons {
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container[data-home-skin="harvard"] .animations-buttons {
   justify-content: flex-start;
   width: 100%;
   max-width: 800px;
@@ -204,6 +215,7 @@
 .container[data-home-skin="harvard"] .contact-form textarea,
 .container[data-home-skin="harvard"] .contact-form button,
 .container[data-home-skin="harvard"] .features-button,
+.container[data-home-skin="harvard"] .animations-button,
 .container[data-home-skin="harvard"] .tech-tag,
 .container[data-home-skin="harvard"] .period,
 .container[data-home-skin="harvard"] .nav-badge {
