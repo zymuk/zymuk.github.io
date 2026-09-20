@@ -73,7 +73,7 @@ const Features = ({ settings = {}, data = [] }) => {
           visibleFeatures.map((element) => {
             return (
               <NavLink
-                to={element.path || "/" + element.id}
+                to={element.path || "/features/" + element.id}
                 className="features-button"
                 key={element.id}
               >

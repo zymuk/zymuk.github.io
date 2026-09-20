@@ -131,18 +131,24 @@ const SiteInner = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/features" element={<Features />} />
-            <Route path="/calculator" element={<Calculator />} />
-            <Route path="/notes" element={<Notes />} />
-            <Route path="/numerology-name" element={<NumerologyName />} />
+            <Route path="/features/calculator" element={<Calculator />} />
+            <Route path="/features/notes" element={<Notes />} />
             <Route
-              path="/text-encoder-decoder"
+              path="/features/numerology-name"
+              element={<NumerologyName />}
+            />
+            <Route
+              path="/features/text-encoder-decoder"
               element={<TextEncoderDecoder />}
             />
-            <Route path="/save-web" element={<SaveWeb />} />
-            <Route path="/encrypt-decrypt" element={<EncryptDecrypt />} />
-            <Route path="/json-formatter" element={<JsonFormatter />} />
-            <Route path="/reminders" element={<Reminders />} />
-            <Route path="/image-editor" element={<ImageEditor />} />
+            <Route path="/features/save-web" element={<SaveWeb />} />
+            <Route path="/features/encrypt-decrypt" element={<EncryptDecrypt />} />
+            <Route
+              path="/features/json-formatter"
+              element={<JsonFormatter />}
+            />
+            <Route path="/features/reminders" element={<Reminders />} />
+            <Route path="/features/image-editor" element={<ImageEditor />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

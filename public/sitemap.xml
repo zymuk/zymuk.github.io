@@ -7,55 +7,55 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://zymuk.github.io/calculator</loc>
+    <loc>https://zymuk.github.io/features/calculator</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zymuk.github.io/notes</loc>
+    <loc>https://zymuk.github.io/features/notes</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://zymuk.github.io/numerology-name</loc>
+    <loc>https://zymuk.github.io/features/numerology-name</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zymuk.github.io/text-encoder-decoder</loc>
+    <loc>https://zymuk.github.io/features/text-encoder-decoder</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zymuk.github.io/save-web</loc>
+    <loc>https://zymuk.github.io/features/save-web</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zymuk.github.io/encrypt-decrypt</loc>
+    <loc>https://zymuk.github.io/features/encrypt-decrypt</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zymuk.github.io/json-formatter</loc>
+    <loc>https://zymuk.github.io/features/json-formatter</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zymuk.github.io/reminders</loc>
+    <loc>https://zymuk.github.io/features/reminders</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://zymuk.github.io/image-editor</loc>
+    <loc>https://zymuk.github.io/features/image-editor</loc>
     <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

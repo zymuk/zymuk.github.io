@@ -9,7 +9,7 @@ Zymuk Page là một ứng dụng web đơn trang (Single Page Application) đư
 | Khu vực | Đường dẫn | Mô tả |
 |---|---|---|
 | **Trang công khai** | `/` | 9 section: Hero, About (hiệu ứng gõ chữ), Experience (timeline), Education, Certifications, Skills, Projects, Features, Contact — cuộn dạng slide toàn màn hình (scroll-snap) kèm nút đổi theme nổi góc dưới-trái (Default/Midnight/Sunset đổi màu nền, Harvard Clean tái thiết kế toàn bộ theo phong cách résumé học thuật) |
-| **Công cụ** | `/calculator`, `/notes`, `/numerology-name`, `/text-encoder-decoder`, `/save-web`, `/encrypt-decrypt`, `/json-formatter`, `/reminders`, `/image-editor` | Máy tính khoa học, ghi chú rich-text, thần số học, mã hóa URL, quản lý bookmark, mã hóa/giải mã văn bản, format/validate JSON, nhắc việc, **loại bỏ nền trắng + cắt ảnh** |
+| **Công cụ** | `/features/calculator`, `/features/notes`, `/features/numerology-name`, `/features/text-encoder-decoder`, `/features/save-web`, `/features/encrypt-decrypt`, `/features/json-formatter`, `/features/reminders`, `/features/image-editor` | Máy tính khoa học, ghi chú rich-text, thần số học, mã hóa URL, quản lý bookmark, mã hóa/giải mã văn bản, format/validate JSON, nhắc việc, **loại bỏ nền trắng + cắt ảnh** |
 | **Admin Panel** | `/admin/...` | Dashboard, CRUD từng section, quản lý người dùng (Users CRUD), cài đặt homepage (màu/title/ảnh), đổi ngôn ngữ EN/VI, export dữ liệu JSON |
 
 ## Công nghệ sử dụng

@@ -183,7 +183,9 @@ const Header = ({ scrollToSection }) => {
                 listActivedFeatures.map((element) => {
                   return (
                     <li key={element.id}>
-                      <Link to={"/" + element.id}>{element.displayName}</Link>
+                      <Link to={"/features/" + element.id}>
+                        {element.displayName}
+                      </Link>
                     </li>
                   );
                 })
@@ -211,7 +213,7 @@ const Header = ({ scrollToSection }) => {
             listActivedFeatures.map((element) => {
               return (
                 <li key={element.id}>
-                  <Link to={"/" + element.id}>
+                  <Link to={"/features/" + element.id}>
                     {element.displayName}
                     {element.id === "reminders" && reminderCount > 0 && (
                       <span className="nav-badge" aria-label="Pending reminders">
