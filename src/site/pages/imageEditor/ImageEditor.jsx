@@ -151,6 +151,7 @@ const ImageEditor = () => {
   const manualEraseRef = useRef([]);
   const dragRef = useRef(null);
   const drawingRef = useRef(false);
+  const touchRef = useRef(null);
 
   useEffect(() => {
     return () => {
@@ -463,13 +464,20 @@ const ImageEditor = () => {
     if (file) loadImage(file);
   };
 
+  const eventXY = (e) => {
+    const t = e.touches && e.touches[0];
+    const ct = e.changedTouches && e.changedTouches[0];
+    return { x: (t || ct || e).clientX, y: (t || ct || e).clientY };
+  };
+
   const posToPreview = (e) => {
     const preview = previewRef.current;
     const rect = preview.getBoundingClientRect();
     if (!rect.width) return null;
+    const p = eventXY(e);
     return {
-      x: (e.clientX - rect.left) * (preview.width / rect.width),
-      y: (e.clientY - rect.top) * (preview.height / rect.height),
+      x: (p.x - rect.left) * (preview.width / rect.width),
+      y: (p.y - rect.top) * (preview.height / rect.height),
     };
   };
 
@@ -498,14 +506,44 @@ const ImageEditor = () => {
     }
   };
 
+  const handlePreviewTouchStart = (e) => {
+    if (!sourceRef.current) return;
+    e.preventDefault();
+    const p = posToPreview(e);
+    if (!p) return;
+    touchRef.current = { x0: p.x, y0: p.y, moved: false };
+    if (cropMode) {
+      if (!outputCanvasRef.current || drawingRef.current) return;
+      dragRef.current = { x0: p.x, y0: p.y, x1: p.x, y1: p.y };
+      drawingRef.current = true;
+      drawCropOverlay();
+      return;
+    }
+    if (toolMode === "scroll") {
+      const stage = stageRef.current;
+      if (!stage) return;
+      isPanning.current = true;
+      panRef.current = {
+        startX: e.touches[0].clientX,
+        startY: e.touches[0].clientY,
+        scrollLeft: stage.scrollLeft,
+        scrollTop: stage.scrollTop,
+      };
+    }
+  };
+
   useEffect(() => {
     if (toolMode !== "scroll") return undefined;
     const handleMove = (e) => {
       if (!isPanning.current || !panRef.current) return;
+      if (e.touches && e.touches.length && touchRef.current) {
+        touchRef.current.moved = true;
+      }
       const stage = stageRef.current;
       if (!stage) return;
-      stage.scrollLeft = panRef.current.scrollLeft - (e.clientX - panRef.current.startX);
-      stage.scrollTop = panRef.current.scrollTop - (e.clientY - panRef.current.startY);
+      const p = eventXY(e);
+      stage.scrollLeft = panRef.current.scrollLeft - (p.x - panRef.current.startX);
+      stage.scrollTop = panRef.current.scrollTop - (p.y - panRef.current.startY);
     };
     const handleUp = () => {
       isPanning.current = false;
@@ -513,9 +551,13 @@ const ImageEditor = () => {
     };
     document.addEventListener("mousemove", handleMove);
     document.addEventListener("mouseup", handleUp);
+    document.addEventListener("touchmove", handleMove, { passive: false });
+    document.addEventListener("touchend", handleUp);
     return () => {
       document.removeEventListener("mousemove", handleMove);
       document.removeEventListener("mouseup", handleUp);
+      document.removeEventListener("touchmove", handleMove);
+      document.removeEventListener("touchend", handleUp);
     };
   }, [toolMode]);
 
@@ -525,6 +567,9 @@ const ImageEditor = () => {
       if (!drawingRef.current || !dragRef.current) return;
       const p = posToPreview(e);
       if (!p) return;
+      if (e.touches && e.touches.length && touchRef.current) {
+        touchRef.current.moved = true;
+      }
       dragRef.current.x1 = p.x;
       dragRef.current.y1 = p.y;
       drawCropOverlay();
@@ -553,15 +598,39 @@ const ImageEditor = () => {
     };
     document.addEventListener("mousemove", handleMove);
     document.addEventListener("mouseup", handleUp);
+    document.addEventListener("touchmove", handleMove, { passive: false });
+    document.addEventListener("touchend", handleUp);
     return () => {
       document.removeEventListener("mousemove", handleMove);
       document.removeEventListener("mouseup", handleUp);
+      document.removeEventListener("touchmove", handleMove);
+      document.removeEventListener("touchend", handleUp);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cropMode, tolerance, feather, trim, cropCm, scale, background, hasCrop]);
 
   const handlePreviewClick = (e) => {
     if (!sourceRef.current || !outputCanvasRef.current || cropMode || toolMode === "scroll") return;
+    const p = posToPreview(e);
+    if (!p) return;
+    const s = previewToSource(p.x, p.y);
+    const wx = Math.floor(s.x);
+    const wy = Math.floor(s.y);
+    const W = sourceRef.current.naturalWidth;
+    const H = sourceRef.current.naturalHeight;
+    if (wx < 0 || wy < 0 || wx >= W || wy >= H) return;
+    const next = [...manualEraseRef.current, { x: wx, y: wy }];
+    manualEraseRef.current = next;
+    setErasePoints(next);
+    processImage();
+  };
+
+  const handlePreviewTouchEnd = (e) => {
+    if (!sourceRef.current || !outputCanvasRef.current || cropMode || toolMode === "scroll") return;
+    const tr = touchRef.current;
+    if (!tr) return;
+    touchRef.current = null;
+    if (tr.moved) return;
     const p = posToPreview(e);
     if (!p) return;
     const s = previewToSource(p.x, p.y);
@@ -1005,6 +1074,8 @@ const ImageEditor = () => {
                   height="1"
                   onClick={handlePreviewClick}
                   onMouseDown={handlePreviewMouseDown}
+                  onTouchStart={handlePreviewTouchStart}
+                  onTouchEnd={handlePreviewTouchEnd}
                   className={
                     "image-editor-canvas" +
                     (toolMode === "scroll" ? " scroll-mode" : "")
