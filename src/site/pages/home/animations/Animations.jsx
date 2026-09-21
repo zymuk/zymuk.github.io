@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import "./Animations.css";
 
 const Animations = ({ settings = {}, data = [] }) => {
-  const [sectionSettings, setSectionSettings] = useState(settings);
   const [animations, setAnimations] = useState(data);
   const [loading, setLoading] = useState(!(data && data.length > 0));
 
@@ -11,7 +10,6 @@ const Animations = ({ settings = {}, data = [] }) => {
     let active = true;
 
     if (data && data.length > 0) {
-      setSectionSettings(settings);
       setAnimations(data);
       setLoading(false);
       return () => {
@@ -24,7 +22,6 @@ const Animations = ({ settings = {}, data = [] }) => {
       .then((jsonData) => {
         if (!active) return;
         setAnimations(jsonData.animations || []);
-        setSectionSettings(jsonData.homepage?.animations || {});
       })
       .catch((error) => console.error("Error loading animations:", error))
       .finally(() => {
@@ -34,12 +31,12 @@ const Animations = ({ settings = {}, data = [] }) => {
     return () => {
       active = false;
     };
-  }, [data, settings]);
+  }, [data]);
 
   const sectionStyle = {
-    backgroundColor: sectionSettings.color,
-    backgroundImage: sectionSettings.image
-      ? `url(${sectionSettings.image})`
+    backgroundColor: settings.color,
+    backgroundImage: settings.image
+      ? `url(${settings.image})`
       : undefined,
     backgroundSize: "cover",
     backgroundPosition: "center",

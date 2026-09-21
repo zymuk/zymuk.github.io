@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import "./Features.css";
 
 const Features = ({ settings = {}, data = [] }) => {
-  const [sectionSettings, setSectionSettings] = useState(settings);
   const [features, setFeatures] = useState(data);
   const [loading, setLoading] = useState(!(data && data.length > 0));
 
@@ -11,7 +10,6 @@ const Features = ({ settings = {}, data = [] }) => {
     let active = true;
 
     if (data && data.length > 0) {
-      setSectionSettings(settings);
       setFeatures(data);
       setLoading(false);
       return () => {
@@ -24,7 +22,6 @@ const Features = ({ settings = {}, data = [] }) => {
       .then((jsonData) => {
         if (!active) return;
         setFeatures(jsonData.features || []);
-        setSectionSettings(jsonData.homepage?.tools || jsonData.tools || {});
       })
       .catch((error) => console.error("Error loading features:", error))
       .finally(() => {
@@ -34,12 +31,12 @@ const Features = ({ settings = {}, data = [] }) => {
     return () => {
       active = false;
     };
-  }, [data, settings]);
+  }, [data]);
 
   const sectionStyle = {
-    backgroundColor: sectionSettings.color,
-    backgroundImage: sectionSettings.image
-      ? `url(${sectionSettings.image})`
+    backgroundColor: settings.color,
+    backgroundImage: settings.image
+      ? `url(${settings.image})`
       : undefined,
     backgroundSize: "cover",
     backgroundPosition: "center",
