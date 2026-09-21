@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Header from "./components/header/Header";
 import ReminderAlarm from "./components/reminderAlarm/ReminderAlarm";
@@ -6,41 +6,11 @@ import ThemeSwitcher from "./components/themeSwitcher/ThemeSwitcher";
 import { ThemeProvider, useTheme } from "./ThemeContext";
 import { HOME_THEMES } from "./pages/home/homeThemes";
 import Home from "./pages/home/Home";
-import Features from "./pages/home/features/Features";
+import FeaturesRoutes from "./routes/FeaturesRoutes";
+import AnimationsRoutes from "./routes/AnimationsRoutes";
 import NotFound from "./pages/notFound/NotFound";
 import Footer from "./components/footer/Footer";
 import "./Site.css";
-
-const Calculator = lazy(() => import("./pages/calculator/Calculator"));
-const Notes = lazy(() => import("./pages/notes/Notes"));
-const NumerologyName = lazy(() =>
-  import("./pages/numerologyName/NumerologyName"),
-);
-const TextEncoderDecoder = lazy(() =>
-  import("./pages/textEncoderDecoder/TextEncoderDecoder"),
-);
-const SaveWeb = lazy(() => import("./pages/saveWeb/SaveWeb"));
-const EncryptDecrypt = lazy(() =>
-  import("./pages/encryptDecrypt/EncryptDecrypt"),
-);
-const JsonFormatter = lazy(() => import("./pages/jsonFormatter/JsonFormatter"));
-const Reminders = lazy(() => import("./pages/reminders/Reminders"));
-const ImageEditor = lazy(() => import("./pages/imageEditor/ImageEditor"));
-const DragonCursor = lazy(() =>
-  import("./pages/animations/dragon-cursor/DragonCursor"),
-);
-const GenerativeLines = lazy(() =>
-  import("./pages/animations/generative-lines/GenerativeLines"),
-);
-const Lightbeams = lazy(() =>
-  import("./pages/animations/lightbeams/Lightbeams"),
-);
-const BlendOverlay = lazy(() =>
-  import("./pages/animations/blend-overlay/BlendOverlay"),
-);
-const AizawaAttractor = lazy(() =>
-  import("./pages/animations/aizawa-attractor/AizawaAttractor"),
-);
 
 const SiteInner = () => {
   const [showUp, setShowUp] = useState(false);
@@ -145,39 +115,12 @@ const SiteInner = () => {
         <Suspense fallback={<div className="site-loading">Loading...</div>}>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/features" element={<Features />} />
-            <Route path="/features/calculator" element={<Calculator />} />
-            <Route path="/features/notes" element={<Notes />} />
-            <Route
-              path="/features/numerology-name"
-              element={<NumerologyName />}
-            />
-            <Route
-              path="/features/text-encoder-decoder"
-              element={<TextEncoderDecoder />}
-            />
-            <Route path="/features/save-web" element={<SaveWeb />} />
-            <Route path="/features/encrypt-decrypt" element={<EncryptDecrypt />} />
-            <Route
-              path="/features/json-formatter"
-              element={<JsonFormatter />}
-            />
-            <Route path="/features/reminders" element={<Reminders />} />
-            <Route path="/features/image-editor" element={<ImageEditor />} />
-            <Route path="/animations/dragon-cursor" element={<DragonCursor />} />
-            <Route
-              path="/animations/generative-lines"
-              element={<GenerativeLines />}
-            />
-            <Route path="/animations/lightbeams" element={<Lightbeams />} />
-            <Route
-              path="/animations/blend-overlay"
-              element={<BlendOverlay />}
-            />
-            <Route
-              path="/animations/aizawa-attractor"
-              element={<AizawaAttractor />}
-            />
+            {FeaturesRoutes.map((route) => (
+              <Route key={route.path} path={route.path} element={route.element} />
+            ))}
+            {AnimationsRoutes.map((route) => (
+              <Route key={route.path} path={route.path} element={route.element} />
+            ))}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
