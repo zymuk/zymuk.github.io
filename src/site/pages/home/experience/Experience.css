@@ -8,7 +8,7 @@
   color: var(--cv-text, inherit);
   text-align: center;
   margin-bottom: 3rem;
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   font-weight: 600;
 }
 
@@ -52,14 +52,14 @@
 .role {
   color: var(--cv-text, #fff);
   margin: 0 0 0.5rem 0;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
 }
 
 .company {
   color: var(--cv-text-soft, #f0f8ff);
   margin: 0 0 0.5rem 0;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   font-weight: 400;
 }
 
@@ -176,15 +176,15 @@
   }
 
   .section-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .role {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
 
   .company {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .project-item {

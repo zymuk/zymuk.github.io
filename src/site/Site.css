@@ -498,7 +498,7 @@
 /* Primary Button */
 .btn-primary {
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   background-color: #001f3f;
   color: #fff;
@@ -518,7 +518,7 @@
   display: block;
   margin-bottom: 0.5rem;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
   color: #fff;
 }
 
@@ -619,7 +619,7 @@
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -641,7 +641,7 @@
 /* Shared Status Message */
 .status-message {
   text-align: center;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: bold;
   padding: 15px 20px;
   border-radius: 10px;

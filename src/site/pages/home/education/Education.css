@@ -17,7 +17,7 @@
 }
 
 .education-list li {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   color: var(--cv-text-soft, rgba(255, 255, 255, 0.9));
   background: var(--cv-card-bg, transparent);
   border: 1px solid var(--cv-card-border, transparent);
@@ -34,14 +34,14 @@
 
 .education-degree {
   font-family: var(--cv-heading-font, inherit);
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--cv-text, #fff);
   margin-bottom: 0.5rem;
 }
 
 .education-school {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--cv-text-soft, rgba(255, 255, 255, 0.85));
   margin-bottom: 0.3rem;
 }

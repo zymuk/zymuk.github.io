@@ -15,12 +15,12 @@
 }
 
 .not-found h2 {
-  font-size: 28px;
+  font-size: 24px;
   margin: 10px 0;
 }
 
 .not-found p {
-  font-size: 18px;
+  font-size: 16px;
   color: #666;
 }
 
@@ -28,7 +28,7 @@
   display: inline-block;
   margin-top: 20px;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 14px;
   text-decoration: none;
   background-color: #3498db;
   color: #fff;

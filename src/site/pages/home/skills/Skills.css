@@ -20,7 +20,7 @@
 .category-title {
   font-family: var(--cv-heading-font, inherit);
   color: var(--cv-text, #fff);
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   margin-bottom: 15px;
   font-weight: 600;
   border-bottom: 2px solid var(--cv-divider, rgba(255, 255, 255, 0.3));
@@ -35,7 +35,7 @@
 
 .skills-list li {
   margin: 10px 0;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   color: var(--cv-text-soft, inherit);
   transition: transform 0.3s ease-in-out;
 }

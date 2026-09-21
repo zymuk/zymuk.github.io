@@ -92,7 +92,7 @@
   margin-bottom: 0.5rem;
   font-weight: 600;
   color: #333;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .notes-page .form-group input,
@@ -349,7 +349,7 @@
 .btn-save {
   padding: 10px 20px;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -743,7 +743,7 @@
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
