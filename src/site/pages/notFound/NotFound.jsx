@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import usePageMeta from "../../../utils/usePageMeta";
 import "./NotFound.css";
 
 const NotFound = () => {
+  usePageMeta({ title: "404 - Page Not Found" });
+
   return (
     <div className="not-found">
       <h1>404</h1>

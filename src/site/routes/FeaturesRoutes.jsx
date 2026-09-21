@@ -1,5 +1,11 @@
 import { lazy } from "react";
 import Features from "../pages/home/features/Features";
+import usePageMeta from "../../utils/usePageMeta";
+
+const FeaturesLanding = () => {
+  usePageMeta({ title: "Features" });
+  return <Features />;
+};
 
 const Calculator = lazy(() => import("../pages/calculator/Calculator"));
 const Notes = lazy(() => import("../pages/notes/Notes"));
@@ -18,7 +24,7 @@ const Reminders = lazy(() => import("../pages/reminders/Reminders"));
 const ImageEditor = lazy(() => import("../pages/imageEditor/ImageEditor"));
 
 const FeaturesRoutes = [
-  { path: "/features", element: <Features /> },
+  { path: "/features", element: <FeaturesLanding /> },
   { path: "/features/calculator", element: <Calculator /> },
   { path: "/features/notes", element: <Notes /> },
   { path: "/features/numerology-name", element: <NumerologyName /> },

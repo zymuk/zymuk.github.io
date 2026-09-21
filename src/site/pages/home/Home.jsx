@@ -11,9 +11,11 @@ import Animations from "./animations/Animations";
 import Contact from "./contact/Contact";
 import { useTheme } from "../../ThemeContext";
 import { HOME_THEMES } from "./homeThemes";
+import usePageMeta from "../../../utils/usePageMeta";
 import "./Home.css";
 
 const Home = () => {
+  usePageMeta({});
   const [settings, setSettings] = useState({});
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);

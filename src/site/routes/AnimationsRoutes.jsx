@@ -1,5 +1,11 @@
 import { lazy } from "react";
 import Animations from "../pages/home/animations/Animations";
+import usePageMeta from "../../utils/usePageMeta";
+
+const AnimationsLanding = () => {
+  usePageMeta({ title: "Animations" });
+  return <Animations />;
+};
 
 const DragonCursor = lazy(() =>
   import("../pages/animations/dragon-cursor/DragonCursor"),
@@ -18,7 +24,7 @@ const AizawaAttractor = lazy(() =>
 );
 
 const AnimationsRoutes = [
-  { path: "/animations", element: <Animations /> },
+  { path: "/animations", element: <AnimationsLanding /> },
   { path: "/animations/dragon-cursor", element: <DragonCursor /> },
   { path: "/animations/generative-lines", element: <GenerativeLines /> },
   { path: "/animations/lightbeams", element: <Lightbeams /> },
