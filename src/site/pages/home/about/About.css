@@ -21,6 +21,9 @@
 .about-section .typing-text {
   font-size: 1.05rem;
   font-weight: bold;
+  max-width: 1200px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
 .about-section .typing-text::after {
