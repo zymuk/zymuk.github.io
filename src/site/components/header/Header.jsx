@@ -249,50 +249,77 @@ const Header = ({ scrollToSection }) => {
         </ul>
       );
     } else {
+      const isActive = (path) => location.pathname === path;
+      const showFeatures = location.pathname.startsWith("/features");
+      const showAnimations = location.pathname.startsWith("/animations");
+      const showBoth = !showFeatures && !showAnimations;
       return (
         <ul onClick={() => setMenuOpen(false)}>
-          {listActivedFeatures.length > 0 ? (
-            listActivedFeatures.map((element) => {
-              return (
-                <li key={element.id}>
-                  <Link to={"/features/" + element.id}>
-                    {element.displayName}
-                    {element.id === "reminders" && reminderCount > 0 && (
-                      <span
-                        className="nav-badge"
-                        aria-label="Pending reminders"
-                      >
-                        {reminderCount}
-                      </span>
-                    )}
-                  </Link>
-                </li>
-              );
-            })
-          ) : (
-            <li>
-              <Link to="/" key="no">
-                No features available
-              </Link>
-            </li>
-          )}
-          {listActivedAnimations.length > 0 ? (
-            listActivedAnimations.map((element) => {
-              return (
-                <li key={element.id}>
-                  <Link to={"/animations/" + element.id}>
-                    {element.displayName}
-                  </Link>
-                </li>
-              );
-            })
-          ) : (
-            <li>
-              <Link to="/" key="no">
-                No animations available
-              </Link>
-            </li>
-          )}
+          <li>
+            <Link
+              to="/"
+              className={isActive("/") ? "active" : ""}
+              aria-current={isActive("/") ? "page" : undefined}
+            >
+              Home
+            </Link>
+          </li>
+          {(showFeatures || showBoth) &&
+            (listActivedFeatures.length > 0 ? (
+              listActivedFeatures.map((element) => {
+                const path = element.path || "/features/" + element.id;
+                const active = isActive(path);
+                return (
+                  <li key={element.id}>
+                    <Link
+                      to={path}
+                      className={active ? "active" : ""}
+                      aria-current={active ? "page" : undefined}
+                    >
+                      {element.displayName}
+                      {element.id === "reminders" && reminderCount > 0 && (
+                        <span
+                          className="nav-badge"
+                          aria-label="Pending reminders"
+                        >
+                          {reminderCount}
+                        </span>
+                      )}
+                    </Link>
+                  </li>
+                );
+              })
+            ) : (
+              <li>
+                <Link to="/" key="no-features">
+                  No features available
+                </Link>
+              </li>
+            ))}
+          {(showAnimations || showBoth) &&
+            (listActivedAnimations.length > 0 ? (
+              listActivedAnimations.map((element) => {
+                const path = element.path || "/animations/" + element.id;
+                const active = isActive(path);
+                return (
+                  <li key={element.id}>
+                    <Link
+                      to={path}
+                      className={active ? "active" : ""}
+                      aria-current={active ? "page" : undefined}
+                    >
+                      {element.displayName}
+                    </Link>
+                  </li>
+                );
+              })
+            ) : (
+              <li>
+                <Link to="/" key="no-animations">
+                  No animations available
+                </Link>
+              </li>
+            ))}
         </ul>
       );
     }
