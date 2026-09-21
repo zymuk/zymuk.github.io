@@ -4,14 +4,14 @@ import "./Header.css";
 
 const Header = ({ scrollToSection }) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [qualificationsOpen, setQualificationsOpen] = useState(false);
-  const [toolsOpen, setToolsOpen] = useState(false);
+  const [featuresSubmenuOpen, setFeaturesSubmenuOpen] = useState(false);
+  const [animationsSubmenuOpen, setAnimationsSubmenuOpen] = useState(false);
   const headerRef = useRef(null);
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const closeMenus = () => {
     setMenuOpen(false);
-    setQualificationsOpen(false);
-    setToolsOpen(false);
+    setFeaturesSubmenuOpen(false);
+    setAnimationsSubmenuOpen(false);
   };
   const navigate = useNavigate();
   const location = useLocation();
@@ -96,84 +96,6 @@ const Header = ({ scrollToSection }) => {
     navigate("/");
   };
 
-  const renderFeatureItems = (withBadge) =>
-    listActivedFeatures.length > 0 ? (
-      listActivedFeatures.map((element) => {
-        return (
-          <li key={element.id}>
-            <Link to={"/features/" + element.id}>
-              {element.displayName}
-              {withBadge && element.id === "reminders" && reminderCount > 0 && (
-                <span className="nav-badge" aria-label="Pending reminders">
-                  {reminderCount}
-                </span>
-              )}
-            </Link>
-          </li>
-        );
-      })
-    ) : (
-      <li>
-        <Link to="/" key="no-features">
-          No features available
-        </Link>
-      </li>
-    );
-
-  const renderAnimationItems = () =>
-    listActivedAnimations.length > 0 ? (
-      listActivedAnimations.map((element) => {
-        return (
-          <li key={element.id}>
-            <Link to={"/animations/" + element.id}>
-              {element.displayName}
-            </Link>
-          </li>
-        );
-      })
-    ) : (
-      <li>
-        <Link to="/" key="no-animations">
-          No animations available
-        </Link>
-      </li>
-    );
-
-  const renderToolsSubmenu = (isHome) => (
-    <ul className="submenu">
-      <li className="submenu-group">
-        <span className="submenu-label">
-          {isHome ? (
-            <button
-              onClick={() => scrollToSection("features")}
-              data-scroll="features"
-            >
-              Features
-            </button>
-          ) : (
-            <Link to="/features">Features</Link>
-          )}
-        </span>
-        {renderFeatureItems(true)}
-      </li>
-      <li className="submenu-group">
-        <span className="submenu-label">
-          {isHome ? (
-            <button
-              onClick={() => scrollToSection("animations")}
-              data-scroll="animations"
-            >
-              Animations
-            </button>
-          ) : (
-            <Link to="/animations">Animations</Link>
-          )}
-        </span>
-        {renderAnimationItems()}
-      </li>
-    </ul>
-  );
-
   const renderMenu = () => {
     const checkHomePage = location.pathname === "/";
     if (checkHomePage) {
@@ -181,13 +103,13 @@ const Header = ({ scrollToSection }) => {
         <ul
           onClick={() => {
             setMenuOpen(false);
-            setQualificationsOpen(false);
-            setToolsOpen(false);
+            setFeaturesSubmenuOpen(false);
+            setAnimationsSubmenuOpen(false);
           }}
         >
           <li>
             <button onClick={() => scrollToSection("hero")} data-scroll="hero">
-              Home
+              Hero
             </button>
           </li>
           <li>
@@ -206,45 +128,21 @@ const Header = ({ scrollToSection }) => {
               Experience
             </button>
           </li>
-          <li
-            className={`has-submenu ${qualificationsOpen ? "open" : ""}`}
-          >
+          <li>
             <button
               onClick={() => scrollToSection("education")}
               data-scroll="education"
             >
-              Qualifications
+              Education
             </button>
+          </li>
+          <li>
             <button
-              className="submenu-toggle"
-              onClick={(event) => {
-                event.stopPropagation();
-                setQualificationsOpen(!qualificationsOpen);
-              }}
-              aria-haspopup="true"
-              aria-expanded={qualificationsOpen}
-              aria-label="Toggle qualifications submenu"
+              onClick={() => scrollToSection("certifications")}
+              data-scroll="certifications"
             >
-              ▾
+              Certifications
             </button>
-            <ul className="submenu">
-              <li>
-                <button
-                  onClick={() => scrollToSection("education")}
-                  data-scroll="education"
-                >
-                  Education
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection("certifications")}
-                  data-scroll="certifications"
-                >
-                  Certifications
-                </button>
-              </li>
-            </ul>
           </li>
           <li>
             <button
@@ -262,26 +160,83 @@ const Header = ({ scrollToSection }) => {
               Projects
             </button>
           </li>
-          <li className={`has-submenu ${toolsOpen ? "open" : ""}`}>
+          <li
+            className={`has-submenu ${featuresSubmenuOpen ? "open" : ""}`}
+          >
             <button
               onClick={() => scrollToSection("features")}
               data-scroll="features"
             >
-              Tools
+              Features
             </button>
             <button
               className="submenu-toggle"
               onClick={(event) => {
                 event.stopPropagation();
-                setToolsOpen(!toolsOpen);
+                setFeaturesSubmenuOpen(!featuresSubmenuOpen);
               }}
               aria-haspopup="true"
-              aria-expanded={toolsOpen}
-              aria-label="Toggle tools submenu"
+              aria-expanded={featuresSubmenuOpen}
+              aria-label="Toggle features submenu"
             >
               ▾
             </button>
-            {renderToolsSubmenu(true)}
+            <ul className="submenu">
+              {listActivedFeatures.length > 0 ? (
+                listActivedFeatures.map((element) => {
+                  return (
+                    <li key={element.id}>
+                      <Link to={"/features/" + element.id}>
+                        {element.displayName}
+                      </Link>
+                    </li>
+                  );
+                })
+              ) : (
+                <li>
+                  <Link to="/">No features available</Link>
+                </li>
+              )}
+            </ul>
+          </li>
+          <li
+            className={`has-submenu ${animationsSubmenuOpen ? "open" : ""}`}
+          >
+            <button
+              onClick={() => scrollToSection("animations")}
+              data-scroll="animations"
+            >
+              Animations
+            </button>
+            <button
+              className="submenu-toggle"
+              onClick={(event) => {
+                event.stopPropagation();
+                setAnimationsSubmenuOpen(!animationsSubmenuOpen);
+              }}
+              aria-haspopup="true"
+              aria-expanded={animationsSubmenuOpen}
+              aria-label="Toggle animations submenu"
+            >
+              ▾
+            </button>
+            <ul className="submenu">
+              {listActivedAnimations.length > 0 ? (
+                listActivedAnimations.map((element) => {
+                  return (
+                    <li key={element.id}>
+                      <Link to={"/animations/" + element.id}>
+                        {element.displayName}
+                      </Link>
+                    </li>
+                  );
+                })
+              ) : (
+                <li>
+                  <Link to="/">No animations available</Link>
+                </li>
+              )}
+            </ul>
           </li>
           <li>
             <button
@@ -296,25 +251,48 @@ const Header = ({ scrollToSection }) => {
     } else {
       return (
         <ul onClick={() => setMenuOpen(false)}>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li className={`has-submenu ${toolsOpen ? "open" : ""}`}>
-            <Link to="/features">Tools</Link>
-            <button
-              className="submenu-toggle"
-              onClick={(event) => {
-                event.stopPropagation();
-                setToolsOpen(!toolsOpen);
-              }}
-              aria-haspopup="true"
-              aria-expanded={toolsOpen}
-              aria-label="Toggle tools submenu"
-            >
-              ▾
-            </button>
-            {renderToolsSubmenu(false)}
-          </li>
+          {listActivedFeatures.length > 0 ? (
+            listActivedFeatures.map((element) => {
+              return (
+                <li key={element.id}>
+                  <Link to={"/features/" + element.id}>
+                    {element.displayName}
+                    {element.id === "reminders" && reminderCount > 0 && (
+                      <span
+                        className="nav-badge"
+                        aria-label="Pending reminders"
+                      >
+                        {reminderCount}
+                      </span>
+                    )}
+                  </Link>
+                </li>
+              );
+            })
+          ) : (
+            <li>
+              <Link to="/" key="no">
+                No features available
+              </Link>
+            </li>
+          )}
+          {listActivedAnimations.length > 0 ? (
+            listActivedAnimations.map((element) => {
+              return (
+                <li key={element.id}>
+                  <Link to={"/animations/" + element.id}>
+                    {element.displayName}
+                  </Link>
+                </li>
+              );
+            })
+          ) : (
+            <li>
+              <Link to="/" key="no">
+                No animations available
+              </Link>
+            </li>
+          )}
         </ul>
       );
     }

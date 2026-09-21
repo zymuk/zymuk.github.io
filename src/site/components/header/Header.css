@@ -117,42 +117,6 @@
   background-color: var(--cv-header-hover-bg, rgba(255, 255, 255, 0.1));
 }
 
-.nav ul .submenu li.submenu-group {
-  padding: 6px 0;
-}
-
-.nav ul .submenu li.submenu-group + li.submenu-group {
-  border-top: 1px solid var(--cv-header-border, rgba(255, 255, 255, 0.15));
-  margin-top: 4px;
-}
-
-.nav ul .submenu .submenu-label {
-  display: block;
-  padding: 6px 16px 4px;
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--cv-header-text-muted, #aaa);
-}
-
-.nav ul .submenu .submenu-label a,
-.nav ul .submenu .submenu-label button {
-  display: inline-block;
-  padding: 0;
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--cv-header-text-muted, #aaa);
-}
-
-.nav ul .submenu .submenu-label a:hover,
-.nav ul .submenu .submenu-label button:hover {
-  color: var(--cv-header-text, #fff);
-  background-color: transparent;
-}
-
 .submenu-toggle {
   display: inline-block;
   padding: 0 4px;
@@ -266,20 +230,6 @@
     padding: 5px 0;
   }
 
-  .nav ul .submenu li.submenu-group {
-    padding: 6px 0;
-  }
-
-  .nav ul .submenu li.submenu-group + li.submenu-group {
-    border-top: 1px solid var(--cv-header-border, rgba(255, 255, 255, 0.15));
-    margin-top: 4px;
-  }
-
-  .nav ul .submenu .submenu-label {
-    text-align: right;
-    padding: 6px 10px 2px;
-  }
-
   .nav ul .submenu li a,
   .nav ul .submenu li button {
     display: block;
@@ -287,13 +237,5 @@
     box-sizing: border-box;
     font-size: 13px;
     padding: 8px 10px;
-  }
-
-  .nav ul .submenu .submenu-label a,
-  .nav ul .submenu .submenu-label button {
-    display: inline-block;
-    width: auto;
-    padding: 0;
-    font-size: 12px;
   }
 }
