@@ -22,6 +22,9 @@ const BlendOverlay = lazy(() =>
 const AizawaAttractor = lazy(() =>
   import("../pages/animations/aizawa-attractor/AizawaAttractor"),
 );
+const ExplosiveAttraction = lazy(() =>
+  import("../pages/animations/explosive-attraction/ExplosiveAttraction"),
+);
 
 const AnimationsRoutes = [
   { path: "/animations", element: <AnimationsLanding /> },
@@ -30,6 +33,10 @@ const AnimationsRoutes = [
   { path: "/animations/lightbeams", element: <Lightbeams /> },
   { path: "/animations/blend-overlay", element: <BlendOverlay /> },
   { path: "/animations/aizawa-attractor", element: <AizawaAttractor /> },
+  {
+    path: "/animations/explosive-attraction",
+    element: <ExplosiveAttraction />,
+  },
 ];
 
 export default AnimationsRoutes;
