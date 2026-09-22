@@ -168,9 +168,13 @@
     background-color: var(--cv-header-bg, #333);
     border: 1px solid var(--cv-header-border, transparent);
     flex-direction: column;
+    align-items: stretch;
     text-align: right;
     padding: 10px;
-    overflow: visible;
+    max-height: calc(100vh - 60px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .nav.open {
@@ -204,12 +208,18 @@
     align-items: center;
   }
 
-  .nav ul li.has-submenu > button {
+  .nav ul li.has-submenu > button:first-child {
+    flex: 1;
+    min-width: 0;
     width: auto;
+    text-align: right;
   }
 
   .nav ul li.has-submenu > .submenu-toggle {
-    padding: 0 8px;
+    flex-shrink: 0;
+    width: auto;
+    padding: 8px 12px;
+    font-size: 14px;
   }
 
   .nav ul .submenu {
@@ -223,6 +233,10 @@
     box-shadow: none;
     padding: 8px 12px;
     margin: 4px 0;
+  }
+
+  .nav ul li.has-submenu:hover > .submenu {
+    display: none;
   }
 
   .nav ul li.has-submenu.open > .submenu {

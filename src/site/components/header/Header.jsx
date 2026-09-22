@@ -7,7 +7,18 @@ const Header = ({ scrollToSection }) => {
   const [featuresSubmenuOpen, setFeaturesSubmenuOpen] = useState(false);
   const [animationsSubmenuOpen, setAnimationsSubmenuOpen] = useState(false);
   const headerRef = useRef(null);
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const isMobile = () =>
+    window.matchMedia &&
+    window.matchMedia("(max-width: 1440px)").matches;
+  const toggleMenu = () => {
+    if (menuOpen) {
+      closeMenus();
+    } else {
+      setFeaturesSubmenuOpen(false);
+      setAnimationsSubmenuOpen(false);
+      setMenuOpen(true);
+    }
+  };
   const closeMenus = () => {
     setMenuOpen(false);
     setFeaturesSubmenuOpen(false);
@@ -101,10 +112,12 @@ const Header = ({ scrollToSection }) => {
     if (checkHomePage) {
       return (
         <ul
-          onClick={() => {
-            setMenuOpen(false);
-            setFeaturesSubmenuOpen(false);
-            setAnimationsSubmenuOpen(false);
+          onClick={(event) => {
+            if (!event.target.closest("li.has-submenu")) {
+              setMenuOpen(false);
+              setFeaturesSubmenuOpen(false);
+              setAnimationsSubmenuOpen(false);
+            }
           }}
         >
           <li>
@@ -164,7 +177,16 @@ const Header = ({ scrollToSection }) => {
             className={`has-submenu ${featuresSubmenuOpen ? "open" : ""}`}
           >
             <button
-              onClick={() => scrollToSection("features")}
+              onClick={(event) => {
+                if (isMobile()) {
+                  event.stopPropagation();
+                  setAnimationsSubmenuOpen(false);
+                  setFeaturesSubmenuOpen(!featuresSubmenuOpen);
+                } else {
+                  scrollToSection("features");
+                }
+              }}
+              aria-expanded={featuresSubmenuOpen}
               data-scroll="features"
             >
               Features
@@ -173,6 +195,7 @@ const Header = ({ scrollToSection }) => {
               className="submenu-toggle"
               onClick={(event) => {
                 event.stopPropagation();
+                setAnimationsSubmenuOpen(false);
                 setFeaturesSubmenuOpen(!featuresSubmenuOpen);
               }}
               aria-haspopup="true"
@@ -203,7 +226,16 @@ const Header = ({ scrollToSection }) => {
             className={`has-submenu ${animationsSubmenuOpen ? "open" : ""}`}
           >
             <button
-              onClick={() => scrollToSection("animations")}
+              onClick={(event) => {
+                if (isMobile()) {
+                  event.stopPropagation();
+                  setFeaturesSubmenuOpen(false);
+                  setAnimationsSubmenuOpen(!animationsSubmenuOpen);
+                } else {
+                  scrollToSection("animations");
+                }
+              }}
+              aria-expanded={animationsSubmenuOpen}
               data-scroll="animations"
             >
               Animations
@@ -212,6 +244,7 @@ const Header = ({ scrollToSection }) => {
               className="submenu-toggle"
               onClick={(event) => {
                 event.stopPropagation();
+                setFeaturesSubmenuOpen(false);
                 setAnimationsSubmenuOpen(!animationsSubmenuOpen);
               }}
               aria-haspopup="true"
@@ -335,8 +368,13 @@ const Header = ({ scrollToSection }) => {
         >
           Zymuk Page
         </h1>
-        <button className="menu-toggle" onClick={toggleMenu}>
-          ☰
+        <button
+          className="menu-toggle"
+          onClick={toggleMenu}
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+        >
+          {menuOpen ? "✕" : "☰"}
         </button>
         <nav className={`nav ${menuOpen ? "open" : ""}`}>{renderMenu()}</nav>
       </div>
