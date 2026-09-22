@@ -135,6 +135,13 @@
       "description": "Holographic 3D Aizawa attractor rendered with Three.js and WebGL shaders",
       "path": "/animations/aizawa-attractor",
       "isVisible": true
+    },
+    {
+      "id": "explosive-attraction",
+      "displayName": "Explosive Attraction",
+      "description": "Interactive particle explosion that scatters and attracts back toward your cursor",
+      "path": "/animations/explosive-attraction",
+      "isVisible": true
     }
   ],
   "experience": [
