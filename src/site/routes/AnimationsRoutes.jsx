@@ -35,6 +35,9 @@ const Fireworks = lazy(() => import("../pages/animations/fireworks/Fireworks"));
 const CelestialTransmutation = lazy(() =>
   import("../pages/animations/celestial-transmutation/CelestialTransmutation"),
 );
+const FlyInCave = lazy(() =>
+  import("../pages/animations/fly-in-cave/FlyInCave"),
+);
 
 const AnimationsRoutes = [
   { path: "/animations", element: <AnimationsLanding /> },
@@ -54,6 +57,7 @@ const AnimationsRoutes = [
     path: "/animations/celestial-transmutation",
     element: <CelestialTransmutation />,
   },
+  { path: "/animations/fly-in-cave", element: <FlyInCave /> },
 ];
 
 export default AnimationsRoutes;
