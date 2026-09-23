@@ -167,7 +167,7 @@
     {
       "id": "celestial-transmutation",
       "displayName": "Celestial Transmutation",
-      "description": "Four procedural WebGL planets morph into each other through a phase-surge scan, with orbital controls, bloom and auto-cycling between worlds",
+      "description": "Eight solar-system planets morph into each other through a phase-surge scan, using real planetary surface maps (Solar System Scope / NASA, CC BY 4.0), with per-planet facts and spin, a true-size toggle, orbital controls, bloom and auto-cycling between worlds",
       "path": "/animations/celestial-transmutation",
       "isVisible": true
     }
