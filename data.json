@@ -149,6 +149,27 @@
       "description": "A 3D rowing boat glides across animated water with a rowing figure, oars, lily pads and a wake",
       "path": "/animations/3d-rowing-boat",
       "isVisible": true
+    },
+    {
+      "id": "not-comets",
+      "displayName": "Not Comets",
+      "description": "A drifting starfield around a glowing crystal terrain, with growing comet trails rendered on a pure Canvas 2D renderer",
+      "path": "/animations/not-comets",
+      "isVisible": true
+    },
+    {
+      "id": "fireworks",
+      "displayName": "Fireworks",
+      "description": "A WebGL fireworks show: point-particle bursts explode above a rippling wireframe ground, auto-launching above a dark gradient sky",
+      "path": "/animations/fireworks",
+      "isVisible": true
+    },
+    {
+      "id": "celestial-transmutation",
+      "displayName": "Celestial Transmutation",
+      "description": "Four procedural WebGL planets morph into each other through a phase-surge scan, with orbital controls, bloom and auto-cycling between worlds",
+      "path": "/animations/celestial-transmutation",
+      "isVisible": true
     }
   ],
   "experience": [
