@@ -1,0 +1,47 @@
+.rowing-boat-page {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 480px;
+  overflow: hidden;
+  background: #79bfb8;
+}
+
+.rowing-boat-page canvas {
+  display: block;
+}
+
+.rowing-boat-hud {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  z-index: 10;
+  pointer-events: none;
+  user-select: none;
+}
+
+.rowing-boat-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: rgba(20, 58, 54, 0.55);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.rowing-boat-title {
+  margin: 10px 0 4px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0d3b38;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.rowing-boat-hint {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #164b47;
+}

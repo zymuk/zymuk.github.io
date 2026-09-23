@@ -25,6 +25,9 @@ const AizawaAttractor = lazy(() =>
 const ExplosiveAttraction = lazy(() =>
   import("../pages/animations/explosive-attraction/ExplosiveAttraction"),
 );
+const ThreeDRowingBoat = lazy(() =>
+  import("../pages/animations/3d-rowing-boat/ThreeDRowingBoat"),
+);
 
 const AnimationsRoutes = [
   { path: "/animations", element: <AnimationsLanding /> },
@@ -37,6 +40,7 @@ const AnimationsRoutes = [
     path: "/animations/explosive-attraction",
     element: <ExplosiveAttraction />,
   },
+  { path: "/animations/3d-rowing-boat", element: <ThreeDRowingBoat /> },
 ];
 
 export default AnimationsRoutes;

@@ -142,6 +142,13 @@
       "description": "Interactive particle explosion that scatters and attracts back toward your cursor",
       "path": "/animations/explosive-attraction",
       "isVisible": true
+    },
+    {
+      "id": "3d-rowing-boat",
+      "displayName": "3D Rowing Boat",
+      "description": "A 3D rowing boat glides across animated water with a rowing figure, oars, lily pads and a wake",
+      "path": "/animations/3d-rowing-boat",
+      "isVisible": true
     }
   ],
   "experience": [
