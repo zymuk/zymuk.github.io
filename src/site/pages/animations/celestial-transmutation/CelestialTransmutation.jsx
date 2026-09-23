@@ -7,41 +7,119 @@ import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js"
 import { OutputPass } from "three/addons/postprocessing/OutputPass.js";
 import usePageMeta from "../../../../utils/usePageMeta";
 import "./CelestialTransmutation.css";
+import mercuryTextureUrl from "./textures/2k_mercury.jpg";
+import venusTextureUrl from "./textures/2k_venus_atmosphere.jpg";
+import earthTextureUrl from "./textures/2k_earth_daymap.jpg";
+import marsTextureUrl from "./textures/2k_mars.jpg";
+import jupiterTextureUrl from "./textures/2k_jupiter.jpg";
+import saturnTextureUrl from "./textures/2k_saturn.jpg";
+import uranusTextureUrl from "./textures/2k_uranus.jpg";
+import neptuneTextureUrl from "./textures/2k_neptune.jpg";
+import saturnRingTextureUrl from "./textures/2k_saturn_ring_alpha.png";
 
 const PLANETS = [
   {
-    name: "Aethera",
-    kicker: "Oceanic dreamworld",
+    name: "Mercury",
+    kicker: "Cratered innermost world",
     description:
-      "A luminous water planet whose equatorial currents fold into violet auroras and suspended atmospheric rivers.",
-    accentA: "84, 226, 255",
-    accentB: "160, 88, 255",
+      "The smallest planet: an iron core wrapped in a cratered crust that records four billion years of impacts.",
+    accentA: "216, 198, 178",
+    accentB: "255, 168, 92",
+    texture: mercuryTextureUrl,
+    radius: 0.034,
+    spin: 0.017,
+    facts: ["\u00d8 4,879 km", "0 moons", "Day 58.6 d", "0.39 AU"],
   },
   {
-    name: "Pyra",
-    kicker: "Living furnace world",
+    name: "Venus",
+    kicker: "Veiled greenhouse furnace",
     description:
-      "A carbon-black planet split by molten tectonic calligraphy, with incandescent matter breathing through every fracture.",
-    accentA: "255, 132, 44",
-    accentB: "255, 45, 86",
+      "Earth's rocky twin hidden under acid clouds, where surface pressure crushes submarines and a day outlasts a year.",
+    accentA: "255, 208, 128",
+    accentB: "230, 154, 66",
+    texture: venusTextureUrl,
+    radius: 0.085,
+    spin: -0.004,
+    facts: ["\u00d8 12,104 km", "0 moons", "Day 243 d", "0.72 AU"],
   },
   {
-    name: "Orison",
-    kicker: "Sacred ring architecture",
+    name: "Earth",
+    kicker: "Living pale-blue homeland",
     description:
-      "A pearl-and-teal giant encircled by a vast luminous archive: billions of particles arranged like celestial sheet music.",
-    accentA: "255, 220, 142",
-    accentB: "74, 232, 210",
+      "The only world known to host life: liquid oceans, shifting continents and a thin oxygen-rich atmosphere.",
+    accentA: "84, 170, 255",
+    accentB: "80, 230, 200",
+    texture: earthTextureUrl,
+    radius: 0.089,
+    spin: 1.0,
+    facts: ["\u00d8 12,742 km", "1 moon", "Day 24 h", "1.00 AU"],
   },
   {
-    name: "Vesper",
-    kicker: "Crystalline night engine",
+    name: "Mars",
+    kicker: "Rust-streaked desert planet",
     description:
-      "A faceted violet world that stores starlight inside geometric continents and releases it through cyan polar seams.",
-    accentA: "177, 116, 255",
-    accentB: "76, 230, 255",
+      "A cold desert of iron-oxide plains, giant extinct volcanoes and dry riverbeds from a wetter ancient past.",
+    accentA: "255, 132, 72",
+    accentB: "220, 64, 52",
+    texture: marsTextureUrl,
+    radius: 0.047,
+    spin: 0.97,
+    facts: ["\u00d8 6,779 km", "2 moons", "Day 24.6 h", "1.52 AU"],
+  },
+  {
+    name: "Jupiter",
+    kicker: "Storm-wrapped gas colossus",
+    description:
+      "The largest planet: a banded hydrogen atmosphere harbouring a centuries-old storm wider than Earth.",
+    accentA: "236, 194, 144",
+    accentB: "196, 138, 96",
+    texture: jupiterTextureUrl,
+    radius: 1.0,
+    spin: 2.42,
+    facts: ["\u00d8 142,984 km", "95 moons", "Day 9.9 h", "5.20 AU"],
+  },
+  {
+    name: "Saturn",
+    kicker: "Ring-crowned giant",
+    description:
+      "A light gas giant circled by billions of ice fragments shepherded into bright bands and gaps.",
+    accentA: "255, 224, 150",
+    accentB: "126, 206, 218",
+    texture: saturnTextureUrl,
+    radius: 0.845,
+    spin: 2.23,
+    facts: ["\u00d8 120,536 km", "146 moons", "Day 10.7 h", "9.58 AU"],
+  },
+  {
+    name: "Uranus",
+    kicker: "Sideways ice giant",
+    description:
+      "An ice giant knocked onto its side, spinning with a 98-degree tilt through its faint rings.",
+    accentA: "172, 232, 240",
+    accentB: "104, 186, 224",
+    texture: uranusTextureUrl,
+    radius: 0.358,
+    spin: -1.39,
+    facts: ["\u00d8 51,118 km", "28 moons", "Day 17 h", "19.2 AU"],
+  },
+  {
+    name: "Neptune",
+    kicker: "Azure wind-blasted world",
+    description:
+      "The farthest planet: a deep-blue ice giant where supersonic winds reach two thousand kilometres per hour.",
+    accentA: "96, 138, 255",
+    accentB: "64, 92, 220",
+    texture: neptuneTextureUrl,
+    radius: 0.347,
+    spin: 1.49,
+    facts: ["\u00d8 49,528 km", "16 moons", "Day 16 h", "30.1 AU"],
   },
 ];
+
+const SPIN_BASE = 0.07;
+const SCALE_SMOOTHING = 4.0;
+
+const RING_PRESET = 5;
 
 const TAU = Math.PI * 2;
 
@@ -172,6 +250,16 @@ const noiseGLSL = `
             );
         }
 
+        mat3 rotateY3(float angle) {
+            float s = sin(angle);
+            float c = cos(angle);
+            return mat3(
+                c, 0.0, s,
+                0.0, 1.0, 0.0,
+                -s, 0.0, c
+            );
+        }
+
         mat3 rotateZ3(float angle) {
             float s = sin(angle);
             float c = cos(angle);
@@ -191,55 +279,92 @@ const planetFunctionsGLSL = `
             return 1.0 - step(0.5, abs(preset - expected));
         }
 
-        vec3 aetheraPosition(vec3 seed, vec4 randomData, float time) {
+        vec3 rockyPosition(
+            vec3 seed,
+            float time,
+            float detailFrequency,
+            float detailAmplitude,
+            float rimFrequency,
+            float rimAmplitude
+        ) {
             vec3 direction = safeNormalize(seed);
-            float latitude = asin(clamp(direction.y, -1.0, 1.0));
-            float continent = snoise(direction * 2.45 + vec3(0.0, time * 0.018, 0.0));
-            float currentNoise = snoise(
-                direction * 4.2
-                + vec3(time * 0.045, -time * 0.018, time * 0.032)
+            float terrain = snoise(
+                direction * detailFrequency + vec3(0.0, time * 0.006, 0.0)
             );
-            float current = sin(
-                latitude * 10.5
-                + dot(direction, safeNormalize(vec3(0.74, 0.11, 0.66))) * 5.4
-                + currentNoise * 1.35
-                - time * 0.18
-            );
-            float radius = 2.08 + continent * 0.072 + current * 0.026;
-            vec3 p = direction * radius;
-            p.y *= 0.975;
-            p.xz = rotate2D(sin(latitude * 3.0 + time * 0.08) * 0.018) * p.xz;
+            float rim = 1.0 - abs(snoise(
+                direction * rimFrequency + vec3(time * 0.003, 0.0, 0.0)
+            ));
+            rim = pow(rim, 6.0);
+            return direction * (2.08 + terrain * detailAmplitude + rim * rimAmplitude);
+        }
+
+        vec3 mercuryPosition(vec3 seed, vec4 randomData, float time) {
+            return rockyPosition(seed, time, 4.6, 0.036, 11.0, 0.030);
+        }
+
+        vec3 venusPosition(vec3 seed, vec4 randomData, float time) {
+            vec3 direction = safeNormalize(seed);
+            float swell = snoise(direction * 2.3 + vec3(0.0, time * 0.008, 0.0));
+            vec3 p = direction * (2.08 + swell * 0.022);
+            p.y *= 0.985;
             return p;
         }
 
-        vec3 pyraPosition(vec3 seed, vec4 randomData, float time) {
+        vec3 earthPosition(vec3 seed, vec4 randomData, float time) {
             vec3 direction = safeNormalize(seed);
-            float terrain = snoise(direction * 3.4 + vec3(time * 0.012, 0.0, 0.0));
-            float secondary = snoise(direction * 8.0 - vec3(0.0, time * 0.024, 0.0));
-            float moltenLift = pow(max(secondary * 0.5 + 0.5, 0.0), 8.0);
-            float radius = 2.08 + terrain * 0.125 + moltenLift * 0.090;
-            return direction * radius;
+            float continent = snoise(direction * 3.1 + vec3(0.0, time * 0.004, 0.0));
+            float range = pow(
+                max(snoise(direction * 7.4 + vec3(time * 0.003, 0.0, 0.0)), 0.0),
+                3.0
+            );
+            vec3 p = direction * (2.08 + continent * 0.038 + range * 0.026);
+            p.y *= 0.992;
+            return p;
         }
 
-        vec3 orisonBodyPosition(vec3 seed, vec4 randomData, float time) {
+        vec3 marsPosition(vec3 seed, vec4 randomData, float time) {
+            vec3 direction = safeNormalize(seed);
+            float terrain = snoise(direction * 3.8 + vec3(time * 0.006, 0.0, 0.0));
+            float canyon = 1.0 - smoothstep(
+                0.02,
+                0.14,
+                abs(snoise(direction * 5.2 + vec3(0.0, 0.0, time * 0.004)))
+            );
+            return direction * (2.08 + terrain * 0.046 - canyon * 0.020);
+        }
+
+        vec3 giantBandPosition(
+            vec3 seed,
+            float time,
+            float bandFrequency,
+            float stormScale,
+            float oblateness
+        ) {
             vec3 direction = safeNormalize(seed);
             float latitude = asin(clamp(direction.y, -1.0, 1.0));
             float bandNoise = snoise(
-                direction * vec3(2.2, 5.8, 2.2)
-                + vec3(time * 0.018, -time * 0.012, time * 0.014)
+                direction * vec3(2.2, 5.4, 2.2)
+                + vec3(time * 0.012, -time * 0.008, time * 0.010)
             );
-            float band = sin(latitude * 18.0 + bandNoise * 1.8 + time * 0.06);
+            float band = sin(latitude * bandFrequency + bandNoise * 1.7 + time * 0.05);
             float storm = snoise(
-                direction * 4.15
-                + vec3(-time * 0.021, time * 0.013, time * 0.026)
+                direction * stormScale
+                + vec3(-time * 0.014, time * 0.010, time * 0.016)
             );
-            float radius = 2.07 + band * 0.020 + storm * 0.038;
-            vec3 p = direction * radius;
-            p.y *= 0.945;
+            vec3 p = direction * (2.07 + band * 0.020 + storm * 0.030);
+            p.y *= oblateness;
             return p;
         }
 
-        vec3 orisonRingPosition(vec3 seed, vec4 randomData, float time) {
+        vec3 jupiterPosition(vec3 seed, vec4 randomData, float time) {
+            return giantBandPosition(seed, time, 17.0, 4.3, 0.940);
+        }
+
+        vec3 saturnBodyPosition(vec3 seed, vec4 randomData, float time) {
+            return giantBandPosition(seed, time, 15.0, 3.6, 0.905);
+        }
+
+        vec3 saturnRingPosition(vec3 seed, vec4 randomData, float time) {
             float radius = mix(2.18, 3.62, pow(randomData.x, 0.74));
             float angle = randomData.y * TWO_PI + time * (0.018 + randomData.w * 0.012);
             float lane = floor(randomData.z * 11.0) / 11.0;
@@ -252,22 +377,39 @@ const planetFunctionsGLSL = `
             return p;
         }
 
-        vec3 vesperPosition(vec3 seed, vec4 randomData, float time) {
+        vec3 iceGiantPosition(
+            vec3 seed,
+            float time,
+            float bandFrequency,
+            float flowScale,
+            float oblateness
+        ) {
             vec3 direction = safeNormalize(seed);
-            vec3 stepped = floor(direction * 7.0 + 0.5) / 7.0;
-            vec3 facetedDirection = safeNormalize(mix(direction, stepped, 0.68));
-            float cell = snoise(facetedDirection * 4.8);
-            vec3 axisA = safeNormalize(vec3(0.82, 0.31, 0.48));
-            vec3 axisB = safeNormalize(vec3(-0.24, 0.91, 0.34));
-            vec3 axisC = safeNormalize(vec3(0.41, -0.17, 0.90));
-            float lattice =
-                sin(dot(facetedDirection, axisA) * 18.0)
-                * sin(dot(facetedDirection, axisB) * 16.0)
-                * sin(dot(facetedDirection, axisC) * 14.0);
-            float seam = pow(abs(lattice), 5.5);
-            float radius = 2.06 + cell * 0.145 + seam * 0.070;
-            vec3 p = facetedDirection * radius;
-            p.y *= 1.018;
+            float latitude = asin(clamp(direction.y, -1.0, 1.0));
+            float flow = snoise(
+                direction * flowScale + vec3(time * 0.010, -time * 0.007, time * 0.009)
+            );
+            float band = sin(latitude * bandFrequency + flow * 1.6 + time * 0.04);
+            vec3 p = direction * (2.075 + band * 0.014 + flow * 0.020);
+            p.y *= oblateness;
+            return p;
+        }
+
+        vec3 uranusPosition(vec3 seed, vec4 randomData, float time) {
+            return iceGiantPosition(seed, time, 9.0, 2.6, 0.968);
+        }
+
+        vec3 neptunePosition(vec3 seed, vec4 randomData, float time) {
+            vec3 direction = safeNormalize(seed);
+            float latitude = asin(clamp(direction.y, -1.0, 1.0));
+            float flow = snoise(direction * 3.0 + vec3(time * 0.012, -time * 0.009, time * 0.011));
+            float band = sin(latitude * 11.0 + flow * 1.8 + time * 0.05);
+            float storm = pow(
+                max(snoise(direction * 5.5 + vec3(time * 0.02, 0.0, 0.0)) * 0.5 + 0.5, 0.0),
+                6.0
+            );
+            vec3 p = direction * (2.075 + band * 0.015 + flow * 0.020 + storm * 0.030);
+            p.y *= 0.965;
             return p;
         }
 
@@ -278,141 +420,26 @@ const planetFunctionsGLSL = `
             float kind,
             float time
         ) {
-            if (preset < 0.5) return aetheraPosition(seed, randomData, time);
-            if (preset < 1.5) return pyraPosition(seed, randomData, time);
-            if (preset < 2.5) {
+            if (preset < 0.5) return mercuryPosition(seed, randomData, time);
+            if (preset < 1.5) return venusPosition(seed, randomData, time);
+            if (preset < 2.5) return earthPosition(seed, randomData, time);
+            if (preset < 3.5) return marsPosition(seed, randomData, time);
+            if (preset < 4.5) return jupiterPosition(seed, randomData, time);
+            if (preset < 5.5) {
                 return kind > 0.5
-                    ? orisonRingPosition(seed, randomData, time)
-                    : orisonBodyPosition(seed, randomData, time);
+                    ? saturnRingPosition(seed, randomData, time)
+                    : saturnBodyPosition(seed, randomData, time);
             }
-            return vesperPosition(seed, randomData, time);
+            if (preset < 6.5) return uranusPosition(seed, randomData, time);
+            return neptunePosition(seed, randomData, time);
         }
 
-        vec3 aetheraColor(vec3 p, vec3 seed, vec4 randomData, float time) {
-            vec3 direction = safeNormalize(seed);
-            float latitude = asin(clamp(direction.y, -1.0, 1.0));
-            float current = snoise(
-                direction * 3.65
-                + vec3(-time * 0.055, time * 0.025, time * 0.04)
+        vec2 planetUv(vec3 direction) {
+            vec3 dir = safeNormalize(direction);
+            return vec2(
+                safeAtan(dir.z, dir.x) / TWO_PI + 0.5,
+                asin(clamp(dir.y, -1.0, 1.0)) / PI + 0.5
             );
-            float ribbonNoise = snoise(
-                direction * 6.8
-                + vec3(time * 0.025, -time * 0.06, time * 0.015)
-            );
-            float auroraWave = sin(
-                latitude * 8.2
-                + dot(direction, safeNormalize(vec3(0.71, -0.08, 0.70))) * 7.1
-                + ribbonNoise * 1.8
-                - time * 0.35
-            );
-            float aurora = pow(max(0.0, auroraWave), 5.0);
-            float polar = smoothstep(0.48, 0.93, abs(direction.y));
-            vec3 abyss = vec3(0.004, 0.028, 0.13);
-            vec3 ocean = vec3(0.012, 0.34, 0.78);
-            vec3 cyan = vec3(0.05, 0.95, 1.25);
-            vec3 violet = vec3(0.58, 0.08, 1.05);
-            vec3 color = mix(abyss, ocean, current * 0.5 + 0.5);
-            color = mix(color, cyan, smoothstep(0.22, 0.80, current) * 0.55);
-            color += mix(cyan, violet, polar) * aurora * (0.28 + polar * 0.62);
-            color += vec3(0.08, 0.28, 0.52) * pow(max(0.0, snoise(direction * 9.0)), 5.0);
-            return limitLuminance(color, 1.38);
-        }
-
-        vec3 pyraColor(vec3 p, vec3 seed, vec4 randomData, float time) {
-            vec3 direction = safeNormalize(seed);
-            float crust = snoise(direction * 3.2 + vec3(time * 0.018, 0.0, 0.0));
-            float detail = abs(snoise(direction * 9.5 - vec3(0.0, time * 0.05, 0.0)));
-            float crack = 1.0 - smoothstep(0.035, 0.18, detail);
-            crack *= smoothstep(-0.32, 0.5, crust);
-            float ember = pow(max(0.0, snoise(direction * 17.0 + time * 0.08)), 7.0);
-            vec3 charcoal = mix(vec3(0.012, 0.006, 0.012), vec3(0.18, 0.028, 0.018), crust * 0.5 + 0.5);
-            vec3 molten = mix(vec3(1.45, 0.035, 0.002), vec3(1.55, 0.72, 0.055), crack);
-            vec3 color = charcoal;
-            color += molten * crack * 1.58;
-            color += vec3(1.35, 0.23, 0.025) * ember * 0.72;
-            return limitLuminance(color, 1.70);
-        }
-
-        vec3 orisonColor(vec3 p, vec3 seed, vec4 randomData, float kind, float time) {
-            if (kind > 0.5) {
-                float ringRadius = length(p.xz);
-                float lane = sin(ringRadius * 27.0 + randomData.w * 7.0);
-                float dust = snoise(vec3(
-                    cos(randomData.y * TWO_PI) * 2.2,
-                    sin(randomData.y * TWO_PI) * 2.2,
-                    ringRadius * 3.7
-                ));
-                vec3 antiqueGold = vec3(0.95, 0.52, 0.12);
-                vec3 mineralTeal = vec3(0.05, 0.76, 0.66);
-                vec3 duskViolet = vec3(0.33, 0.08, 0.55);
-                vec3 color = mix(antiqueGold, mineralTeal, lane * 0.5 + 0.5);
-                color = mix(color, duskViolet, smoothstep(0.50, 0.88, dust) * 0.42);
-                return limitLuminance(color, 1.12);
-            }
-
-            vec3 direction = safeNormalize(seed);
-            float latitude = asin(clamp(direction.y, -1.0, 1.0));
-            float latitudeMask = abs(latitude) / (PI * 0.5);
-            float broadFlow = snoise(
-                direction * 2.45
-                + vec3(time * 0.014, -time * 0.01, time * 0.018)
-            );
-            float fineFlow = snoise(
-                direction * 7.2
-                + vec3(-time * 0.032, time * 0.012, time * 0.024)
-            );
-            float band = sin(latitude * 18.0 + broadFlow * 2.4 + fineFlow * 0.55 + time * 0.045);
-            float storm = snoise(
-                direction * 4.3
-                + vec3(time * 0.025, time * 0.012, -time * 0.018)
-            );
-            float stormCell = smoothstep(0.34, 0.88, storm)
-                * (1.0 - smoothstep(0.72, 1.0, latitudeMask));
-
-            vec3 midnight = vec3(0.012, 0.028, 0.085);
-            vec3 bronze = vec3(0.58, 0.25, 0.055);
-            vec3 pearl = vec3(0.82, 0.76, 0.50);
-            vec3 deepTeal = vec3(0.012, 0.38, 0.46);
-            vec3 jade = vec3(0.035, 0.86, 0.66);
-
-            float brightBand = smoothstep(-0.30, 0.88, band);
-            vec3 color = mix(midnight, bronze, broadFlow * 0.5 + 0.5);
-            color = mix(color, pearl, brightBand * 0.48);
-            color = mix(color, deepTeal, smoothstep(0.06, 0.74, fineFlow) * 0.62);
-            color += jade * stormCell * 0.62;
-            color *= mix(1.0, 0.78, smoothstep(0.65, 1.0, latitudeMask));
-            return limitLuminance(color, 1.32);
-        }
-
-        vec3 vesperColor(vec3 p, vec3 seed, vec4 randomData, float time) {
-            vec3 direction = safeNormalize(seed);
-            float facet = floor((snoise(direction * 4.7) * 0.5 + 0.5) * 7.0) / 7.0;
-            float polar = smoothstep(0.48, 0.96, abs(direction.y));
-            float seamNoise = abs(snoise(direction * 10.0 + vec3(0.0, time * 0.025, 0.0)));
-            float seam = 1.0 - smoothstep(0.025, 0.14, seamNoise);
-            vec3 night = vec3(0.018, 0.006, 0.12);
-            vec3 violet = vec3(0.45, 0.045, 0.92);
-            vec3 amethyst = vec3(0.98, 0.18, 1.38);
-            vec3 cyan = vec3(0.03, 1.08, 1.48);
-            vec3 color = mix(night, violet, facet);
-            color = mix(color, amethyst, smoothstep(0.60, 0.96, facet) * 0.72);
-            color += cyan * seam * (0.38 + polar * 1.15);
-            color += cyan * pow(polar, 5.0) * 0.50;
-            return limitLuminance(color, 1.56);
-        }
-
-        vec3 planetColor(
-            float preset,
-            vec3 p,
-            vec3 seed,
-            vec4 randomData,
-            float kind,
-            float time
-        ) {
-            if (preset < 0.5) return aetheraColor(p, seed, randomData, time);
-            if (preset < 1.5) return pyraColor(p, seed, randomData, time);
-            if (preset < 2.5) return orisonColor(p, seed, randomData, kind, time);
-            return vesperColor(p, seed, randomData, time);
         }
     `;
 
@@ -425,6 +452,7 @@ const surfaceVertexShader = `
     uniform float uToPreset;
     uniform float uTransition;
     uniform float uTransitionEnergy;
+    uniform float uScale;
 
     varying vec3 vWorldPosition;
     varying vec3 vObjectPosition;
@@ -483,6 +511,7 @@ const surfaceVertexShader = `
         objectPosition += normalDirection * front * (0.052 + ripple * 0.022);
         objectPosition += tangent * coreFront * ripple * 0.028;
         objectPosition = sanitizeVec3(objectPosition, seed * 2.08);
+        objectPosition *= uScale;
 
         vec4 worldPosition = modelMatrix * vec4(objectPosition, 1.0);
         gl_Position = projectionMatrix * viewMatrix * worldPosition;
@@ -506,6 +535,10 @@ const surfaceFragmentShader = `
     uniform float uToPreset;
     uniform float uTransition;
     uniform float uTransitionEnergy;
+    uniform float uSpinFrom;
+    uniform float uSpinTo;
+    uniform sampler2D uFromMap;
+    uniform sampler2D uToMap;
 
     varying vec3 vWorldPosition;
     varying vec3 vObjectPosition;
@@ -516,19 +549,10 @@ const surfaceFragmentShader = `
     varying float vSweepCoordinate;
 
     void main() {
-        vec4 randomData = vec4(
-            fract(sin(dot(vSeed.xy, vec2(12.9898, 78.233))) * 43758.5453),
-            fract(sin(dot(vSeed.yz, vec2(39.3468, 11.135))) * 24634.6345),
-            fract(sin(dot(vSeed.zx, vec2(73.156, 52.235))) * 56445.234),
-            fract(sin(dot(vSeed.xyz, vec3(19.19, 7.17, 41.73))) * 9531.317)
-        );
-
-        vec3 fromColor = planetColor(
-            uFromPreset, vObjectPosition, vSeed, randomData, 0.0, uTime
-        );
-        vec3 toColor = planetColor(
-            uToPreset, vObjectPosition, vSeed, randomData, 0.0, uTime
-        );
+        vec2 fromUv = planetUv(rotateY3(uTime * uSpinFrom) * vSeed);
+        vec2 toUv = planetUv(rotateY3(uTime * uSpinTo) * vSeed);
+        vec3 fromColor = texture2D(uFromMap, fromUv).rgb;
+        vec3 toColor = texture2D(uToMap, toUv).rgb;
         vec3 baseColor = mix(fromColor, toColor, vLocalMorph);
 
         vec3 normal = safeNormalize(vNormalApprox);
@@ -579,6 +603,11 @@ const volumetricVertexShader = `
     uniform float uTransitionEnergy;
     uniform float uPixelRatio;
     uniform float uPointScale;
+    uniform float uScale;
+    uniform float uSpinFrom;
+    uniform float uSpinTo;
+    uniform sampler2D uFromMap;
+    uniform sampler2D uToMap;
 
     attribute vec4 aRandom;
     attribute float aKind;
@@ -610,8 +639,8 @@ const volumetricVertexShader = `
             seed * 2.08
         );
 
-        float fromRing = isPreset(uFromPreset, 2.0) * step(0.5, aKind);
-        float toRing = isPreset(uToPreset, 2.0) * step(0.5, aKind);
+        float fromRing = isPreset(uFromPreset, 5.0) * step(0.5, aKind);
+        float toRing = isPreset(uToPreset, 5.0) * step(0.5, aKind);
         vec3 fromMatter = mix(fromSurface * mix(0.54, 1.0, aLayer), fromSurface, fromRing);
         vec3 toMatter = mix(toSurface * mix(0.54, 1.0, aLayer), toSurface, toRing);
 
@@ -638,6 +667,7 @@ const volumetricVertexShader = `
         objectPosition += normalDirection * front * (0.05 + aRandom.x * 0.24);
         objectPosition += tangent * handedness * front * flutter * (0.035 + aRandom.y * 0.16);
         objectPosition = sanitizeVec3(objectPosition, mix(fromMatter, toMatter, localMorph));
+        objectPosition *= uScale;
 
         vec4 mvPosition = modelViewMatrix * vec4(objectPosition, 1.0);
         gl_Position = projectionMatrix * mvPosition;
@@ -646,12 +676,10 @@ const volumetricVertexShader = `
         gl_PointSize = (0.72 + aRandom.x * 1.65 + coreFront * 0.70)
             * distanceScale * uPixelRatio * uPointScale;
 
-        vec3 fromColor = planetColor(
-            uFromPreset, fromSurface, seed, aRandom, aKind, uTime
-        );
-        vec3 toColor = planetColor(
-            uToPreset, toSurface, seed, aRandom, aKind, uTime
-        );
+        vec2 fromUv = planetUv(rotateY3(uTime * uSpinFrom) * seed);
+        vec2 toUv = planetUv(rotateY3(uTime * uSpinTo) * seed);
+        vec3 fromColor = texture2D(uFromMap, fromUv).rgb;
+        vec3 toColor = texture2D(uToMap, toUv).rgb;
         vec3 baseColor = mix(fromColor, toColor, localMorph);
         vec3 phaseCyan = vec3(0.025, 0.90, 1.30);
         vec3 phaseViolet = vec3(0.95, 0.055, 1.18);
@@ -771,6 +799,7 @@ const filamentVertexShader = `
     uniform float uTransition;
     uniform float uTransitionEnergy;
     uniform float uPixelRatio;
+    uniform float uScale;
 
     attribute vec4 aRandom;
     attribute float aLayer;
@@ -792,8 +821,8 @@ const filamentVertexShader = `
         vec3 seed = safeNormalize(position);
         vec3 fromSurface = planetPosition(uFromPreset, seed, aRandom, aKind, uTime);
         vec3 toSurface = planetPosition(uToPreset, seed, aRandom, aKind, uTime);
-        float fromRing = isPreset(uFromPreset, 2.0) * step(0.5, aKind);
-        float toRing = isPreset(uToPreset, 2.0) * step(0.5, aKind);
+        float fromRing = isPreset(uFromPreset, 5.0) * step(0.5, aKind);
+        float toRing = isPreset(uToPreset, 5.0) * step(0.5, aKind);
         vec3 fromMatter = mix(fromSurface * mix(0.72, 1.0, aLayer), fromSurface, fromRing);
         vec3 toMatter = mix(toSurface * mix(0.72, 1.0, aLayer), toSurface, toRing);
 
@@ -812,6 +841,7 @@ const filamentVertexShader = `
         float wave = sin(aRandom.x * 22.0 + uTime * (5.0 + aRandom.y * 2.0));
         p += normalDirection * pulse * (0.10 + aRandom.x * 0.42);
         p += tangent * pulse * wave * (0.08 + aRandom.y * 0.24);
+        p *= uScale;
 
         vec4 mvPosition = modelViewMatrix * vec4(sanitizeVec3(p, mix(fromMatter, toMatter, localMorph)), 1.0);
         gl_Position = projectionMatrix * mvPosition;
@@ -852,6 +882,7 @@ const atmosphereVertexShader = `
     uniform float uToPreset;
     uniform float uTransition;
     uniform float uTransitionEnergy;
+    uniform float uScale;
 
     varying vec3 vWorldPosition;
     varying vec3 vNormalApprox;
@@ -882,7 +913,7 @@ const atmosphereVertexShader = `
         float scanPosition = mix(-1.24, 1.24, uTransition);
         float localMorph = 1.0 - smoothstep(scanPosition - 0.14, scanPosition + 0.14, coordinate);
         float front = exp(-abs(coordinate - scanPosition) * 17.0);
-        vec3 objectPosition = mix(fromPosition, toPosition, localMorph) * 1.065;
+        vec3 objectPosition = mix(fromPosition, toPosition, localMorph) * 1.065 * uScale;
         objectPosition = sanitizeVec3(objectPosition, seed * 2.20);
 
         vec4 worldPosition = modelMatrix * vec4(objectPosition, 1.0);
@@ -907,10 +938,14 @@ const atmosphereFragmentShader = `
     varying float vFront;
 
     vec3 atmosphereColor(float preset) {
-        if (preset < 0.5) return vec3(0.055, 0.42, 0.72);
-        if (preset < 1.5) return vec3(0.72, 0.10, 0.018);
-        if (preset < 2.5) return vec3(0.035, 0.40, 0.36);
-        return vec3(0.30, 0.08, 0.68);
+        if (preset < 0.5) return vec3(0.48, 0.40, 0.33);
+        if (preset < 1.5) return vec3(0.92, 0.72, 0.35);
+        if (preset < 2.5) return vec3(0.10, 0.42, 0.85);
+        if (preset < 3.5) return vec3(0.75, 0.28, 0.12);
+        if (preset < 4.5) return vec3(0.78, 0.62, 0.45);
+        if (preset < 5.5) return vec3(0.88, 0.75, 0.45);
+        if (preset < 6.5) return vec3(0.45, 0.82, 0.88);
+        return vec3(0.15, 0.30, 0.92);
     }
 
     void main() {
@@ -937,6 +972,7 @@ const ringVertexShader = `
 
     uniform float uTime;
     uniform float uTransitionEnergy;
+    uniform float uScale;
     varying vec2 vLocal;
     varying float vNoise;
 
@@ -947,6 +983,7 @@ const ringVertexShader = `
         float warp = snoise(vec3(cos(angle), sin(angle), radius * 1.7 + uTime * 0.035));
         p.z += warp * 0.032;
         p.xy = rotate2D(uTime * 0.004) * p.xy;
+        p *= uScale;
 
         vLocal = p.xy;
         vNoise = warp;
@@ -960,32 +997,28 @@ const ringFragmentShader = `
     uniform float uTime;
     uniform float uOpacity;
     uniform float uTransitionEnergy;
+    uniform float uScale;
+    uniform sampler2D uRingMap;
     varying vec2 vLocal;
     varying float vNoise;
 
     void main() {
-        float radius = length(vLocal);
+        float radius = length(vLocal) / max(uScale, 0.0001);
         vec2 ringDirection = safeNormalize(vLocal + vec2(0.00001));
-        float lane = sin(radius * 47.0 + sin(radius * 8.0) * 2.0);
-        float fineLane = sin(radius * 126.0 + (ringDirection.x * ringDirection.y) * 7.5);
         float breakNoise = snoise(vec3(
             ringDirection * 2.35,
             radius * 4.8 + uTime * 0.03
         ));
-        float gaps = smoothstep(-0.50, 0.16, breakNoise + lane * 0.28);
+        float gaps = smoothstep(-0.62, 0.22, breakNoise);
         float edge = smoothstep(2.16, 2.31, radius) * (1.0 - smoothstep(3.48, 3.68, radius));
+        float ringU = clamp((radius - 2.16) / (3.68 - 2.16), 0.0, 1.0);
+        vec4 ringSample = texture2D(uRingMap, vec2(ringU, 0.5));
 
-        vec3 gold = vec3(0.92, 0.49, 0.10);
-        vec3 ice = vec3(0.035, 0.73, 0.65);
-        vec3 violet = vec3(0.34, 0.055, 0.55);
-        vec3 color = mix(gold, ice, lane * 0.5 + 0.5);
-        color = mix(color, violet, smoothstep(0.72, 0.98, fineLane) * 0.40);
-        color += vec3(0.34, 0.31, 0.19) * abs(fineLane) * 0.08;
-
-        float alpha = edge * gaps * (0.115 + abs(lane) * 0.145 + abs(fineLane) * 0.060);
+        vec3 color = ringSample.rgb;
+        float alpha = edge * gaps * ringSample.a * (0.55 + breakNoise * 0.12);
         alpha *= uOpacity;
-        color = limitLuminance(color, 1.05);
-        alpha = clamp(sanitizeFloat(alpha, 0.0), 0.0, 0.40);
+        color = limitLuminance(color * 1.08, 1.10);
+        alpha = clamp(sanitizeFloat(alpha, 0.0), 0.0, 0.55);
         gl_FragColor = vec4(color, alpha);
     }
 `;
@@ -1079,9 +1112,9 @@ const CelestialTransmutation = () => {
   usePageMeta({
     title: "Celestial Transmutation",
     description:
-      "A generative WebGL planet scene where four procedural worlds morph into each other through a phase-surge scan, orbital controls, bloom and auto-cycling",
+      "A WebGL scene where the eight planets of the solar system morph into one another through a phase-surge scan, using real planetary surface maps, per-planet facts and spin, an optional true-size view, orbital controls, bloom and auto-cycling",
     keywords:
-      "three.js, webgl, shader, planets, generative, bloom, orbit, creative coding, animation",
+      "three.js, webgl, shader, solar system, planets, generative, bloom, orbit, creative coding, animation",
   });
 
   const stageRef = useRef(null);
@@ -1313,12 +1346,31 @@ const CelestialTransmutation = () => {
     composer.addPass(bloomPass);
     composer.addPass(new OutputPass());
 
+    const textureLoader = new THREE.TextureLoader();
+    const maxAnisotropy = renderer.capabilities.getMaxAnisotropy();
+
+    function loadPlanetMap(url) {
+      const texture = textureLoader.load(url);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.anisotropy = Math.min(4, maxAnisotropy);
+      return texture;
+    }
+
+    const planetMaps = PLANETS.map((planet) => loadPlanetMap(planet.texture));
+    const ringMap = loadPlanetMap(saturnRingTextureUrl);
+
     const sharedPlanetUniforms = {
       uTime: { value: 0 },
       uFromPreset: { value: 0 },
       uToPreset: { value: 0 },
       uTransition: { value: 0 },
       uTransitionEnergy: { value: 0 },
+      uFromMap: { value: planetMaps[0] },
+      uToMap: { value: planetMaps[0] },
+      uScale: { value: 1 },
+      uSpinFrom: { value: 0 },
+      uSpinTo: { value: 0 },
     };
 
     const surfaceMaterialObject = new THREE.ShaderMaterial({
@@ -1559,6 +1611,7 @@ const CelestialTransmutation = () => {
       uniforms: {
         ...sharedPlanetUniforms,
         uOpacity: { value: 0 },
+        uRingMap: { value: ringMap },
       },
       vertexShader: ringVertexShader,
       fragmentShader: ringFragmentShader,
@@ -1664,10 +1717,13 @@ const CelestialTransmutation = () => {
 
     const autoCycleInput = document.createElement("input");
     const autoIndicator = document.createElement("span");
+    const scaleCheckbox = document.createElement("input");
+    const scaleIndicator = document.createElement("span");
     const planetCopy = document.createElement("section");
     const planetKicker = document.createElement("div");
     const planetName = document.createElement("h1");
     const planetDescription = document.createElement("p");
+    const planetFacts = document.createElement("div");
     const transitionMeter = document.createElement("div");
     const transitionMeterFill = document.createElement("div");
     const planetUi = document.createElement("nav");
@@ -1676,6 +1732,9 @@ const CelestialTransmutation = () => {
     function buildPlanetUi() {
       const uiRoot = document.createElement("div");
       uiRoot.className = "celestial-ui";
+
+      const toggleRow = document.createElement("div");
+      toggleRow.className = "celestial-toggle-row";
 
       const autoLabel = document.createElement("label");
       autoLabel.className = "glass-panel celestial-auto";
@@ -1690,13 +1749,32 @@ const CelestialTransmutation = () => {
       autoLabel.appendChild(autoLabelSpan);
       autoLabel.appendChild(autoCycleInput);
       autoLabel.appendChild(autoIndicator);
-      uiRoot.appendChild(autoLabel);
+
+      const scaleLabel = document.createElement("label");
+      scaleLabel.className = "glass-panel celestial-scale";
+      scaleLabel.title = "Show planets at their true relative sizes";
+      const scaleLabelSpan = document.createElement("span");
+      scaleLabelSpan.textContent = "Real size";
+      scaleCheckbox.type = "checkbox";
+      scaleCheckbox.checked = false;
+      scaleCheckbox.className = "celestial-scale-input";
+      scaleIndicator.className = "celestial-scale-indicator";
+      scaleIndicator.setAttribute("aria-hidden", "true");
+      scaleLabel.appendChild(scaleLabelSpan);
+      scaleLabel.appendChild(scaleCheckbox);
+      scaleLabel.appendChild(scaleIndicator);
+
+      toggleRow.appendChild(autoLabel);
+      toggleRow.appendChild(scaleLabel);
+      uiRoot.appendChild(toggleRow);
 
       planetCopy.className = "celestial-copy";
       planetCopy.setAttribute("aria-live", "polite");
       planetKicker.className = "celestial-kicker";
       planetName.className = "celestial-name";
       planetDescription.className = "celestial-description";
+      planetFacts.className = "celestial-facts";
+      planetFacts.setAttribute("aria-hidden", "true");
       transitionMeter.className = "celestial-meter";
       transitionMeter.setAttribute("aria-hidden", "true");
       transitionMeterFill.className = "celestial-meter-fill";
@@ -1704,18 +1782,32 @@ const CelestialTransmutation = () => {
       planetCopy.appendChild(planetKicker);
       planetCopy.appendChild(planetName);
       planetCopy.appendChild(planetDescription);
+      planetCopy.appendChild(planetFacts);
       planetCopy.appendChild(transitionMeter);
       uiRoot.appendChild(planetCopy);
 
       planetUi.className = "glass-panel celestial-planet-ui";
-      planetUi.setAttribute("aria-label", "Conceptual planets");
+      planetUi.setAttribute("aria-label", "Solar system planets");
       PLANETS.forEach((planet, index) => {
         const button = document.createElement("button");
         button.type = "button";
         button.className = index === 0 ? "celestial-planet-btn is-active" : "celestial-planet-btn";
         button.dataset.planet = String(index);
+        button.setAttribute("aria-label", planet.name);
         button.setAttribute("aria-pressed", String(index === 0));
-        button.textContent = planet.name;
+        const dot = document.createElement("span");
+        dot.className = "celestial-planet-dot";
+        dot.style.background =
+          "radial-gradient(circle at 34% 28%, rgb(" +
+          planet.accentA +
+          "), rgb(" +
+          planet.accentB +
+          "))";
+        const label = document.createElement("span");
+        label.className = "celestial-planet-label";
+        label.textContent = planet.name;
+        button.appendChild(dot);
+        button.appendChild(label);
         button.addEventListener("click", () => {
           beginTransition(Number(button.dataset.planet), latestTime);
         });
@@ -1743,6 +1835,7 @@ const CelestialTransmutation = () => {
         : planet.kicker;
       planetName.textContent = planet.name;
       planetDescription.textContent = planet.description;
+      planetFacts.textContent = planet.facts.join(" \u00b7 ");
     }
 
     function updateButtonState(currentIndex, targetIndex) {
@@ -1777,6 +1870,10 @@ const CelestialTransmutation = () => {
 
       setSharedUniform("uFromPreset", transitionState.from);
       setSharedUniform("uToPreset", transitionState.to);
+      setSharedUniform("uFromMap", planetMaps[transitionState.from]);
+      setSharedUniform("uToMap", planetMaps[transitionState.to]);
+      setSharedUniform("uSpinFrom", PLANETS[transitionState.from].spin * SPIN_BASE);
+      setSharedUniform("uSpinTo", PLANETS[transitionState.to].spin * SPIN_BASE);
       setSharedUniform("uTransition", 0);
       setSharedUniform("uTransitionEnergy", 0);
 
@@ -1797,6 +1894,10 @@ const CelestialTransmutation = () => {
 
       setSharedUniform("uFromPreset", transitionState.current);
       setSharedUniform("uToPreset", transitionState.current);
+      setSharedUniform("uFromMap", planetMaps[transitionState.current]);
+      setSharedUniform("uToMap", planetMaps[transitionState.current]);
+      setSharedUniform("uSpinFrom", PLANETS[transitionState.current].spin * SPIN_BASE);
+      setSharedUniform("uSpinTo", PLANETS[transitionState.current].spin * SPIN_BASE);
       setSharedUniform("uTransition", 0);
       setSharedUniform("uTransitionEnergy", 0);
 
@@ -1886,6 +1987,8 @@ const CelestialTransmutation = () => {
     transitionState.settledAt = 0;
     const AUTO_HOLD_SECONDS = prefersReducedMotion ? 6.0 : 4.2;
     const idleRotation = 0.035;
+    let displayScale = 1;
+    let lastFramingScale = 1;
 
     const animate = () => {
       animationId = window.requestAnimationFrame(animate);
@@ -1899,6 +2002,41 @@ const CelestialTransmutation = () => {
       surfaceMaterial.depthWrite = true;
       planetParticles.visible = transitionState.active;
       transitionFilaments.visible = transitionState.active;
+
+      const realScaleEnabled = scaleCheckbox.checked;
+      const fromScale = PLANETS[
+        transitionState.active ? transitionState.from : transitionState.current
+      ].radius;
+      const toScale = PLANETS[
+        transitionState.active ? transitionState.to : transitionState.current
+      ].radius;
+      const desiredScale = realScaleEnabled
+        ? THREE.MathUtils.lerp(
+            fromScale,
+            toScale,
+            transitionState.active ? transitionState.eased : 0
+          )
+        : 1;
+      displayScale += (desiredScale - displayScale) * Math.min(1, delta * SCALE_SMOOTHING);
+      displayScale = THREE.MathUtils.clamp(displayScale, 0.02, 1);
+
+      const scaleChangeRatio = displayScale / lastFramingScale;
+      if (Number.isFinite(scaleChangeRatio) && scaleChangeRatio > 0.001) {
+        intendedOrbitRadius *= scaleChangeRatio;
+        intendedOrbitRadius = THREE.MathUtils.clamp(
+          intendedOrbitRadius,
+          6.25 * displayScale,
+          12.75 * displayScale
+        );
+      }
+      lastFramingScale = displayScale;
+      controls.minDistance = 6.25 * displayScale;
+      controls.maxDistance = 12.75 * displayScale;
+
+      sharedPlanetUniforms.uScale.value = displayScale;
+      particleUniforms.uScale.value = displayScale;
+      filamentUniforms.uScale.value = displayScale;
+      ringMaterial.uniforms.uScale.value = displayScale;
 
       sharedPlanetUniforms.uTime.value = time;
       particleUniforms.uTime.value = time;
@@ -1915,10 +2053,10 @@ const CelestialTransmutation = () => {
       }
 
       const fromHasRing = transitionState.active
-        ? Number(transitionState.from === 2)
-        : Number(transitionState.current === 2);
+        ? Number(transitionState.from === RING_PRESET)
+        : Number(transitionState.current === RING_PRESET);
       const toHasRing = transitionState.active
-        ? Number(transitionState.to === 2)
+        ? Number(transitionState.to === RING_PRESET)
         : fromHasRing;
       const ringMorph = transitionState.active
         ? smootherStep(transitionState.eased)
@@ -1960,6 +2098,8 @@ const CelestialTransmutation = () => {
     setDocumentAccent(0);
     updatePlanetCopy(0, false);
     updateButtonState(0, null);
+    setSharedUniform("uSpinFrom", PLANETS[0].spin * SPIN_BASE);
+    setSharedUniform("uSpinTo", PLANETS[0].spin * SPIN_BASE);
     handleResize();
     animate();
 
@@ -2001,6 +2141,8 @@ const CelestialTransmutation = () => {
       if (bloomPass && bloomPass.dispose) bloomPass.dispose();
       if (renderer) renderer.dispose();
       if (controls) controls.dispose();
+      planetMaps.forEach((map) => map.dispose());
+      ringMap.dispose();
     };
   }, []);
 
@@ -2011,10 +2153,13 @@ const CelestialTransmutation = () => {
         <div className="celestial-brand-copy">
           <span className="celestial-brand-title">Celestial Transmutation</span>
           <span className="celestial-brand-subtitle">
-            Realtime phase-surge synthesis
+            Eight worlds, one phase-surge
           </span>
         </div>
       </div>
+      <span className="celestial-credit">
+        Surface maps: Solar System Scope / NASA — CC BY 4.0
+      </span>
     </div>
   );
 };

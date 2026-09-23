@@ -58,6 +58,17 @@
   color: rgba(232, 236, 247, 0.55);
 }
 
+.celestial-credit {
+  position: absolute;
+  top: 66px;
+  left: 24px;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: rgba(232, 236, 247, 0.38);
+  pointer-events: none;
+  z-index: 2;
+}
+
 .glass-panel {
   background: rgba(10, 14, 28, 0.42);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -74,10 +85,19 @@
   z-index: 2;
 }
 
-.celestial-auto {
+.celestial-toggle-row {
   position: absolute;
   top: 20px;
   right: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.celestial-auto,
+.celestial-scale {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -87,17 +107,23 @@
   letter-spacing: 0.06em;
   color: rgba(232, 236, 247, 0.82);
   cursor: pointer;
-  pointer-events: auto;
 }
 
-.celestial-auto-input {
+.celestial-scale {
+  padding: 7px 13px;
+  font-size: 11px;
+}
+
+.celestial-auto-input,
+.celestial-scale-input {
   position: absolute;
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.celestial-auto-indicator {
+.celestial-auto-indicator,
+.celestial-scale-indicator {
   position: relative;
   width: 30px;
   height: 16px;
@@ -107,7 +133,14 @@
   flex: 0 0 auto;
 }
 
-.celestial-auto-indicator::after {
+.celestial-scale-indicator {
+  width: 26px;
+  height: 14px;
+  border-radius: 8px;
+}
+
+.celestial-auto-indicator::after,
+.celestial-scale-indicator::after {
   content: "";
   position: absolute;
   top: 2px;
@@ -119,7 +152,13 @@
   transition: transform 0.25s ease;
 }
 
-.celestial-auto-input:checked + .celestial-auto-indicator {
+.celestial-scale-indicator::after {
+  width: 10px;
+  height: 10px;
+}
+
+.celestial-auto-input:checked + .celestial-auto-indicator,
+.celestial-scale-input:checked + .celestial-scale-indicator {
   background: linear-gradient(
     90deg,
     rgb(var(--accent-a)),
@@ -129,6 +168,10 @@
 
 .celestial-auto-input:checked + .celestial-auto-indicator::after {
   transform: translateX(14px);
+}
+
+.celestial-scale-input:checked + .celestial-scale-indicator::after {
+  transform: translateX(12px);
 }
 
 .celestial-copy {
@@ -164,6 +207,15 @@
   color: rgba(232, 236, 247, 0.72);
 }
 
+.celestial-facts {
+  margin-top: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(var(--accent-a), 0.92);
+  text-shadow: 0 0 10px rgba(var(--accent-a), 0.25);
+}
+
 .celestial-meter {
   width: 100%;
   height: 3px;
@@ -197,44 +249,75 @@
   left: 50%;
   transform: translateX(-50%);
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 6px;
   padding: 7px;
+  max-width: calc(100% - 32px);
   pointer-events: auto;
 }
 
 .celestial-planet-btn {
   appearance: none;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: none;
   background: transparent;
-  color: rgba(232, 236, 247, 0.68);
-  font: 600 12px/1 "Lato", "Segoe UI", sans-serif;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 10px 14px;
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  min-width: 46px;
+  padding: 6px 4px 4px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  color: rgba(232, 236, 247, 0.55);
+  transition: color 0.2s ease, background 0.2s ease;
 }
 
 .celestial-planet-btn:hover {
   color: #fff;
-  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.celestial-planet-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5), inset 0 0 3px rgba(255, 255, 255, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.celestial-planet-label {
+  font: 600 10px/1 "Lato", "Segoe UI", sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.celestial-planet-btn:hover .celestial-planet-dot {
+  transform: scale(1.22);
 }
 
 .celestial-planet-btn.is-active {
   color: #fff;
-  background: linear-gradient(
-    120deg,
-    rgba(var(--accent-a), 0.28),
-    rgba(var(--accent-b), 0.28)
-  );
-  border-color: rgba(var(--accent-a), 0.55);
+}
+
+.celestial-planet-btn.is-active .celestial-planet-dot {
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(var(--accent-a), 0.9), inset 0 0 3px rgba(255, 255, 255, 0.4);
 }
 
 .celestial-planet-btn.is-target {
   color: #fff;
-  border-color: rgba(var(--accent-b), 0.8);
-  box-shadow: 0 0 14px rgba(var(--accent-b), 0.3);
+}
+
+.celestial-planet-btn.is-target .celestial-planet-dot {
+  box-shadow: 0 0 16px rgba(var(--accent-b), 0.95), inset 0 0 3px rgba(255, 255, 255, 0.4);
+  animation: celestial-pulse 0.85s ease-in-out infinite;
+}
+
+@keyframes celestial-pulse {
+  50% {
+    transform: scale(1.35);
+  }
 }
 
 @media (max-width: 760px) {
@@ -243,9 +326,18 @@
     left: 16px;
   }
 
-  .celestial-auto {
+  .celestial-credit {
+    top: 56px;
+    left: 16px;
+  }
+
+  .celestial-toggle-row {
     top: 12px;
     right: 14px;
+  }
+
+  .celestial-auto,
+  .celestial-scale {
     padding: 8px 11px;
   }
 
