@@ -1,0 +1,53 @@
+/* Not Comets - derives from the original codetap "not-commets-threejs" demo css. */
+.not-comets-page {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 60px);
+  min-height: 480px;
+  overflow: hidden;
+  background: linear-gradient(-45deg, #333, #000);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.not-comets-page canvas {
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  background: rgba(0, 68, 255, 0.07);
+}
+
+.not-comets-hud {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  z-index: 10;
+  pointer-events: none;
+  user-select: none;
+}
+
+.not-comets-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.14);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.not-comets-title {
+  margin: 10px 0 4px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+.not-comets-hint {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.78);
+}

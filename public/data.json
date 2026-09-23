@@ -149,6 +149,13 @@
       "description": "A 3D rowing boat glides across animated water with a rowing figure, oars, lily pads and a wake",
       "path": "/animations/3d-rowing-boat",
       "isVisible": true
+    },
+    {
+      "id": "not-comets",
+      "displayName": "Not Comets",
+      "description": "A drifting starfield around a glowing crystal terrain, with growing comet trails rendered on a pure Canvas 2D renderer",
+      "path": "/animations/not-comets",
+      "isVisible": true
     }
   ],
   "experience": [
