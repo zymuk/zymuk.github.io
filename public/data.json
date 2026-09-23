@@ -156,6 +156,13 @@
       "description": "A drifting starfield around a glowing crystal terrain, with growing comet trails rendered on a pure Canvas 2D renderer",
       "path": "/animations/not-comets",
       "isVisible": true
+    },
+    {
+      "id": "fireworks",
+      "displayName": "Fireworks",
+      "description": "A WebGL fireworks show: point-particle bursts explode above a rippling wireframe ground, auto-launching above a dark gradient sky",
+      "path": "/animations/fireworks",
+      "isVisible": true
     }
   ],
   "experience": [

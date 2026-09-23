@@ -31,6 +31,7 @@ const ThreeDRowingBoat = lazy(() =>
 const NotComets = lazy(() =>
   import("../pages/animations/not-comets/NotComets"),
 );
+const Fireworks = lazy(() => import("../pages/animations/fireworks/Fireworks"));
 
 const AnimationsRoutes = [
   { path: "/animations", element: <AnimationsLanding /> },
@@ -45,6 +46,7 @@ const AnimationsRoutes = [
   },
   { path: "/animations/3d-rowing-boat", element: <ThreeDRowingBoat /> },
   { path: "/animations/not-comets", element: <NotComets /> },
+  { path: "/animations/fireworks", element: <Fireworks /> },
 ];
 
 export default AnimationsRoutes;

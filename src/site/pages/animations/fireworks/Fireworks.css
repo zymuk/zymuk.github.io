@@ -1,0 +1,120 @@
+/* Fireworks - derives from the original codetap "fireworks-threejs-animation" demo css. */
+
+.fireworks-page {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 60px);
+  min-height: 480px;
+  overflow: hidden;
+  background: linear-gradient(0deg, rgb(0, 12, 91), rgb(0, 0, 0));
+}
+
+.fireworks-page canvas {
+  display: block;
+}
+
+.fireworks-hud {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  z-index: 10;
+  pointer-events: none;
+  user-select: none;
+}
+
+.fireworks-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.fireworks-title {
+  margin: 10px 0 4px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+.fireworks-hint {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.fireworks-controls {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  z-index: 10;
+  min-width: 220px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(20, 25, 55, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  user-select: none;
+}
+
+.fireworks-controls-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 8px;
+}
+
+.fireworks-control-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.82rem;
+  margin-bottom: 8px;
+}
+
+.fireworks-control-row b {
+  color: #ffd166;
+  font-weight: 600;
+}
+
+.fireworks-control-inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.fireworks-control-inline input {
+  cursor: pointer;
+  accent-color: #ffd166;
+}
+
+.fireworks-control-row input[type="range"] {
+  width: 100%;
+  accent-color: #ffd166;
+  cursor: pointer;
+}
+
+.fireworks-launch-btn {
+  width: 100%;
+  padding: 7px 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0b1030;
+  background: linear-gradient(90deg, #ffd166, #ff9f43);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.fireworks-launch-btn:hover {
+  filter: brightness(1.08);
+}
