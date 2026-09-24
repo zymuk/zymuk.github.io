@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/static/css/main.666297b5.css",
-    "main.js": "/static/js/main.82626db1.js",
+    "main.js": "/static/js/main.c4c1ac8d.js",
     "static/css/506.f72ae9fa.chunk.css": "/static/css/506.f72ae9fa.chunk.css",
-    "static/js/506.53b38999.chunk.js": "/static/js/506.53b38999.chunk.js",
+    "static/js/506.3b2bc75e.chunk.js": "/static/js/506.3b2bc75e.chunk.js",
     "static/css/807.303f5f27.chunk.css": "/static/css/807.303f5f27.chunk.css",
-    "static/js/807.82d41c7b.chunk.js": "/static/js/807.82d41c7b.chunk.js",
+    "static/js/807.dee5ba27.chunk.js": "/static/js/807.dee5ba27.chunk.js",
     "static/css/634.2a8f0b81.chunk.css": "/static/css/634.2a8f0b81.chunk.css",
     "static/js/634.e7a89c93.chunk.js": "/static/js/634.e7a89c93.chunk.js",
     "static/css/809.ab4f6dc0.chunk.css": "/static/css/809.ab4f6dc0.chunk.css",
@@ -60,11 +60,11 @@
     "static/media/2k_saturn_ring_alpha.png": "/static/media/2k_saturn_ring_alpha.fe76bbb008a07a864ada.png",
     "index.html": "/index.html",
     "main.666297b5.css.map": "/static/css/main.666297b5.css.map",
-    "main.82626db1.js.map": "/static/js/main.82626db1.js.map",
+    "main.c4c1ac8d.js.map": "/static/js/main.c4c1ac8d.js.map",
     "506.f72ae9fa.chunk.css.map": "/static/css/506.f72ae9fa.chunk.css.map",
-    "506.53b38999.chunk.js.map": "/static/js/506.53b38999.chunk.js.map",
+    "506.3b2bc75e.chunk.js.map": "/static/js/506.3b2bc75e.chunk.js.map",
     "807.303f5f27.chunk.css.map": "/static/css/807.303f5f27.chunk.css.map",
-    "807.82d41c7b.chunk.js.map": "/static/js/807.82d41c7b.chunk.js.map",
+    "807.dee5ba27.chunk.js.map": "/static/js/807.dee5ba27.chunk.js.map",
     "634.2a8f0b81.chunk.css.map": "/static/css/634.2a8f0b81.chunk.css.map",
     "634.e7a89c93.chunk.js.map": "/static/js/634.e7a89c93.chunk.js.map",
     "809.ab4f6dc0.chunk.css.map": "/static/css/809.ab4f6dc0.chunk.css.map",
@@ -111,6 +111,6 @@
   },
   "entrypoints": [
     "static/css/main.666297b5.css",
-    "static/js/main.82626db1.js"
+    "static/js/main.c4c1ac8d.js"
   ]
 }
