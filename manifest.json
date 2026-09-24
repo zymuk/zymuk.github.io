@@ -1,8 +1,6 @@
 {
-  "short_name": "Zymuk Page",
-  "name": "Zymuk Trần - QA Engineer Portfolio",
-  "id": "/",
-  "description": "Personal portfolio and free online tools by Zymuk Trần, a QA engineer who codes.",
+  "short_name": "React App",
+  "name": "Create React App Sample",
   "icons": [
     {
       "src": "favicon.ico",
@@ -12,21 +10,16 @@
     {
       "src": "logo192.png",
       "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "any maskable"
+      "sizes": "192x192"
     },
     {
       "src": "logo512.png",
       "type": "image/png",
-      "sizes": "512x512",
-      "purpose": "any maskable"
+      "sizes": "512x512"
     }
   ],
   "start_url": ".",
-  "scope": ".",
   "display": "standalone",
-  "orientation": "portrait",
-  "theme_color": "#001f3f",
-  "background_color": "#001f3f",
-  "prefer_related_applications": false
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
 }
