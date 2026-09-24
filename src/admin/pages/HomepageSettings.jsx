@@ -2,19 +2,38 @@ import React, { useState, useEffect } from "react";
 import "./AdminCommon.css";
 import "./HomepageSettings.css";
 
+const SECTION_DEFAULTS = {
+  hero: { title: "", content: "", color: "#000000", image: "" },
+  about: { text: "", description: "", color: "#000000", image: "" },
+  experience: { title: "", description: "", color: "#000000" },
+  certifications: { color: "#000000", image: "" },
+  skills: { color: "#000000", image: "" },
+  projects: { color: "#000000", image: "" },
+  tools: { color: "#000000", image: "" },
+  contact: { color: "#000000", image: "" },
+};
+
+const normalizeSettings = (homepage, saved) => {
+  const sections = {};
+  const keys = new Set([
+    ...Object.keys(SECTION_DEFAULTS),
+    ...Object.keys(homepage || {}),
+    ...Object.keys(saved || {}),
+  ]);
+  for (const key of keys) {
+    sections[key] = {
+      ...(SECTION_DEFAULTS[key] || {}),
+      ...(homepage?.[key] || {}),
+      ...(saved?.[key] || {}),
+    };
+  }
+  return sections;
+};
+
 const HomepageSettings = () => {
   const [t, setT] = useState({});
   const lang = localStorage.getItem("lang") || "en";
-  const [settings, setSettings] = useState({
-    hero: { title: "", content: "", color: "#000000", image: "" },
-    about: { text: "", description: "", color: "#000000", image: "" },
-    experience: { title: "", description: "", color: "#000000" },
-    certifications: { color: "#000000", image: "" },
-    skills: { color: "#000000", image: "" },
-    projects: { color: "#000000", image: "" },
-    tools: { color: "#000000", image: "" },
-    contact: { color: "#000000", image: "" },
-  });
+  const [settings, setSettings] = useState(SECTION_DEFAULTS);
 
   useEffect(() => {
     fetch(`/${lang}.json`)
@@ -25,57 +44,30 @@ const HomepageSettings = () => {
 
   useEffect(() => {
     const loadSettings = async () => {
-      try {
-        const savedSettings = localStorage.getItem("homepageSettings");
-        if (savedSettings) {
-          setSettings(JSON.parse(savedSettings));
-          return;
+      let savedParsed = {};
+      const savedSettings = localStorage.getItem("homepageSettings");
+      if (savedSettings) {
+        try {
+          savedParsed = JSON.parse(savedSettings) || {};
+        } catch (error) {
+          console.error(
+            "Invalid homepageSettings data in localStorage:",
+            error
+          );
+          savedParsed = {};
         }
+      }
 
+      let homepage = {};
+      try {
         const response = await fetch("/data.json");
         const config = await response.json();
-        setSettings({
-          hero: {
-            title: config.homepage?.hero?.title || "",
-            content: config.homepage?.hero?.content || "",
-            color: config.homepage?.hero?.color || "#000000",
-            image: config.homepage?.hero?.image || "",
-          },
-          about: {
-            text: config.homepage?.about?.text || "",
-            description: config.homepage?.about?.description || "",
-            color: config.homepage?.about?.color || "#000000",
-            image: config.homepage?.about?.image || "",
-          },
-          experience: {
-            title: config.homepage?.experience?.title || "",
-            description: config.homepage?.experience?.description || "",
-            color: config.homepage?.experience?.color || "#000000",
-          },
-          certifications: {
-            color: config.homepage?.certifications?.color || "#000000",
-            image: config.homepage?.certifications?.image || "",
-          },
-          skills: {
-            color: config.homepage?.skills?.color || "#000000",
-            image: config.homepage?.skills?.image || "",
-          },
-          projects: {
-            color: config.homepage?.projects?.color || "#000000",
-            image: config.homepage?.projects?.image || "",
-          },
-          tools: {
-            color: config.homepage?.tools?.color || "#000000",
-            image: config.homepage?.tools?.image || "",
-          },
-          contact: {
-            color: config.homepage?.contact?.color || "#000000",
-            image: config.homepage?.contact?.image || "",
-          },
-        });
+        homepage = config.homepage || {};
       } catch (error) {
         console.error("Error loading homepage settings:", error);
       }
+
+      setSettings(normalizeSettings(homepage, savedParsed));
     };
 
     loadSettings();
@@ -98,47 +90,7 @@ const HomepageSettings = () => {
       const response = await fetch("/data.json");
       const config = await response.json();
 
-      const resetSettings = {
-        hero: {
-          title: config.homepage?.hero?.title || "",
-          content: config.homepage?.hero?.content || "",
-          color: config.homepage?.hero?.color || "#000000",
-          image: config.homepage?.hero?.image || "",
-        },
-        about: {
-          text: config.homepage?.about?.text || "",
-          description: config.homepage?.about?.description || "",
-          color: config.homepage?.about?.color || "#000000",
-          image: config.homepage?.about?.image || "",
-        },
-        experience: {
-          title: config.homepage?.experience?.title || "",
-          description: config.homepage?.experience?.description || "",
-          color: config.homepage?.experience?.color || "#000000",
-        },
-        certifications: {
-          color: config.homepage?.certifications?.color || "#000000",
-          image: config.homepage?.certifications?.image || "",
-        },
-        skills: {
-          color: config.homepage?.skills?.color || "#000000",
-          image: config.homepage?.skills?.image || "",
-        },
-        projects: {
-          color: config.homepage?.projects?.color || "#000000",
-          image: config.homepage?.projects?.image || "",
-        },
-        tools: {
-          color: config.homepage?.tools?.color || "#000000",
-          image: config.homepage?.tools?.image || "",
-        },
-        contact: {
-          color: config.homepage?.contact?.color || "#000000",
-          image: config.homepage?.contact?.image || "",
-        },
-      };
-
-      setSettings(resetSettings);
+      setSettings(normalizeSettings(config.homepage || {}, {}));
       localStorage.removeItem("homepageSettings");
       alert("Reset to default settings! ✅");
     } catch (error) {

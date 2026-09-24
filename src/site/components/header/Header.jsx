@@ -51,33 +51,44 @@ const Header = ({ scrollToSection }) => {
   }, []);
 
   useEffect(() => {
-    const loadSectionList = (key, setter) => {
-      let parsed = null;
+    let active = true;
+    const visibleOnly = (list) =>
+      list.filter((item) => item.isVisible !== false);
+    const readSaved = (key) => {
       const saved = localStorage.getItem(key);
-      if (saved) {
-        try {
-          parsed = JSON.parse(saved);
-        } catch (error) {
-          console.error(`Invalid ${key} data in localStorage:`, error);
-          parsed = null;
-        }
-      }
-      if (parsed) {
-        setter(parsed.filter((item) => item.isVisible === true));
-      } else {
-        fetch("/data.json")
-          .then((response) => response.json())
-          .then((data) => {
-            const list = data[key] || [];
-            setter(list.filter((item) => item.isVisible === true));
-          })
-          .catch((error) => {
-            console.error(`Error loading ${key}:`, error);
-          });
+      if (!saved) return null;
+      try {
+        const parsed = JSON.parse(saved);
+        return Array.isArray(parsed) ? parsed : null;
+      } catch (error) {
+        console.error(`Invalid ${key} data in localStorage:`, error);
+        return null;
       }
     };
-    loadSectionList("features", setListActivedFeatures);
-    loadSectionList("animations", setListActivedAnimations);
+
+    const savedFeatures = readSaved("features");
+    const savedAnimations = readSaved("animations");
+    if (savedFeatures) setListActivedFeatures(visibleOnly(savedFeatures));
+    if (savedAnimations) setListActivedAnimations(visibleOnly(savedAnimations));
+
+    if (savedFeatures && savedAnimations) return;
+
+    fetch("/data.json")
+      .then((response) => response.json())
+      .then((data) => {
+        if (!active) return;
+        if (!savedFeatures) {
+          setListActivedFeatures(visibleOnly(data.features || []));
+        }
+        if (!savedAnimations) {
+          setListActivedAnimations(visibleOnly(data.animations || []));
+        }
+      })
+      .catch((error) => console.error("Error loading section lists:", error));
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   useEffect(() => {

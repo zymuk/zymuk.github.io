@@ -15,19 +15,18 @@ const Settings = () => {
   }, [lang]);
 
   useEffect(() => {
-    // Load data from localStorage first, fallback to data.json
-    const cachedData = localStorage.getItem("site_data");
-    if (cachedData) {
-      setData(JSON.parse(cachedData));
-    } else {
-      fetch("/data.json")
-        .then((res) => res.json())
-        .then((jsonData) => {
-          setData(jsonData);
-          localStorage.setItem("site_data", JSON.stringify(jsonData));
-        })
-        .catch((error) => console.error("Error loading data:", error));
-    }
+    let active = true;
+    fetch("/data.json")
+      .then((res) => res.json())
+      .then((jsonData) => {
+        if (!active) return;
+        setData(jsonData);
+        localStorage.setItem("site_data", JSON.stringify(jsonData));
+      })
+      .catch((error) => console.error("Error loading data:", error));
+    return () => {
+      active = false;
+    };
   }, []);
 
   const exportData = () => {

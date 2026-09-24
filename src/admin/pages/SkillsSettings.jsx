@@ -14,19 +14,35 @@ const SkillsSettings = () => {
   }, [lang]);
 
   useEffect(() => {
-    const storedSkills = localStorage.getItem("skills");
-    if (storedSkills) {
-      setSkills(JSON.parse(storedSkills));
-    } else {
-      fetch("/data.json")
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.skills) {
-            setSkills(data.skills);
-          }
-        })
-        .catch((error) => console.error("Error loading skills:", error));
+    let active = true;
+    const readSaved = () => {
+      const saved = localStorage.getItem("skills");
+      if (!saved) return null;
+      try {
+        const parsed = JSON.parse(saved);
+        return Array.isArray(parsed) ? parsed : null;
+      } catch (error) {
+        console.error("Invalid skills data in localStorage:", error);
+        return null;
+      }
+    };
+
+    const savedSkills = readSaved();
+    if (savedSkills) {
+      setSkills(savedSkills);
+      return;
     }
+
+    fetch("/data.json")
+      .then((res) => res.json())
+      .then((data) => {
+        if (active && data.skills) setSkills(data.skills);
+      })
+      .catch((error) => console.error("Error loading skills:", error));
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   const handleSave = () => {

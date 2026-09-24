@@ -15,17 +15,35 @@ const FeaturesSettings = () => {
   }, [lang]);
 
   useEffect(() => {
-    // Load features from localStorage if available
-    const savedFeatures = localStorage.getItem("features");
+    let active = true;
+    const readSaved = () => {
+      const saved = localStorage.getItem("features");
+      if (!saved) return null;
+      try {
+        const parsed = JSON.parse(saved);
+        return Array.isArray(parsed) ? parsed : null;
+      } catch (error) {
+        console.error("Invalid features data in localStorage:", error);
+        return null;
+      }
+    };
+
+    const savedFeatures = readSaved();
     if (savedFeatures) {
-      setFeatures(JSON.parse(savedFeatures));
-    } else {
-      // Load default data from data.json
-      fetch("/data.json")
-        .then((res) => res.json())
-        .then((data) => setFeatures(data.features))
-        .catch((err) => console.error("Error loading default features:", err));
+      setFeatures(savedFeatures);
+      return;
     }
+
+    fetch("/data.json")
+      .then((res) => res.json())
+      .then((data) => {
+        if (active) setFeatures(data.features || []);
+      })
+      .catch((err) => console.error("Error loading default features:", err));
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   const handleChange = (index, field, value) => {
@@ -85,7 +103,7 @@ const FeaturesSettings = () => {
               <td>
                 <input
                   type="checkbox"
-                  checked={feature.isVisible}
+                  checked={feature.isVisible !== false}
                   onChange={(e) =>
                     handleChange(index, "isVisible", e.target.checked)
                   }

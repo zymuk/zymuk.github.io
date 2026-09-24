@@ -19,19 +19,26 @@ const ExperienceSettings = () => {
         localStorage.removeItem("experienceData");
       }
 
-      // Check localStorage first
+      // A saved experience list (if valid) is the admin's working copy
       const savedData = localStorage.getItem("experience");
       if (savedData) {
-        setData({ experience: JSON.parse(savedData) });
-        setLoading(false);
-        return;
+        try {
+          const parsed = JSON.parse(savedData);
+          if (Array.isArray(parsed)) {
+            setData({ experience: parsed });
+            setLoading(false);
+            return;
+          }
+        } catch (parseError) {
+          console.error("Invalid experience data in localStorage:", parseError);
+        }
       }
 
-      // If no saved data, load from data.json
+      // Otherwise load the default list from data.json
       const dataResponse = await fetch("/data.json");
-      const experienceData = await dataResponse.json();
+      const jsonData = await dataResponse.json();
 
-      setData(experienceData);
+      setData({ experience: jsonData.experience || [] });
       setLoading(false);
     } catch (error) {
       console.error("Error loading experience settings:", error);
@@ -114,7 +121,7 @@ const ExperienceSettings = () => {
     handleExperienceChange(
       index,
       "isVisible",
-      !data.experience[index].isVisible
+      data.experience[index].isVisible !== false ? false : true
     );
   };
 
@@ -212,7 +219,7 @@ const ExperienceSettings = () => {
               <label className="admin-visibility-toggle">
                 <input
                   type="checkbox"
-                  checked={exp.isVisible}
+                  checked={exp.isVisible !== false}
                   onChange={() => toggleVisibility(expIndex)}
                 />
                 Visible

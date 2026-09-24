@@ -24,19 +24,35 @@ const CertificationSettings = () => {
   }, [lang]);
 
   useEffect(() => {
-    const storedCertifications = localStorage.getItem("certifications");
-    if (storedCertifications) {
-      setCertifications(JSON.parse(storedCertifications));
-    } else {
-      // Load default data from data.json
-      fetch("/data.json")
-        .then((res) => res.json())
-        .then((data) => {
-          const defaultCertifications = data.certifications || [];
-          setCertifications(defaultCertifications);
-        })
-        .catch((err) => console.error("Error loading certifications:", err));
+    let active = true;
+    const readSaved = () => {
+      const saved = localStorage.getItem("certifications");
+      if (!saved) return null;
+      try {
+        const parsed = JSON.parse(saved);
+        return Array.isArray(parsed) ? parsed : null;
+      } catch (error) {
+        console.error("Invalid certifications data in localStorage:", error);
+        return null;
+      }
+    };
+
+    const savedCertifications = readSaved();
+    if (savedCertifications) {
+      setCertifications(savedCertifications);
+      return;
     }
+
+    fetch("/data.json")
+      .then((res) => res.json())
+      .then((data) => {
+        if (active) setCertifications(data.certifications || []);
+      })
+      .catch((err) => console.error("Error loading certifications:", err));
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   const handleChange = (e) => {
@@ -158,7 +174,7 @@ const CertificationSettings = () => {
           <input
             type="checkbox"
             name="isVisible"
-            checked={certification.isVisible}
+            checked={certification.isVisible !== false}
             onChange={handleChange}
           />
         </div>
@@ -200,7 +216,7 @@ const CertificationSettings = () => {
         {certifications.map((cert, index) => (
           <li key={index}>
             <strong>{cert.name}</strong> - {cert.issuer} ({cert.issueDate}) -{" "}
-            {cert.isVisible ? "Visible" : "Hidden"}
+            {cert.isVisible !== false ? "Visible" : "Hidden"}
             <div className="admin-actions">
               <button
                 onClick={() => handleEdit(index)}

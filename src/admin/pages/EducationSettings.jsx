@@ -25,18 +25,35 @@ const EducationSettings = () => {
   }, [lang]);
 
   useEffect(() => {
-    const storedEducation = localStorage.getItem("education");
-    if (storedEducation) {
-      setEducation(JSON.parse(storedEducation));
-    } else {
-      fetch("/data.json")
-        .then((res) => res.json())
-        .then((data) => {
-          const defaultEducation = data.education || [];
-          setEducation(defaultEducation);
-        })
-        .catch((error) => console.error("Error loading education:", error));
+    let active = true;
+    const readSaved = () => {
+      const saved = localStorage.getItem("education");
+      if (!saved) return null;
+      try {
+        const parsed = JSON.parse(saved);
+        return Array.isArray(parsed) ? parsed : null;
+      } catch (error) {
+        console.error("Invalid education data in localStorage:", error);
+        return null;
+      }
+    };
+
+    const savedEducation = readSaved();
+    if (savedEducation) {
+      setEducation(savedEducation);
+      return;
     }
+
+    fetch("/data.json")
+      .then((res) => res.json())
+      .then((data) => {
+        if (active) setEducation(data.education || []);
+      })
+      .catch((error) => console.error("Error loading education:", error));
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   const handleChange = (e) => {
@@ -203,7 +220,7 @@ const EducationSettings = () => {
           <input
             type="checkbox"
             name="isVisible"
-            checked={currentEducation.isVisible}
+            checked={currentEducation.isVisible !== false}
             onChange={handleChange}
           />
         </div>
@@ -244,7 +261,7 @@ const EducationSettings = () => {
         {education.map((edu, index) => (
           <li key={index}>
             <strong>{edu.degree}</strong> - {edu.school} ({edu.period}) -{" "}
-            {edu.isVisible ? "Visible" : "Hidden"}
+            {edu.isVisible !== false ? "Visible" : "Hidden"}
             <div className="admin-actions">
               <button
                 onClick={() => handleEdit(index)}

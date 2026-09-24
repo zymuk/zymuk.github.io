@@ -23,27 +23,45 @@ const ProjectsSettings = () => {
   }, [lang]);
 
   useEffect(() => {
-    const storedProjects = localStorage.getItem("projects");
-    if (storedProjects) {
-      setProjects(JSON.parse(storedProjects));
-    } else {
-      // Load default data from data.json
-      fetch("/data.json")
-        .then((res) => res.json())
-        .then((data) => {
-          const defaultProjects = data.projects || [];
-          // Convert old format to new format if needed
-          const formattedProjects = defaultProjects.map((project) => ({
-            name: project.name || "",
-            description: project.description || "",
-            demoLink: project.demo || project.demoLink || "",
-            sourceLink: project.github || project.sourceLink || "",
-            isVisible: project.isVisible !== false,
-          }));
-          setProjects(formattedProjects);
-        })
-        .catch((err) => console.error("Error loading projects:", err));
+    let active = true;
+    const readSaved = () => {
+      const saved = localStorage.getItem("projects");
+      if (!saved) return null;
+      try {
+        const parsed = JSON.parse(saved);
+        return Array.isArray(parsed) ? parsed : null;
+      } catch (error) {
+        console.error("Invalid projects data in localStorage:", error);
+        return null;
+      }
+    };
+
+    const savedProjects = readSaved();
+    if (savedProjects) {
+      setProjects(savedProjects);
+      return;
     }
+
+    fetch("/data.json")
+      .then((res) => res.json())
+      .then((data) => {
+        if (!active) return;
+        const defaultProjects = data.projects || [];
+        // Convert old format to new format if needed
+        const formattedProjects = defaultProjects.map((project) => ({
+          name: project.name || "",
+          description: project.description || "",
+          demoLink: project.demo || project.demoLink || "",
+          sourceLink: project.github || project.sourceLink || "",
+          isVisible: project.isVisible !== false,
+        }));
+        setProjects(formattedProjects);
+      })
+      .catch((err) => console.error("Error loading projects:", err));
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   const handleChange = (e) => {
@@ -137,7 +155,7 @@ const ProjectsSettings = () => {
           <input
             type="checkbox"
             name="isVisible"
-            checked={project.isVisible}
+            checked={project.isVisible !== false}
             onChange={handleChange}
           />
         </div>
@@ -167,7 +185,7 @@ const ProjectsSettings = () => {
         {projects.map((proj, index) => (
           <li key={index}>
             <strong>{proj.name}</strong> -{" "}
-            {proj.isVisible ? "Visible" : "Hidden"}
+            {proj.isVisible !== false ? "Visible" : "Hidden"}
             <div className="admin-actions">
               <button
                 onClick={() => handleEdit(index)}
