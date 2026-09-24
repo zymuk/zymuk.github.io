@@ -123,5 +123,22 @@
   "add_education": "Thêm Học Vấn",
   "add_achievement": "Thêm Thành Tích",
   "new_education": "Mục Học Vấn Mới",
-  "no_education": "Chưa có mục học vấn nào"
+  "no_education": "Chưa có mục học vấn nào",
+  "add_user": "Thêm Người Dùng",
+  "edit_user": "Chỉnh Sửa Người Dùng",
+  "update_user": "Cập Nhật Người Dùng",
+  "user_list": "Danh Sách Người Dùng",
+  "role": "Vai Trò",
+  "role_admin": "Quản Trị Viên",
+  "role_user": "Người Dùng",
+  "actions": "Thao Tác",
+  "no_users": "Không có người dùng nào",
+  "fill_required_fields": "Vui lòng điền đầy đủ các trường bắt buộc!",
+  "email_exists_error": "Email này đã được sử dụng!",
+  "user_added_success": "Đã thêm người dùng thành công!",
+  "user_updated_success": "Đã cập nhật người dùng thành công!",
+  "user_deleted_success": "Đã xóa người dùng thành công!",
+  "confirm_delete_user": "Bạn có chắc chắn muốn xóa người dùng này?",
+  "show_password": "Hiện mật khẩu",
+  "hide_password": "Ẩn mật khẩu"
 }
