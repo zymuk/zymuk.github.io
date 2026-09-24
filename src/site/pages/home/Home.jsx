@@ -37,77 +37,45 @@ const Home = () => {
   useEffect(() => {
     const loadHomeData = async () => {
       try {
-        let loadedSettings = {};
-        const savedSettings = localStorage.getItem("homepageSettings");
-        if (savedSettings) {
-          loadedSettings = JSON.parse(savedSettings);
-        } else {
-          const settingsResponse = await fetch("/data.json");
-          const configData = await settingsResponse.json();
-          loadedSettings = configData;
-        }
+        const dataResponse = await fetch("/data.json");
+        const jsonData = await dataResponse.json();
+
+        const parseSaved = (key) => {
+          const saved = localStorage.getItem(key);
+          if (!saved) return null;
+          try {
+            return JSON.parse(saved);
+          } catch (error) {
+            console.error(`Invalid ${key} data in localStorage:`, error);
+            return null;
+          }
+        };
+
+        const savedHomepageSettings = parseSaved("homepageSettings");
+        const loadedSettings = {
+          ...jsonData,
+          homepage: {
+            ...(jsonData.homepage || {}),
+            ...(savedHomepageSettings || {}),
+          },
+        };
         setSettings(loadedSettings);
 
-        let projectsData = [];
-        let featuresData = [];
-        let animationsData = [];
-        let experienceData = [];
-        let educationData = [];
-        let certificationsData = [];
-        let skillsData = [];
-
-        const savedProjects = localStorage.getItem("projects");
-        const savedFeatures = localStorage.getItem("features");
-        const savedAnimations = localStorage.getItem("animations");
-        const savedExperience = localStorage.getItem("experience");
-        const savedEducation = localStorage.getItem("education");
-        const savedCertifications = localStorage.getItem("certifications");
-        const savedSkills = localStorage.getItem("skills");
-
-        if (savedProjects && savedFeatures && savedExperience) {
-          projectsData = JSON.parse(savedProjects);
-          featuresData = JSON.parse(savedFeatures);
-          animationsData = savedAnimations ? JSON.parse(savedAnimations) : [];
-          experienceData = JSON.parse(savedExperience);
-          educationData = JSON.parse(savedEducation);
-          certificationsData = JSON.parse(savedCertifications);
-          skillsData = savedSkills ? JSON.parse(savedSkills) : [];
-        } else {
-          const dataResponse = await fetch("/data.json");
-          const jsonData = await dataResponse.json();
-
-          projectsData = savedProjects
-            ? JSON.parse(savedProjects)
-            : jsonData.projects || [];
-          featuresData = savedFeatures
-            ? JSON.parse(savedFeatures)
-            : jsonData.features || [];
-          animationsData = savedAnimations
-            ? JSON.parse(savedAnimations)
-            : jsonData.animations || [];
-          experienceData = savedExperience
-            ? JSON.parse(savedExperience)
-            : jsonData.experience || [];
-          educationData = savedEducation
-            ? JSON.parse(savedEducation)
-            : jsonData.education || [];
-          certificationsData = savedCertifications
-            ? JSON.parse(savedCertifications)
-            : jsonData.certifications || [];
-          skillsData = savedSkills
-            ? JSON.parse(savedSkills)
-            : jsonData.skills || [];
+        const sectionKeys = [
+          "projects",
+          "features",
+          "experience",
+          "education",
+          "certifications",
+          "skills",
+          "animations",
+        ];
+        const sectionData = {};
+        for (const key of sectionKeys) {
+          const saved = parseSaved(key);
+          sectionData[key] = saved !== null ? saved : jsonData[key] || [];
         }
-
-        setData({
-          projects: projectsData,
-          features: featuresData,
-          animations: animationsData,
-          experience: experienceData,
-          education: educationData,
-          certifications: certificationsData,
-          skills: skillsData,
-        });
+        setData(sectionData);
       } catch (error) {
         console.error("Error loading home data:", error);
         setSettings({});
