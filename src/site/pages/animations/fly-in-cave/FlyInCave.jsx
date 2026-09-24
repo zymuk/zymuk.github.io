@@ -177,9 +177,9 @@ const FlyInCave = () => {
 
     const getElevation = (x, z, isTop) => {
       const offset = isTop ? 9999 : 0;
-      let y = noise2D((x + offset) / params.scale, (z + offset) / params.scale) * params.heightMultiplier;
+      let y = clamp(noise2D((x + offset) / params.scale, (z + offset) / params.scale) * params.heightMultiplier, -10, 10);
       const detailScale = params.scale * 0.4;
-      y += noise2D((x + offset) / detailScale, (z + offset) / detailScale) * (params.heightMultiplier * params.detailStrength);
+      y += clamp(noise2D((x + offset) / detailScale, (z + offset) / detailScale) * (params.heightMultiplier * params.detailStrength), -5, 5);
       const dist = Math.abs(x);
       y += Math.pow(dist / params.valleyWidth, 2.5);
       return y;
@@ -277,6 +277,8 @@ const FlyInCave = () => {
     let animationId = null;
     let lastTime = 0;
     let elapsed = 0;
+    const MAX_FLY_TIME = 15; // seconds
+    let hasReturned = false;
 
     const animate = () => {
       animationId = window.requestAnimationFrame(animate);
@@ -285,6 +287,15 @@ const FlyInCave = () => {
       const dt = Math.min((now - lastTime) / 1000, 0.033);
       lastTime = now;
       elapsed += dt;
+
+      camera.position.z -= params.speed * dt;
+      camLight.position.copy(camera.position);
+
+      // Auto-reverse after flying through for MAX_FLY_TIME seconds
+      if (elapsed >= MAX_FLY_TIME && !hasReturned) {
+        hasReturned = true;
+        params.speed = -params.speed; // reverse direction
+      }
 
       camera.position.z -= params.speed * dt;
       camLight.position.copy(camera.position);
